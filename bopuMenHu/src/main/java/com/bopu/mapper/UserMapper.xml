@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bopu.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.bopu.pojo.User" >
+  <resultMap id="BaseResultMap" type="com.bopu.com.bopu.pojo.User" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
-    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="works" property="works" jdbcType="VARCHAR" />
+    <result column="work" property="work" jdbcType="VARCHAR" />
     <result column="professional" property="professional" jdbcType="VARCHAR" />
     <result column="duties" property="duties" jdbcType="VARCHAR" />
     <result column="station" property="station" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="Email" property="email" jdbcType="VARCHAR" />
     <result column="active" property="active" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -74,10 +74,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, account, PASSWORD, NAME, phone, address, works, professional, duties, station, 
-    email, active
+    id, account, password, name, phone, address, work, professional, duties, station, 
+    Email, active
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.pojo.UserExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.com.bopu.pojo.UserExample" >
     select
     <if test="distinct" >
       distinct
@@ -101,25 +101,25 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bopu.pojo.UserExample" >
+  <delete id="deleteByExample" parameterType="com.bopu.com.bopu.pojo.UserExample" >
     delete from user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bopu.pojo.User" >
-    insert into user (id, account, PASSWORD, 
-      NAME, phone, address, 
-      works, professional, duties, 
-      station, email, active
+  <insert id="insert" parameterType="com.bopu.com.bopu.pojo.User" >
+    insert into user (id, account, password, 
+      name, phone, address, 
+      work, professional, duties, 
+      station, Email, active
       )
     values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{works,jdbcType=VARCHAR}, #{professional,jdbcType=VARCHAR}, #{duties,jdbcType=VARCHAR}, 
+      #{work,jdbcType=VARCHAR}, #{professional,jdbcType=VARCHAR}, #{duties,jdbcType=VARCHAR}, 
       #{station,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bopu.pojo.User" >
+  <insert id="insertSelective" parameterType="com.bopu.com.bopu.pojo.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -129,10 +129,10 @@
         account,
       </if>
       <if test="password != null" >
-        PASSWORD,
+        password,
       </if>
       <if test="name != null" >
-        NAME,
+        name,
       </if>
       <if test="phone != null" >
         phone,
@@ -140,8 +140,8 @@
       <if test="address != null" >
         address,
       </if>
-      <if test="works != null" >
-        works,
+      <if test="work != null" >
+        work,
       </if>
       <if test="professional != null" >
         professional,
@@ -153,7 +153,7 @@
         station,
       </if>
       <if test="email != null" >
-        email,
+        Email,
       </if>
       <if test="active != null" >
         active,
@@ -178,8 +178,8 @@
       <if test="address != null" >
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="works != null" >
-        #{works,jdbcType=VARCHAR},
+      <if test="work != null" >
+        #{work,jdbcType=VARCHAR},
       </if>
       <if test="professional != null" >
         #{professional,jdbcType=VARCHAR},
@@ -198,7 +198,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bopu.pojo.UserExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.bopu.com.bopu.pojo.UserExample" resultType="java.lang.Integer" >
     select count(*) from user
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -214,10 +214,10 @@
         account = #{record.account,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
-        PASSWORD = #{record.password,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null" >
-        NAME = #{record.name,jdbcType=VARCHAR},
+        name = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.phone != null" >
         phone = #{record.phone,jdbcType=VARCHAR},
@@ -225,8 +225,8 @@
       <if test="record.address != null" >
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.works != null" >
-        works = #{record.works,jdbcType=VARCHAR},
+      <if test="record.work != null" >
+        work = #{record.work,jdbcType=VARCHAR},
       </if>
       <if test="record.professional != null" >
         professional = #{record.professional,jdbcType=VARCHAR},
@@ -238,7 +238,7 @@
         station = #{record.station,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null" >
-        email = #{record.email,jdbcType=VARCHAR},
+        Email = #{record.email,jdbcType=VARCHAR},
       </if>
       <if test="record.active != null" >
         active = #{record.active,jdbcType=VARCHAR},
@@ -252,31 +252,31 @@
     update user
     set id = #{record.id,jdbcType=INTEGER},
       account = #{record.account,jdbcType=VARCHAR},
-      PASSWORD = #{record.password,jdbcType=VARCHAR},
-      NAME = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      works = #{record.works,jdbcType=VARCHAR},
+      work = #{record.work,jdbcType=VARCHAR},
       professional = #{record.professional,jdbcType=VARCHAR},
       duties = #{record.duties,jdbcType=VARCHAR},
       station = #{record.station,jdbcType=VARCHAR},
-      email = #{record.email,jdbcType=VARCHAR},
+      Email = #{record.email,jdbcType=VARCHAR},
       active = #{record.active,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.pojo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.com.bopu.pojo.User" >
     update user
     <set >
       <if test="account != null" >
         account = #{account,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        PASSWORD = #{password,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
       </if>
       <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
@@ -284,8 +284,8 @@
       <if test="address != null" >
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="works != null" >
-        works = #{works,jdbcType=VARCHAR},
+      <if test="work != null" >
+        work = #{work,jdbcType=VARCHAR},
       </if>
       <if test="professional != null" >
         professional = #{professional,jdbcType=VARCHAR},
@@ -297,7 +297,7 @@
         station = #{station,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
+        Email = #{email,jdbcType=VARCHAR},
       </if>
       <if test="active != null" >
         active = #{active,jdbcType=VARCHAR},
@@ -305,18 +305,18 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bopu.pojo.User" >
+  <update id="updateByPrimaryKey" parameterType="com.bopu.com.bopu.pojo.User" >
     update user
     set account = #{account,jdbcType=VARCHAR},
-      PASSWORD = #{password,jdbcType=VARCHAR},
-      NAME = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      works = #{works,jdbcType=VARCHAR},
+      work = #{work,jdbcType=VARCHAR},
       professional = #{professional,jdbcType=VARCHAR},
       duties = #{duties,jdbcType=VARCHAR},
       station = #{station,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
+      Email = #{email,jdbcType=VARCHAR},
       active = #{active,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

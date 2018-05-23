@@ -1,11 +1,13 @@
 package com.bopu.pojo;
 
+import java.util.Date;
+
 public class Article {
     private Integer id;
 
     private String title;
 
-    private String times;
+    private Date time;
 
     private Integer count;
 
@@ -14,6 +16,10 @@ public class Article {
     private Integer type;
 
     private Integer flag;
+
+    private Date limitdata;
+
+    private String check;
 
     private String content;
 
@@ -33,12 +39,12 @@ public class Article {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getTimes() {
-        return times;
+    public Date getTime() {
+        return time;
     }
 
-    public void setTimes(String times) {
-        this.times = times == null ? null : times.trim();
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public Integer getCount() {
@@ -71,6 +77,22 @@ public class Article {
 
     public void setFlag(Integer flag) {
         this.flag = flag;
+    }
+
+    public Date getLimitdata() {
+        return limitdata;
+    }
+
+    public void setLimitdata(Date limitdata) {
+        this.limitdata = limitdata;
+    }
+
+    public String getCheck() {
+        return check;
+    }
+
+    public void setCheck(String check) {
+        this.check = check == null ? null : check.trim();
     }
 
     public String getContent() {

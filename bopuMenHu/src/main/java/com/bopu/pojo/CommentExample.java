@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class LetterExample {
+public class CommentExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public LetterExample() {
+    public CommentExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,143 +165,133 @@ public class LetterExample {
             return (Criteria) this;
         }
 
-        public Criteria andReceiverIsNull() {
-            addCriterion("receiver is null");
+        public Criteria andArticleidIsNull() {
+            addCriterion("articleId is null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverIsNotNull() {
-            addCriterion("receiver is not null");
+        public Criteria andArticleidIsNotNull() {
+            addCriterion("articleId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverEqualTo(String value) {
-            addCriterion("receiver =", value, "receiver");
+        public Criteria andArticleidEqualTo(Integer value) {
+            addCriterion("articleId =", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverNotEqualTo(String value) {
-            addCriterion("receiver <>", value, "receiver");
+        public Criteria andArticleidNotEqualTo(Integer value) {
+            addCriterion("articleId <>", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverGreaterThan(String value) {
-            addCriterion("receiver >", value, "receiver");
+        public Criteria andArticleidGreaterThan(Integer value) {
+            addCriterion("articleId >", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverGreaterThanOrEqualTo(String value) {
-            addCriterion("receiver >=", value, "receiver");
+        public Criteria andArticleidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("articleId >=", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverLessThan(String value) {
-            addCriterion("receiver <", value, "receiver");
+        public Criteria andArticleidLessThan(Integer value) {
+            addCriterion("articleId <", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverLessThanOrEqualTo(String value) {
-            addCriterion("receiver <=", value, "receiver");
+        public Criteria andArticleidLessThanOrEqualTo(Integer value) {
+            addCriterion("articleId <=", value, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverLike(String value) {
-            addCriterion("receiver like", value, "receiver");
+        public Criteria andArticleidIn(List<Integer> values) {
+            addCriterion("articleId in", values, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverNotLike(String value) {
-            addCriterion("receiver not like", value, "receiver");
+        public Criteria andArticleidNotIn(List<Integer> values) {
+            addCriterion("articleId not in", values, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverIn(List<String> values) {
-            addCriterion("receiver in", values, "receiver");
+        public Criteria andArticleidBetween(Integer value1, Integer value2) {
+            addCriterion("articleId between", value1, value2, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverNotIn(List<String> values) {
-            addCriterion("receiver not in", values, "receiver");
+        public Criteria andArticleidNotBetween(Integer value1, Integer value2) {
+            addCriterion("articleId not between", value1, value2, "articleid");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverBetween(String value1, String value2) {
-            addCriterion("receiver between", value1, value2, "receiver");
+        public Criteria andUsernameIsNull() {
+            addCriterion("userName is null");
             return (Criteria) this;
         }
 
-        public Criteria andReceiverNotBetween(String value1, String value2) {
-            addCriterion("receiver not between", value1, value2, "receiver");
+        public Criteria andUsernameIsNotNull() {
+            addCriterion("userName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSenderIsNull() {
-            addCriterion("sender is null");
+        public Criteria andUsernameEqualTo(String value) {
+            addCriterion("userName =", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderIsNotNull() {
-            addCriterion("sender is not null");
+        public Criteria andUsernameNotEqualTo(String value) {
+            addCriterion("userName <>", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderEqualTo(String value) {
-            addCriterion("sender =", value, "sender");
+        public Criteria andUsernameGreaterThan(String value) {
+            addCriterion("userName >", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderNotEqualTo(String value) {
-            addCriterion("sender <>", value, "sender");
+        public Criteria andUsernameGreaterThanOrEqualTo(String value) {
+            addCriterion("userName >=", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderGreaterThan(String value) {
-            addCriterion("sender >", value, "sender");
+        public Criteria andUsernameLessThan(String value) {
+            addCriterion("userName <", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderGreaterThanOrEqualTo(String value) {
-            addCriterion("sender >=", value, "sender");
+        public Criteria andUsernameLessThanOrEqualTo(String value) {
+            addCriterion("userName <=", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderLessThan(String value) {
-            addCriterion("sender <", value, "sender");
+        public Criteria andUsernameLike(String value) {
+            addCriterion("userName like", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderLessThanOrEqualTo(String value) {
-            addCriterion("sender <=", value, "sender");
+        public Criteria andUsernameNotLike(String value) {
+            addCriterion("userName not like", value, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderLike(String value) {
-            addCriterion("sender like", value, "sender");
+        public Criteria andUsernameIn(List<String> values) {
+            addCriterion("userName in", values, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderNotLike(String value) {
-            addCriterion("sender not like", value, "sender");
+        public Criteria andUsernameNotIn(List<String> values) {
+            addCriterion("userName not in", values, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderIn(List<String> values) {
-            addCriterion("sender in", values, "sender");
+        public Criteria andUsernameBetween(String value1, String value2) {
+            addCriterion("userName between", value1, value2, "username");
             return (Criteria) this;
         }
 
-        public Criteria andSenderNotIn(List<String> values) {
-            addCriterion("sender not in", values, "sender");
-            return (Criteria) this;
-        }
-
-        public Criteria andSenderBetween(String value1, String value2) {
-            addCriterion("sender between", value1, value2, "sender");
-            return (Criteria) this;
-        }
-
-        public Criteria andSenderNotBetween(String value1, String value2) {
-            addCriterion("sender not between", value1, value2, "sender");
+        public Criteria andUsernameNotBetween(String value1, String value2) {
+            addCriterion("userName not between", value1, value2, "username");
             return (Criteria) this;
         }
 
@@ -362,6 +352,66 @@ public class LetterExample {
 
         public Criteria andTimeNotBetween(Date value1, Date value2) {
             addCriterion("time not between", value1, value2, "time");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNull() {
+            addCriterion("flag is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIsNotNull() {
+            addCriterion("flag is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagEqualTo(Integer value) {
+            addCriterion("flag =", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotEqualTo(Integer value) {
+            addCriterion("flag <>", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThan(Integer value) {
+            addCriterion("flag >", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagGreaterThanOrEqualTo(Integer value) {
+            addCriterion("flag >=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThan(Integer value) {
+            addCriterion("flag <", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagLessThanOrEqualTo(Integer value) {
+            addCriterion("flag <=", value, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagIn(List<Integer> values) {
+            addCriterion("flag in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotIn(List<Integer> values) {
+            addCriterion("flag not in", values, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagBetween(Integer value1, Integer value2) {
+            addCriterion("flag between", value1, value2, "flag");
+            return (Criteria) this;
+        }
+
+        public Criteria andFlagNotBetween(Integer value1, Integer value2) {
+            addCriterion("flag not between", value1, value2, "flag");
             return (Criteria) this;
         }
     }

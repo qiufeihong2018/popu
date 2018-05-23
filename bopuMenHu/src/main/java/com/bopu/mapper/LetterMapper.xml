@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bopu.mapper.LetterMapper" >
-  <resultMap id="BaseResultMap" type="com.bopu.pojo.Letter" >
+  <resultMap id="BaseResultMap" type="com.bopu.com.bopu.pojo.Letter" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="receiver" property="receiver" jdbcType="VARCHAR" />
     <result column="sender" property="sender" jdbcType="VARCHAR" />
-    <result column="times" property="times" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Letter" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.bopu.com.bopu.pojo.Letter" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -70,12 +69,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, receiver, sender, times, title
+    id, receiver, sender, time
   </sql>
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.pojo.LetterExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.com.bopu.pojo.LetterExample" >
     select
     <if test="distinct" >
       distinct
@@ -91,7 +90,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.pojo.LetterExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.com.bopu.pojo.LetterExample" >
     select
     <if test="distinct" >
       distinct
@@ -117,21 +116,19 @@
     delete from letter
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bopu.pojo.LetterExample" >
+  <delete id="deleteByExample" parameterType="com.bopu.com.bopu.pojo.LetterExample" >
     delete from letter
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bopu.pojo.Letter" >
+  <insert id="insert" parameterType="com.bopu.com.bopu.pojo.Letter" >
     insert into letter (id, receiver, sender, 
-      times, title, content
-      )
+      time, content)
     values (#{id,jdbcType=INTEGER}, #{receiver,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, 
-      #{times,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
-      )
+      #{time,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bopu.pojo.Letter" >
+  <insert id="insertSelective" parameterType="com.bopu.com.bopu.pojo.Letter" >
     insert into letter
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -143,11 +140,8 @@
       <if test="sender != null" >
         sender,
       </if>
-      <if test="times != null" >
-        times,
-      </if>
-      <if test="title != null" >
-        title,
+      <if test="time != null" >
+        time,
       </if>
       <if test="content != null" >
         content,
@@ -163,18 +157,15 @@
       <if test="sender != null" >
         #{sender,jdbcType=VARCHAR},
       </if>
-      <if test="times != null" >
-        #{times,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bopu.pojo.LetterExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.bopu.com.bopu.pojo.LetterExample" resultType="java.lang.Integer" >
     select count(*) from letter
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -192,11 +183,8 @@
       <if test="record.sender != null" >
         sender = #{record.sender,jdbcType=VARCHAR},
       </if>
-      <if test="record.times != null" >
-        times = #{record.times,jdbcType=VARCHAR},
-      </if>
-      <if test="record.title != null" >
-        title = #{record.title,jdbcType=VARCHAR},
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -211,8 +199,7 @@
     set id = #{record.id,jdbcType=INTEGER},
       receiver = #{record.receiver,jdbcType=VARCHAR},
       sender = #{record.sender,jdbcType=VARCHAR},
-      times = #{record.times,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -223,13 +210,12 @@
     set id = #{record.id,jdbcType=INTEGER},
       receiver = #{record.receiver,jdbcType=VARCHAR},
       sender = #{record.sender,jdbcType=VARCHAR},
-      times = #{record.times,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=VARCHAR}
+      time = #{record.time,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.pojo.Letter" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.com.bopu.pojo.Letter" >
     update letter
     <set >
       <if test="receiver != null" >
@@ -238,11 +224,8 @@
       <if test="sender != null" >
         sender = #{sender,jdbcType=VARCHAR},
       </if>
-      <if test="times != null" >
-        times = #{times,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
@@ -250,21 +233,19 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.pojo.Letter" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.com.bopu.pojo.Letter" >
     update letter
     set receiver = #{receiver,jdbcType=VARCHAR},
       sender = #{sender,jdbcType=VARCHAR},
-      times = #{times,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bopu.pojo.Letter" >
+  <update id="updateByPrimaryKey" parameterType="com.bopu.com.bopu.pojo.Letter" >
     update letter
     set receiver = #{receiver,jdbcType=VARCHAR},
       sender = #{sender,jdbcType=VARCHAR},
-      times = #{times,jdbcType=VARCHAR},
-      title = #{title,jdbcType=VARCHAR}
+      time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

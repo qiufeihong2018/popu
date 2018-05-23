@@ -2,8 +2,9 @@ package com.bopu.mapper;
 
 import com.bopu.pojo.Letter;
 import com.bopu.pojo.LetterExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface LetterMapper {
     int countByExample(LetterExample example);

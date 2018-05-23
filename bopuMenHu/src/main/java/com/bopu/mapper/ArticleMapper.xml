@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bopu.mapper.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.bopu.pojo.Article" >
+  <resultMap id="BaseResultMap" type="com.bopu.com.bopu.pojo.Article" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="times" property="times" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="count" property="count" jdbcType="INTEGER" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="flag" property="flag" jdbcType="INTEGER" />
+    <result column="limitData" property="limitdata" jdbcType="TIMESTAMP" />
+    <result column="check" property="check" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Article" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.bopu.com.bopu.pojo.Article" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,12 +74,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, times, count, author, type, flag
+    id, title, time, count, author, type, flag, limitData, check
   </sql>
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.pojo.ArticleExample" >
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.com.bopu.pojo.ArticleExample" >
     select
     <if test="distinct" >
       distinct
@@ -93,7 +95,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.pojo.ArticleExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.com.bopu.pojo.ArticleExample" >
     select
     <if test="distinct" >
       distinct
@@ -119,21 +121,23 @@
     delete from article
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bopu.pojo.ArticleExample" >
+  <delete id="deleteByExample" parameterType="com.bopu.com.bopu.pojo.ArticleExample" >
     delete from article
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.bopu.pojo.Article" >
-    insert into article (id, title, times, 
+  <insert id="insert" parameterType="com.bopu.com.bopu.pojo.Article" >
+    insert into article (id, title, time, 
       count, author, type, 
-      flag, content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{times,jdbcType=VARCHAR}, 
+      flag, limitData, check, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{check,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.bopu.pojo.Article" >
+  <insert id="insertSelective" parameterType="com.bopu.com.bopu.pojo.Article" >
     insert into article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -142,8 +146,8 @@
       <if test="title != null" >
         title,
       </if>
-      <if test="times != null" >
-        times,
+      <if test="time != null" >
+        time,
       </if>
       <if test="count != null" >
         count,
@@ -157,6 +161,12 @@
       <if test="flag != null" >
         flag,
       </if>
+      <if test="limitdata != null" >
+        limitData,
+      </if>
+      <if test="check != null" >
+        check,
+      </if>
       <if test="content != null" >
         content,
       </if>
@@ -168,8 +178,8 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
-      <if test="times != null" >
-        #{times,jdbcType=VARCHAR},
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="count != null" >
         #{count,jdbcType=INTEGER},
@@ -183,12 +193,18 @@
       <if test="flag != null" >
         #{flag,jdbcType=INTEGER},
       </if>
+      <if test="limitdata != null" >
+        #{limitdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="check != null" >
+        #{check,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bopu.pojo.ArticleExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.bopu.com.bopu.pojo.ArticleExample" resultType="java.lang.Integer" >
     select count(*) from article
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -203,8 +219,8 @@
       <if test="record.title != null" >
         title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.times != null" >
-        times = #{record.times,jdbcType=VARCHAR},
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
       </if>
       <if test="record.count != null" >
         count = #{record.count,jdbcType=INTEGER},
@@ -218,6 +234,12 @@
       <if test="record.flag != null" >
         flag = #{record.flag,jdbcType=INTEGER},
       </if>
+      <if test="record.limitdata != null" >
+        limitData = #{record.limitdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.check != null" >
+        check = #{record.check,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -230,11 +252,13 @@
     update article
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      times = #{record.times,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
       count = #{record.count,jdbcType=INTEGER},
       author = #{record.author,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
+      limitData = #{record.limitdata,jdbcType=TIMESTAMP},
+      check = #{record.check,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -244,23 +268,25 @@
     update article
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
-      times = #{record.times,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
       count = #{record.count,jdbcType=INTEGER},
       author = #{record.author,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=INTEGER},
-      flag = #{record.flag,jdbcType=INTEGER}
+      flag = #{record.flag,jdbcType=INTEGER},
+      limitData = #{record.limitdata,jdbcType=TIMESTAMP},
+      check = #{record.check,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.pojo.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.com.bopu.pojo.Article" >
     update article
     <set >
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="times != null" >
-        times = #{times,jdbcType=VARCHAR},
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="count != null" >
         count = #{count,jdbcType=INTEGER},
@@ -274,31 +300,41 @@
       <if test="flag != null" >
         flag = #{flag,jdbcType=INTEGER},
       </if>
+      <if test="limitdata != null" >
+        limitData = #{limitdata,jdbcType=TIMESTAMP},
+      </if>
+      <if test="check != null" >
+        check = #{check,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.pojo.Article" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.com.bopu.pojo.Article" >
     update article
     set title = #{title,jdbcType=VARCHAR},
-      times = #{times,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
       count = #{count,jdbcType=INTEGER},
       author = #{author,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
+      limitData = #{limitdata,jdbcType=TIMESTAMP},
+      check = #{check,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bopu.pojo.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.bopu.com.bopu.pojo.Article" >
     update article
     set title = #{title,jdbcType=VARCHAR},
-      times = #{times,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
       count = #{count,jdbcType=INTEGER},
       author = #{author,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
-      flag = #{flag,jdbcType=INTEGER}
+      flag = #{flag,jdbcType=INTEGER},
+      limitData = #{limitdata,jdbcType=TIMESTAMP},
+      check = #{check,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

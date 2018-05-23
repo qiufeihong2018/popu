@@ -13,7 +13,7 @@ public class User {
 
     private String address;
 
-    private String works;
+    private String work;
 
     private String professional;
 
@@ -73,12 +73,12 @@ public class User {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getWorks() {
-        return works;
+    public String getWork() {
+        return work;
     }
 
-    public void setWorks(String works) {
-        this.works = works == null ? null : works.trim();
+    public void setWork(String work) {
+        this.work = work == null ? null : work.trim();
     }
 
     public String getProfessional() {

@@ -2,14 +2,16 @@ package com.bopu.pojo;
 
 import java.util.Date;
 
-public class Letter {
+public class Comment {
     private Integer id;
 
-    private String receiver;
+    private Integer articleid;
 
-    private String sender;
+    private String username;
 
     private Date time;
+
+    private Integer flag;
 
     private String content;
 
@@ -21,20 +23,20 @@ public class Letter {
         this.id = id;
     }
 
-    public String getReceiver() {
-        return receiver;
+    public Integer getArticleid() {
+        return articleid;
     }
 
-    public void setReceiver(String receiver) {
-        this.receiver = receiver == null ? null : receiver.trim();
+    public void setArticleid(Integer articleid) {
+        this.articleid = articleid;
     }
 
-    public String getSender() {
-        return sender;
+    public String getUsername() {
+        return username;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender == null ? null : sender.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public Date getTime() {
@@ -43,6 +45,14 @@ public class Letter {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 
     public String getContent() {
