@@ -9,7 +9,7 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
 	<!-- 加载配置文件 -->
-	<context:property-placeholder location="classpath:db.properties"/>
+	<context:property-placeholder location="classpath:properties/db.properties"/>
 	<!-- 数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		destroy-method="close">
@@ -26,7 +26,7 @@
 		<!-- 数据库连接池 -->
 		<property name="dataSource" ref="dataSource"/>
 		<!-- 加载mybatis的全局配置文件 -->
-		<property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
 	</bean>
 	<!-- 配置Mapper扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

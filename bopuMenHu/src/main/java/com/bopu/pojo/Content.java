@@ -15,6 +15,19 @@ public class Content {
 
     private Date created;
 
+    public Content(Integer id, Integer categoryId, String title, String url, String pic, Date created) {
+        this.id = id;
+        this.categoryId = categoryId;
+        this.title = title;
+        this.url = url;
+        this.pic = pic;
+        this.created = created;
+    }
+
+    public Content() {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }

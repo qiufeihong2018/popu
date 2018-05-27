@@ -23,6 +23,23 @@ public class Article {
 
     private String content;
 
+    public Article(Integer id, String title, Date time, Integer count, String author, Integer type, Integer flag, Date limitdata, String check, String content) {
+        this.id = id;
+        this.title = title;
+        this.time = time;
+        this.count = count;
+        this.author = author;
+        this.type = type;
+        this.flag = flag;
+        this.limitdata = limitdata;
+        this.check = check;
+        this.content = content;
+    }
+
+    public Article() {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }

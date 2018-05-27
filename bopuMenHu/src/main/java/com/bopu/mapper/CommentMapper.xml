@@ -1,110 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bopu.mapper.CommentMapper" >
-  <resultMap id="BaseResultMap" type="com.bopu.com.bopu.pojo.Comment" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="articleId" property="articleid" jdbcType="INTEGER" />
-    <result column="userName" property="username" jdbcType="VARCHAR" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="flag" property="flag" jdbcType="INTEGER" />
+  <resultMap id="BaseResultMap" type="com.bopu.pojo.Comment" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="articleId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.bopu.com.bopu.pojo.Comment" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Comment" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="articleId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List" >
     id, articleId, userName, time, flag
   </sql>
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.com.bopu.pojo.CommentExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from comment
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.com.bopu.pojo.CommentExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from comment
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -117,13 +38,7 @@
     delete from comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bopu.com.bopu.pojo.CommentExample" >
-    delete from comment
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bopu.com.bopu.pojo.Comment" >
+  <insert id="insert" parameterType="com.bopu.pojo.Comment" >
     insert into comment (id, articleId, userName, 
       time, flag, content
       )
@@ -131,7 +46,7 @@
       #{time,jdbcType=TIMESTAMP}, #{flag,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.bopu.com.bopu.pojo.Comment" >
+  <insert id="insertSelective" parameterType="com.bopu.pojo.Comment" >
     insert into comment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -174,62 +89,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bopu.com.bopu.pojo.CommentExample" resultType="java.lang.Integer" >
-    select count(*) from comment
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update comment
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.articleid != null" >
-        articleId = #{record.articleid,jdbcType=INTEGER},
-      </if>
-      <if test="record.username != null" >
-        userName = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.flag != null" >
-        flag = #{record.flag,jdbcType=INTEGER},
-      </if>
-      <if test="record.content != null" >
-        content = #{record.content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update comment
-    set id = #{record.id,jdbcType=INTEGER},
-      articleId = #{record.articleid,jdbcType=INTEGER},
-      userName = #{record.username,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      flag = #{record.flag,jdbcType=INTEGER},
-      content = #{record.content,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update comment
-    set id = #{record.id,jdbcType=INTEGER},
-      articleId = #{record.articleid,jdbcType=INTEGER},
-      userName = #{record.username,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      flag = #{record.flag,jdbcType=INTEGER}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.com.bopu.pojo.Comment" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.bopu.pojo.Comment" >
     update comment
     <set >
       <if test="articleid != null" >
@@ -250,7 +110,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.com.bopu.pojo.Comment" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bopu.pojo.Comment" >
     update comment
     set articleId = #{articleid,jdbcType=INTEGER},
       userName = #{username,jdbcType=VARCHAR},
@@ -259,7 +119,7 @@
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bopu.com.bopu.pojo.Comment" >
+  <update id="updateByPrimaryKey" parameterType="com.bopu.pojo.Comment" >
     update comment
     set articleId = #{articleid,jdbcType=INTEGER},
       userName = #{username,jdbcType=VARCHAR},

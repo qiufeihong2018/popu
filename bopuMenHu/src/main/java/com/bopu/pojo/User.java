@@ -25,6 +25,25 @@ public class User {
 
     private String active;
 
+    public User(Integer id, String account, String password, String name, String phone, String address, String work, String professional, String duties, String station, String email, String active) {
+        this.id = id;
+        this.account = account;
+        this.password = password;
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.work = work;
+        this.professional = professional;
+        this.duties = duties;
+        this.station = station;
+        this.email = email;
+        this.active = active;
+    }
+
+    public User() {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }

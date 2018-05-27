@@ -15,6 +15,19 @@ public class Comment {
 
     private String content;
 
+    public Comment(Integer id, Integer articleid, String username, Date time, Integer flag, String content) {
+        this.id = id;
+        this.articleid = articleid;
+        this.username = username;
+        this.time = time;
+        this.flag = flag;
+        this.content = content;
+    }
+
+    public Comment() {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }

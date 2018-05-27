@@ -13,6 +13,18 @@ public class Letter {
 
     private String content;
 
+    public Letter(Integer id, String receiver, String sender, Date time, String content) {
+        this.id = id;
+        this.receiver = receiver;
+        this.sender = sender;
+        this.time = time;
+        this.content = content;
+    }
+
+    public Letter() {
+        super();
+    }
+
     public Integer getId() {
         return id;
     }
