@@ -2,7 +2,9 @@ package com.bopu.mapper;
 
 import com.bopu.pojo.User;
 import com.bopu.pojo.UserExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -27,4 +29,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectUserByNameAndPassword(@Param("name") String name, @Param("password") String password);
 }
