@@ -1,5 +1,7 @@
 package com.bopu.pojo;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -25,7 +27,11 @@ public class User {
 
     private String active;
 
-    public User(Integer id, String account, String password, String name, String phone, String address, String work, String professional, String duties, String station, String email, String active) {
+    private Date searchtime;
+
+    private String searchid;
+
+    public User(Integer id, String account, String password, String name, String phone, String address, String work, String professional, String duties, String station, String email, String active, Date searchtime, String searchid) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -38,6 +44,8 @@ public class User {
         this.station = station;
         this.email = email;
         this.active = active;
+        this.searchtime = searchtime;
+        this.searchid = searchid;
     }
 
     public User() {
@@ -138,5 +146,21 @@ public class User {
 
     public void setActive(String active) {
         this.active = active == null ? null : active.trim();
+    }
+
+    public Date getSearchtime() {
+        return searchtime;
+    }
+
+    public void setSearchtime(Date searchtime) {
+        this.searchtime = searchtime;
+    }
+
+    public String getSearchid() {
+        return searchid;
+    }
+
+    public void setSearchid(String searchid) {
+        this.searchid = searchid == null ? null : searchid.trim();
     }
 }
