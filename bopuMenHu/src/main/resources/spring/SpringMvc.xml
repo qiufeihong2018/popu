@@ -42,7 +42,10 @@
 			</set>
 		</property>
 	</bean>
-<!-- 	配置拦截器 -->
+
+	<mvc:default-servlet-handler/>
+
+	<!-- 	配置拦截器 -->
 <!--	<mvc:interceptors>
 		<mvc:interceptor>
 			&lt;!&ndash; 拦截请求的路径 要拦截所有必须配置成/** &ndash;&gt;
