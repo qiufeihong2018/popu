@@ -209,8 +209,18 @@
             }
             else{
                 if(helpText!=null){
-                    helpText.innerHTML="";
-
+                    var text = $(inputField).val();
+                    $.ajax({
+                        type: "POST",
+                        url: "${pageContext.request.contextPath}/user/checkName",
+                        data: {name:text},
+                        dataType: "json",
+                        success: function (data) {
+                            if(data["status"]!=200){
+                                helpText.innerHTML=data["message"];
+                            }
+                        }
+                    });
                 }
                 return true;
             }}
@@ -251,14 +261,14 @@
 </header>
 
 <main class="content">
-    <form action="" class="form1" method="post" name="form1" target="_blank" id="form1" onsubmit="return check_zhuce()">
+    <form action="${pageContext.request.contextPath}/user/save" class="form1" method="post" name="form1" target="_blank" id="form1" onsubmit="return check_zhuce()">
 
         <h1>注册</h1>
 
 
         <input name="account"  type="text" onblur="CheckInput(this,document.getElementById('account'))"  class="form-control" placeholder="账号" >
         <br>
-        <span id="account"></span>
+        <span id="account">${message}</span>
         <br>
 
         <input name="password" type="password" onblur="CheckInput(this,document.getElementById('password'))"  class="form-control" placeholder="密码" />
@@ -269,25 +279,25 @@
         <br>
         <span id="name"  ></span>
         <br>
-        <input name="phone" type="password" onblur="CheckInput(this,document.getElementById('phone'))"  class="form-control" placeholder="手机号"/>
+        <input name="phone" type="text" onblur="CheckInput(this,document.getElementById('phone'))"  class="form-control" placeholder="手机号"/>
         <br>
         <span id="phone"  ></span>
         <br>
         <input name="address" type="text"   class="form-control" placeholder="通讯地址" >
         <br> <br>
-        <input name="work" type="password" onblur="CheckInput(this,document.getElementById('work'))"  class="form-control" placeholder="工作单位"/>
+        <input name="work" type="text" onblur="CheckInput(this,document.getElementById('work'))"  class="form-control" placeholder="工作单位"/>
         <br>
         <span id="work"></span>
         <br>
         <input name="professional" type="text"   class="form-control" placeholder="职称" >
         <br><br>
-        <input name="duties" type="password"   class="form-control" placeholder="职务"  />
+        <input name="duties" type="text"   class="form-control" placeholder="职务"  />
         <br> <br>
         <input name="station" type="text"   class="form-control" placeholder="岗位" >
         <br> <br>
-        <input name="Email" type="text" onblur="CheckInput(this,document.getElementById('Email'))"  class="form-control" placeholder="邮箱"  />
+        <input name="email" type="text" onblur="CheckInput(this,document.getElementById('Email'))"  class="form-control" placeholder="邮箱"  />
         <br>
-        <span id="Email"></span>
+        <span id="email"></span>
         <br>
 
         <!--滑动验证-->

@@ -15,14 +15,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 保存用户
+     * @param user 用户
+     * @throws Exception
+     */
     public void saveUser(User user) throws Exception{
+        //查询用户
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         criteria.andNameEqualTo(user.getName());
         List<User> list = userMapper.selectByExample(example);
+        //判断用户名是否存在
         if(list.size()==0) {
             userMapper.insert(user);
         }else{
+            //已经存在
             throw new RuntimeException("用户名已存在");
         }
     }
