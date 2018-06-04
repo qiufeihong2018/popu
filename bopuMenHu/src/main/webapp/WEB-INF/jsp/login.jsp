@@ -251,6 +251,7 @@
                 helpText.innerHTML = "不能为空，请输入";
 
             }
+
             return false;
         } else {
             if(helpText != null) {
@@ -296,13 +297,13 @@
 </header>
 
 <main class="content">
-    <form action="" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
+    <form action="${pageContext.request.contextPath}/user/login" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
         <h1>登录</h1>
 
 
-        <input type="text" name="username" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="手机/邮箱/用户名" />
+        <input type="text" name="account"  value="${account}" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="账号" />
         <br>
-        <span id="username"></span>
+        <span id="username">${fail}</span>
         <br>
         <input  name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码"  />
         <br>
@@ -316,12 +317,12 @@
             <div id="dragHandler" class="dragHandlerBg"></div>
         </div>
         <br>  <br>
-        <input id="btnOk" class="btn btn-success" type="submit" value="确定"/>
+        <input id="btnOk" class="btn btn-success" type="submit" value="登入"/>
         <br>  <br>
         <div class="zhu">
-            <input onclick="javascript:window.location.href='register.jsp'" type="button" value="注册"  class="btn btn-link">
+            <input onclick="javascript:window.location.href='${pageContext.request.contextPath}/register'" type="button" value="注册"  class="btn btn-link">
             |
-            <input  type="button" value="忘记密码"  class="btn btn-link"/>
+            <input  type="button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'" value="忘记密码"  class="btn btn-link"/>
         </div>
     </form>
 </main>

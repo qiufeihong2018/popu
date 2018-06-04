@@ -15,14 +15,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 保存用户
+     * @param user 用户
+     * @throws Exception
+     */
     public void saveUser(User user) throws Exception{
+        //查询用户
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
         criteria.andNameEqualTo(user.getName());
         List<User> list = userMapper.selectByExample(example);
+        //判断用户名是否存在
         if(list.size()==0) {
             userMapper.insert(user);
         }else{
+            //已经存在
             throw new RuntimeException("用户名已存在");
         }
     }
@@ -35,16 +43,38 @@ public class UserServiceImpl implements UserService {
 
     }
 
-    public User selectUserByName(String name) {
+    public User selectUserByAccount(String account) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(name);
+        criteria.andNameEqualTo(account);
         List<User> list = userMapper.selectByExample(example);
         if(list.size()==0){
             return null;
         }else{
             return list.get(0);
         }
+    }
+
+    public User selectUserByAccountAndEmail(String account, String email) {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        criteria.andNameEqualTo(account);
+        criteria.andEmailEqualTo(email);
+        List<User> list = userMapper.selectByExample(example);
+        if(list.size()==0){
+            return null;
+        }else{
+            return list.get(0);
+        }
+    }
+
+    public void updataUser(User user) {
+        userMapper.updateByPrimaryKey(user);
+    }
+
+    public User selectUserById(Integer id){
+        return userMapper.selectByPrimaryKey(id);
+
     }
 
     public UserMapper getUserMapper() {
