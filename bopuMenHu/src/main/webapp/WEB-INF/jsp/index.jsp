@@ -141,7 +141,7 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">简介</a></li>
+                    <li><a href="${pageContext.request.contextPath}/UeditorTest.jsp">简介</a></li>
                     <li  class="divider"></li>
                     <li><a href="#">最近活动</a></li>
                     <li  class="divider"></li>
