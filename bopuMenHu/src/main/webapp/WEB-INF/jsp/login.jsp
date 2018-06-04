@@ -320,9 +320,9 @@
         <input id="btnOk" class="btn btn-success" type="submit" value="登入"/>
         <br>  <br>
         <div class="zhu">
-            <input onclick="javascript:window.location.href='register.jsp'" type="button" value="注册"  class="btn btn-link">
+            <input onclick="javascript:window.location.href='${pageContext.request.contextPath}/register'" type="button" value="注册"  class="btn btn-link">
             |
-            <input  type="button" value="忘记密码"  class="btn btn-link"/>
+            <input  type="button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'" value="忘记密码"  class="btn btn-link"/>
         </div>
     </form>
 </main>

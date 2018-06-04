@@ -19,9 +19,30 @@ public interface UserService {
     public User userLogin(String username,String password);
 
     /**
-     * 根据名字查询用户
-     * @param name
+     * 根据账号查询用户
+     * @param account
      * @return
      */
-    public User selectUserByName(String name);
+    public User selectUserByAccount(String account);
+
+    /**
+     * 根据用户账号和邮箱查询用户
+     * @param account
+     * @param email
+     * @return
+     */
+    public User selectUserByAccountAndEmail(String account,String email);
+
+    /**
+     * 更新用户
+     * @param user
+     */
+    public void updataUser(User user);
+
+    /**
+     * 通过主键查找用户
+     * @param id
+     * @return
+     */
+    public User selectUserById(Integer id);
 }
