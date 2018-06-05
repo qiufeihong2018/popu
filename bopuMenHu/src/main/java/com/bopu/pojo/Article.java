@@ -19,11 +19,11 @@ public class Article {
 
     private Date limitdata;
 
-    private String check;
+    private String look;
 
     private String content;
 
-    public Article(Integer id, String title, Date time, Integer count, String author, Integer type, Integer flag, Date limitdata, String check, String content) {
+    public Article(Integer id, String title, Date time, Integer count, String author, Integer type, Integer flag, Date limitdata, String look, String content) {
         this.id = id;
         this.title = title;
         this.time = time;
@@ -32,7 +32,7 @@ public class Article {
         this.type = type;
         this.flag = flag;
         this.limitdata = limitdata;
-        this.check = check;
+        this.look = look;
         this.content = content;
     }
 
@@ -104,12 +104,12 @@ public class Article {
         this.limitdata = limitdata;
     }
 
-    public String getCheck() {
-        return check;
+    public String getLook() {
+        return look;
     }
 
-    public void setCheck(String check) {
-        this.check = check == null ? null : check.trim();
+    public void setLook(String look) {
+        this.look = look == null ? null : look.trim();
     }
 
     public String getContent() {

@@ -605,73 +605,73 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andCheckIsNull() {
-            addCriterion("check is null");
+        public Criteria andLookIsNull() {
+            addCriterion("look is null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckIsNotNull() {
-            addCriterion("check is not null");
+        public Criteria andLookIsNotNull() {
+            addCriterion("look is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCheckEqualTo(String value) {
-            addCriterion("check =", value, "check");
+        public Criteria andLookEqualTo(String value) {
+            addCriterion("look =", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotEqualTo(String value) {
-            addCriterion("check <>", value, "check");
+        public Criteria andLookNotEqualTo(String value) {
+            addCriterion("look <>", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckGreaterThan(String value) {
-            addCriterion("check >", value, "check");
+        public Criteria andLookGreaterThan(String value) {
+            addCriterion("look >", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckGreaterThanOrEqualTo(String value) {
-            addCriterion("check >=", value, "check");
+        public Criteria andLookGreaterThanOrEqualTo(String value) {
+            addCriterion("look >=", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLessThan(String value) {
-            addCriterion("check <", value, "check");
+        public Criteria andLookLessThan(String value) {
+            addCriterion("look <", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLessThanOrEqualTo(String value) {
-            addCriterion("check <=", value, "check");
+        public Criteria andLookLessThanOrEqualTo(String value) {
+            addCriterion("look <=", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckLike(String value) {
-            addCriterion("check like", value, "check");
+        public Criteria andLookLike(String value) {
+            addCriterion("look like", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotLike(String value) {
-            addCriterion("check not like", value, "check");
+        public Criteria andLookNotLike(String value) {
+            addCriterion("look not like", value, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckIn(List<String> values) {
-            addCriterion("check in", values, "check");
+        public Criteria andLookIn(List<String> values) {
+            addCriterion("look in", values, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotIn(List<String> values) {
-            addCriterion("check not in", values, "check");
+        public Criteria andLookNotIn(List<String> values) {
+            addCriterion("look not in", values, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckBetween(String value1, String value2) {
-            addCriterion("check between", value1, value2, "check");
+        public Criteria andLookBetween(String value1, String value2) {
+            addCriterion("look between", value1, value2, "look");
             return (Criteria) this;
         }
 
-        public Criteria andCheckNotBetween(String value1, String value2) {
-            addCriterion("check not between", value1, value2, "check");
+        public Criteria andLookNotBetween(String value1, String value2) {
+            addCriterion("look not between", value1, value2, "look");
             return (Criteria) this;
         }
     }

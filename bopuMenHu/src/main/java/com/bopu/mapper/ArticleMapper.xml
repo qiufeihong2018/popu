@@ -11,7 +11,7 @@
       <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="limitData" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="check" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="look" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Article" >
@@ -24,7 +24,7 @@
       <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="limitData" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="check" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="look" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
@@ -87,7 +87,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, time, count, author, type, flag, limitData, check
+    id, title, time, count, author, type, flag, limitData, look
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -145,11 +145,11 @@
   <insert id="insert" parameterType="com.bopu.pojo.Article" >
     insert into article (id, title, time, 
       count, author, type, 
-      flag, limitData, check, 
+      flag, limitData, look, 
       content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{check,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bopu.pojo.Article" >
@@ -179,8 +179,8 @@
       <if test="limitdata != null" >
         limitData,
       </if>
-      <if test="check != null" >
-        check,
+      <if test="look != null" >
+        look,
       </if>
       <if test="content != null" >
         content,
@@ -211,8 +211,8 @@
       <if test="limitdata != null" >
         #{limitdata,jdbcType=TIMESTAMP},
       </if>
-      <if test="check != null" >
-        #{check,jdbcType=VARCHAR},
+      <if test="look != null" >
+        #{look,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -252,8 +252,8 @@
       <if test="record.limitdata != null" >
         limitData = #{record.limitdata,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.check != null" >
-        check = #{record.check,jdbcType=VARCHAR},
+      <if test="record.look != null" >
+        look = #{record.look,jdbcType=VARCHAR},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
@@ -273,7 +273,7 @@
       type = #{record.type,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
       limitData = #{record.limitdata,jdbcType=TIMESTAMP},
-      check = #{record.check,jdbcType=VARCHAR},
+      look = #{record.look,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -289,7 +289,7 @@
       type = #{record.type,jdbcType=INTEGER},
       flag = #{record.flag,jdbcType=INTEGER},
       limitData = #{record.limitdata,jdbcType=TIMESTAMP},
-      check = #{record.check,jdbcType=VARCHAR}
+      look = #{record.look,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -318,8 +318,8 @@
       <if test="limitdata != null" >
         limitData = #{limitdata,jdbcType=TIMESTAMP},
       </if>
-      <if test="check != null" >
-        check = #{check,jdbcType=VARCHAR},
+      <if test="look != null" >
+        look = #{look,jdbcType=VARCHAR},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
@@ -336,7 +336,7 @@
       type = #{type,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
       limitData = #{limitdata,jdbcType=TIMESTAMP},
-      check = #{check,jdbcType=VARCHAR},
+      look = #{look,jdbcType=VARCHAR},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -349,7 +349,7 @@
       type = #{type,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
       limitData = #{limitdata,jdbcType=TIMESTAMP},
-      check = #{check,jdbcType=VARCHAR}
+      look = #{look,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
