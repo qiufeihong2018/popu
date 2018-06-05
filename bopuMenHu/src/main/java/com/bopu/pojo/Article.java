@@ -1,5 +1,7 @@
 package com.bopu.pojo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Article {
@@ -56,8 +58,10 @@ public class Article {
         this.title = title == null ? null : title.trim();
     }
 
-    public Date getTime() {
-        return time;
+    public String getTime() {
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+        String t = df.format(time);
+        return t;
     }
 
     public void setTime(Date time) {

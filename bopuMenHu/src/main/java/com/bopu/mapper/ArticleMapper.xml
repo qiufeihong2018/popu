@@ -145,11 +145,11 @@
   <insert id="insert" parameterType="com.bopu.pojo.Article" >
     insert into article (id, title, time, 
       count, author, type, 
-      flag, limitData, look, 
+      flag, limitData, look,
       content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
       #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bopu.pojo.Article" >
@@ -352,4 +352,23 @@
       look = #{look,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+    <!-- 手动添加 -->
+    <insert id="testInsert" parameterType="com.bopu.pojo.Article">
+        insert into article (title,
+      content)
+    values (#{title,jdbcType=VARCHAR},
+      #{content,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <select id="testSelectByPrimaryKey" parameterType="java.lang.Integer" resultType="com.bopu.pojo.Article">
+        select title,content
+        from article
+        where id =  #{id,jdbcType=INTEGER}
+    </select>
+    <!-- 文章查看次数加一 -->
+    <update id="updateArticleCount" parameterType="java.lang.Integer">
+        update article
+        set count = count+1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>

@@ -33,4 +33,10 @@ public interface ArticleMapper {
     int updateByPrimaryKeyWithBLOBs(Article record);
 
     int updateByPrimaryKey(Article record);
+
+    int testInsert(Article article);
+
+    Article testSelectByPrimaryKey(Integer id);
+
+    int updateArticleCount(Integer id);
 }
