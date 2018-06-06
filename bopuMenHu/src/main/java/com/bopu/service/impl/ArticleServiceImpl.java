@@ -3,10 +3,12 @@ package com.bopu.service.impl;
 import com.bopu.mapper.ArticleMapper;
 import com.bopu.pojo.Article;
 import com.bopu.service.ArticleService;
+import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -47,6 +49,21 @@ public class ArticleServiceImpl implements ArticleService {
         article.setLook("<a href='http://www.baidu.com'>http://www.baidu.com<a>");
         article.setCount(0);
         articleMapper.insert(article);
+    }
+
+    /**
+     * 根据bp获取文章列表
+     * @param currentPage
+     * @param pb
+     */
+    public List<Article> getArticleList(Integer currentPage, PageBean pb) {
+        pb.setTotal(articleMapper.countByExample(null));
+        System.out.println(pb.getTotal());
+
+        List<Article> articles = articleMapper.findAllArticlePage(pb);
+
+        System.out.println(articles.get(0));
+        return articles;
     }
 
     public ArticleMapper getArticleMapper() {

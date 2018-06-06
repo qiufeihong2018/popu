@@ -3,6 +3,8 @@ package com.bopu.mapper;
 import com.bopu.pojo.Article;
 import com.bopu.pojo.ArticleExample;
 import java.util.List;
+
+import com.bopu.utils.PageBean;
 import org.apache.ibatis.annotations.Param;
 
 public interface ArticleMapper {
@@ -39,4 +41,6 @@ public interface ArticleMapper {
     Article testSelectByPrimaryKey(Integer id);
 
     int updateArticleCount(Integer id);
+
+    List<Article> findAllArticlePage(PageBean pageBean);
 }

@@ -17,7 +17,7 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath}/css/style.css?v=4.1.0" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -61,20 +61,24 @@
                 </li>
 
                 <li>
-                    <a class="J_menuItem" href="轮播图管理.html"><i class="fa fa-map"></i><span
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/pictureManage"><i
+                            class="fa fa-map"></i><span
                             class="nav-label">轮播图管理</span></a>
                 </li>
                 <li>
-                    <a class="J_menuItem" href="../../文章发布管理\utf8-jsp\文章发布.html"><i class="fa fa-recycle"></i><span
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/uploadArticle"><i
+                            class="fa fa-recycle"></i><span
                             class="nav-label">文章发布</span></a>
                 </li>
 
                 <li>
-                    <a class="J_menuItem" href="文章管理.html"><i class="fa fa-file-text-o"></i><span
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/ArticleManage"><i
+                            class="fa fa-file-text-o"></i><span
                             class="nav-label">文章管理</span></a>
                 </li>
                 <li>
-                    <a class="J_menuItem" href="关于我们管理.html"><i class="fa fa-columns"></i><span
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/aboutOur"><i
+                            class="fa fa-columns"></i><span
                             class="nav-label">关于我们管理</span></a>
                 </li>
 
@@ -205,8 +209,9 @@
             <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="轮播图管理.html" frameborder="0"
-                    data-id="\波普3\轮播图管理.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                    src="${pageContext.request.contextPath}/pictureManage" frameborder="0"
+                    seamless></iframe>
         </div>
 
     </div>
@@ -222,8 +227,8 @@
 <script src="${pageContext.request.contextPath}/js/plugins/layer/layer.min.js"></script>
 
 <!-- 自定义js -->
-<script src="js/hplus.js?v=4.1.0"></script>
-<script type="text/javascript" src="js/contabs.js"></script>
+<script src="${pageContext.request.contextPath}/js/hplus.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/contabs.js"></script>
 
 <!-- 第三方插件 -->
 <script src="${pageContext.request.contextPath}/js/plugins/pace/pace.min.js"></script>
