@@ -72,7 +72,7 @@
                 </li>
 
                 <li>
-                    <a class="J_menuItem" href="${pageContext.request.contextPath}/ArticleManage"><i
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/article/list"><i
                             class="fa fa-file-text-o"></i><span
                             class="nav-label">文章管理</span></a>
                 </li>
