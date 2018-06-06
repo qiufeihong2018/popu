@@ -7,6 +7,7 @@
       <arg column="receiver" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sender" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="readed" jdbcType="BIT" javaType="java.lang.Boolean" />
     </constructor>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Letter" >
@@ -15,6 +16,7 @@
       <arg column="receiver" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sender" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="readed" jdbcType="BIT" javaType="java.lang.Boolean" />
       <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
@@ -77,7 +79,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, receiver, sender, time
+    id, receiver, sender, time, readed
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -134,9 +136,11 @@
   </delete>
   <insert id="insert" parameterType="com.bopu.pojo.Letter" >
     insert into letter (id, receiver, sender, 
-      time, content)
+      time, readed, content
+      )
     values (#{id,jdbcType=INTEGER}, #{receiver,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, 
-      #{time,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+      #{time,jdbcType=TIMESTAMP}, #{readed,jdbcType=BIT}, #{content,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bopu.pojo.Letter" >
     insert into letter
@@ -152,6 +156,9 @@
       </if>
       <if test="time != null" >
         time,
+      </if>
+      <if test="readed != null" >
+        readed,
       </if>
       <if test="content != null" >
         content,
@@ -169,6 +176,9 @@
       </if>
       <if test="time != null" >
         #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readed != null" >
+        #{readed,jdbcType=BIT},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -196,6 +206,9 @@
       <if test="record.time != null" >
         time = #{record.time,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.readed != null" >
+        readed = #{record.readed,jdbcType=BIT},
+      </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
       </if>
@@ -210,6 +223,7 @@
       receiver = #{record.receiver,jdbcType=VARCHAR},
       sender = #{record.sender,jdbcType=VARCHAR},
       time = #{record.time,jdbcType=TIMESTAMP},
+      readed = #{record.readed,jdbcType=BIT},
       content = #{record.content,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -220,7 +234,8 @@
     set id = #{record.id,jdbcType=INTEGER},
       receiver = #{record.receiver,jdbcType=VARCHAR},
       sender = #{record.sender,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=TIMESTAMP}
+      time = #{record.time,jdbcType=TIMESTAMP},
+      readed = #{record.readed,jdbcType=BIT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -237,6 +252,9 @@
       <if test="time != null" >
         time = #{time,jdbcType=TIMESTAMP},
       </if>
+      <if test="readed != null" >
+        readed = #{readed,jdbcType=BIT},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -248,6 +266,7 @@
     set receiver = #{receiver,jdbcType=VARCHAR},
       sender = #{sender,jdbcType=VARCHAR},
       time = #{time,jdbcType=TIMESTAMP},
+      readed = #{readed,jdbcType=BIT},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -255,7 +274,8 @@
     update letter
     set receiver = #{receiver,jdbcType=VARCHAR},
       sender = #{sender,jdbcType=VARCHAR},
-      time = #{time,jdbcType=TIMESTAMP}
+      time = #{time,jdbcType=TIMESTAMP},
+      readed = #{readed,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

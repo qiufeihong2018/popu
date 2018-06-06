@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 用户管理
@@ -245,6 +246,47 @@ public class UserController {
         }else {
             //返回失败
             return BoPuResult.build(500, "用户信息错误，请重试");
+        }
+    }
+
+    /**
+     * 根据手机like查询用户
+     * @param phone
+     * @return
+     */
+    @RequestMapping("user/phoneSearch")
+    @ResponseBody
+    public List<User> phoneSearch(String phone){
+        //根据手机查询用户
+        List<User> list = userService.selectUserLikePhone(phone);
+        //返回用户
+        return list;
+    }
+
+    @RequestMapping("user/chat")
+    public String phoneSearch(String id,HttpSession session,Model model){
+        //查询用户是否登陆
+        Object object = session.getAttribute("user");
+        //判断
+        if(object==null || id == null || id.equals("")){
+            return "login";
+        }else {
+            User user = (User) object;
+            //保存对方id
+            String roomId = "";
+            if (user.getId()>Integer.parseInt(id)){
+                roomId = id+"-"+user.getId();
+            }else {
+                roomId = user.getId()+"-"+id;
+            }
+            //保存房间id
+            model.addAttribute("roomId", roomId);
+            //获取对方姓名
+            User u = userService.selectUserById(Integer.parseInt(id));
+            //保存对方姓名
+            model.addAttribute("otherUserName", u.getName());
+            //跳转到聊天页面
+            return "chat";
         }
     }
 

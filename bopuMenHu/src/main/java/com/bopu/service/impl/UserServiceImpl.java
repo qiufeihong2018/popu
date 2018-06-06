@@ -77,6 +77,19 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    public List<User> selectUserLikePhone(String phone) {
+        //创建example对象
+        UserExample example = new UserExample();
+        //创建条件
+        UserExample.Criteria criteria = example.createCriteria();
+        //设置条件
+        criteria.andPhoneLike("%"+phone+"%");
+        //查询
+        List<User> list = userMapper.selectByExample(example);
+        //返回
+        return list;
+    }
+
     public UserMapper getUserMapper() {
         return userMapper;
     }

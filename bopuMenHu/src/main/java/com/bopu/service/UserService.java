@@ -2,6 +2,8 @@ package com.bopu.service;
 
 import com.bopu.pojo.User;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -45,4 +47,6 @@ public interface UserService {
      * @return
      */
     public User selectUserById(Integer id);
+
+    public List<User> selectUserLikePhone(String phone);
 }

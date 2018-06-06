@@ -11,13 +11,16 @@ public class Letter {
 
     private Date time;
 
+    private Boolean readed;
+
     private String content;
 
-    public Letter(Integer id, String receiver, String sender, Date time, String content) {
+    public Letter(Integer id, String receiver, String sender, Date time, Boolean readed, String content) {
         this.id = id;
         this.receiver = receiver;
         this.sender = sender;
         this.time = time;
+        this.readed = readed;
         this.content = content;
     }
 
@@ -55,6 +58,14 @@ public class Letter {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public Boolean getReaded() {
+        return readed;
+    }
+
+    public void setReaded(Boolean readed) {
+        this.readed = readed;
     }
 
     public String getContent() {

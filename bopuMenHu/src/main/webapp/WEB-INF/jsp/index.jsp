@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: shiku
@@ -139,19 +140,17 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+            <c:if test="${user!=null}">
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${pageContext.request.contextPath}/UeditorTest.jsp">简介</a></li>
+                    <li><a href="${pageContext.request.contextPath}/search">私信</a></li>
                     <li  class="divider"></li>
-                    <li><a href="#">最近活动</a></li>
+                    <li><a href="#">个人中心</a></li>
                     <li  class="divider"></li>
-                    <li><a href="#">研究成果</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">业内动态</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">联系我们</a></li>
+
                 </ul>
             </div>
+            </c:if>
         </div>
     </nav>
 </header>
