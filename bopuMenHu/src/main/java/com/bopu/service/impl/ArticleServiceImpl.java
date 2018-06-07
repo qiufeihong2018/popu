@@ -7,6 +7,8 @@ import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -35,35 +37,37 @@ public class ArticleServiceImpl implements ArticleService {
 
     public void saveArticle(Article article) {
         // 设置作者 从session中获得 user.name
-        if (null == article.getAuthor() || "" == article.getAuthor()) {
-            article.setAuthor("admin");
-        }
-        article.setTime(new Date("YYYY-MM-dd hh:mm:ss"));
-        article.setType(1);
-        if (article.getType() == 2) {
-            article.setLimitdata(new Date("YYYY-MM-dd hh:mm:ss"));
-        }
-        // 是否可评论
-        article.setFlag(1);
-        // url
-        article.setLook("<a href='http://www.baidu.com'>http://www.baidu.com<a>");
+        Date date = new Date();
         article.setCount(0);
+        article.setTime(date);
+        if (article.getType() == 2) {
+
+        } else {
+            article.setLimitdata(date);
+            article.setLook("none");
+        }
+        System.out.println(article);
         articleMapper.insert(article);
     }
 
     /**
      * 根据bp获取文章列表
-     * @param currentPage
+     *
      * @param pb
      */
-    public List<Article> getArticleList(Integer currentPage, PageBean pb) {
+    public List<Article> getArticleList(PageBean pb) {
         pb.setTotal(articleMapper.countByExample(null));
-        System.out.println(pb.getTotal());
-
         List<Article> articles = articleMapper.findAllArticlePage(pb);
-
-        System.out.println(articles.get(0));
         return articles;
+    }
+
+    /**
+     * 删除文章
+     *
+     * @param articleId
+     */
+    public void deleteArticle(Integer articleId) {
+        articleMapper.deleteByPrimaryKey(articleId);
     }
 
     public ArticleMapper getArticleMapper() {

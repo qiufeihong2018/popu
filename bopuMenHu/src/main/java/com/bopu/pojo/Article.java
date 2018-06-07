@@ -59,7 +59,7 @@ public class Article {
     }
 
     public String getTime() {
-        DateFormat df = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss");
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String t = df.format(time);
         return t;
     }

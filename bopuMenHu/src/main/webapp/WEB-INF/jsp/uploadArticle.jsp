@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML>
 <html>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
@@ -27,50 +26,60 @@
     <link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
-
-    <!-- 全局js -->
-    <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
-
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
-
     <!-- layerDate plugin javascript -->
     <script src="${pageContext.request.contextPath}/js/plugins/layer/laydate/laydate.js"></script>
-    <script>
-        //外部js调用
-        laydate({
-            elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
-            event: 'focus' //响应事件。如果没有传入event，则按照默认的click
-        });
+    <script>//外部js调用
+    laydate({
+        elem: '#hello', //目标元素。由于laydate.js封装了一个轻量级的选择器引擎，因此elem还允许你传入class、tag但必须按照这种方式 '#id .class'
+        event: 'focus' //响应事件。如果没有传入event，则按照默认的click
+    });
 
-        //日期范围限制
-        var start = {
-            elem: '#start',
-            format: 'YYYY/MM/DD hh:mm:ss',
-            min: laydate.now(), //设定最小日期为当前日期
-            max: '2099-06-16 23:59:59', //最大日期
-            istime: true,
-            istoday: false,
-            choose: function (datas) {
-                end.min = datas; //开始日选好后，重置结束日的最小日期
-                end.start = datas //将结束日的初始值设定为开始日
-            }
-        };
-        var end = {
-            elem: '#end',
-            format: 'YYYY/MM/DD hh:mm:ss',
-            min: laydate.now(),
-            max: '2099-06-16 23:59:59',
-            istime: true,
-            istoday: false,
-            choose: function (datas) {
-                start.max = datas; //结束日选好后，重置开始日的最大日期
-            }
-        };
-        laydate(start);
-        laydate(end);
+    //日期范围限制
+    var start = {
+        elem: '#start',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(), //设定最小日期为当前日期
+        max: '2099-06-16 23:59:59', //最大日期
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas //将结束日的初始值设定为开始日
+        }
+    };
+    var end = {
+        elem: '#end',
+        format: 'YYYY/MM/DD hh:mm:ss',
+        min: laydate.now(),
+        max: '2099-06-16 23:59:59',
+        istime: true,
+        istoday: false,
+        choose: function (datas) {
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+    laydate(start);
+    laydate(end);
     </script>
+
+    <script>
+        $(function () {
+            $("#shiyan").hide();
+            $("select").bind("change", function () {
+                if (this.value == "2") {
+
+                    $("#tongzhi").hide();
+                    $("#shiyan").show();
+                } else {
+                    $("#shiyan").hide();
+                    $("#tongzhi").show();
+                }
+            })
+        });</script>
     <style type="text/css">
         body,
         html {
@@ -120,27 +129,53 @@
             padding: 0 5px;
             color: #01AAED;
         }
+
+        .yz {
+            margin-top: -460px;
+        }
     </style>
     <script type="text/javascript">
-        var ue = UE.getEditor('editor2');
         var ue = UE.getEditor('container');
+        var ue2 = UE.getEditor('container2');
 
         function submitHTML() {
             // 获取编辑器中的html
             var html = ue.getContent();
             // 返回成功跳转 页面 => 跳转到文章阅读页面
-            var title = $("input[name='title']").val();
-            // var flag =;
-            var author = $("input[name='author']").val();
-            var look = $("input[name='look']").val();
 
-            $.post("${pageContext.request.contextPath}/article/upload", {
-                content: html,
-                title: title,
-                author: author,
-                look: look
-            }, function (result) {
-            })
+            // var type =$("select").val();
+            var type = $("#notice_select option:selected").val();
+            if (type == 2) {
+                var title = $("input[name='projectTitle']").val();
+                var html = ue.getContent();
+                var author = $("input[name='projectAuthor']").val();
+                var flag = $("input[name='projectFlag']:checked").val();
+                var look = $("input[name='look']").val();
+                var limitData = $("input[name='limitData']").val();
+                alert(flag);
+                $.post("${pageContext.request.contextPath}/article/upload", {
+                    type: type,
+                    title: title,
+                    content: html,
+                    author: author,
+                    flag: flag,
+                    look: look,
+                    limitdata: limitData
+                }, function (result) {
+                });
+            } else {
+                var title = $("input[name='noticeTitle']").val();
+                var author = $("input[name='noticeAuthor']").val();
+                var flag = $("input[name='noticeFlag']:checked").val();
+                $.post("${pageContext.request.contextPath}/article/upload", {
+                    type: type,
+                    title: title,
+                    content: html,
+                    author: author,
+                    flag: flag
+                }, function (result) {
+                });
+            }
         }
     </script>
 </head>
@@ -154,72 +189,111 @@
 
     <hr style="border:5px solid #DDDDDD"/>
     <br>
-    <!--项目名称-->
-    <div class="col-lg-2" style="margin-top: 50px;">项目名称：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <input type="text" class="form-control"
-               placeholder="输入内容" name="title"/></div>
-
     <!--文章分类-->
     <div class="col-lg-2" style="margin-top: 50px;">文章分类：</div>
     <div class="col-lg-10" style="margin-top: 50px;">
-        <select name="se1" id="se1" class="selectpicker" style="width: 100%;">
-            <option name="type" id="option1" value="1">通知</option>
-            <option name="type" id="option2" value="2">实验项目</option>
-            <option name="type" id="option3" value="3">内部通知</option>
+        <select name="type" id="notice_select" class="selectpicker" style="width: 100%;">
+            <option value="1" name="option1">通知</option>
+            <option value="2" name="option3">实验项目简介及连接</option>
+            <option value="3" name="option2">内部通知</option>
         </select>
     </div>
+    <!--通知-->
 
-    <!--项目简介-->
-    <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <script id="container" name="content" type="text/plain">
-            在这里编辑文章内容
+    <div id="tongzhi">
+        <!--标题-->
+        <div class="col-lg-2" style="margin-top: 50px;">标题：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input type="text" class="form-control" name="noticeTitle" placeholder="输入标题名称"/>
+        </div>
 
+        <!--作者-->
+        <div class="col-lg-2" style="margin-top: 50px;">作者：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input type="text" class="form-control" name="noticeAuthor" value="admin"/>
+        </div>
 
+        <!--是否评论-->
+        <div class="col-lg-2" style="margin-top: 50px;">是否可评论：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <label class="radio-inline">
+                <input type="radio" checked="checked" name="noticeFlag" id="flag_true" value="1"> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="noticeFlag" id="flag_false" value="2"> 否
+            </label>
+        </div>
 
-        </script>
+        <!--正文-->
+        <div class="col-lg-2" style="margin-top: 50px;">内容：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <script id="container" name="content" type="text/plain">
+                在这里编辑文章内容
+
+            </script>
+            <div id="editor1" type="text/plain" style="width:1109px;height:500px;"></div>
+        </div>
+
+        <!--确定-->
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <button class="btn btn-primary btn-block yz" onclick="submitHTML()">确定发布</button>
+        </div>
     </div>
 
-    <!--作者成员-->
-    <div class="col-lg-2" style="margin-top: 50px;">作者：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <input type="text" class="form-control" placeholder="输入内容" name="author"/>
-    </div>
+    <!--实验项目-->
+    <div id="shiyan">
 
-    <!--上限日期-->
-    <div class="col-lg-2" style="margin-top: 50px;">上限日期：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <input class="form-control layer-date" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"
-               name="limitData">
-        <label class="laydate-icon"></label>
+        <!--项目名称-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目名称：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input type="text" class="form-control" name="projectTitle" placeholder="输入项目名称"/>
+        </div>
 
-    </div>
+        <!--项目简介-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <script id="container2" name="content" type="text/plain">
+                在这里编辑文章内容
 
-    <!--进入查看-->
-    <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
-    <div class="col-lg-10" style="margin-top: 50px;"><input type="text" class="form-control"
-                                                            placeholder="输入内容" name="look"/></div>
+            </script>
+            <div id="editor2" type="text/plain" name="projectContent" style="width:1109px;height:500px;"></div>
+        </div>
 
-    <!--是否评论-->
-    <div class="col-lg-2" style="margin-top: 50px;">是否评论：</div>
-    <div class="col-lg-10" style="margin-top: 50px;"><label class="radio-inline">
-        <input type="radio" name="flag" id="inlineRadio1" value="1"> 是
-    </label>
-        <label class="radio-inline">
-            <input type="radio" name="flag" id="inlineRadio2" value="2"> 否
-        </label></div>
+        <!--作者成员-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目成员：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input type="text" class="form-control" name="projectAuthor" placeholder="输入内容"/>
+        </div>
 
-    <!--正文-->
-    <div class="col-lg-2" style="margin-top: 50px;">正文：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
+        <!--上限日期-->
+        <div class="col-lg-2" style="margin-top: 50px;">上限日期：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input class="form-control layer-date" name="limitData"
+                   onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+            <label class="laydate-icon"></label>
+        </div>
 
-    </div>
+        <!--进入查看-->
+        <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input type="text" class="form-control" name="look" placeholder="输入内容"/>
+        </div>
 
-    <!--确定-->
-    <div class="col-lg-2" style="margin-top: 50px;"></div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <button class="btn btn-primary btn-block" onclick="submitHTML()">确定</button>
+        <!--是否评论-->
+        <div class="col-lg-2" style="margin-top: 50px;">是否评论：</div>
+        <div class="col-lg-10" style="margin-top: 50px;"><label class="radio-inline">
+            <input type="radio" name="projectFlag" checked="checked" id="inlineRadio1" value="1"> 是
+        </label>
+            <label class="radio-inline">
+                <input type="radio" name="projectFlag" id="inlineRadio2" value="2"> 否
+            </label></div>
+
+        <!--确定-->
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <button class="btn btn-primary btn-block" onclick="submitHTML()">确定</button>
+        </div>
     </div>
 </div>
 </body>

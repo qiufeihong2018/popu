@@ -9,9 +9,7 @@ To change this template use File | Settings | File Templates.
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>波普后台文章管理</title>
@@ -42,35 +40,6 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
         </div>
-
-        <%--<!--文章上传开始-->--%>
-        <%--<div class="wrapper wrapper-content animated fadeIn">--%>
-        <%--<div class="row">--%>
-        <%--<div class="col-sm-12">--%>
-        <%--<div class="ibox float-e-margins">--%>
-        <%--<div class="ibox-title">--%>
-        <%--<h5>文章上传</h5>--%>
-        <%--<div class="ibox-tools">--%>
-        <%--<a class="collapse-link">--%>
-        <%--<i class="fa fa-chevron-up"></i>--%>
-        <%--</a>--%>
-
-        <%--<a class="close-link">--%>
-        <%--<i class="fa fa-times"></i>--%>
-        <%--</a>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--<div class="ibox-content">--%>
-        <%--<form id="my-awesome-dropzone" class="dropzone" action="form_file_upload.html#">--%>
-        <%--<div class="dropzone-previews"></div>--%>
-        <%--<button type="submit" class="btn btn-primary pull-right">上传</button>--%>
-        <%--</form>--%>
-
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
-        <%--</div>--%>
 
         <!-- 全局js -->
         <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
@@ -122,7 +91,7 @@ To change this template use File | Settings | File Templates.
                     <c:forEach items="${articles}" var="article">
                         <div class="file-box">
                             <div class="file">
-                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}">
+                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}" target="view_window">
                                     <span class="corner"></span>
                                     <div class="file-name">
                                             ${article.title}

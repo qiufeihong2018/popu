@@ -192,7 +192,7 @@
         <div class="container-fluid">
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="主页.html">温州市波普大数据研究所</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">温州市波普大数据研究所</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
                         data-target="#example-navbar-collapse">
                     <span class="sr-only">切换导航</span>
@@ -218,14 +218,6 @@
     </nav>
 </header>
 
-<!--置顶图片-->
-<%--<div class="img-top">--%>
-
-<%--<!--图片替换此<div>-->--%>
-<%--<div style="border:solid; width:100%; height:100%;">置顶图片，使用&lt;img&gt;替换此&lt;div&gt;</div>--%>
-
-<%--</div>--%>
-
 <div class="row">
 
 
@@ -235,11 +227,12 @@
         <!--文章内容-->
         <div class="content">
             <div class="detail">
-                <h1>${article.title}文章标题</h1>
-                <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-top: 15px">${article.author}</span>
+                <h1>${article.title}</h1>
+                <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-top: 15px">${article.type==2 ? '': article.author}</span>
             </div>
             <hr>
             <div class="detail">
+                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}</c:if></h6>
                 <h4>
                     内容填充
                     ${article.content}

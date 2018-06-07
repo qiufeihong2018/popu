@@ -10,5 +10,7 @@ public interface ArticleService {
 
     void saveArticle(Article article);
 
-    List<Article> getArticleList(Integer currentPage, PageBean pb);
+    List<Article> getArticleList(PageBean pb);
+
+    void deleteArticle(Integer articleId);
 }
