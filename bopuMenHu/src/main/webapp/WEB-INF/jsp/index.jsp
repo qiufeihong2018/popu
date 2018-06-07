@@ -14,20 +14,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>boPuHome</title>
+    <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+ <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--<script src="js/bootstrap.min.js"></script>-->
     <style type="text/css">
         /*背景色*/
+
         .gray-bg {
             background-color: #f3f3f4;
         }
         /*左右固定*/
+
         html,
         body {
             overflow-x: hidden;
         }
         /*头部样式*/
+
         header .navbar-default {
             background-color: #1572DD;
         }
@@ -53,6 +63,7 @@
             min-height: calc(100vh - 100px);
         }
         /*底部栏*/
+
         .footer {
             background-color: #1572DD;
             height: 150px;
@@ -69,10 +80,14 @@
             font-size: 16px;
         }
         /*中间宽度*/
+
         .cen {
             width: 90%;
         }
         /*轮播图*/
+
+
+
         .navbar > .container,
         .navbar > .container-fluid {
             display: block;
@@ -82,6 +97,7 @@
             width: 100%;
         }
         /*文章列表*/
+
         #list {
             justify-content: space-between;
         }
@@ -128,6 +144,11 @@
 
         #div3 {
             overflow-y: inherit;
+        }
+        /*轮播图高度*/
+        #img{
+            height:500px;
+            width: 100%;
         }
     </style>
     <script>
@@ -182,18 +203,33 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
+                <li data-target="#myCarousel" data-slide-to="6"></li>
             </ol>
             <!-- 轮播（Carousel）项目 -->
-            <div class="carousel-inner" >
-                <div class="item active">
-                    <img src="${pageContext.request.contextPath}/picture/picture1.jpg" alt="1 slide">
+            <div class="carousel-inner" style="height: 500px;" >
+                <div class="item active" >
+                    <img id="img" src="img/img1.jpg" alt="1 slide" >
                 </div>
                 <div class="item">
-                    <img src="${pageContext.request.contextPath}/picture/picture2.jpg" alt="2 slide">
+                    <img id="img" src="img/img2.jpg" alt="2 slide" >
                 </div>
                 <div class="item">
-                    <img src="${pageContext.request.contextPath}/picture/picture3.jpg" alt="3 slide">
+                    <img id="img" src="img/img3.jpg" alt="3 slide" >
                 </div>
+                <div class="item">
+                    <img id="img" src="img/img5.jpg" alt="4 slide" >
+                </div>
+                <div class="item">
+                    <img id="img" src="img/a5.jpg" alt="5 slide" >
+                </div>
+                <div class="item">
+                    <img id="img" src="img/a6.jpg" alt="6 slide" >
+                </div>
+                <div class="item">
+                    <img id="img" src="img/a1.jpg" alt="7 slide" >
                 </div>
             </div>
             <!-- 轮播（Carousel）导航 -->
@@ -343,3 +379,4 @@
 </footer>
 </body>
 
+</html>

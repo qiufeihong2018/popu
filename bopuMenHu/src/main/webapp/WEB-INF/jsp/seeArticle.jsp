@@ -319,10 +319,8 @@
                     </div>
                 </div>
                 </c:when>
-                <c:otherwise>
-                    <h4 style="text-align: center;">此文章不可评论</h4>
-                    <hr>
-                </c:otherwise>
+                <%--<c:otherwise>--%>
+                <%--</c:otherwise>--%>
                 </c:choose>
             </div>
         </div>
