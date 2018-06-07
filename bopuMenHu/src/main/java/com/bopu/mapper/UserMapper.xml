@@ -357,9 +357,13 @@
   </update>
 
     <!-- 手动添加 -->
-    <select id="selectUserByNameAndPassword" resultType="com.bopu.pojo.User">
+    <select id="selectUserByAccountAndPassword" resultType="com.bopu.pojo.User">
         select *
         from user
-        where name = #{name } and password = #{password }
+        where account = #{account } and password = #{password }
+    </select>
+
+    <select id="selectUserByName" parameterType="String" resultType="com.bopu.pojo.User">
+        select * from user where name = #{name}
     </select>
 </mapper>

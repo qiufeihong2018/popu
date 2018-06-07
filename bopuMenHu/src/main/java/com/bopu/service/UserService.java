@@ -49,4 +49,6 @@ public interface UserService {
     public User selectUserById(Integer id);
 
     public List<User> selectUserLikePhone(String phone);
+
+    public User selectUserByName(String name);
 }

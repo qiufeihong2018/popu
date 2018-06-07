@@ -37,9 +37,9 @@ public class UserServiceImpl implements UserService {
 
 
 
-    public User userLogin(String name, String password) {
+    public User userLogin(String account, String password) {
 
-        return userMapper.selectUserByNameAndPassword(name, password);
+        return userMapper.selectUserByAccountAndPassword(account, password);
 
     }
 
@@ -88,6 +88,10 @@ public class UserServiceImpl implements UserService {
         List<User> list = userMapper.selectByExample(example);
         //返回
         return list;
+    }
+
+    public User selectUserByName(String name) {
+        return userMapper.selectUserByName(name);
     }
 
     public UserMapper getUserMapper() {

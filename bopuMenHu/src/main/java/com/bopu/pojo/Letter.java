@@ -1,5 +1,9 @@
 package com.bopu.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Letter {
@@ -52,6 +56,7 @@ public class Letter {
         this.sender = sender == null ? null : sender.trim();
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     public Date getTime() {
         return time;
     }

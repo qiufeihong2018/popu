@@ -10,10 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.OnClose;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.text.SimpleDateFormat;
@@ -92,6 +89,13 @@ public class WsServer {
         Date date =new Date();
         String time = simpleDateFormat.format(date);
         String message;
+        //把消息保存到数据库中
+        Letter letter = new Letter();
+        letter.setContent(msg);
+        letter.setReceiver(otherName);
+        letter.setSender(myName);
+        letter.setTime(date);
+        letter.setReaded(false);
         for (Session session1 : rooms.get(roomName)) {
             //判断是否发送给自己
             if(session1.equals(session)) {
@@ -100,18 +104,15 @@ public class WsServer {
             }else {
                 //发送给别人
                 message = "<div class=\"chat-message-left\"><img class=\"img-circle\" src=\""+pic+"\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+myName+"</a><span class=\"message-date\"> "+time+" </span><span class=\"message-content\">"+msg+"</span></div></div>";
+                //设置为已读消息
+                letter.setReaded(true);
             }
             //发送
             session1.getBasicRemote().sendText(message);
 
         }
-        //把消息保存到数据库中
-        Letter letter = new Letter();
-        letter.setContent(msg);
-        letter.setReceiver(otherName);
-        letter.setSender(myName);
-        letter.setTime(date);
         letterMapper.insert(letter);
+
     }
 
 

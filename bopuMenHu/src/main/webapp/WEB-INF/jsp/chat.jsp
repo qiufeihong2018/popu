@@ -251,13 +251,59 @@
                 }
             }
         }*/
+
+        var startRow = 0;
+
         $(document).ready(function(){
             $("#quxiaobtn").click(function(){
                 $("#text").val('');
             });
             initWebSocket();
+
+            readLetter();
+
+            loadLetter();
         });
 
+        function readLetter() {
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/user/readLetter",
+                data: {receiver:"${user.name}",sender:"${otherUserName}"},
+                dataType: "json",
+                success: function (data) {
+                    if(data["status"]!=200){
+                        helpText.innerHTML=data["message"];
+                    }
+                }
+            });
+        }
+
+        function loadLetter() {
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/user/getLetter",
+                data: {receiver:"${user.name}",sender:"${otherUserName}",startRow:startRow},
+                dataType: "json",
+                success: function (data) {
+                    if(data.length!=10){
+                        $("#more").html("没有更多消息");
+                    }
+                    var text = "";
+                    $.each(data,function (index,val) {
+                        if(val["sender"]=="${user.name}"){//自己的消息
+                            text = "<div class=\"chat-message-right\"><img class=\"img-circle\" src=\"/img/2.jpg\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" + text;
+                        }else {//别人的消息
+                            text = "<div class=\"chat-message-left\"><img class=\"img-circle\" src=\"/img/1.jpg\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" +text;
+                        }
+                    });
+                    startRow +=10;
+                    //显示
+                    var html = $("#msg_board").html();
+                    $("#msg_board").html(text+html);
+                }
+            });
+        }
 
         <!-- 聊天js -->
         var webSocket;
@@ -308,6 +354,7 @@
                     msg_board.innerHTML  = old_msg + received_msg ;
                     // 让滚动块往下移动
                     msg_board.scrollTop = msg_board.scrollHeight;
+                    console.log(evt);
                 };
 
                 webSocket.onclose = function () {
@@ -360,11 +407,6 @@
     </nav>
 </header>
 <!--整体布局-->
-&nbsp;&nbsp;&nbsp;&nbsp;
-<label>房间名</label>
-<input id="input_roomName" style="width: 10em" type="text"  placeholder="房间号">
-<input class="btn btn-default" type="button" value="进入聊天室" onclick="initWebSocket()">
-<input class="btn btn-default" type="button" value="退出聊天室" onclick="closeWs()">
 <div id="zhongjian">
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
@@ -373,7 +415,7 @@
                 <div class="ibox chat-view ">
 
                     <div class="ibox-title">
-                        <small class="pull-right text-muted" style="color: #fff;">最新消息：2018-02-02 </small> 聊天窗口
+                        聊天窗口
                     </div>
 
                     <div class="ibox-content col-lg-12">
@@ -381,13 +423,15 @@
                         <div class="row">
 
                             <div class="col-md-12 ">
-                                <div id="msg_board" class="chat-discussion msg_board">
+                                <div class="chat-discussion msg_board">
+                                    <div id="more" style="text-align: center"><a onclick="loadLetter()">查看更多</a></div>
+                                    <div id="msg_board">
 
-
-                                    <%--<div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                    <div class="chat-message-right"><img class="img-circle" src="/img/2.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                    <div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                --%>
+                                        <%--<div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
+                                        <div class="chat-message-right"><img class="img-circle" src="/img/2.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
+                                        <div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
+                                    --%>
+                                    </div>
                                 </div>
 
                             </div>

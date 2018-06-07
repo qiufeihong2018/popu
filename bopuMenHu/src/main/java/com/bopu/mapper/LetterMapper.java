@@ -33,4 +33,8 @@ public interface LetterMapper {
     int updateByPrimaryKeyWithBLOBs(Letter record);
 
     int updateByPrimaryKey(Letter record);
+
+    List<Letter> selectListByReceiverAndSender(@Param("receiver") String receiver, @Param("sender") String sender,@Param("startRow") Integer startRow);
+
+    List<String> selectDistinctserNameByReceiver(String receiver);
 }

@@ -3,10 +3,13 @@ package com.bopu.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.bopu.mapper.UserMapper;
 import com.bopu.pojo.BoPuResult;
+import com.bopu.pojo.Letter;
 import com.bopu.pojo.User;
+import com.bopu.service.LetterService;
 import com.bopu.service.UserService;
 import com.bopu.utils.MailUtil;
 import com.bopu.utils.RandomCode;
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +30,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LetterService letterService;
 
     @Value("${MY_EMAIL_ACCOUNT}")
     public String MY_EMAIL_ACCOUNT;
@@ -290,4 +297,32 @@ public class UserController {
         }
     }
 
+    @RequestMapping("user/readLetter")
+    @ResponseBody
+    public BoPuResult readLetter(String receiver,String sender){
+        letterService.readLettersByReceiverAndSender(receiver, sender);
+        return BoPuResult.ok();
+    }
+
+
+    @RequestMapping("user/getLetter")
+    @ResponseBody
+    public List<Letter> getLetter(String receiver,String sender,Integer startRow){
+        List<Letter> list = letterService.getLettersByReceiverAndSender(receiver, sender, startRow);
+        return list;
+    }
+
+    @RequestMapping("user/getDistinctUser")
+    @ResponseBody
+    public List<User> getLetter(String receiver){
+        //获得发送者姓名
+        List<String> list = letterService.selectDistinctserNameByReceiver(receiver);
+        //查询发送者id
+        List<User> users = new ArrayList<User>();
+        for (String name :list) {
+            User user = userService.selectUserByName(name);
+            users.add(user);
+        }
+        return users;
+    }
 }

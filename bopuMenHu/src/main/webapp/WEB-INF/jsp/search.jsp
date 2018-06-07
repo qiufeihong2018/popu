@@ -138,6 +138,23 @@
                 }
             }
         }*/
+
+        $(document).ready(function(){
+            $.ajax({
+                type: "POST",
+                url: "${pageContext.request.contextPath}/user/getDistinctUser",
+                data: {receiver:"${user.name}"},
+                dataType: "json",
+                success: function (data) {
+                    var text = "";
+                    $.each(data,function (index,val) {
+                   text += '<tr><td>1</td><td><a href="${pageContext.request.contextPath}/user/chat?id='+val["id"]+'">'+val["name"]+'</a></td></tr>';
+                    });
+                    $("#content").html(text);
+                }
+            });
+        });
+
         function search(input) {
             var text = $(input).val();
             if(text == null || text ==""){
@@ -226,7 +243,7 @@
                             <th>时间</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="content">
                         <tr>
                             <td>1</td>
                             <td><a href="聊天界面.html">张三</a></td>

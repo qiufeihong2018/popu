@@ -278,4 +278,30 @@
       readed = #{readed,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--手动添加方法-->
+  <select id="selectListByReceiverAndSender" resultType="com.bopu.pojo.Letter">
+    SELECT
+      *
+    FROM
+      letter
+      WHERE receiver = #{receiver }
+      AND sender = #{sender }
+      OR receiver = #{sender }
+      AND sender = #{receiver }
+    ORDER BY id DESC
+    LIMIT #{startRow}, 10 ;
+
+
+  </select>
+
+  <select id="selectDistinctserNameByReceiver" parameterType="String" resultType="String">
+    SELECT DISTINCT
+      sender
+    FROM
+      letter
+    WHERE receiver = #{receiverName}
+    ORDER BY id DESC
+  </select>
+
 </mapper>
