@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.bopu.mapper.UserMapper;
 import com.bopu.pojo.BoPuResult;
 import com.bopu.pojo.Letter;
+import com.bopu.pojo.LetterVo;
 import com.bopu.pojo.User;
 import com.bopu.service.LetterService;
 import com.bopu.service.UserService;
@@ -50,6 +51,7 @@ public class UserController {
     public String saveUser(User user,Model model){
         try {
             user.setType(1);
+            user.setPic("/img/1.jpg");
             userService.saveUser(user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -314,16 +316,11 @@ public class UserController {
 
     @RequestMapping("user/getDistinctUser")
     @ResponseBody
-    public List<User> getLetter(String receiver){
-        //获得发送者姓名
-        List<String> list = letterService.selectDistinctserNameByReceiver(receiver);
-        //查询发送者id
-        List<User> users = new ArrayList<User>();
-        for (String name :list) {
-            User user = userService.selectUserByName(name);
-            users.add(user);
-        }
-        return users;
+    public List<LetterVo> getLetter(String receiver){
+        //获得发送者
+        List<LetterVo> list = letterService.selectDistinctserNameByReceiver(receiver);
+        //返回
+        return list;
     }
 
     @RequestMapping("user/personChange")

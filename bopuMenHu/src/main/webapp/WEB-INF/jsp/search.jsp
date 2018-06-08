@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: shiku
@@ -148,7 +149,13 @@
                 success: function (data) {
                     var text = "";
                     $.each(data,function (index,val) {
-                   text += '<tr><td>1</td><td><a href="${pageContext.request.contextPath}/user/chat?id='+val["id"]+'">'+val["name"]+'</a></td></tr>';
+                        var isread ="";
+                        if(val["readed"]==false){
+                            isread="未读";
+                        }else {
+                            isread="已读";
+                        }
+                        text += '<tr><td>'+index+'</td><td><a href="${pageContext.request.contextPath}/user/chat?id='+val["uid"]+'">'+val["sender"]+'</a></td><td>'+isread+'</td><td>'+val["time"]+'</td></tr>';
                     });
                     $("#content").html(text);
                 }

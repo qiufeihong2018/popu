@@ -235,6 +235,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
                             <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
+                            <li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
                         </ul>
                     </li>
 

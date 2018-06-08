@@ -295,13 +295,20 @@
 
   </select>
 
-  <select id="selectDistinctserNameByReceiver" parameterType="String" resultType="String">
-    SELECT DISTINCT
-      sender
-    FROM
-      letter
-    WHERE receiver = #{receiverName}
-    ORDER BY id DESC
+  <select id="selectDistinctserNameByReceiver" parameterType="String" resultType="com.bopu.pojo.LetterVo">
+  SELECT
+  t1.*,
+  u.id uid
+FROM
+  letter t1 LEFT JOIN USER u ON t1.sender=u.name
+WHERE TIME =
+  (SELECT
+    MAX(TIME)
+  FROM
+    letter t2
+  WHERE t1.sender = t2.sender AND receiver = #{receiver}
+  GROUP BY sender)
+
   </select>
 
 </mapper>

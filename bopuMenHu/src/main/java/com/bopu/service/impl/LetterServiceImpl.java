@@ -3,6 +3,7 @@ package com.bopu.service.impl;
 import com.bopu.mapper.LetterMapper;
 import com.bopu.pojo.Letter;
 import com.bopu.pojo.LetterExample;
+import com.bopu.pojo.LetterVo;
 import com.bopu.service.LetterService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class LetterServiceImpl implements LetterService {
         return list;
     }
 
-    public List<String> selectDistinctserNameByReceiver(String receiver) {
+    public List<LetterVo> selectDistinctserNameByReceiver(String receiver) {
         return letterMapper.selectDistinctserNameByReceiver(receiver);
     }
 }

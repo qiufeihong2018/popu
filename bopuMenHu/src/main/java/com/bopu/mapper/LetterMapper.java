@@ -3,6 +3,8 @@ package com.bopu.mapper;
 import com.bopu.pojo.Letter;
 import com.bopu.pojo.LetterExample;
 import java.util.List;
+
+import com.bopu.pojo.LetterVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface LetterMapper {
@@ -36,5 +38,5 @@ public interface LetterMapper {
 
     List<Letter> selectListByReceiverAndSender(@Param("receiver") String receiver, @Param("sender") String sender,@Param("startRow") Integer startRow);
 
-    List<String> selectDistinctserNameByReceiver(String receiver);
+    List<LetterVo> selectDistinctserNameByReceiver(String receiver);
 }
