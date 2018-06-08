@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 用户管理
@@ -51,7 +52,10 @@ public class UserController {
     public String saveUser(User user,Model model){
         try {
             user.setType(1);
-            user.setPic("/img/1.jpg");
+            //随机分配头像
+            Random random = new Random();
+            int i = random.nextInt(10)+1;
+            user.setPic("/img/"+i+".jpg");
             userService.saveUser(user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -290,10 +294,10 @@ public class UserController {
             }
             //保存房间id
             model.addAttribute("roomId", roomId);
-            //获取对方姓名
+            //获取对方
             User u = userService.selectUserById(Integer.parseInt(id));
-            //保存对方姓名
-            model.addAttribute("otherUserName", u.getName());
+            //保存对方
+            model.addAttribute("other", u);
             //跳转到聊天页面
             return "chat";
         }
@@ -369,4 +373,18 @@ public class UserController {
         }
 
     }
+
+    @RequestMapping("user/picChange")
+    public String picChange(User user,HttpSession session){
+        //查找用户
+        User u = userService.selectUserById(user.getId());
+        //修改pic
+        u.setPic(user.getPic());
+        //保存
+        userService.updataUser(u);
+        //更新session
+        session.setAttribute("user", u);
+        return "index";
+    }
+
 }

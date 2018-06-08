@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
+    <script src="/layui/layui.js" charset="utf-8"></script>
     <style type="text/css">
         /*背景色*/
 
@@ -55,13 +57,13 @@
 
         .content {
             text-align: center;
-            min-height: calc(100vh - 20px);
             display: flex;
             /*使子项目水平居中*/
             justify-content: center;
             /*使子项目垂直居中*/
             align-items: center;
         }
+
         /*文本框*/
 
         .form-control {
@@ -92,118 +94,123 @@
 
         #biaodan {
             width: 860px;
-            height: 900px;
+            height: 100%;
             background-color: white;
+        }
+        .imgSize{
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+        }
+
+        .picDiv{
+            margin: 20px;
+            border-radius: 10px;
+            background: #F5F5F5;
+        }
+        .sysPic{
+            height: 120px;
+            width: 120px;
+            margin: 10px;
+            border:1px solid black;
+        }
+        .sysPic:hover
+        {
+            border:1px solid red;
         }
     </style>
 
     <script>
-        window.onload = function() {
-            var dragContainer = document.getElementById("dragContainer");
-            var dragBg = document.getElementById("dragBg");
-            var dragText = document.getElementById("dragText");
-            var dragHandler = document.getElementById("dragHandler");
 
-            //滑块最大偏移量
-            var maxHandlerOffset = dragContainer.clientWidth - dragHandler.clientWidth;
-            //是否验证成功的标记
-            var isVertifySucc = false;
-            initDrag();
+        $(document).ready(function(){
+            $(".sysPic").click(
+                function () {
+                    $(".sysPic").css("border","1px solid black");
+                    $(this).css("border","1px solid red");
+                    $("#head").attr("src",$(this).attr("src"));
+                    $("#inputHead").val($(this).attr("src"));
+                });
 
-            function initDrag() {
-                dragText.textContent = "拖动滑块验证";
-                dragHandler.addEventListener("mousedown", onDragHandlerMouseDown);
+        });
 
-                dragHandler.addEventListener("touchstart", onDragHandlerMouseDown);
-            }
 
-            function onDragHandlerMouseDown(event) {
-                document.addEventListener("mousemove", onDragHandlerMouseMove);
-                document.addEventListener("mouseup", onDragHandlerMouseUp);
+        layui.use('upload', function(){
+            var $ = layui.jquery
+                ,upload = layui.upload;
 
-                document.addEventListener("touchmove", onDragHandlerMouseMove);
-                document.addEventListener("touchend", onDragHandlerMouseUp);
-            }
-
-            function onDragHandlerMouseMove(event) {
-                /*
-            html元素不存在width属性,只有clientWidth
-            offsetX是相对当前元素的,clientX和pageX是相对其父元素的
-
-            touches：表示当前跟踪的触摸操作的touch对象的数组。
-            targetTouches：特定于事件目标的Touch对象的数组。
-        　　changedTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
-            */
-                var left = (event.clientX || event.changedTouches[0].clientX) - dragHandler.clientWidth / 2;
-                if(left < 0) {
-                    left = 0;
-                } else if(left > maxHandlerOffset) {
-                    left = maxHandlerOffset;
-                    verifySucc();
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                ,url: '/upload'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
                 }
-                dragHandler.style.left = left + "px";
-                dragBg.style.width = dragHandler.style.left;
-            }
+                ,done: function(data){
+                    if(data["status"]==200){
+                        $("#inputHead").val(data["message"]);
+                        $("#head").attr("src",data["message"]);
+                    }else{//如果上传失败
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(data){
+                    console.log(data);
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                },success: function (data) {console.log("success");
+                    if(data["status"]==200){console.log("-----");
+                        console.log(data["message"]);
+                    }else{
+                        var demoText = $('#demoText');
+                        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                        demoText.find('.demo-reload').on('click', function(){
+                            uploadInst.upload();
+                        });
+                    }
 
-            function onDragHandlerMouseUp(event) {
-                document.removeEventListener("mousemove", onDragHandlerMouseMove);
-                document.removeEventListener("mouseup", onDragHandlerMouseUp);
 
-                document.removeEventListener("touchmove", onDragHandlerMouseMove);
-                document.removeEventListener("touchend", onDragHandlerMouseUp);
+                }
+            });
 
-                dragHandler.style.left = 0;
-                dragBg.style.width = 0;
-            }
+            //多图片上传
+            upload.render({
+                elem: '#test2'
+                ,url: '/upload/'
+                ,multiple: true
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                }
+                ,done: function(res){
+                    //上传完毕
+                }
+            });
 
-            //验证成功
-            function verifySucc() {
-                isVertifySucc = true;
-                dragText.textContent = "验证通过";
-                dragText.style.color = "white";
-                dragHandler.setAttribute("class", "dragHandlerOkBg");
+            //指定允许上传的文件类型
+            upload.render({
+                elem: '#test3'
+                ,url: '/upload/'
+                ,accept: 'file' //普通文件
+                ,done: function(res){
+                    console.log(res)
+                }
+            });
+        });
 
-                dragHandler.removeEventListener("mousedown", onDragHandlerMouseDown);
-                document.removeEventListener("mousemove", onDragHandlerMouseMove);
-                document.removeEventListener("mouseup", onDragHandlerMouseUp);
 
-                dragHandler.removeEventListener("touchstart", onDragHandlerMouseDown);
-                document.removeEventListener("touchmove", onDragHandlerMouseMove);
-                document.removeEventListener("touchend", onDragHandlerMouseUp);
-            };
-        }
-        //
-        //			function CheckInput(inputField, helpText) {
-        //				if(inputField.value.length == 0) {
-        //					if(helpText != null) {
-        //						helpText.innerHTML = "不能为空，请输入";
-        //
-        //					}
-        //					return false;
-        //				} else {
-        //					if(helpText != null) {
-        //						helpText.innerHTML = "";
-        //
-        //					}
-        //					return true;
-        //				}
-        //			}
 
-        //不为空验证
-        function showTips(id, info) {
-            document.getElementById(id + "span").innerHTML = "<font color='gray'>" + info + "</font>";
-        }
+    //    ------------
 
-        function check(id, info) {
-            //1.获取用户输入的用户名数据
-            var uValue = document.getElementById(id).value;
-            //2.进行校验
-            if(uValue == "") {
-                document.getElementById(id + "span").innerHTML = "<font color='red'>" + info + "</font>";
-            } else {
-                document.getElementById(id + "span").innerHTML = "";
-            }
-        }
     </script>
 </head>
 
@@ -247,6 +254,34 @@
 <main class="content">
     <div id="biaodan">
       <h1>头像修改</h1>
+        <hr />
+        <div class="layui-upload">
+            <form action="${pageContext.request.contextPath}/user/picChange" method="post">
+                <input type="hidden" name="id" value="${user.id}">
+                <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
+                <button type="button" class="layui-btn" id="test1">上传图片</button><br><br>
+                <div class="layui-upload-list" >
+                    <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
+                    <div style = "text-align:right;margin-top: -20px">
+                    <button type="submit" class="layui-btn" style="margin-right: 5%;margin-top: 0px;" >确定</button>
+                    </div>
+                    <p id="demoText"></p>
+                </div>
+            </form>
+        </div>
+        <hr />
+        <div class="picDiv">
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/1.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/2.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/3.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/4.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/5.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/6.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/7.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/8.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/9.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/10.jpg">&nbsp;
+        </div>
     </div>
 </main>
 

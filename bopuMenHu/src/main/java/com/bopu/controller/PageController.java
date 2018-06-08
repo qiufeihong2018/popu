@@ -18,4 +18,8 @@ public class PageController {
     public String showPage(@PathVariable String page){
         return page;
     }
+
+    @RequestMapping("/admin/{page}")
+    public String showAdmin(@PathVariable String page){return "admin/"+page;}
+
 }

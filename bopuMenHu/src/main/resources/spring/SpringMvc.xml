@@ -11,7 +11,7 @@
 	<context:property-placeholder location="classpath:properties/resource.properties"/>
 
 	<mvc:resources location="/img/" mapping="/img/**"></mvc:resources>
-
+	<mvc:resources location="/layui/" mapping="/layui/**"></mvc:resources>
 	<!-- 开启注解扫描 -->
 	<context:component-scan base-package="com.bopu.controller,com.bopu.utils,com.bopu.websocket"></context:component-scan>
 	<mvc:annotation-driven conversion-service="conversionService"/>

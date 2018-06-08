@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.*;
@@ -25,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Time: 2017-08-01 13:00
  * Intent: webSocket服务器
  */
-@ServerEndpoint("/webSocket/chat/{roomName}/{userId}/{myName}/{otherName}")
+@ServerEndpoint("/webSocket/chat/{roomName}/{userId}/{myName}/{otherName}/{myPic}/{otherPic}")
 public class WsServer {
 
     private UserMapper userMapper;
@@ -74,15 +75,16 @@ public class WsServer {
     @OnMessage
     public void receiveMsg(@PathParam("roomName") String roomName,@PathParam("userId") String userId,
                            @PathParam("myName") String myName,@PathParam("otherName") String otherName,
+                           @PathParam("myPic") String myPic,@PathParam("otherPic") String otherPic,
                            String msg, Session session) throws Exception {
         //获取双方id
         String[] split = roomName.split("-");
         //根据id选择头像
         String pic = "";
         if (userId.equals(split[0])){
-            pic = "/img/1.jpg";
+            pic = myPic;
         }else {
-            pic = "/img/2.jpg";
+            pic = otherPic;
         }
         //创建时间
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

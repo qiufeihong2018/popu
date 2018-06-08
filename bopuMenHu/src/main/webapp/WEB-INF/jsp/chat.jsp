@@ -269,7 +269,7 @@
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/user/readLetter",
-                data: {receiver:"${user.name}",sender:"${otherUserName}"},
+                data: {receiver:"${user.name}",sender:"${other.name}"},
                 dataType: "json",
                 success: function (data) {
                     if(data["status"]!=200){
@@ -283,18 +283,20 @@
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/user/getLetter",
-                data: {receiver:"${user.name}",sender:"${otherUserName}",startRow:startRow},
+                data: {receiver:"${user.name}",sender:"${other.name}",startRow:startRow},
                 dataType: "json",
                 success: function (data) {
                     if(data.length!=10){
                         $("#more").html("没有更多消息");
                     }
+                    var myPic = "${user.pic}";
+                    var otherPic = "${other.pic}";
                     var text = "";
                     $.each(data,function (index,val) {
                         if(val["sender"]=="${user.name}"){//自己的消息
-                            text = "<div class=\"chat-message-right\"><img class=\"img-circle\" src=\"/img/2.jpg\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" + text;
+                            text = "<div class=\"chat-message-right\"><img class=\"img-circle\" src=\""+myPic+"\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" + text;
                         }else {//别人的消息
-                            text = "<div class=\"chat-message-left\"><img class=\"img-circle\" src=\"/img/1.jpg\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" +text;
+                            text = "<div class=\"chat-message-left\"><img class=\"img-circle\" src=\""+otherPic+"\" alt=\"\" style=\"width:48px;height: 48px;\"><div class=\"message\"><a class=\"message-author\" href=\"#\"> "+val["sender"]+"</a><span class=\"message-date\"> "+val["time"]+" </span><span class=\"message-content\">"+val["content"]+"</span></div></div>" +text;
                         }
                     });
                     startRow +=10;
@@ -336,7 +338,11 @@
             if ("WebSocket" in window) {
 //            alert("您的浏览器支持 WebSocket!");
                 if (webSocket == null) {
-                    var url = "ws://localhost:8080/webSocket/chat/${roomId}/${user.id}/${user.name}/${otherUserName}";
+                    var myPic = "${user.pic}";
+                    var otherPic = "${other.pic}";
+                    otherPic = otherPic.split('/').join('~');
+                    myPic = myPic.split('/').join('~');
+                    var url = "ws://localhost:8080/webSocket/chat/${roomId}/${user.id}/${user.name}/${other.name}/"+myPic+"/"+otherPic;
                     // 打开一个 web socket
                     webSocket = new WebSocket(url);
                 } else {
@@ -350,6 +356,7 @@
                 webSocket.onmessage = function (evt) {
                     var msg_board = document.getElementsByClassName("msg_board")[0];
                     var received_msg = evt.data;
+                    received_msg = received_msg.split('~').join('/');
                     var old_msg = msg_board.innerHTML;
                     msg_board.innerHTML  = old_msg + received_msg ;
                     // 让滚动块往下移动
