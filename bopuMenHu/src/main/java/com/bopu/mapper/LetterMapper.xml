@@ -300,7 +300,7 @@
   t1.*,
   u.id uid
 FROM
-  letter t1 LEFT JOIN USER u ON t1.sender=u.name
+  letter t1 LEFT JOIN pop.`user` u ON t1.sender=u.name
 WHERE TIME =
   (SELECT
     MAX(TIME)
