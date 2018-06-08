@@ -102,7 +102,7 @@ To change this template use File | Settings | File Templates.
                                         </div>
                                         <br/>
                                         <small>
-                                            <a href="${pageContext.request.contextPath}/article/update?articleId=${article.id}">编辑</a>&nbsp;|
+                                            <a href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
                                             <a href="${pageContext.request.contextPath}/article/delete?articleId=${article.id}">删除</a>&nbsp;|
                                             <a href="#">置顶</a>&nbsp;|
                                             <a href="#">分类</a>

@@ -61,12 +61,12 @@
                 </li>
 
                 <li>
-                    <a class="J_menuItem" href="${pageContext.request.contextPath}/pictureManage"><i
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/admin/pictureManage"><i
                             class="fa fa-map"></i><span
                             class="nav-label">轮播图管理</span></a>
                 </li>
                 <li>
-                    <a class="J_menuItem" href="${pageContext.request.contextPath}/uploadArticle"><i
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/admin/uploadArticle"><i
                             class="fa fa-recycle"></i><span
                             class="nav-label">文章发布</span></a>
                 </li>
@@ -77,7 +77,7 @@
                             class="nav-label">文章管理</span></a>
                 </li>
                 <li>
-                    <a class="J_menuItem" href="${pageContext.request.contextPath}/aboutOur"><i
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/admin/aboutOur"><i
                             class="fa fa-columns"></i><span
                             class="nav-label">关于我们管理</span></a>
                 </li>
@@ -210,7 +210,7 @@
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-                    src="${pageContext.request.contextPath}/pictureManage" frameborder="0"
+                    src="${pageContext.request.contextPath}/admin/pictureManage" frameborder="0"
                     seamless></iframe>
         </div>
 

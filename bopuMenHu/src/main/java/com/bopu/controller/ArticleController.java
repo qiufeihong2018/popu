@@ -1,12 +1,14 @@
 package com.bopu.controller;
 
 import com.bopu.pojo.Article;
+import com.bopu.pojo.BoPuResult;
 import com.bopu.service.ArticleService;
 import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -28,11 +30,12 @@ public class ArticleController {
      * @return
      */
     @RequestMapping(value = "article/upload")
-    public String uploadArticle(Article article) {
+    @ResponseBody
+    public BoPuResult uploadArticle(Article article) {
 //        article.setTitle("微软官方正式宣布：75亿美金收购Github！新任CEO同时产生");
         System.out.println(article);
         articleService.saveArticle(article);
-        return "";
+        return BoPuResult.build(200, article.getId().toString());
     }
 
     /**
@@ -55,7 +58,7 @@ public class ArticleController {
     }
 
     /**
-     * 根据文章id显示文章
+     * 根据文章id 显示阅读文章
      *
      * @param articleId
      * @return
@@ -105,20 +108,35 @@ public class ArticleController {
         return "redirect:list?currentPage=" + currentPage;
     }
 
+
     /**
-     * 文章更新
+     * 根据文章id 显示更新文章
      *
+     * @param articleId
      * @return
      */
-    @RequestMapping(value = "article/update")
-    public String updateArticle(Article article) {
-        return "redirect:show?articleId=" + article.getId();
+    @RequestMapping(value = "article/updateShow")
+    public String showUpdateArticle(Integer articleId, Model model) {
+        Article articleById = articleService.getArticleById(articleId);
+        if (null != articleById) {
+            model.addAttribute("article", articleById);
+            return "admin/updateArticle";
+        }
+        // TODO: return error
+        return "";
     }
 
     /**
-     * 文章评论
+     * 文章修改
      * @return
      */
+    @RequestMapping(value = "article/update")
+    @ResponseBody
+    public BoPuResult update(Article article, Model model) {
+        System.out.println(article);
+        return BoPuResult.build(200, article.getId().toString());
+
+    }
 
     public ArticleService getArticleService() {
         return articleService;

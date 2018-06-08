@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Exler
-  Date: 2018/6/5
-  Time: 20:48
+  Date: 2018/6/8
+  Time: 18:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -65,21 +65,6 @@
     laydate(start);
     laydate(end);
     </script>
-
-    <script>
-        $(function () {
-            $("#shiyan").hide();
-            $("select").bind("change", function () {
-                if (this.value == "2") {
-
-                    $("#tongzhi").hide();
-                    $("#shiyan").show();
-                } else {
-                    $("#shiyan").hide();
-                    $("#tongzhi").show();
-                }
-            })
-        });</script>
     <style type="text/css">
         body,
         html {
@@ -134,68 +119,100 @@
             margin-top: -460px;
         }
     </style>
-    <script type="text/javascript">
-        var ue = UE.getEditor('container');
-        var ue2 = UE.getEditor('container2');
-
-        function submitHTML() {
-            // 获取编辑器中的html
-            var html = ue.getContent();
-            // 返回成功跳转 页面 => 跳转到文章阅读页面
-
-            // var type =$("select").val();
-            var type = $("#notice_select option:selected").val();
-            if (type == 2) {
-                var title = $("input[name='projectTitle']").val();
-                var html = ue.getContent();
-                var author = $("input[name='projectAuthor']").val();
-                var flag = $("input[name='projectFlag']:checked").val();
-                var look = $("input[name='look']").val();
-                var limitData = $("input[name='limitData']").val();
-                alert(flag);
-                $.post("${pageContext.request.contextPath}/article/upload", {
-                    type: type,
-                    title: title,
-                    content: html,
-                    author: author,
-                    flag: flag,
-                    look: look,
-                    limitdata: limitData
-                }, function (result) {
-                    if (result["status"] == 200) {
-                        window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
-                    } else {
-                        // 提交失败
-                    }
-                });
-            } else {
-                var title = $("input[name='noticeTitle']").val();
-                var author = $("input[name='noticeAuthor']").val();
-                var flag = $("input[name='noticeFlag']:checked").val();
-                $.post("${pageContext.request.contextPath}/article/upload", {
-                    type: type,
-                    title: title,
-                    content: html,
-                    author: author,
-                    flag: flag
-                }, function (result) {
-                    if (result["status"] == 200) {
-                        window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
-                    } else {
-                        // 提交失败
-                    }
-                });
-            }
-        }
-    </script>
 </head>
+<script type="text/javascript">
+    var ue;
+    var ue2;
 
+    $(function () {
+        $("#shiyan").hide();
+        $("#tongzhi").hide();
+        var type = ${article.type};
+        alert(type);
+        if (type == 2) {
+            $("#shiyan").show();
+        } else {
+            $("#tongzhi").show();
+            $("#shiyan").hide();
+            $("#tongzhi").show();
+            ue = UE.getEditor('container');
+        }
+
+
+        // if (type == 2) {
+        //     $("#tongzhi").hide();
+        //     $("#shiyan").show();
+        //     ue2 = UE.getEditor('container2');
+        <%--ue2.setHtml(${article.content});--%>
+        // } else {
+
+        // }
+        // })}
+    });
+
+
+    function submitHTML() {
+        // 获取编辑器中的html
+        var html = ue.getContent();
+        // 返回成功跳转 页面 => 跳转到文章阅读页面
+
+        // var type =$("select").val();
+        var type = $("#notice_select option:selected").val();
+        if (type == 2) {
+            var title = $("input[name='projectTitle']").val();
+            var html = ue2.getContent();
+            var author = $("input[name='projectAuthor']").val();
+            var flag = $("input[name='projectFlag']:checked").val();
+            var look = $("input[name='look']").val();
+            var limitData = $("input[name='limitData']").val();
+            $.post("${pageContext.request.contextPath}/article/update", {
+                id: ${article.id},
+                type: type,
+                title: title,
+                content: html,
+                author: author,
+                flag: flag,
+                look: look,
+                limitdata: limitData
+            }, function (result) {
+                if (result["status"] == 200) {
+                    window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
+                } else {
+                    // 提交失败
+                }
+            });
+        } else {
+            var title = $("input[name='noticeTitle']").val();
+            var author = $("input[name='noticeAuthor']").val();
+            var flag = $("input[name='noticeFlag']:checked").val();
+            $.post("${pageContext.request.contextPath}/article/update", {
+                id: ${article.id},
+                type: type,
+                title: title,
+                content: html,
+                author: author,
+                flag: flag,
+                time: "${article.time}",
+                count: "${article.count}",
+                limitdata: "${article.limitdata}",
+                look: "${article.look}"
+            }, function (result) {
+                if (result["status"] == 200) {
+                    window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
+                } else {
+                    // 提交失败
+                }
+
+            });
+        }
+    }
+</script>
 <body class="gray-bg">
 
 <div class="div1">
     <br>
     <br>
-    <h1>发布文章</h1>
+    <h1>编辑文章</h1>
 
     <hr style="border:5px solid #DDDDDD"/>
     <br>
@@ -214,23 +231,27 @@
         <!--标题-->
         <div class="col-lg-2" style="margin-top: 50px;">标题：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="noticeTitle" placeholder="输入标题名称"/>
+            <input type="text" class="form-control" name="noticeTitle"
+                   value="${article.type != 2 ? article.title: ""}"/>
         </div>
 
         <!--作者-->
         <div class="col-lg-2" style="margin-top: 50px;">作者：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="noticeAuthor" value="admin"/>
+            <input type="text" class="form-control" name="noticeAuthor"
+                   value="${article.type != 2 ? article.author: ""}"/>
         </div>
 
         <!--是否评论-->
         <div class="col-lg-2" style="margin-top: 50px;">是否可评论：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <label class="radio-inline">
-                <input type="radio" checked="checked" name="noticeFlag" id="flag_true" value="1"> 是
+                <input type="radio" ${article.flag == 1 ? "checked='checked'": ""} name="noticeFlag" id="flag_true"
+                       value="1"> 是
             </label>
             <label class="radio-inline">
-                <input type="radio" name="noticeFlag" id="flag_false" value="2"> 否
+                <input type="radio" name="noticeFlag" ${article.flag == 2 ? "checked='checked'": ""} id="flag_false"
+                       value="2"> 否
             </label>
         </div>
 
@@ -238,7 +259,10 @@
         <div class="col-lg-2" style="margin-top: 50px;">内容：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <script id="container" name="content" type="text/plain">
-                在这里编辑文章内容
+${article.content}
+
+
+
 
             </script>
             <div id="editor1" type="text/plain" style="width:1109px;height:500px;"></div>
@@ -247,7 +271,7 @@
         <!--确定-->
         <div class="col-lg-2" style="margin-top: 50px;"></div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <button class="btn btn-primary btn-block yz" onclick="submitHTML()">确定发布</button>
+            <button class="btn btn-primary btn-block yz" onclick="submitHTML()">确定修改</button>
         </div>
     </div>
 
@@ -264,8 +288,6 @@
         <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <script id="container2" name="content" type="text/plain">
-                在这里编辑文章内容
-
             </script>
             <div id="editor2" type="text/plain" name="projectContent" style="width:1109px;height:500px;"></div>
         </div>

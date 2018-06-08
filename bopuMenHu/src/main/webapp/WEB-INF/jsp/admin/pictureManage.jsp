@@ -15,13 +15,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>波普后台轮播图管理</title>
 		<link rel="shortcut icon" href="favicon.ico">
-		<link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-		<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-		<link href="css/animate.css" rel="stylesheet">
-		<link href="css/style.css?v=4.1.0" rel="stylesheet">
+		<link href="/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+		<link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+		<link href="/css/animate.css" rel="stylesheet">
+		<link href="/css/style.css?v=4.1.0" rel="stylesheet">
 		<!--上传图片的css样式-->
-		<link href="css/plugins/dropzone/basic.css" rel="stylesheet">
-		<link href="css/plugins/dropzone/dropzone.css" rel="stylesheet">
+		<link href="/css/plugins/dropzone/basic.css" rel="stylesheet">
+		<link href="/css/plugins/dropzone/dropzone.css" rel="stylesheet">
 
 	</head>
 
