@@ -395,4 +395,7 @@
   <select id="selectUserByName" parameterType="String" resultType="com.bopu.pojo.User">
         select * from user where name = #{name}
     </select>
+  <select id="selectUserLikePhone" parameterType="String" resultType="com.bopu.pojo.User">
+    select * from user where phone like "%"#{phone}"%"   limit 0,5
+  </select>
 </mapper>

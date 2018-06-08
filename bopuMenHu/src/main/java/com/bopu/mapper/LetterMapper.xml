@@ -307,7 +307,7 @@ WHERE TIME =
   FROM
     letter t2
   WHERE t1.sender = t2.sender AND receiver = #{receiver}
-  GROUP BY sender)
+  GROUP BY sender) ORDER BY readed LIMIT 0,5
 
   </select>
 

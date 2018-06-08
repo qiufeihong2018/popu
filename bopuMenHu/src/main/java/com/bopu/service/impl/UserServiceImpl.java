@@ -4,6 +4,8 @@ import com.bopu.mapper.UserMapper;
 import com.bopu.pojo.User;
 import com.bopu.pojo.UserExample;
 import com.bopu.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -78,7 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> selectUserLikePhone(String phone) {
-        //创建example对象
+       /* //创建example对象
         UserExample example = new UserExample();
         //创建条件
         UserExample.Criteria criteria = example.createCriteria();
@@ -86,7 +88,9 @@ public class UserServiceImpl implements UserService {
         criteria.andPhoneLike("%"+phone+"%");
         //查询
         List<User> list = userMapper.selectByExample(example);
-        //返回
+        //PageInfo<User> pageInfo = new PageInfo<User>(list);
+        //返回*/
+        List<User> list = userMapper.selectUserLikePhone(phone);
         return list;
     }
 

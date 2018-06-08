@@ -31,4 +31,6 @@ public interface UserMapper {
     User selectUserByAccountAndPassword(@Param("account") String account, @Param("password") String password);
 
     User selectUserByName(String name);
+
+    List<User> selectUserLikePhone(String phone);
 }
