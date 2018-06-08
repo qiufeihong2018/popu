@@ -43,6 +43,7 @@ public class ArticleController {
      */
     @Autowired
     private JedisPool jedisPool;
+
     @RequestMapping(value = "article/test")
     public String testShow(Model model) {
         Jedis jedis = jedisPool.getResource();
@@ -66,6 +67,7 @@ public class ArticleController {
             model.addAttribute("article", articleById);
             return "seeArticle";
         }
+        // TODO: return error
         return "";
     }
 
@@ -87,9 +89,9 @@ public class ArticleController {
         PageBean pb = new PageBean();
         pb.setCurrentPage(page);
         pb.setPageSize(9);
-        List<Article> articles = articleService.getArticleList(pb);
-        model.addAttribute("articles", articles);
-        return "ArticleManage";
+        articleService.getArticleList(pb);
+        model.addAttribute("pageBean", pb);
+        return "admin/ArticleManage";
     }
 
     /**
@@ -102,6 +104,21 @@ public class ArticleController {
         articleService.deleteArticle(Integer.parseInt(articleId));
         return "redirect:list?currentPage=" + currentPage;
     }
+
+    /**
+     * 文章更新
+     *
+     * @return
+     */
+    @RequestMapping(value = "article/update")
+    public String updateArticle(Article article) {
+        return "redirect:show?articleId=" + article.getId();
+    }
+
+    /**
+     * 文章评论
+     * @return
+     */
 
     public ArticleService getArticleService() {
         return articleService;

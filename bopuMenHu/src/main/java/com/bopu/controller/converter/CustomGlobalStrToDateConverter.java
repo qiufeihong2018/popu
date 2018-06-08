@@ -11,7 +11,7 @@ public class CustomGlobalStrToDateConverter implements Converter<String, Date> {
 
     public Date convert(String source) {
         try {
-            return	new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(source);
+            return	new SimpleDateFormat("yyyy-MM-dd YY:mm:ss").parse(source);
         } catch (ParseException e) {
             return null;
         }

@@ -7,8 +7,6 @@ import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -55,10 +53,10 @@ public class ArticleServiceImpl implements ArticleService {
      *
      * @param pb
      */
-    public List<Article> getArticleList(PageBean pb) {
+    public void getArticleList(PageBean pb) {
         pb.setTotal(articleMapper.countByExample(null));
         List<Article> articles = articleMapper.findAllArticlePage(pb);
-        return articles;
+        pb.setRows(articles);
     }
 
     /**

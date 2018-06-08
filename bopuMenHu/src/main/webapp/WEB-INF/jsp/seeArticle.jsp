@@ -241,26 +241,14 @@
             <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-right: 20px;margin-bottom: 15px">${article.time}</span>
             <br>
             <hr>
-            <!--分页-->
+            <%-- 分页 内容相似文章推荐 --%>
             <div class="text-center text">
-                <nav aria-label="navigation">
-                    <ul class="pagination ">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">上一篇</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">下一篇</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+
             </div>
             <hr>
             <!--附加内容-->
             <div class="text-center text">
+                <c:if test="${user != null}">
                 <c:choose>
                 <c:when test="${article.flag == 1}">
                 <form role="form">
@@ -319,9 +307,12 @@
                     </div>
                 </div>
                 </c:when>
-                <%--<c:otherwise>--%>
-                <%--</c:otherwise>--%>
+                <c:otherwise>
+                    <h4>此文章无评论权限</h4>
+                    <hr>
+                </c:otherwise>
                 </c:choose>
+                </c:if>
             </div>
         </div>
     </div>

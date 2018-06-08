@@ -88,10 +88,11 @@ To change this template use File | Settings | File Templates.
             <div class="row">
                 <div class="col-sm-12">
 
-                    <c:forEach items="${articles}" var="article">
+                    <c:forEach items="${pageBean.rows}" var="article">
                         <div class="file-box">
                             <div class="file">
-                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}" target="view_window">
+                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}"
+                                   target="view_window">
                                     <span class="corner"></span>
                                     <div class="file-name">
                                             ${article.title}
@@ -114,12 +115,32 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
         </div>
+
+        <input type="button" value="上一页" onclick="page(1)"/>
+        <input type="button" value="下一页" onclick="page(2)"/>
     </div>
 </div>
 
+<script type="text/javascript">
+    function page(a) {
+        var currentPage = ${pageBean.currentPage};
+        var totalPage = Math.ceil(${pageBean.total / pageBean.pageSize})
+        if (a == 1) {
+            if (currentPage > 1) {
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}";
+            }
+        } else {
+            if (currentPage < totalPage) {
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}";
+            }
+        }
+
+    }
+</script>
+
 <!-- 全局js -->
-<script src="js/jquery.min.js?v=2.1.4"></script>
-<script src="js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
 
 <!-- 自定义js -->
 <script src="js/content.js?v=1.0.0"></script>
