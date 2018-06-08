@@ -185,7 +185,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="${pageContext.request.contextPath}/search">私信</a></li>
                     <li  class="divider"></li>
-                    <li><a href="#">个人中心</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
+                            <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
+                            <li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
+                        </ul>
+                    </li>
                     <li  class="divider"></li>
                 </ul>
             </div>

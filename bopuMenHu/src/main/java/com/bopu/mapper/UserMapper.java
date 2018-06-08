@@ -2,9 +2,7 @@ package com.bopu.mapper;
 
 import com.bopu.pojo.User;
 import com.bopu.pojo.UserExample;
-
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

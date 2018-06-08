@@ -31,7 +31,11 @@ public class User {
 
     private String searchid;
 
-    public User(Integer id, String account, String password, String name, String phone, String address, String work, String professional, String duties, String station, String email, String active, Date searchtime, String searchid) {
+    private String pic;
+
+    private Integer type;
+
+    public User(Integer id, String account, String password, String name, String phone, String address, String work, String professional, String duties, String station, String email, String active, Date searchtime, String searchid, String pic, Integer type) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -46,6 +50,8 @@ public class User {
         this.active = active;
         this.searchtime = searchtime;
         this.searchid = searchid;
+        this.pic = pic;
+        this.type = type;
     }
 
     public User() {
@@ -162,5 +168,21 @@ public class User {
 
     public void setSearchid(String searchid) {
         this.searchid = searchid == null ? null : searchid.trim();
+    }
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic == null ? null : pic.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

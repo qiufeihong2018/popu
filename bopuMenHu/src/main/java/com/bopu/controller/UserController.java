@@ -9,7 +9,6 @@ import com.bopu.service.LetterService;
 import com.bopu.service.UserService;
 import com.bopu.utils.MailUtil;
 import com.bopu.utils.RandomCode;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -50,6 +49,7 @@ public class UserController {
     @RequestMapping("user/save")
     public String saveUser(User user,Model model){
         try {
+            user.setType(1);
             userService.saveUser(user);
         } catch (Exception e) {
             e.printStackTrace();
@@ -324,5 +324,52 @@ public class UserController {
             users.add(user);
         }
         return users;
+    }
+
+    @RequestMapping("user/personChange")
+    public String personChange(User user,HttpSession session){
+        //根据id查找用户
+        User u = userService.selectUserById(user.getId());
+        //修改信息
+        u.setAddress(user.getAddress());
+        u.setDuties(user.getDuties());
+        u.setEmail(user.getEmail());
+        u.setPhone(user.getPhone());
+        u.setWork(user.getWork());
+        u.setProfessional(user.getProfessional());
+        u.setStation(user.getStation());
+        //保存
+        userService.updataUser(u);
+        //更新session
+        session.setAttribute("user", u);
+        //返回
+        return "index";
+    }
+    @RequestMapping("user/passwordChange")
+    public String passwordChange(User user,String oldPassword,String newPassword,String reNewPassword,Model model,HttpSession session){
+        //根据id查找用户
+        User u = userService.selectUserById(user.getId());
+        //判断两次密码是否一致
+        if(reNewPassword.equals(newPassword)) {
+            //判断密码是否正确
+            if (u.getPassword().equals(oldPassword)) {
+
+                //修改信息
+                u.setPassword(newPassword);
+                //保存
+                userService.updataUser(u);
+                //更新session
+                session.setAttribute("user", u);
+                //返回
+                return "index";
+            } else {
+                model.addAttribute("oldPassword", "原密码不正确");
+                return "passwordChange";
+            }
+        }else {
+            model.addAttribute("newPassword", "两次密码不一致");
+            return "passwordChange";
+        }
+
     }
 }
