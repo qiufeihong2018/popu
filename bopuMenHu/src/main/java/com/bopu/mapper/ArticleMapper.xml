@@ -145,15 +145,18 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.bopu.pojo.Article">
-    insert into article (id, title, time, 
-      count, author, type, 
-      flag, limitData, look,
-      content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, 
-      #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
-      #{content,jdbcType=LONGVARCHAR})
-  </insert>
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into article (id, title, time,
+        count, author, type,
+        flag, limitData, look,
+        content)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
+        #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+        #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
+        #{content,jdbcType=LONGVARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.bopu.pojo.Article">
         insert into article
         <trim prefix="(" suffix=")" suffixOverrides=",">

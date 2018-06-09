@@ -33,7 +33,6 @@ public class ArticleController {
     @ResponseBody
     public BoPuResult uploadArticle(Article article) {
 //        article.setTitle("微软官方正式宣布：75亿美金收购Github！新任CEO同时产生");
-        System.out.println(article);
         articleService.saveArticle(article);
         return BoPuResult.build(200, article.getId().toString());
     }

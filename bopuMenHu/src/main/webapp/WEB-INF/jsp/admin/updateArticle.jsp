@@ -262,9 +262,6 @@
             <script id="container" name="content" type="text/plain">
 ${article.content}
 
-
-
-
             </script>
             <div id="editor1" type="text/plain" style="width:1109px;height:500px;"></div>
         </div>

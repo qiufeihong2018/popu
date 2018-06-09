@@ -203,9 +203,10 @@
     <div class="col-lg-2" style="margin-top: 50px;">文章分类：</div>
     <div class="col-lg-10" style="margin-top: 50px;">
         <select name="type" id="notice_select" class="selectpicker" style="width: 100%;">
-            <option value="1" name="option1">通知</option>
-            <option value="2" name="option3">实验项目简介及连接</option>
-            <option value="3" name="option2">内部通知</option>
+            <option value="1" name="option1">最近活动</option>
+            <option value="2" name="option2">实验项目简介及连接</option>
+            <option value="3" name="option3">业内动态</option>
+            <option value="4" name="option4">内部通知</option>
         </select>
     </div>
     <!--通知-->

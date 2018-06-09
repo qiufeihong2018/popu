@@ -14,7 +14,7 @@ public interface ArticleMapper {
 
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Article record);
+    void insert(Article record);
 
     int insertSelective(Article record);
 
