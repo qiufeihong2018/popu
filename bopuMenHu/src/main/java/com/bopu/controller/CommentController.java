@@ -3,8 +3,10 @@ package com.bopu.controller;
 import com.bopu.pojo.BoPuResult;
 import com.bopu.pojo.Comment;
 import com.bopu.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Exler
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  **/
 @Controller
 public class CommentController {
+
+    @Autowired
     private CommentService commentService;
 
     /**
@@ -23,9 +27,10 @@ public class CommentController {
      * @return
      */
     @RequestMapping(value = "comment/publish")
+    @ResponseBody
     public BoPuResult publish(Comment comment) {
-
         // 返回 评论的json
+        System.out.println(comment);
         return BoPuResult.build(200, "");
     }
 

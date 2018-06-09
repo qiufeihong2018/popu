@@ -18,7 +18,6 @@
     <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
-    <!--		<link href="css/style.css?v=4.1.0" rel="stylesheet">-->
 </head>
 <style>
     /*中间部分*/
@@ -182,8 +181,22 @@
         width: 100%;
     }
 </style>
+<script type="text/javascript">
+    function publish() {
+        $.post("${pageContext.request.contextPath}/comment/publish", {
+            articleid: 1,
+            userId: ${user.id},
+            content: ""
+        }, function (result) {
+            if (result["status"] == 200) {
+                alert("success");
+            } else {
+                // 提交失败
+            }
+        });
+    }
+</script>
 <body class="gray-bg">
-
 <!--导航栏-->
 <header class="clearfix">
     <!-- 头部 -->
@@ -232,7 +245,8 @@
             </div>
             <hr>
             <div class="detail">
-                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址: <a href="${article.look}">${article.look}</a></c:if></h6>
+                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址: <a
+                        href="${article.look}">${article.look}</a></c:if></h6>
                 <h4>
                     内容填充
                     ${article.content}
@@ -259,7 +273,7 @@
                 </form>
                 <div class="text-center">
                     <h4>想对作者说什么？
-                        <button class="newbtn">我来说一句</button>
+                        <button class="newbtn" onclick="publish()">评论</button>
                     </h4>
                 </div>
             </div>

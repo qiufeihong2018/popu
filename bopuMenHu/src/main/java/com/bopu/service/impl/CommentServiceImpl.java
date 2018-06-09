@@ -1,6 +1,8 @@
 package com.bopu.service.impl;
 
+import com.bopu.mapper.CommentMapper;
 import com.bopu.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,4 +14,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentServiceImpl implements CommentService {
 
+    @Autowired
+    private CommentMapper commentMapper;
+
+
+    public CommentMapper getCommentMapper() {
+        return commentMapper;
+    }
+
+    public void setCommentMapper(CommentMapper commentMapper) {
+        this.commentMapper = commentMapper;
+    }
 }

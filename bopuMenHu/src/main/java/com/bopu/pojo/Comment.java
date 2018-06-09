@@ -7,7 +7,7 @@ public class Comment {
 
     private Integer articleid;
 
-    private String username;
+    private Integer userid;
 
     private Date time;
 
@@ -15,10 +15,10 @@ public class Comment {
 
     private String content;
 
-    public Comment(Integer id, Integer articleid, String username, Date time, Integer flag, String content) {
+    public Comment(Integer id, Integer articleid, Integer userid, Date time, Integer flag, String content) {
         this.id = id;
         this.articleid = articleid;
-        this.username = username;
+        this.userid = userid;
         this.time = time;
         this.flag = flag;
         this.content = content;
@@ -44,12 +44,12 @@ public class Comment {
         this.articleid = articleid;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public Date getTime() {
