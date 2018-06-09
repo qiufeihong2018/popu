@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
     @RequestMapping("/")
-    public String showIndex(){
+    public String showIndex() {
         return "index";
     }
 
     @RequestMapping("/{page}")
-    public String showPage(@PathVariable String page){
+    public String showPage(@PathVariable String page) {
         return page;
     }
 
     @RequestMapping("/admin/{page}")
-    public String showAdmin(@PathVariable String page){return "admin/"+page;}
-
+    public String showAdminPage(@PathVariable String page) {
+        return "admin/" + page;
+    }
 }

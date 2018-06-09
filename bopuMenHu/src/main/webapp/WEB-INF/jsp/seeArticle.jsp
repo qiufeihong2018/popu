@@ -183,10 +183,12 @@
 </style>
 <script type="text/javascript">
     function publish() {
+        // alert();
+        var content = $("#content").val();
         $.post("${pageContext.request.contextPath}/comment/publish", {
-            articleid: 1,
-            userId: ${user.id},
-            content: ""
+            articleid: ${article.id},
+            userid: ${user.id},
+            content: content
         }, function (result) {
             if (result["status"] == 200) {
                 alert("success");
@@ -268,7 +270,7 @@
                 <form role="form">
                     <div class="form-group">
 
-                        <textarea class="form-control" rows="3"></textarea>
+                        <textarea class="form-control" rows="3" id="content"></textarea>
                     </div>
                 </form>
                 <div class="text-center">
@@ -284,9 +286,11 @@
                     <h2>评论：</h2>
                     <div class="social-feed-box">
                         <div class="social-avatar">
+
                             <a href="" class="pull-left">
                                 <img alt="image" src="img/a1.jpg">
                             </a>
+
                             <div class="media-body">
                                 <a href="#">
                                     逆光狂胜蔡舞娘

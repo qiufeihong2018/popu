@@ -1,5 +1,7 @@
 package com.bopu.pojo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Comment {
@@ -52,8 +54,10 @@ public class Comment {
         this.userid = userid;
     }
 
-    public Date getTime() {
-        return time;
+    public String getTime() {
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String t = df.format(time);
+        return t;
     }
 
     public void setTime(Date time) {
@@ -74,5 +78,17 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", articleid=" + articleid +
+                ", userid=" + userid +
+                ", time=" + getTime() +
+                ", flag=" + flag +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

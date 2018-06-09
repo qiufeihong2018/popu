@@ -96,9 +96,6 @@ public class ArticleController {
         } catch (NumberFormatException e) {
             pb.setType(null);
         }
-        System.out.println(type);
-
-
         pb.setCurrentPage(page);
         pb.setPageSize(9);
         articleService.getArticleList(pb);
@@ -143,7 +140,6 @@ public class ArticleController {
     @RequestMapping(value = "article/update")
     @ResponseBody
     public BoPuResult update(Article article, Model model) {
-        System.out.println(article);
         articleService.update(article);
         return BoPuResult.build(200, article.getId().toString());
     }

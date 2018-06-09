@@ -180,23 +180,19 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <c:if test="${user!=null}">
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="${pageContext.request.contextPath}/search">私信</a></li>
-                    <li  class="divider"></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
-                            <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
-                            <li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
-                        </ul>
+
+                    <li>
+                        <a href="私信界面.html">私信</a>
                     </li>
-                    <li  class="divider"></li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="个人中心.html">个人中心</a>
+                    </li>
+
                 </ul>
             </div>
-            </c:if>
         </div>
     </nav>
 </header>
@@ -276,99 +272,99 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <a href="查看文章.html">
-                    <img src="img/a1.jpg" alt="通用的占位符缩略图">
-                    <div class="caption">
-                        <h3>文章标题</h3>
-                        <p>一些示例文本。一些示例文本。</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
 
-    </div>
-    <br><br>
-    <hr>
-    <br>
-    <div class="thumbnail">
-        <div id="div1" class="div_celebrity_list">
-            <!--大的list-->
-
-            <div class='div_celebrity_row'>
-                <h1>我是标题</h1>
-
-                <hr style="border:5px solid #DDDDDD" />
-                <a href="查看文章.html" id="list2" class="list-group-item">1</a>
-                <a href="查看文章.html" class="list-group-item">2</a>
-                <a href="查看文章.html" class="list-group-item">3</a>
-                <a href="查看文章.html" class="list-group-item">4</a>
-                <a href="查看文章.html" class="list-group-item">5</a>
-                <a href="查看文章.html" class="list-group-item">6</a>
-                <a href="查看文章.html" class="list-group-item">7</a>
-                <a href="查看文章.html" id="list3" class="list-group-item">8</a>
-                <hr style="border:5px solid #DDDDDD" />
-                <a href="文章列表.html"><input id="btnChuang" type="submit" class="btn-success" value="查看更多" /></a>
-            </div>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <!--小的list-->
-
-    <div class="row">
-        <div id="list">
-
-            <div class="col-md-6 col-sm-12">
+            <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <div id="div2" class="div_celebrity_list">
-                        <div class='div_celebrity_row'>
+                    <a href="查看文章.html">
+                        <img src="img/a1.jpg" alt="通用的占位符缩略图">
+                        <div class="caption">
+                            <h3>文章标题</h3>
+                            <p>一些示例文本。一些示例文本。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+        <br><br>
+        <hr>
+        <br>
+        <div class="thumbnail">
+            <div id="div1" class="div_celebrity_list">
+                <!--大的list-->
+
+                <div class='div_celebrity_row'>
+                    <h1>我是标题</h1>
+
+                    <hr style="border:5px solid #DDDDDD" />
+                    <a href="查看文章.html" id="list1" class="list-group-item">1</a>
+                    <a href="查看文章.html" class="list-group-item">2</a>
+                    <a href="查看文章.html" class="list-group-item">3</a>
+                    <a href="查看文章.html" class="list-group-item">4</a>
+                    <a href="查看文章.html" class="list-group-item">5</a>
+                    <a href="查看文章.html" class="list-group-item">6</a>
+                    <a href="查看文章.html" class="list-group-item">7</a>
+                    <a href="查看文章.html" id="list8" class="list-group-item">8</a>
+                    <hr style="border:5px solid #DDDDDD" />
+                    <a href="文章列表.html"><input id="btnChuang" type="submit" class="btn-success" value="查看更多" /></a>
+                </div>
+            </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <!--小的list-->
+
+        <div class="row">
+            <div id="list">
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="thumbnail">
+                        <div id="div2" class="div_celebrity_list">
+                            <div class='div_celebrity_row'>
+                                <h1>我是标题</h1>
+
+                                <hr style="border:5px solid #DDDDDD" />
+                                <a href="查看文章.html" id="list1" class="list-group-item">1</a>
+                                <a href="查看文章.html" class="list-group-item">2</a>
+                                <a href="查看文章.html" class="list-group-item">3</a>
+                                <a href="查看文章.html" class="list-group-item">4</a>
+                                <a href="查看文章.html" class="list-group-item">5</a>
+                                <a href="查看文章.html" class="list-group-item">6</a>
+                                <a href="查看文章.html" class="list-group-item">7</a>
+                                <a href="查看文章.html" id="list8" class="list-group-item">8</a>
+                                <hr style="border:5px solid #DDDDDD" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="thumbnail">
+                        <div id="div4" class="div_celebrity_list">
+
                             <h1>我是标题</h1>
 
                             <hr style="border:5px solid #DDDDDD" />
-                            <a href="查看文章.html" id="list1" class="list-group-item">1</a>
-                            <a href="查看文章.html" class="list-group-item">2</a>
-                            <a href="查看文章.html" class="list-group-item">3</a>
-                            <a href="查看文章.html" class="list-group-item">4</a>
-                            <a href="查看文章.html" class="list-group-item">5</a>
-                            <a href="查看文章.html" class="list-group-item">6</a>
-                            <a href="查看文章.html" class="list-group-item">7</a>
-                            <a href="查看文章.html" id="list8" class="list-group-item">8</a>
-                            <hr style="border:5px solid #DDDDDD" />
+
+                            <div class='div_celebrity_row'>
+
+                                <p>java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
+                                <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。 JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
+                                <p> 接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
+                                <p>java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
+                                <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。 JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
+                                <p> 接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
+
+                            </div>
+
+                            <hr style="border:5px solid #DDDDDD;" />
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-sm-12">
-                <div class="thumbnail">
-                    <div id="div4" class="div_celebrity_list">
-
-                        <h1>我是标题</h1>
-
-                        <hr style="border:5px solid #DDDDDD" />
-
-                        <div class='div_celebrity_row'>
-
-                            <p>java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
-                            <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。 JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
-                            <p> 接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
-                            <p>java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
-                            <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。 JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
-                            <p> 接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
-
-                        </div>
-
-                        <hr style="border:5px solid #DDDDDD;" />
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <br><br>
 </main>
