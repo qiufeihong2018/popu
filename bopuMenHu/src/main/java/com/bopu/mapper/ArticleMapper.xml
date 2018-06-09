@@ -377,8 +377,22 @@
     <select id="findAllArticlePage" parameterType="com.bopu.utils.PageBean" resultType="com.bopu.pojo.Article">
         select *
         from article
+        <where>
+            <if test="type != null">
+                type = ${type }
+            </if>
+        </where>
         order by id
         desc
         limit ${(currentPage-1) * pageSize},${pageSize};
-  </select>
+    </select>
+
+    <select id="countByCondition" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from article
+        <where>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER}
+            </if>
+        </where>
+    </select>
 </mapper>

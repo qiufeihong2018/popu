@@ -31,11 +31,12 @@ To change this template use File | Settings | File Templates.
                 <div class="ibox-content">
                     <div class="file-manager">
                         <h5>显示：</h5>
-                        <a href="#" class="file-control active">全部</a>
-                        <a href="#" class="file-control">类别1</a>
-                        <a href="#" class="file-control">类别2</a>
-                        <a href="#" class="file-control">类别3</a>
-
+                        <a href="${pageContext.request.contextPath}/article/list" class="file-control active">全部</a>
+                        <a href="${pageContext.request.contextPath}/article/list?type=1" class="file-control">最近活动</a>
+                        <a href="${pageContext.request.contextPath}/article/list?type=2" class="file-control">项目(研究成果)</a>
+                        <a href="${pageContext.request.contextPath}/article/list?type=3" class="file-control">业内动态</a>
+                        <a href="${pageContext.request.contextPath}/article/list?type=4" class="file-control">内部通知</a>
+                        <a href="#">简介修改</a>
                     </div>
                 </div>
             </div>
@@ -127,11 +128,11 @@ To change this template use File | Settings | File Templates.
         var totalPage = Math.ceil(${pageBean.total / pageBean.pageSize})
         if (a == 1) {
             if (currentPage > 1) {
-                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}";
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}&type=${pageBean.type}";
             }
         } else {
             if (currentPage < totalPage) {
-                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}";
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}&type=${pageBean.type}";
             }
         }
 

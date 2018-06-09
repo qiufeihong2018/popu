@@ -82,7 +82,7 @@ public class ArticleController {
      * @return
      */
     @RequestMapping(value = "article/list")
-    public String showArticleList(String currentPage, Model model) {
+    public String showArticleList(String currentPage, String type, Model model) {
         int page;
         if (null == currentPage || "".equals(currentPage) || "null".equals(currentPage)) {
             page = 1;
@@ -90,6 +90,15 @@ public class ArticleController {
             page = Integer.parseInt(currentPage);
         }
         PageBean pb = new PageBean();
+        // 添加查询条件
+        try {
+            pb.setType(Integer.parseInt(type));
+        } catch (NumberFormatException e) {
+            pb.setType(null);
+        }
+        System.out.println(type);
+
+
         pb.setCurrentPage(page);
         pb.setPageSize(9);
         articleService.getArticleList(pb);
@@ -128,6 +137,7 @@ public class ArticleController {
 
     /**
      * 文章修改
+     *
      * @return
      */
     @RequestMapping(value = "article/update")

@@ -40,6 +40,8 @@ public interface ArticleMapper {
 
     Article testSelectByPrimaryKey(Integer id);
 
+    int countByCondition(@Param(value = "type") Integer type);
+
     int updateArticleCount(Integer id);
 
     List<Article> findAllArticlePage(PageBean pageBean);
