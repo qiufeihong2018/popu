@@ -11,4 +11,6 @@ public interface ArticleService {
     void getArticleList(PageBean pb);
 
     void deleteArticle(Integer articleId);
+
+    void update(Article article);
 }

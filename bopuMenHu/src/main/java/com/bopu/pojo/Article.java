@@ -100,8 +100,10 @@ public class Article {
         this.flag = flag;
     }
 
-    public Date getLimitdata() {
-        return limitdata;
+    public String getLimitdata() {
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String t = df.format(limitdata);
+        return t;
     }
 
     public void setLimitdata(Date limitdata) {

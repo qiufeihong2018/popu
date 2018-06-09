@@ -70,6 +70,10 @@ public class ArticleServiceImpl implements ArticleService {
         articleMapper.deleteByPrimaryKey(articleId);
     }
 
+    public void update(Article article) {
+        articleMapper.updateByPrimaryKey(article);
+    }
+
     public ArticleMapper getArticleMapper() {
         return articleMapper;
     }

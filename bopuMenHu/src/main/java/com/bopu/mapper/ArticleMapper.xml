@@ -354,7 +354,8 @@
       type = #{type,jdbcType=INTEGER},
       flag = #{flag,jdbcType=INTEGER},
       limitData = #{limitdata,jdbcType=TIMESTAMP},
-      look = #{look,jdbcType=VARCHAR}
+      look = #{look,jdbcType=VARCHAR},
+      content = #{content}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <!-- 手动添加 -->

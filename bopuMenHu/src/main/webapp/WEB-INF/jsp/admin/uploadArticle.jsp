@@ -152,7 +152,6 @@
                 var flag = $("input[name='projectFlag']:checked").val();
                 var look = $("input[name='look']").val();
                 var limitData = $("input[name='limitData']").val();
-                alert(flag);
                 $.post("${pageContext.request.contextPath}/article/upload", {
                     type: type,
                     title: title,
@@ -172,6 +171,7 @@
                 var title = $("input[name='noticeTitle']").val();
                 var author = $("input[name='noticeAuthor']").val();
                 var flag = $("input[name='noticeFlag']:checked").val();
+                html = ue2.getContent();
                 $.post("${pageContext.request.contextPath}/article/upload", {
                     type: type,
                     title: title,
@@ -288,7 +288,7 @@
         <!--进入查看-->
         <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="look" placeholder="输入内容"/>
+            <input type="text" class="form-control" name="look" value="http://"/>
         </div>
 
         <!--是否评论-->

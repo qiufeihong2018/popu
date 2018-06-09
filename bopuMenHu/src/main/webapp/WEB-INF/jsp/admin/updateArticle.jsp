@@ -121,43 +121,37 @@
     </style>
 </head>
 <script type="text/javascript">
-    var ue;
-    var ue2;
+    var ue = UE.getEditor('container');
+    var ue2 = UE.getEditor("container2");
 
     $(function () {
         $("#shiyan").hide();
         $("#tongzhi").hide();
         var type = ${article.type};
         alert(type);
+        $("#notice_select").val("${article.type}");
         if (type == 2) {
             $("#shiyan").show();
         } else {
             $("#tongzhi").show();
-            $("#shiyan").hide();
-            $("#tongzhi").show();
-            ue = UE.getEditor('container');
         }
-
-
-        // if (type == 2) {
-        //     $("#tongzhi").hide();
-        //     $("#shiyan").show();
-        //     ue2 = UE.getEditor('container2');
-        <%--ue2.setHtml(${article.content});--%>
-        // } else {
-
-        // }
-        // })}
+        $("select").bind("change", function () {
+            if (this.value == "2") {
+                $("#shiyan").show();
+                $("#tongzhi").hide()
+            } else {
+                $("#tongzhi").show();
+                $("#shiyan").hide();
+            }
+        });
     });
 
 
     function submitHTML() {
-        // 获取编辑器中的html
-        var html = ue.getContent();
         // 返回成功跳转 页面 => 跳转到文章阅读页面
-
         // var type =$("select").val();
         var type = $("#notice_select option:selected").val();
+        alert(type);
         if (type == 2) {
             var title = $("input[name='projectTitle']").val();
             var html = ue2.getContent();
@@ -165,6 +159,7 @@
             var flag = $("input[name='projectFlag']:checked").val();
             var look = $("input[name='look']").val();
             var limitData = $("input[name='limitData']").val();
+            alert(title + "" + author + flag + look + limitData);
             $.post("${pageContext.request.contextPath}/article/update", {
                 id: ${article.id},
                 type: type,
@@ -173,7 +168,9 @@
                 author: author,
                 flag: flag,
                 look: look,
-                limitdata: limitData
+                limitdata: limitData,
+                time: "${article.time}",
+                count: "${article.count}"
             }, function (result) {
                 if (result["status"] == 200) {
                     window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
@@ -182,9 +179,11 @@
                 }
             });
         } else {
+            var html = ue.getContent();
             var title = $("input[name='noticeTitle']").val();
             var author = $("input[name='noticeAuthor']").val();
             var flag = $("input[name='noticeFlag']:checked").val();
+            alert(title + "" + author + flag + html);
             $.post("${pageContext.request.contextPath}/article/update", {
                 id: ${article.id},
                 type: type,
@@ -262,6 +261,8 @@
             <script id="container" name="content" type="text/plain">
 ${article.content}
 
+
+
             </script>
             <div id="editor1" type="text/plain" style="width:1109px;height:500px;"></div>
         </div>
@@ -279,13 +280,17 @@ ${article.content}
         <!--项目名称-->
         <div class="col-lg-2" style="margin-top: 50px;">项目名称：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="projectTitle" placeholder="输入项目名称"/>
+            <input type="text" class="form-control" name="projectTitle" value="${article.title}"/>
         </div>
 
         <!--项目简介-->
         <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <script id="container2" name="content" type="text/plain">
+${article.content}
+
+
+
             </script>
             <div id="editor2" type="text/plain" name="projectContent" style="width:1109px;height:500px;"></div>
         </div>
@@ -293,30 +298,32 @@ ${article.content}
         <!--作者成员-->
         <div class="col-lg-2" style="margin-top: 50px;">项目成员：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="projectAuthor" placeholder="输入内容"/>
+            <input type="text" class="form-control" name="projectAuthor" value="${article.author}"/>
         </div>
 
         <!--上限日期-->
         <div class="col-lg-2" style="margin-top: 50px;">上限日期：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <input class="form-control layer-date" name="limitData"
-                   onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+                   onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value="${article.limitdata}">
             <label class="laydate-icon"></label>
         </div>
 
         <!--进入查看-->
         <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
-            <input type="text" class="form-control" name="look" placeholder="输入内容"/>
+            <input type="text" class="form-control" name="look" value="${article.look}"/>
         </div>
 
         <!--是否评论-->
         <div class="col-lg-2" style="margin-top: 50px;">是否评论：</div>
         <div class="col-lg-10" style="margin-top: 50px;"><label class="radio-inline">
-            <input type="radio" name="projectFlag" checked="checked" id="inlineRadio1" value="1"> 是
+            <input type="radio" name="projectFlag" ${article.flag == 1 ? "checked='checked'": ""} id="inlineRadio1"
+                   value="1"> 是
         </label>
             <label class="radio-inline">
-                <input type="radio" name="projectFlag" id="inlineRadio2" value="2"> 否
+                <input type="radio" name="projectFlag" ${article.flag == 2 ? "checked='checked'": ""} id="inlineRadio2"
+                       value="2"> 否
             </label></div>
 
         <!--确定-->

@@ -37,6 +37,7 @@ public class ArticleController {
         return BoPuResult.build(200, article.getId().toString());
     }
 
+
     /**
      * 功能测试
      *
@@ -143,8 +144,8 @@ public class ArticleController {
     @ResponseBody
     public BoPuResult update(Article article, Model model) {
         System.out.println(article);
+        articleService.update(article);
         return BoPuResult.build(200, article.getId().toString());
-
     }
 
     public ArticleService getArticleService() {
