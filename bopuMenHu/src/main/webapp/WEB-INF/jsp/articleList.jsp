@@ -22,14 +22,14 @@
 <style>
     /*背景色*/
 
-    .gray-bg,.btn-link{
+    .gray-bg, .btn-link {
         background-color: #f3f3f4;
     }
+
     /*左右固定*/
-    html,body {
+    html, body {
         overflow-x: hidden;
     }
-
 
     /*头部样式*/
 
@@ -45,27 +45,26 @@
         background-color: #fff !important;
     }
 
-    .navbar-default .navbar-nav>li>a {
+    .navbar-default .navbar-nav > li > a {
         color: #fff !important;
     }
 
-    .navbar-default .navbar-nav>li>a:focus,
-    .navbar-default .navbar-nav>li>a:hover {
+    .navbar-default .navbar-nav > li > a:focus,
+    .navbar-default .navbar-nav > li > a:hover {
         color: #eee !important;
     }
 
-
-    .img-top{
-        width:100%;
-        height:60px;
+    .img-top {
+        width: 100%;
+        height: 60px;
     }
 
-    .img-top img{
-        width:100%;
-        height:100%;
+    .img-top img {
+        width: 100%;
+        height: 100%;
     }
 
-    .list-group-item{
+    .list-group-item {
         position: relative;
         display: block;
         padding: 20px 40px 25px 40px;
@@ -125,9 +124,18 @@
 </header>
 
 <!--置顶图片-->
-<div class="img-top" >
-
-   标题
+<div class="img-top">
+    <c:choose>
+        <c:when test="${pageBean.type.size() > 1 || pageBean.type == null}">
+            全部文章
+        </c:when>
+        <c:otherwise>
+            <c:if test="${pageBean.type.get(0) == 1}">最近活动</c:if>
+            <c:if test="${pageBean.type.get(0) == 2}">实验项目简介及链接</c:if>
+            <c:if test="${pageBean.type.get(0) == 3}">业内动态</c:if>
+            <c:if test="${pageBean.type.get(0) == 4}">内部通知</c:if>
+        </c:otherwise>
+    </c:choose>
 
 </div>
 
