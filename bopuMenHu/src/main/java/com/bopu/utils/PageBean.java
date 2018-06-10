@@ -13,7 +13,7 @@ public class PageBean {
     private int total;  // 总记录数
     private int totalPage;    // 总页数
     private List rows;  // 当前页所需要展示的数据集合
-    private Integer type; // 查询条件 文章类型
+    private List<Integer> type; // 查询条件 文章类型
 
     public int getCurrentPage() {
         return currentPage;
@@ -55,11 +55,11 @@ public class PageBean {
         this.totalPage = totalPage;
     }
 
-    public Integer getType() {
+    public List<Integer> getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(List<Integer> type) {
         this.type = type;
     }
 }

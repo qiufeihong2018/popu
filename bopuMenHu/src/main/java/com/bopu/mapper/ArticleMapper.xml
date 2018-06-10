@@ -383,7 +383,10 @@
         from article
         <where>
             <if test="type != null">
-                type = ${type }
+                type in
+                <foreach collection="type" item="i" close=")" open="(" separator=",">
+                    #{i}
+                </foreach>
             </if>
         </where>
         order by id
@@ -391,11 +394,14 @@
         limit ${(currentPage-1) * pageSize},${pageSize};
     </select>
 
-    <select id="countByCondition" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    <select id="countByCondition" parameterType="java.util.List" resultType="java.lang.Integer">
         select count(*) from article
         <where>
             <if test="type != null">
-                type = #{type,jdbcType=INTEGER}
+                type in
+                <foreach collection="type" item="i" close=")" open="(" separator=",">
+                    #{i}
+                </foreach>
             </if>
         </where>
     </select>

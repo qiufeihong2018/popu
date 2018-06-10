@@ -128,11 +128,11 @@ To change this template use File | Settings | File Templates.
         var totalPage = Math.ceil(${pageBean.total / pageBean.pageSize})
         if (a == 1) {
             if (currentPage > 1) {
-                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}&type=${pageBean.type}";
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
             }
         } else {
             if (currentPage < totalPage) {
-                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}&type=${pageBean.type}";
+                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
             }
         }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +76,7 @@ public class ArticleController {
     }
 
     /**
-     * 获取文章列表
+     * 获取文章列表 返回给后台管理员
      *
      * @param currentPage
      * @param model
@@ -90,9 +91,11 @@ public class ArticleController {
             page = Integer.parseInt(currentPage);
         }
         PageBean pb = new PageBean();
+        List<Integer> i = new ArrayList<Integer>();
         // 添加查询条件
         try {
-            pb.setType(Integer.parseInt(type));
+            i.add(Integer.parseInt(type));
+            pb.setType(i);
         } catch (NumberFormatException e) {
             pb.setType(null);
         }
@@ -100,7 +103,7 @@ public class ArticleController {
         pb.setPageSize(9);
         articleService.getArticleList(pb);
         model.addAttribute("pageBean", pb);
-        return "admin/ArticleManage";
+        return "admin/articleManage";
     }
 
     /**
@@ -142,6 +145,39 @@ public class ArticleController {
     public BoPuResult update(Article article, Model model) {
         articleService.update(article);
         return BoPuResult.build(200, article.getId().toString());
+    }
+
+    /**
+     * 前台文章类别跳转
+     *
+     * @return
+     */
+    @RequestMapping(value = "article/detailList")
+    public String showList(Integer currentPage, Integer type, Model model) {
+        if (null == currentPage) {
+            System.out.println(currentPage + "    " + type);
+            currentPage = 1;
+        }
+        System.out.println("-------" + type);
+        PageBean pb = new PageBean();
+        List<Integer> i = new ArrayList<Integer>();
+        if (null == type) {
+            // 验证url查4
+            // 如果type为空只查询 1 2 3 不查询 内部通知4
+            i.add(1);
+            i.add(2);
+            i.add(3);
+            pb.setType(i);
+        } else {
+            i.add(type);
+            pb.setType(i);
+        }
+        System.out.println(pb.getType());
+        pb.setCurrentPage(currentPage);
+        pb.setPageSize(10);
+        articleService.getArticleList(pb);
+        model.addAttribute("pageBean", pb);
+        return "articleList";
     }
 
     public ArticleService getArticleService() {

@@ -40,7 +40,7 @@ public interface ArticleMapper {
 
     Article testSelectByPrimaryKey(Integer id);
 
-    int countByCondition(@Param(value = "type") Integer type);
+    int countByCondition(@Param("type") List<Integer> type);
 
     int updateArticleCount(Integer id);
 
