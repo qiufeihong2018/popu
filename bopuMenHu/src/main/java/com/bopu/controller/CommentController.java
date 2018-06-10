@@ -3,7 +3,7 @@ package com.bopu.controller;
 import com.bopu.pojo.BoPuResult;
 import com.bopu.pojo.Comment;
 import com.bopu.service.CommentService;
-import org.json.JSONArray;
+import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,10 +45,14 @@ public class CommentController {
      */
     @RequestMapping(value = "comment/list")
     @ResponseBody
-    public BoPuResult list(Integer id) {
+    public BoPuResult list(Integer id, Integer currentPage) {
         if (id != null) {
+            PageBean pb = new PageBean();
+            pb.setCurrentPage(null == currentPage ? 1 : currentPage);
+            pb.setPageSize(5);
+
             // 根据文章id查找评论 返回List<Comment> 转换为json 发送给前端
-            List<Comment> comments = commentService.findListByArticleId(id);
+            List<Comment> comments = commentService.findListByArticleId(id,pb);
             BoPuResult boPuResult = new BoPuResult(200, "success");
             boPuResult.setObj(comments);
             return boPuResult;
@@ -57,13 +61,20 @@ public class CommentController {
     }
 
     /**
-     * 删除评论
+     * 删除评论 根据id删除评论
      *
      * @param id 评论id
      * @return
      */
+    @RequestMapping(value = "comment/del")
+    @ResponseBody
     public BoPuResult delComment(Integer id) {
-        return BoPuResult.build(200, "");
+        try {
+            commentService.deleteById(id);
+            return BoPuResult.build(200, "success");
+        } catch (Exception e) {
+            return BoPuResult.build(200, "error");
+        }
     }
 
 

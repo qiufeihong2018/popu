@@ -39,4 +39,7 @@ public class ImageController {
         //返回的json数据
         return BoPuResult.build(200,"/"+name);
     }
+    /**
+     * 删除文件夹中的图片
+     */
 }
