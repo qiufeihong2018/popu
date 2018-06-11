@@ -177,7 +177,7 @@
         $(document).ready(function () {
             // 最新文章div块
             $.post("${pageContext.request.contextPath}/article/newArticle", function (data) {
-                // 一共显示 8 条数据
+                // 一共显示 8 条数据 访问URL /article/show?articleId=1
                 alert(data["obj"][0]["title"]);    // 文章标题
                 alert(data["obj"][0]["id"]);    // 文章序号
             });

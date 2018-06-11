@@ -39,6 +39,13 @@ public class ImageController {
         //返回的json数据
         return BoPuResult.build(200,"/"+name);
     }
+
+    @RequestMapping("picture/upload")
+    @ResponseBody
+    public BoPuResult pictureUpload(@RequestParam("file")MultipartFile file) {
+        return BoPuResult.build(200,"");
+    }
+
     /**
      * 删除文件夹中的图片
      */
