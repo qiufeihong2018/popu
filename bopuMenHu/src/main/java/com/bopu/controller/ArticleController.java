@@ -180,6 +180,29 @@ public class ArticleController {
         return "articleList";
     }
 
+    /**
+     * 首页 文章id title ajax加载
+     * @return
+     */
+    @RequestMapping(value = "article/newArticle")
+    @ResponseBody
+    public BoPuResult showFirstArticle(Integer category) {
+        List<Integer> type = new ArrayList<Integer>();
+        if (null == category) {
+            type.add(1);
+            type.add(2);
+            type.add(3);
+        } else {
+            type.add(category);
+        }
+        List<Article> titleAndIdList = articleService.getTitleAndIdList(type);
+        BoPuResult boPuResult = new BoPuResult(200, "success");
+        boPuResult.setObj(titleAndIdList);
+        return boPuResult;
+    }
+
+
+
     public ArticleService getArticleService() {
         return articleService;
     }

@@ -1,5 +1,7 @@
 package com.bopu.pojo;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -59,6 +61,9 @@ public class Article {
     }
 
     public String getTime() {
+        if (time == null) {
+            return "";
+        }
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String t = df.format(time);
         return t;
@@ -101,6 +106,9 @@ public class Article {
     }
 
     public String getLimitdata() {
+        if (limitdata == null) {
+            return "";
+        }
         DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         String t = df.format(limitdata);
         return t;

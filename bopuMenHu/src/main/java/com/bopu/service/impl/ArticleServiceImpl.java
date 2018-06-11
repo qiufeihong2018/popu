@@ -33,6 +33,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     // 所有人能看到的就是1 实验项目就是2 内部通知就是3    1可评论 2 不可评论
 
+    /**
+     * 保存文章
+     * @param article
+     */
     public void saveArticle(Article article) {
         // 设置作者 从session中获得 user.name
         Date date = new Date();
@@ -56,11 +60,14 @@ public class ArticleServiceImpl implements ArticleService {
     public void getArticleList(PageBean pb) {
         System.out.println(pb.getType());
         pb.setTotal(articleMapper.countByCondition(pb.getType()));
-        pb.setTotalPage((int) Math.ceil(pb.getTotal() *1.0/ pb.getPageSize()));
+        pb.setTotalPage((int) Math.ceil(pb.getTotal() * 1.0 / pb.getPageSize()));
         System.out.println("total:" + pb.getTotal() + "totalPage:" + pb.getTotalPage() + "type:" + pb.getType());
         List<Article> articles = articleMapper.findAllArticlePage(pb);
         pb.setRows(articles);
     }
+
+
+
 
     /**
      * 删除文章
@@ -74,6 +81,16 @@ public class ArticleServiceImpl implements ArticleService {
     public void update(Article article) {
         articleMapper.updateByPrimaryKey(article);
     }
+
+    /**
+     * 返回文章链接 名称
+     * @param type 类别集
+     */
+    public List<Article> getTitleAndIdList(List<Integer> type) {
+        List<Article> articles = articleMapper.selectTitleAndId(type);
+        return articles;
+    }
+
 
     public ArticleMapper getArticleMapper() {
         return articleMapper;

@@ -405,4 +405,18 @@
             </if>
         </where>
     </select>
+    <select id="selectTitleAndId" parameterType="java.lang.Integer" resultType="com.bopu.pojo.Article">
+        select title,id
+        from article
+        <where>
+            <if test="type != null">
+                type in
+                <foreach collection="type" item="i" close=")" open="(" separator=",">
+                    #{i}
+                </foreach>
+            </if>
+        </where>
+        order by id desc
+        limit 0,8
+    </select>
 </mapper>

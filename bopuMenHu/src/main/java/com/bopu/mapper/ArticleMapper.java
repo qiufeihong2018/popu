@@ -2,6 +2,7 @@ package com.bopu.mapper;
 
 import com.bopu.pojo.Article;
 import com.bopu.pojo.ArticleExample;
+
 import java.util.List;
 
 import com.bopu.utils.PageBean;
@@ -45,4 +46,6 @@ public interface ArticleMapper {
     int updateArticleCount(Integer id);
 
     List<Article> findAllArticlePage(PageBean pageBean);
+
+    List<Article> selectTitleAndId(@Param("type") List<Integer> type);
 }
