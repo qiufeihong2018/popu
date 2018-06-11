@@ -180,19 +180,23 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
+            <c:if test="${user!=null}">
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="私信界面.html">私信</a>
+                    <li><a href="${pageContext.request.contextPath}/search">私信</a></li>
+                    <li  class="divider"></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
+                            <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
+                            <li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
+                        </ul>
                     </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="个人中心.html">个人中心</a>
-                    </li>
-
+                    <li  class="divider"></li>
                 </ul>
             </div>
+            </c:if>
         </div>
     </nav>
 </header>
