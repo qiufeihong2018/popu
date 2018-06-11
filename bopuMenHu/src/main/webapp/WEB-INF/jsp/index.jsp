@@ -210,33 +210,17 @@
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
-                <li data-target="#myCarousel" data-slide-to="3"></li>
-                <li data-target="#myCarousel" data-slide-to="4"></li>
-                <li data-target="#myCarousel" data-slide-to="5"></li>
-                <li data-target="#myCarousel" data-slide-to="6"></li>
             </ol>
             <!-- 轮播（Carousel）项目 -->
             <div class="carousel-inner" style="height: 500px;" >
                 <div class="item active" >
-                    <img id="img" src="img/img1.jpg" alt="1 slide" >
+                    <img id="pic1" src="${pageContext.request.contextPath}/picture/picture1.jpg" alt="1 slide" >
                 </div>
                 <div class="item">
-                    <img id="img" src="img/img2.jpg" alt="2 slide" >
+                    <img id="pic2" src="${pageContext.request.contextPath}/picture/picture2.jpg" alt="2 slide" >
                 </div>
                 <div class="item">
-                    <img id="img" src="img/img3.jpg" alt="3 slide" >
-                </div>
-                <div class="item">
-                    <img id="img" src="img/img5.jpg" alt="4 slide" >
-                </div>
-                <div class="item">
-                    <img id="img" src="img/a5.jpg" alt="5 slide" >
-                </div>
-                <div class="item">
-                    <img id="img" src="img/a6.jpg" alt="6 slide" >
-                </div>
-                <div class="item">
-                    <img id="img" src="img/a1.jpg" alt="7 slide" >
+                    <img id="pic3" src="${pageContext.request.contextPath}/picture/picture3.jpg" alt="3 slide" >
                 </div>
             </div>
             <!-- 轮播（Carousel）导航 -->
@@ -250,13 +234,14 @@
             </a>
         </div>
 
-        <br><br> 标题
+        <br><br>
+        <h3>置顶文章</h3>
         <hr>
         <br>
         <div class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
-                    <a href="查看文章.html"><img src="img/a1.jpg" alt="通用的占位符缩略图">
+                    <a href="查看文章.html"><img src="${pageContext.request.contextPath}/picture/picture1.jpg" alt="这是图">
                         <div class="caption">
                             <h3>文章标题</h3>
                             <p>一些示例文本。一些示例文本。</p>
@@ -268,7 +253,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <a href="查看文章.html">
-                        <img src="img/a1.jpg" alt="通用的占位符缩略图">
+                        <img src="${pageContext.request.contextPath}/picture/picture2.jpg" alt="这是图">
                         <div class="caption">
                             <h3>文章标题</h3>
                             <p>一些示例文本。一些示例文本。</p>
@@ -280,7 +265,7 @@
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <a href="查看文章.html">
-                        <img src="img/a1.jpg" alt="通用的占位符缩略图">
+                        <img src="${pageContext.request.contextPath}/picture/picture3.jpg" alt="这是图">
                         <div class="caption">
                             <h3>文章标题</h3>
                             <p>一些示例文本。一些示例文本。</p>
@@ -299,19 +284,14 @@
                 <!--大的list-->
 
                 <div class='div_celebrity_row'>
-                    <h1>我是标题</h1>
+                    <h1>最新发布</h1>
 
                     <hr style="border:5px solid #DDDDDD" />
-                    <a href="查看文章.html" id="list1" class="list-group-item">1</a>
-                    <a href="查看文章.html" class="list-group-item">2</a>
-                    <a href="查看文章.html" class="list-group-item">3</a>
-                    <a href="查看文章.html" class="list-group-item">4</a>
-                    <a href="查看文章.html" class="list-group-item">5</a>
-                    <a href="查看文章.html" class="list-group-item">6</a>
-                    <a href="查看文章.html" class="list-group-item">7</a>
-                    <a href="查看文章.html" id="list8" class="list-group-item">8</a>
+                    <a href="${pageContext.request.contextPath}/article/show?articleId=1" class="list-group-item">测试文章查看</a>
+                    <a href="${pageContext.request.contextPath}/article/show?articleId=1" class="list-group-item">测试文章查看</a>
+
                     <hr style="border:5px solid #DDDDDD" />
-                    <a href="文章列表.html"><input id="btnChuang" type="submit" class="btn-success" value="查看更多" /></a>
+                    <a href="${pageContext.request.contextPath}/article/detailList"><input id="btnChuang" type="button" onclick="" class="btn-success" value="查看更多" /></a>
                 </div>
             </div>
         </div>
