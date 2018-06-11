@@ -14,16 +14,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>boPuHome</title>
-    <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
- <script src="https://cdn.bootcss.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!--<script src="js/bootstrap.min.js"></script>-->
     <style type="text/css">
         /*背景色*/
 
@@ -151,16 +144,39 @@
             width: 100%;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $("#myCarousel").carousel({
                 interval: 1000
             });
         });
         $(document).ready(function() {
-
             $("#div4").height($("#div2").height());
         });
+
+
+        $(document).ready(function () {
+            $.post("${pageContext.request.contextPath}/article/newArticle", {
+                articleid: ${article.id},
+                userid: ${user.id},
+                content: content
+            }, function (result) {
+                if (result["status"] == 200) {
+                    alert("success");
+                } else {
+                    // 提交失败
+                }
+            });
+        });
+        <c:if test="${user != null}">
+        $(document).ready(function() {
+            alert("登录");
+        });
+        $(document).ready(function() {
+            alert("登录");
+        });
+        </c:if>
+
     </script>
 </head>
 
