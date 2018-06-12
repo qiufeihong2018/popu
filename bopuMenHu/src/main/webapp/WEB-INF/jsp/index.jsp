@@ -166,6 +166,7 @@ header .navbar-brand {
             $("#div4").height($("#div2").height());
         });
 
+
         $(document).ready(function () {
             // 最新文章div块
             $.post("${pageContext.request.contextPath}/article/newArticle", function (data) {

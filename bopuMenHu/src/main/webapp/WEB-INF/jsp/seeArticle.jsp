@@ -182,6 +182,16 @@
     }
 </style>
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/article/newArticle", {
+            id:"${article.id}",
+            currentPage: 1
+        }, function (data) {
+            // 每次5条
+        });
+    });
+
     function publish() {
         // alert();
         var content = $("#content").val();
