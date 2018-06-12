@@ -170,8 +170,14 @@ header .navbar-brand {
             // 最新文章div块
             $.post("${pageContext.request.contextPath}/article/newArticle", function (data) {
                 // 一共显示 8 条数据 访问URL /article/show?articleId=1
-                alert(data["obj"][0]["title"]);    // 文章标题
-                alert(data["obj"][0]["id"]);    // 文章序号
+				var text = "";
+                $.each(data["obj"],function (index,val) {
+                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId='+val["id"]+'" class="list-group-item">'+val["title"]+'</a>';
+                });
+                console.log(text);
+                $("#showNews").html(text);
+                //alert(data["obj"][0]["title"]);    // 文章标题
+                //alert(data["obj"][0]["id"]);    // 文章序号
             });
         });
         <c:if test="${user != null}">
@@ -181,8 +187,13 @@ header .navbar-brand {
                 category: 4
             }, function (data) {
                 // 一共显示 8 条数据
-                alert(data["obj"][0]["title"]);    // 文章标题
-                alert(data["obj"][0]["id"]);    // 文章序号
+                var text = "";
+                $.each(data["obj"],function (index,val) {
+                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId='+val["id"]+'" class="list-group-item">'+val["title"]+'</a>';
+                });
+                $("#innerNews").html(text);
+                //alert(data["obj"][0]["title"]);    // 文章标题
+                //alert(data["obj"][0]["id"]);    // 文章序号
             });
         });
         $(document).ready(function () {
@@ -191,8 +202,13 @@ header .navbar-brand {
                 category: 2
             }, function (data) {
                 // 一共显示 8 条数据
-                alert(data["obj"][0]["title"]);    // 文章标题
-                alert(data["obj"][0]["id"]);    // 文章序号
+                var text = "";
+                $.each(data["obj"],function (index,val) {
+                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId='+val["id"]+'" class="list-group-item">'+val["title"]+'</a>';
+                });
+                //$("#innerNews").html(text);
+                //alert(data["obj"][0]["title"]);    // 文章标题
+                //alert(data["obj"][0]["id"]);    // 文章序号
             });
         });
         </c:if>
@@ -336,12 +352,14 @@ header .navbar-brand {
 					<div class='div_celebrity_row'>
 						<h1>最新发布</h1>
 
-						<hr style="border:5px solid #DDDDDD" />
+						<hr  style="border:5px solid #DDDDDD" />
+                        <div id="showNews">
 						<a
 							href="${pageContext.request.contextPath}/article/show?articleId=1"
 							class="list-group-item">测试文章</a> <a
 							href="${pageContext.request.contextPath}/article/show?articleId=1"
 							class="list-group-item">测试文章</a>
+                        </div>
 						<hr style="border:5px solid #DDDDDD" />
 						<a href="文章列表.html"><input id="btnChuang" type="submit"
 							class="btn-success" value="查看更多" /></a>
@@ -362,12 +380,14 @@ header .navbar-brand {
 								<div class='div_celebrity_row'>
 									<h1>内部通知</h1>
 
-									<hr style="border:5px solid #DDDDDD" />
+									<hr  style="border:5px solid #DDDDDD" />
+                                    <div id="innerNews">
 									<a
 										href="${pageContext.request.contextPath}/article/show?articleId=1"
 										class="list-group-item">测试文章</a> <a
 										href="${pageContext.request.contextPath}/article/show?articleId=1"
 										class="list-group-item">测试文章</a>
+                                    </div>
 									<hr style="border:5px solid #DDDDDD" />
 								</div>
 							</div>
