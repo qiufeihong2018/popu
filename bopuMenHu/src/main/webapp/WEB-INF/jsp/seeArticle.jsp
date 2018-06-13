@@ -216,7 +216,6 @@
     <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
-
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/index">温州市波普大数据研究所</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse"
                         data-target="#example-navbar-collapse">

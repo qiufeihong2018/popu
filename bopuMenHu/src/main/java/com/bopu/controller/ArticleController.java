@@ -182,6 +182,7 @@ public class ArticleController {
 
     /**
      * 首页 文章id title ajax加载
+     *
      * @return
      */
     @RequestMapping(value = "article/newArticle")
@@ -201,6 +202,21 @@ public class ArticleController {
         return boPuResult;
     }
 
+    @RequestMapping(value = "article/projectContent")
+    @ResponseBody
+    public BoPuResult showProjectDetail() {
+        PageBean pb = new PageBean();
+        List<Integer> i = new ArrayList<Integer>();
+        // 添加查询条件
+        i.add(2);    // 内部通知
+        pb.setType(i);
+        pb.setCurrentPage(1);
+        pb.setPageSize(8);
+        articleService.getArticleList(pb);
+        BoPuResult boPuResult = new BoPuResult(200, "");
+        boPuResult.setObj(pb);
+        return boPuResult;
+    }
 
 
     public ArticleService getArticleService() {

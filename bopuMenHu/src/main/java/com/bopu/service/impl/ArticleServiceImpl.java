@@ -61,7 +61,7 @@ public class ArticleServiceImpl implements ArticleService {
         System.out.println(pb.getType());
         pb.setTotal(articleMapper.countByCondition(pb.getType()));
         pb.setTotalPage((int) Math.ceil(pb.getTotal() * 1.0 / pb.getPageSize()));
-        System.out.println("total:" + pb.getTotal() + "totalPage:" + pb.getTotalPage() + "type:" + pb.getType());
+//        System.out.println("total:" + pb.getTotal() + "totalPage:" + pb.getTotalPage() + "type:" + pb.getType());
         List<Article> articles = articleMapper.findAllArticlePage(pb);
         pb.setRows(articles);
     }
