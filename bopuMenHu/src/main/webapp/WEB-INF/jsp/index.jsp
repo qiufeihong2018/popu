@@ -166,6 +166,13 @@
             $("#div4").height($("#div2").height());
         });
 
+        $(document).ready(function () {
+            $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
+                alert(data["obj"][0]["title"]);
+                alert(data["obj"][0]["url"]);
+                alert(data["obj"][0]["sort"]);
+            });
+        })
 
         $(document).ready(function () {
             // 最新文章div块

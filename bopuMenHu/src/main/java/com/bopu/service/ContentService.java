@@ -12,5 +12,5 @@ public interface ContentService {
 
     void test();
 
-    List<Content> getArticle();
+    List<Content> getInformation();
 }

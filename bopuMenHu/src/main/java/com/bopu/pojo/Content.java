@@ -1,5 +1,7 @@
 package com.bopu.pojo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Content {
@@ -57,8 +59,13 @@ public class Content {
         this.pic = pic == null ? null : pic.trim();
     }
 
-    public Date getCreated() {
-        return created;
+    public String getCreated() {
+        if (created == null) {
+            return "";
+        }
+        DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+        String t = df.format(created);
+        return t;
     }
 
     public void setCreated(Date created) {
@@ -71,5 +78,18 @@ public class Content {
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    @Override
+    public String toString() {
+        return "Content{" +
+                "id=" + id +
+                ", categoryId=" + categoryId +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", pic='" + pic + '\'' +
+                ", created=" + created +
+                ", sort=" + sort +
+                '}';
     }
 }
