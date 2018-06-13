@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ContentMapper {
-    int countByExample(ContentExample example);
+    long countByExample(ContentExample example);
 
     int deleteByExample(ContentExample example);
 

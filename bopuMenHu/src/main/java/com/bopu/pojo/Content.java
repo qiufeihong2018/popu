@@ -15,18 +15,7 @@ public class Content {
 
     private Date created;
 
-    public Content(Integer id, Integer categoryId, String title, String url, String pic, Date created) {
-        this.id = id;
-        this.categoryId = categoryId;
-        this.title = title;
-        this.url = url;
-        this.pic = pic;
-        this.created = created;
-    }
-
-    public Content() {
-        super();
-    }
+    private Integer sort;
 
     public Integer getId() {
         return id;
@@ -74,5 +63,13 @@ public class Content {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
     }
 }
