@@ -252,15 +252,50 @@
                 return true;
             }
         }
-        
-        function sendCode() {
+
+        var countdown = 60;
+
+        /*function sendemail() {
+            var obj = $("#huoQu");
+            settime(obj);
+
+        }*/
+
+        function settime() {
+            //		倒计时
+            var obj = $("#huoQu");
+            if(countdown == 0) {
+                obj.attr('disabled', false);
+                obj.val("获取验证码");
+                countdown = 60;
+                return ;
+            } else {
+
+                if(countdown == 60){
+                    sendEmail(obj.val());
+                }
+
+                obj.attr('disabled', true);
+                obj.val("重新发送(" + countdown + ")");
+                countdown--;
+            }
+            setTimeout(function() {
+                    settime(obj)
+                },
+                1000)
+
+
+
+        }
+
+        function sendEmail() {
             var text = $("input[name='email']").val();
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath}/user/getCode",
                 data: {account:"${account}",email:text},
                 dataType: "json",
-                success: function (data) {
+                success: function (data) {console.log("123");
                     if(data["status"]==200){
                         alert("发送成功，请到邮箱中查看");
                     }
@@ -269,6 +304,11 @@
                     }
                 }
             });
+        }
+        
+        function sendCode() {
+
+            settime()
         }
     </script>
 </head>
