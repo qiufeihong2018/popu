@@ -86,10 +86,13 @@ public class ContentController {
         return "admin/home";
     }
 
+    /**
+     *
+     * @param sort 轮播图片的序号
+     */
     @RequestMapping(value = "content/delPic")
     public void delPic(Integer sort) {
-        // 轮播图片的序号
-
+        contentService.deletePic(sort);
     }
 
 

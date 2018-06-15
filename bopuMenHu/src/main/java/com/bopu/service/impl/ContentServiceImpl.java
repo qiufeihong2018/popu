@@ -12,6 +12,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 import javax.security.auth.login.CredentialException;
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -78,28 +79,42 @@ public class ContentServiceImpl implements ContentService {
             Content content = new Content();
             content.setCategoryId(2);
             content.setCreated(new Date());
-            content.setPic("/picture/picture" + (l+1) + ".jpg");
+            content.setPic("/picture/picture" + (l + 1) + ".jpg");
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
         }
     }
 
+    /**
+     * 删除图片
+     *
+     * @param sort 图片的序号
+     */
+    public void deletePic(Integer sort) {
+        // 获取count
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(2);    // 图片
+        long l = contentMapper.countByExample(example);
+        if (sort > 3) {
+            criteria.andSortEqualTo(sort);
+            contentMapper.deleteByExample(example);
+            if (l > sort) {
+                System.out.println(1);
+                // count > sort计数比想要删除图片的id大,修改之后的id
+                for (int i = sort + 1; i <= l; i++) {
+                    contentMapper.updatePicSort(i);
+                }
+            }
+        }
+    }
 
     /**
      * @param sort      指定文章的顺序 修改的是第几张图片
      * @param articleId 文章id
      * @param file      图片
      */
-    @RequestMapping(value = "content/setArticle")
     public void set(Integer sort, Integer articleId, MultipartFile file) {
-
-    }
-
-    /**
-     * 修改轮播图 的图片
-     */
-    @RequestMapping(value = "content/setImg")
-    public void setPic(Integer sort, MultipartFile file) {
 
     }
 

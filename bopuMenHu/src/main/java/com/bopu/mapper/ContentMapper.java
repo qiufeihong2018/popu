@@ -27,4 +27,7 @@ public interface ContentMapper {
     int updateByPrimaryKeySelective(Content record);
 
     int updateByPrimaryKey(Content record);
+
+    void updatePicSort(Integer sort);
+
 }

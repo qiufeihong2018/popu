@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from content
     where id = #{id,jdbcType=INTEGER}
@@ -239,5 +239,10 @@
       created = #{created,jdbcType=TIMESTAMP},
       sort = #{sort,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updatePicSort" parameterType="java.lang.Integer">
+    update content
+    set sort=sort-1
+    where category_id = 2 and sort = #{sort, jdbcType=INTEGER};
   </update>
 </mapper>

@@ -15,4 +15,6 @@ public interface ContentService {
     List<Content> getInformation();
 
     void findPicSort(Integer sort);
+
+    void deletePic(Integer sort);
 }
