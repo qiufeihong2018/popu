@@ -14,6 +14,7 @@ import redis.clients.jedis.JedisPool;
 import javax.security.auth.login.CredentialException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,8 +25,7 @@ import java.util.List;
  **/
 
 @Service
-public class
-ContentServiceImpl implements ContentService {
+public class ContentServiceImpl implements ContentService {
 
     @Autowired
     private ContentMapper contentMapper;
@@ -50,13 +50,38 @@ ContentServiceImpl implements ContentService {
         ContentExample example = new ContentExample();
         ContentExample.Criteria criteria = example.createCriteria();
         //  文章 图片
-        criteria.andCategoryIdIn(Arrays.asList(1,2));
+        criteria.andCategoryIdIn(Arrays.asList(1, 2));
         List<Content> contents = contentMapper.selectByExample(example);
-        // 获取图片信息
-        for (Content c : contents) {
-            System.out.println(c);
-        }
         return contents;
+    }
+
+    /**
+     * 检查当前序号的图片是否存在
+     * 不存在就插入一条数据
+     *
+     * @param sort
+     */
+    public void findPicSort(Integer sort) {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        // 图片类别及其序号
+        criteria.andCategoryIdEqualTo(2);
+        criteria.andSortEqualTo(sort);
+        List<Content> contents = contentMapper.selectByExample(example);
+        if (contents.size() == 0) {
+            // 该序号没有图片不存在
+            example.clear();
+            ContentExample.Criteria c = example.createCriteria();
+            c.andCategoryIdEqualTo(2);
+            long l = contentMapper.countByExample(example);
+            // 在当前数据库中的图片计数下+1
+            Content content = new Content();
+            content.setCategoryId(2);
+            content.setCreated(new Date());
+            content.setPic("/picture/picture" + (l+1) + ".jpg");
+            content.setSort((int) l + 1);
+            contentMapper.insertSelective(content);
+        }
     }
 
 

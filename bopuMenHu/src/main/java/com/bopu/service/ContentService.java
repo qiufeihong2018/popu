@@ -13,4 +13,6 @@ public interface ContentService {
     void test();
 
     List<Content> getInformation();
+
+    void findPicSort(Integer sort);
 }
