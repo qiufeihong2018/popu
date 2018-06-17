@@ -11,9 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import javax.security.auth.login.CredentialException;
-import java.lang.annotation.ElementType;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -110,12 +107,67 @@ public class ContentServiceImpl implements ContentService {
     }
 
     /**
-     * @param sort      指定文章的顺序 修改的是第几张图片
-     * @param articleId 文章id
-     * @param file      图片
+     * 删除文章
+     *
+     * @param sort
      */
-    public void set(Integer sort, Integer articleId, MultipartFile file) {
+    public void deleteArt(Integer sort) {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(1);    // 文章
+        long l = contentMapper.countByExample(example);
+        if (sort <= 3) {
+            criteria.andSortEqualTo(sort);
+            contentMapper.deleteByExample(example);
+            if (l > sort) {
+                System.out.println(1);
+                // count > sort计数比想要删除图片的id大,修改之后的id
+                for (int i = sort + 1; i <= l; i++) {
+                    contentMapper.updatePicSort(i);
+                }
+            }
+        }
+    }
 
+    /**
+     * 添加文章
+     *
+     * @param articleId 文章id
+     * @param sort      排序
+     * @param path      图片路径
+     */
+    public void addArt(Integer articleId, Integer sort, String path) {
+        Content c = new Content();
+        c.setCategoryId(1);
+        c.setSort(sort);
+        c.setCreated(new Date());
+        c.setPic(path);    // 图片路径
+        c.setUrl("/article/show/?articleId=" + articleId);
+        contentMapper.insert(c);
+    }
+
+    /**
+     * 更新首页文章
+     *
+     * @param articleId 修改的文章id
+     * @param sort      利用查找已存在文章的序号
+     * @param path      图片路径
+     */
+    public void updateArt(Integer articleId, Integer sort, String path) {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andSortEqualTo(sort);
+        criteria.andCategoryIdEqualTo(1);
+        List<Content> contents = contentMapper.selectByExample(example);
+        if (contents != null) {
+            if (articleId != null) {
+                contents.get(0).setUrl("/article/show/?articleId=" + articleId);
+            }
+            if (path != null) {
+                contents.get(0).setPic(path);
+            }
+            contentMapper.updateByPrimaryKey(contents.get(0));
+        }
     }
 
     /**

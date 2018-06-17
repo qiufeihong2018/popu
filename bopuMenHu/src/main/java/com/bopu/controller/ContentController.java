@@ -51,18 +51,6 @@ public class ContentController {
     }
 
     /**
-     * 更新首页文章
-     */
-    @RequestMapping(value = "content/updateArticle")
-    public void update(MultipartFile file, Integer articleId, Integer sort) {
-        // 图片或文章可为空 更新序号的 图片和文章id
-        // 上传图片命名
-        // 保存图片
-        // 数据库操作
-        // 结束
-    }
-
-    /**
      * 上传图片
      *
      * @param file    图片
@@ -76,7 +64,7 @@ public class ContentController {
     public String setPic(@RequestParam("file[]") MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
         // 检查 sort是否存在 如:sort = 4,那么第四张图片是否存在 不存在就要添加一条记录
         contentService.findPicSort(sort);
-        String path = request.getSession().getServletContext().getRealPath("/picture/");
+        String path = request.getSession().getServletContext().getRealPath("/file/picture/");
         File f = new File(path, "picture" + sort + ".jpg");
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
@@ -87,14 +75,102 @@ public class ContentController {
     }
 
     /**
+     * 删除三张固定轮播图之后的图
      *
      * @param sort 轮播图片的序号
      */
     @RequestMapping(value = "content/delPic")
     public void delPic(Integer sort) {
         contentService.deletePic(sort);
+        // 删除图片
+
     }
 
+    /**
+     * 更新轮播图，只需要替换文件
+     *
+     * @param file
+     * @param sort
+     */
+    @RequestMapping(value = "content/updatePic")
+    public String updataPic(MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
+        // 查询此sort下是否存在图片
+        String path = request.getSession().getServletContext().getRealPath("/file/picture/");
+        File f = new File(path, "picture" + sort + ".jpg");
+        if (!f.getParentFile().exists()) {
+            f.getParentFile().mkdirs();
+        }
+        // 直接替换文件
+        file[0].transferTo(f);
+        return "admin/home";
+    }
 
+    /**
+     * 添加首页文章
+     *
+     * @param file      图片
+     * @param articleId 文章id
+     * @param sort      序号 1 2 3
+     */
+    @RequestMapping(value = "content/addArticle")
+    public String addArt(MultipartFile file[], Integer articleId, Integer sort, HttpServletRequest request) throws IOException {
+        // 图片文章 更新序号的 图片和文章id
+        String path = request.getSession().getServletContext().getRealPath("/file/art/");
+        // 上传图片命名
+        File f = new File(path, "art" + sort + ".jpg");
+        if (!f.getParentFile().exists()) {
+            f.getParentFile().mkdirs();
+        }
+        // 保存图片
+        file[0].transferTo(f);
+        // 数据库操作
+        contentService.addArt(articleId, sort, "/file/art/" + file[0].getOriginalFilename());
+        // 结束
+        return "admin/home";
+    }
 
+    /**
+     * 根据序号删除首页文章
+     *
+     * @param sort 序号
+     */
+    @RequestMapping(value = "content/delArticle")
+    public void delArt(Integer sort) {
+        contentService.deleteArt(sort);
+        // 删除文章图片
+
+    }
+
+    /**
+     * 修改置顶文章
+     *
+     * @param file
+     * @param articleId
+     * @param sort
+     */
+    @RequestMapping(value = "content/updateArticle")
+    public String updateArt(MultipartFile file[], Integer articleId, Integer sort, HttpServletRequest request) throws IOException {
+        if (file != null) {
+            String path = request.getSession().getServletContext().getRealPath("/file/art/");
+            File f = new File(path, "art" + sort + ".jpg");
+            if (!f.getParentFile().exists()) {
+                f.getParentFile().mkdirs();
+            }
+            file[0].transferTo(f);
+            // 数据库操作
+            contentService.updateArt(articleId, sort, "/file/art/" + file[0].getOriginalFilename());
+            // 结束
+        } else {
+            contentService.updateArt(articleId, sort, null);
+        }
+        return "admin/home";
+    }
+
+    /**
+     * 设置关于我们
+     */
+
+    /**
+     * 设置简介
+     */
 }

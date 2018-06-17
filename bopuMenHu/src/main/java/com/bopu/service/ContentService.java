@@ -17,4 +17,10 @@ public interface ContentService {
     void findPicSort(Integer sort);
 
     void deletePic(Integer sort);
+
+    void deleteArt(Integer sort);
+
+    void addArt(Integer articleId, Integer sort, String path);
+
+    void updateArt(Integer articleId, Integer sort, String path);
 }
