@@ -23,4 +23,6 @@ public interface ContentService {
     void addArt(Integer articleId, Integer sort, String path);
 
     void updateArt(Integer articleId, Integer sort, String path);
+
+    void setabout(String email, String phone);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.lang.annotation.ElementType;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -119,13 +120,6 @@ public class ContentServiceImpl implements ContentService {
         if (sort <= 3) {
             criteria.andSortEqualTo(sort);
             contentMapper.deleteByExample(example);
-            if (l > sort) {
-                System.out.println(1);
-                // count > sort计数比想要删除图片的id大,修改之后的id
-                for (int i = sort + 1; i <= l; i++) {
-                    contentMapper.updatePicSort(i);
-                }
-            }
         }
     }
 
@@ -171,10 +165,32 @@ public class ContentServiceImpl implements ContentService {
     }
 
     /**
-     * 设置关于我们
+     * 设置关于我们(前端暂时只提供邮箱与电话)
+     *
+     * @param key 中文 如地址
+     * @param value 具体值 如温州XXXXXX
      */
-    @RequestMapping(value = "content/setOur")
-    public void setOur() {
-
+    public void setabout(String key, String value) {
+        // 用Content 的title 为 key， url为value
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(3);    // 关于我们
+        criteria.andTitleEqualTo(key);
+        List<Content> contents = contentMapper.selectByExample(example);
+        if (contents.size() != 0) {
+            // 更新
+            contents.get(0).setUrl(value);
+            contentMapper.updateByPrimaryKeySelective(contents.get(0));
+        } else {
+            // 添加
+            Content c = new Content();
+            c.setCategoryId(3);
+            c.setTitle(key);
+            c.setUrl(value);
+            c.setCreated(new Date());
+            contentMapper.insertSelective(c);
+        }
     }
+
+
 }

@@ -37,7 +37,7 @@ public class ContentController {
     private ContentService contentService;
 
     /**
-     * 获取首页 信息
+     * 获取首页 信息 轮播图 以及 图片文章的详情信息
      *
      * @return
      */
@@ -60,8 +60,8 @@ public class ContentController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "content/updatePic")
-    public String setPic(@RequestParam("file[]") MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
+    @RequestMapping(value = "content/uploadPic")
+    public String uploadPic(@RequestParam("file[]") MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
         // 检查 sort是否存在 如:sort = 4,那么第四张图片是否存在 不存在就要添加一条记录
         contentService.findPicSort(sort);
         String path = request.getSession().getServletContext().getRealPath("/file/picture/");
@@ -80,10 +80,15 @@ public class ContentController {
      * @param sort 轮播图片的序号
      */
     @RequestMapping(value = "content/delPic")
-    public void delPic(Integer sort) {
+    public void delPic(Integer sort, HttpServletRequest request) {
         contentService.deletePic(sort);
         // 删除图片
-
+         File file = new File(request.getSession().getServletContext().getRealPath("/file/picture/picture" + sort + ".jpg"));
+                if (file.exists()) {
+                    // 删除图片
+                    file.delete();
+                    System.out.println("删除成功");
+                }
     }
 
     /**
@@ -135,10 +140,16 @@ public class ContentController {
      * @param sort 序号
      */
     @RequestMapping(value = "content/delArticle")
-    public void delArt(Integer sort) {
+    public String delArt(Integer sort, HttpServletRequest request) {
         contentService.deleteArt(sort);
         // 删除文章图片
-
+        File file = new File(request.getSession().getServletContext().getRealPath("/file/art/art" + sort + ".jpg"));
+        if (file.exists()) {
+            // 删除图片
+            file.delete();
+            System.out.println("删除成功");
+        }
+        return "admin/home";
     }
 
     /**
@@ -169,6 +180,15 @@ public class ContentController {
     /**
      * 设置关于我们
      */
+    @RequestMapping(value = "setabout")
+    @ResponseBody
+    public BoPuResult setabout(String email, String phone) {
+        contentService.setabout("邮箱", email);
+        contentService.setabout("电话", phone);
+        BoPuResult boPuResut = new BoPuResult(200, "");
+        return boPuResut;
+    }
+
 
     /**
      * 设置简介
