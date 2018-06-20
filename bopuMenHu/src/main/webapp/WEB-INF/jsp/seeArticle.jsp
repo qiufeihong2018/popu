@@ -256,8 +256,8 @@
             </div>
             <hr>
             <div class="detail">
-                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址: <a
-                        href="${article.look}">${article.look}</a></c:if></h6>
+                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址:
+                    <a href="${article.look}">${article.look}</a></c:if></h6>
                 <h4>
                     内容填充
                     ${article.content}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Exler
@@ -79,7 +80,6 @@
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
                                 </a>
-
                                 <a class="close-link">
                                     <i class="fa fa-times"></i>
                                 </a>
@@ -102,69 +102,39 @@
             <div class="row">
                 <div class="col-sm-12">
 
-
-                    <div class="file-box">
-                        <div class="file">
-                            <a href="${pageContext.request.contextPath}/#">
-                                <span class="corner"></span>
-
-                                <div class="image">
-                                    <img alt="image" class="img-responsive" src="${pageContext.request.contextPath}/picture/picture1.jpg">
-                                </div>
-                                <div class="file-name">
-                                    picture1
-                                    <br/>
-                                    <a href="#">删除</a>&nbsp;|
-                                    <a href="#">编辑</a>
-                                    <br/>
-                                </div>
-                            </a>
-
+                    <c:forEach items="${contents}" var="content">
+                        <div class="file-box">
+                            <div class="file">
+                                <a href="${pageContext.request.contextPath}/#">
+                                    <span class="corner"></span>
+                                    <div class="image">
+                                        <img alt="image" class="img-responsive"
+                                             src="${pageContext.request.contextPath}/${content.pic}">
+                                    </div>
+                                    <div class="file-name">
+                                        picture1
+                                        <br/>
+                                        <%-- 文章--%>
+                                        <c:if test="${content.categoryId == 1}">
+                                            <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                            <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
+                                        </c:if>
+                                        <%--图片--%>
+                                        <c:if test="${content.categoryId == 2}">
+                                            <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                            <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
+                                        </c:if>
+                                        <br/>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="file-box">
-                        <div class="file">
-                            <a href="file_manager.html#">
-                                <span class="corner"></span>
-
-                                <div class="image">
-                                    <img alt="image" class="img-responsive" src="${pageContext.request.contextPath}/picture/picture2.jpg">
-                                </div>
-                                <div class="file-name">
-                                    URL5
-                                    <br/>
-                                    <a href="#">删除</a>&nbsp;|
-                                    <a href="#">编辑</a>
-                                    <br/>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="file-box">
-                        <div class="file">
-                            <a href="file_manager.html#">
-                                <span class="corner"></span>
-
-                                <div class="image">
-                                    <img alt="image" class="img-responsive" src="${pageContext.request.contextPath}/picture/picture3.jpg">
-                                </div>
-                                <div class="file-name">
-                                    URL6
-                                    <br/>
-                                    <a href="#">删除</a>&nbsp;|
-                                    <a href="#">编辑</a>
-                                    <br/>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+                    </c:forEach>
 
                 </div>
             </div>
         </div>
-        <!--			图片结束-->
+
 
     </div>
 </div>
