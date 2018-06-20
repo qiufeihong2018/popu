@@ -7,11 +7,13 @@ import com.bopu.service.ContentService;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +39,7 @@ public class ContentController {
     private ContentService contentService;
 
     /**
-     * 获取首页 信息 轮播图 以及 图片文章的详情信息
+     * 获取首页 信息 轮播图 以及 图片文章的详情信息 (访问路径命名不合理)
      *
      * @return
      */
@@ -48,6 +50,19 @@ public class ContentController {
         BoPuResult boPuResult = new BoPuResult(200, "");
         boPuResult.setObj(contents);
         return boPuResult;
+    }
+
+    /**
+     * 图片 文章(首页的图片文章)管理
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "content/managerPA")
+    public String getPicAndArt(Model model) {
+        List<Content> contents = contentService.getInformation();
+        model.addAttribute("contents", contents);
+        return "admin/pictureManage";
     }
 
     /**
@@ -80,15 +95,16 @@ public class ContentController {
      * @param sort 轮播图片的序号
      */
     @RequestMapping(value = "content/delPic")
-    public void delPic(Integer sort, HttpServletRequest request) {
+    @ResponseBody
+    public BoPuResult delPic(Integer sort, HttpServletRequest request) {
         contentService.deletePic(sort);
         // 删除图片
-         File file = new File(request.getSession().getServletContext().getRealPath("/file/picture/picture" + sort + ".jpg"));
-                if (file.exists()) {
-                    // 删除图片
-                    file.delete();
-                    System.out.println("删除成功");
-                }
+        File file = new File(request.getSession().getServletContext().getRealPath("/file/picture/picture" + sort + ".jpg"));
+        if (file.exists()) {
+            // 删除图片
+            file.delete();
+        }
+        return BoPuResult.build(200, "");
     }
 
     /**
@@ -147,7 +163,6 @@ public class ContentController {
         if (file.exists()) {
             // 删除图片
             file.delete();
-            System.out.println("删除成功");
         }
         return "admin/home";
     }
@@ -189,8 +204,17 @@ public class ContentController {
         return boPuResut;
     }
 
-
     /**
-     * 设置简介
+     * 设置简介 (简介有很多分段 该如何处理 利用序号？ 简介还有图片 利用序号？ 那么样式就不可改了)
+     *
+     * @param sort    序号
+     * @param file    图片
+     * @param request
+     * @param content 内容
+     * @return
      */
+    @RequestMapping(value = "setIntroduction")
+    public BoPuResult setIntroduction(Integer sort, MultipartFile file[], HttpServletRequest request, String content) {
+        return BoPuResult.build(200, "");
+    }
 }

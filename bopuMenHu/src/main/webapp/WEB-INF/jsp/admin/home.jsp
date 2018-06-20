@@ -61,7 +61,7 @@
                 </li>
 
                 <li>
-                    <a class="J_menuItem" href="${pageContext.request.contextPath}/admin/pictureManage"><i
+                    <a class="J_menuItem" href="${pageContext.request.contextPath}/content/managerPA"><i
                             class="fa fa-map"></i><span
                             class="nav-label">轮播图管理</span></a>
                 </li>

@@ -50,6 +50,8 @@ public class ContentServiceImpl implements ContentService {
         ContentExample.Criteria criteria = example.createCriteria();
         //  文章 图片
         criteria.andCategoryIdIn(Arrays.asList(1, 2));
+        // 排序输出
+        example.setOrderByClause("category_id");
         List<Content> contents = contentMapper.selectByExample(example);
         return contents;
     }
@@ -68,13 +70,14 @@ public class ContentServiceImpl implements ContentService {
         criteria.andSortEqualTo(sort);
         List<Content> contents = contentMapper.selectByExample(example);
         if (contents.size() == 0) {
-            // 该序号没有图片不存在
+            // 该序号没有图片
             example.clear();
             ContentExample.Criteria c = example.createCriteria();
             c.andCategoryIdEqualTo(2);
             long l = contentMapper.countByExample(example);
             // 在当前数据库中的图片计数下+1
             Content content = new Content();
+            content.setTitle("picture" + (l + 1));
             content.setCategoryId(2);
             content.setCreated(new Date());
             content.setPic("/picture/picture" + (l + 1) + ".jpg");
@@ -167,7 +170,7 @@ public class ContentServiceImpl implements ContentService {
     /**
      * 设置关于我们(前端暂时只提供邮箱与电话)
      *
-     * @param key 中文 如地址
+     * @param key   中文 如地址
      * @param value 具体值 如温州XXXXXX
      */
     public void setabout(String key, String value) {

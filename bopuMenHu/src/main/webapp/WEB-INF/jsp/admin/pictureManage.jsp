@@ -105,23 +105,27 @@
                     <c:forEach items="${contents}" var="content">
                         <div class="file-box">
                             <div class="file">
-                                <a href="${pageContext.request.contextPath}/#">
+                                <a href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
                                     <span class="corner"></span>
                                     <div class="image">
                                         <img alt="image" class="img-responsive"
-                                             src="${pageContext.request.contextPath}/${content.pic}">
+                                             src="${pageContext.request.contextPath}${content.pic}">
                                     </div>
                                     <div class="file-name">
-                                        picture1
+                                            ${content.title}
                                         <br/>
-                                        <%-- 文章--%>
+                                            <%-- 文章--%>
                                         <c:if test="${content.categoryId == 1}">
-                                            <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
-                                            <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
+                                            <a href="${pageContext.request.contextPath}/content/delArticle?sort=${content.sort}">删除</a>&nbsp;|
+                                            <%-- 后台需要参数 图片 文章 序号 --%>
+                                            <a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">修改</a>
                                         </c:if>
-                                        <%--图片--%>
+                                            <%--图片--%>
                                         <c:if test="${content.categoryId == 2}">
-                                            <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                            <c:if test="${content.sort > 3}">
+                                                <%--前三张图片只有替换，没有删除--%>
+                                                <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                            </c:if>
                                             <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
                                         </c:if>
                                         <br/>
@@ -130,12 +134,9 @@
                             </div>
                         </div>
                     </c:forEach>
-
                 </div>
             </div>
         </div>
-
-
     </div>
 </div>
 
