@@ -35,6 +35,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 保存文章
+     *
      * @param article
      */
     public void saveArticle(Article article) {
@@ -42,13 +43,10 @@ public class ArticleServiceImpl implements ArticleService {
         Date date = new Date();
         article.setCount(0);
         article.setTime(date);
-        if (article.getType() == 2) {
-
-        } else {
+        if (article.getType() != 2) {
             article.setLimitdata(date);
             article.setLook("none");
         }
-        System.out.println(article);
         articleMapper.insert(article);
     }
 
@@ -67,8 +65,6 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 
-
-
     /**
      * 删除文章
      *
@@ -84,6 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 返回文章链接 名称
+     *
      * @param type 类别集
      */
     public List<Article> getTitleAndIdList(List<Integer> type) {

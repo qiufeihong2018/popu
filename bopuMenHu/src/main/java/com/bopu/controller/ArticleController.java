@@ -33,7 +33,6 @@ public class ArticleController {
     @RequestMapping(value = "article/upload")
     @ResponseBody
     public BoPuResult uploadArticle(Article article) {
-//        article.setTitle("微软官方正式宣布：75亿美金收购Github！新任CEO同时产生");
         articleService.saveArticle(article);
         return BoPuResult.build(200, article.getId().toString());
     }
@@ -155,10 +154,8 @@ public class ArticleController {
     @RequestMapping(value = "article/detailList")
     public String showList(Integer currentPage, Integer type, Model model) {
         if (null == currentPage) {
-            System.out.println(currentPage + "    " + type);
             currentPage = 1;
         }
-        System.out.println("-------" + type);
         PageBean pb = new PageBean();
         List<Integer> i = new ArrayList<Integer>();
         if (null == type) {
@@ -172,7 +169,6 @@ public class ArticleController {
             i.add(type);
             pb.setType(i);
         }
-        System.out.println(pb.getType());
         pb.setCurrentPage(currentPage);
         pb.setPageSize(10);
         articleService.getArticleList(pb);
