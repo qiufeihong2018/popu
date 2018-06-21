@@ -163,12 +163,11 @@
         });
         $(document).ready(function () {
 
-            $("#div4").height($("#div2").height());
+            //$("#div4").height($("#div2").height());
         });
 
         $(document).ready(function () {
             $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
-                console.log(data);
                 var text1="";
                 var text2="";
                 var ol="";
@@ -211,7 +210,6 @@
                 });
                 $("#top1").html(text1);
                 $("#top2").html(text2);
-                console.log("111");
             });
         })
 
@@ -246,12 +244,23 @@
             });
         });
         $(document).ready(function () {
-            // 项目div块
+            $("#inner").show();
+            // 项目div块experiment
             $.post("${pageContext.request.contextPath}/article/projectContent", {
             }, function (data) {
-                alert(data["obj"]["rows"][0]["content"]);
-                alert(data["obj"]["rows"][0]["id"]);
-                alert(data["obj"]["rows"][0]["author"]);
+                console.log(data);
+                var text = "";
+                $.each(data["obj"]["rows"], function (index, val) {
+                    text+='项目名称：'+val["title"]+'<br>' +
+                        '  项目简介：'+val["content"]+'<br>' +
+                        '  作者成员：'+val["author"]+'<br>' +
+                        '  上限日期：'+val["limitdata"]+'<<br>' +
+                        '  <a href=${pageContext.request.contextPath}"'+val["look"]+'">进入查看</a>' +
+                        '  <hr style="border:5px solid #DDDDDD;"/>';
+                });
+                console.log(text);
+                $("#experiment").html(text);
+                $("#div4").height($("#innerNews").height());
             });
         });
         </c:if>
@@ -436,10 +445,10 @@
         <br>
         <!--小的list-->
 
-        <div class="row">
+        <div id="inner" style="display: none"  class="row">
             <div id="list">
 
-                <div class="col-md-6 col-sm-12">
+                <div id="inner1" class="col-md-6 col-sm-12">
                     <div class="thumbnail">
                         <div id="div2" class="div_celebrity_list">
                             <div class='div_celebrity_row'>
@@ -454,38 +463,33 @@
                                         class="list-group-item">测试文章</a>
                                 </div>
                                 <hr style="border:5px solid #DDDDDD"/>
+                                <a href="文章列表.html"><input  type="button"
+                                                           class="btn-success" value="查看更多"/></a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-sm-12">
-                    <div class="thumbnail">
+                <div id="inner2"  class="col-md-6 col-sm-12">
+                    <div class="thumbnail" >
+                        <h1 style="padding: 30px 30px 0px">实验项目</h1>
                         <div id="div4" class="div_celebrity_list">
 
-                            <h1>实验项目</h1>
+
 
                             <hr style="border:5px solid #DDDDDD"/>
 
-                            <div class='div_celebrity_row'>
-
-                                <p>
-                                    java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
-                                <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。
-                                    JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
-                                <p>
-                                    接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
-                                <p>
-                                    java语言是简单的：JAVA语言的语法和c、c++很接近，使得大多数程序员很容易学习和使用。另一方面，java丢弃了c++中很少使用的、很难理解的、令人迷惑的那些特性。比如操作符重载、多继承、自动的强制类型转化。特别的，JAVA语言不使</p>
-                                <p>用指针，而是引用。并且提供了自动的废料收集，使得程序员不必为内存管理而担忧。确实学过c、c++的人也知道，总是要担心内存。
-                                    JAVA语言是面向对象的：java语言提供类、接口和继承等面向对象的特性，为了简单起见，支持类之间的单继承，但支持接口之间的多继承，并且类与</p>
-                                <p>
-                                    接口之间的实现机制（关键词为implements）。JAVA语言全面支持动态绑定，而c++语言只对虚函数使用动态绑定，总之，java语言是一个纯的面向对象程序设计语言。</p>
-
+                            <div id="experiment"   class='div_celebrity_row'>
                             </div>
 
-                            <hr style="border:5px solid #DDDDDD;"/>
+
                         </div>
+                        <div style="height: 1.5em"></div>
+                        <a style="padding: 30px 30px 0px" href="文章列表.html"><input   type="button"
+                                                    class="btn-success" value="查看更多"/></a>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
