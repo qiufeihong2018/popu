@@ -168,9 +168,50 @@
 
         $(document).ready(function () {
             $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
-                alert(data["obj"][0]["title"]);
-                alert(data["obj"][0]["url"]);
-                alert(data["obj"][0]["sort"]);
+                console.log(data);
+                var text1="";
+                var text2="";
+                var ol="";
+                var i=0;
+                $.each(data["obj"], function (index, val) {
+                    if(val["categoryId"]==2){//轮播图
+                        if(i==0){//第一次
+                            ol+='<li data-target="#myCarousel" data-slide-to="'+index+'" class="active"></li>';
+                            text1+='<div class="item active">' +
+                                '                    <img  class="aa"' +
+                                '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
+                                '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
+                                '                   alt="" >' +
+                                '                </div>';
+                                i++;
+                        }else{
+                        ol+='<li data-target="#myCarousel" data-slide-to="'+index+'"></li>';
+                        text1+='<div class="item">' +
+                            '                    <img  class="aa"' +
+                            '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
+                            '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
+                            '                   alt="" >' +
+                            '                </div>';
+                        }
+                    }else if(val["categoryId"]==1){//顶置文章
+                        text2+='<div class="col-sm-6 col-md-4">' +
+                            '                <div class="thumbnail">' +
+                            '                    <a href="${pageContext.request.contextPath}'+val["url"]+'"><img' +
+                            '                            src="${pageContext.request.contextPath}\'+val["pic"]+\'"' +
+                            '                            >' +
+                            '                        <div class="caption">' +
+                            '                            <h3>'+val["title"]+'</h3>' +
+                            '                            <p>一些示例文本。一些示例文本。</p>' +
+                            '\n' +
+                            '                        </div>' +
+                            '                    </a>' +
+                            '                </div>' +
+                            '            </div>';
+                    }
+                });
+                $("#top1").html(text1);
+                $("#top2").html(text2);
+                console.log("111");
             });
         })
 
@@ -183,10 +224,10 @@
                     text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
                 });
                 console.log(text);
-                $("#showNews").html(text);
-                //alert(data["obj"][0]["title"]);    // 文章标题
-                //alert(data["obj"][0]["id"]);    // 文章序号
-            });
+            $("#showNews").html(text);
+            //alert(data["obj"][0]["title"]);    // 文章标题
+            //alert(data["obj"][0]["id"]);    // 文章序号
+        });
         });
         <c:if test="${user != null}">
         $(document).ready(function () {
@@ -263,25 +304,45 @@
 
         <div id="myCarousel" class="carousel slide">
             <!-- 轮播（Carousel）指标 -->
-            <ol class="carousel-indicators">
+            <ol id="ol1" class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
                 <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+                <li data-target="#myCarousel" data-slide-to="5"></li>
             </ol>
             <!-- 轮播（Carousel）项目 -->
-            <div class="carousel-inner">
+            <div id="top1" class="carousel-inner">
                 <div class="item active">
-                    <img id="pic1" class="aa"
+                    <img class="aa"
                          src="${pageContext.request.contextPath}/picture/picture1.jpg"
-                         alt="1 slide">
+                         alt="1 slide"
+                        onclick="javascript:window.location.href='www.baidu.com'"
+                    >
                 </div>
                 <div class="item">
-                    <img id="pic2" class="aa"
+                    <img class="aa"
                          src="${pageContext.request.contextPath}/picture/picture2.jpg"
                          alt="2 slide">
                 </div>
                 <div class="item">
-                    <img id="pic3" class="aa"
+                    <img  class="aa"
+                         src="${pageContext.request.contextPath}/picture/picture3.jpg"
+                         alt="3 slide">
+                </div>
+                <div class="item">
+                    <img  class="aa"
+                         src="${pageContext.request.contextPath}/picture/picture3.jpg"
+                         alt="3 slide">
+                </div>
+                <div class="item">
+                    <img  class="aa"
+                         src="${pageContext.request.contextPath}/picture/picture3.jpg"
+                         alt="3 slide">
+                </div>
+                <div class="item">
+                    <img  class="aa"
                          src="${pageContext.request.contextPath}/picture/picture3.jpg"
                          alt="3 slide">
                 </div>
@@ -303,7 +364,7 @@
         <h3>置顶文章</h3>
         <hr>
         <br>
-        <div class="row">
+        <div id="top2" class="row">
             <div class="col-sm-6 col-md-4">
                 <div class="thumbnail">
                     <a href="查看文章.html"><img
