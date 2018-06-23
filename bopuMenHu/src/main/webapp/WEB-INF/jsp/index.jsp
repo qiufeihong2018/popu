@@ -73,7 +73,13 @@
 
         /*中间宽度*/
         .cen {
-            width: 90%;
+            width: 65%;
+        }
+        @media screen and (min-width: 320px) and (max-width: 500px){
+            .cen{
+                width:90%;
+            }
+            
         }
 
         /*轮播图*/
