@@ -196,7 +196,7 @@
                         text2+='<div class="col-sm-6 col-md-4">' +
                             '                <div class="thumbnail">' +
                             '                    <a href="${pageContext.request.contextPath}'+val["url"]+'"><img' +
-                            '                            src="${pageContext.request.contextPath}\'+val["pic"]+\'"' +
+                            '                            src="${pageContext.request.contextPath}'+val["pic"]+'"' +
                             '                            >' +
                             '                        <div class="caption">' +
                             '                            <h3>'+val["title"]+'</h3>' +
@@ -283,10 +283,19 @@
                         class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
             </div>
-            <c:if test="${user!=null}">
+
                 <div class="collapse navbar-collapse" id="example-navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-
+                        <li><a href="#">简介</a></li>
+                        <li  class="divider"></li>
+                        <li><a href="#">最近活动</a></li>
+                        <li  class="divider"></li>
+                        <li><a href="#">研究成果</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">业内动态</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">联系我们</a></li>
+                        <c:if test="${user!=null}">
                         <li><a href="${pageContext.request.contextPath}/search">私信</a></li>
                         <li class="divider"></li>
                         <li class="dropdown"><a class="dropdown-toggle"
@@ -300,10 +309,11 @@
                                 <li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
                             </ul>
                         </li>
+                        </c:if>
                         <li class="divider"></li>
                     </ul>
                 </div>
-            </c:if>
+
         </div>
     </nav>
 </header>
