@@ -125,11 +125,19 @@
         border: 1px solid #e7eaec;
         background: #fff;
         margin-bottom: 15px;
+        position: relative;
     }
 
     .article .social-feed-box {
         margin-bottom: 0;
         border-bottom: none;
+    }
+    .text-muted{
+        position: absolute;
+        width: 40px;
+        height: 30px;
+        right: 5%;
+        top: 19px;
     }
 
     .article .social-feed-box:last-child {
@@ -183,39 +191,73 @@
 </style>
 <script type="text/javascript">
 
-    $(document).ready(function () {
+    var page = 1;
+    var flag = false;
+    var userId = 0;
+
+
+    $(document).ready(
+
+        loadComment()
+    )
+
+    //滚动滚动条加载评论事件
+    $(window).scroll(function () {
+        if ($(document).scrollTop() + $(window).height() >= $(document).height()-200) {
+            if(flag){flag=false;
+                //alert("123");
+                loadComment();
+            }
+        }
+    });
+    function loadComment() {
+        if(page!=0){
         $.post("${pageContext.request.contextPath}/comment/list", {
             id:"${article.id}",
-            currentPage: 1
+            currentPage: page
         }, function (data) {
             var text='';
             console.log(data);
             $.each(data["obj"], function (index, val) {
+                var msg = "123";
+                if(userId!=0){
+                    msg='<a href="#">删除</a>';
+                }
 
-            // 每次5条
-            text += '<div class="social-feed-box">' +
-                '                        <div class="social-avatar">' +
-                '                            <a href="" class="pull-left">' +
-                '                                <img alt="image" src="'+val["user"]["pic"]+'">' +
-                '                            </a>' +
-                '                            <div class="media-body">' +
-                '                                <a href="#">' +
-                '                                    '+val["user"]["name"]+'' +
-                '                                </a>' +
-                '                                <small class="text-muted"></small>' +
-                '                            </div>' +
-                '                        </div>' +
-                '                        <div class="social-body">' +
-                '                            <p>' +
-                '                                '+val["comment"]["content"]+'' +
-                '                            </p>' +
-                '                        </div>' +
-                '                    </div>';
+                // 每次5条
+                text += '<div class="social-feed-box">' +
+                    '                        <div class="social-avatar">' +
+                    '                            <a href="" class="pull-left">' +
+                    '                                <img alt="image" src="'+val["user"]["pic"]+'">' +
+                    '                            </a>' +
+                    '                            <div class="media-body">' +
+                    '                                <a href="#">' +
+                    '                                    '+val["user"]["name"]+'' +
+                    '                                </a>' +
+                    '                                <small class="text-muted">' +
+                        msg+
+                    '</small>' +
+                    '                            </div>' +
+                    '                        </div>' +
+                    '                        <div class="social-body">' +
+                    '                            <p>' +
+                    '                                '+val["comment"]["content"]+'' +
+                    '                            </p>' +
+                    '                        </div>' +
+                    '                    </div>';
             });
             $("#commentDiv").append(text);
+            page+=1;
+            flag=true;
+            if(data.length<5)
+                page=0;
         });
-    });
-    <c:if test="user!=null">
+        }
+    }
+
+
+    <c:if test="${user != null}">
+    userId = ${user.id};
     function publish() {
         // alert();
         var content = $("#content").val();
@@ -318,45 +360,7 @@
                 <div id="commentDiv" class="col-lg-12">
 
                     <h2>评论：</h2>
-                    <div class="social-feed-box">
-                        <div class="social-avatar">
 
-                            <a href="" class="pull-left">
-                                <img alt="image" src="img/a1.jpg">
-                            </a>
-
-                            <div class="media-body">
-                                <a href="#">
-                                    逆光狂胜蔡舞娘
-                                </a>
-                                <small class="text-muted">17 小时前</small>
-                            </div>
-                        </div>
-                        <div class="social-body">
-                            <p>
-                                好东西，我朝淘宝准备跟进，1折开卖
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="social-feed-box">
-                        <div class="social-avatar">
-                            <a href="" class="pull-left">
-                                <img alt="image" src="img/a3.jpg">
-                            </a>
-                            <div class="media-body">
-                                <a href="#">
-                                    kamppi
-                                </a>
-                                <small class="text-muted"> 6 小时前</small>
-                            </div>
-                        </div>
-                        <div class="social-body">
-                            <p>
-                                好美的装置艺术，第二个让我想起了海中缓缓游动的鲸鱼。
-                            </p>
-                        </div>
-                    </div>
                 </div>
                 </c:when>
                 <c:otherwise>
