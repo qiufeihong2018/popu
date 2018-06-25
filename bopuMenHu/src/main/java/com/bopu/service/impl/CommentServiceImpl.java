@@ -1,8 +1,11 @@
 package com.bopu.service.impl;
 
 import com.bopu.mapper.CommentMapper;
+import com.bopu.mapper.UserMapper;
 import com.bopu.pojo.Comment;
 import com.bopu.pojo.CommentExample;
+import com.bopu.pojo.CommentVo;
+import com.bopu.pojo.User;
 import com.bopu.service.CommentService;
 import com.bopu.utils.PageBean;
 import com.github.pagehelper.PageHelper;
@@ -10,6 +13,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +28,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 保存评论
@@ -52,6 +59,17 @@ public class CommentServiceImpl implements CommentService {
 
     public void deleteById(Integer id) {
         commentMapper.updateFlagByPrimaryKey(id);
+    }
+
+    public List<CommentVo> findUsers(List<Comment> comments) {
+        List<CommentVo> list = new ArrayList<CommentVo>();
+        for (Comment c : comments) {
+            CommentVo commentVo = new CommentVo();
+            commentVo.setUser(userMapper.selectByPrimaryKey(c.getUserid()));
+            commentVo.setComment(c);
+            list.add(commentVo);
+        }
+        return list;
     }
 
     public CommentMapper getCommentMapper() {

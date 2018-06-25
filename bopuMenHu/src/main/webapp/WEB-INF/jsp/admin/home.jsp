@@ -210,7 +210,7 @@
         </div>
         <div class="row J_mainContent" id="content-main">
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-                    src="${pageContext.request.contextPath}/admin/pictureManage" frameborder="0"
+                    src="${pageContext.request.contextPath}/content/managerPA" frameborder="0"
                     seamless></iframe>
         </div>
 

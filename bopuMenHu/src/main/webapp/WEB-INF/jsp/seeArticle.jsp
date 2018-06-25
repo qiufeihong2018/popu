@@ -184,14 +184,16 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $.post("${pageContext.request.contextPath}/article/newArticle", {
-            id:"${article.id}",
+        $.post("${pageContext.request.contextPath}/comment/list", {
+            id: "${article.id}",
             currentPage: 1
         }, function (data) {
             // 每次5条
         });
     });
 
+
+    <c:if test="user != null">
     function publish() {
         // alert();
         var content = $("#content").val();
@@ -207,6 +209,7 @@
             }
         });
     }
+    </c:if>
 </script>
 <body class="gray-bg">
 <!--导航栏-->

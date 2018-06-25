@@ -2,6 +2,7 @@ package com.bopu.controller;
 
 import com.bopu.pojo.BoPuResult;
 import com.bopu.pojo.Comment;
+import com.bopu.pojo.CommentVo;
 import com.bopu.service.CommentService;
 import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,9 @@ public class CommentController {
 
             // 根据文章id查找评论 返回List<Comment> 转换为json 发送给前端
             List<Comment> comments = commentService.findListByArticleId(id,pb);
+            List<CommentVo> list =commentService.findUsers(comments);
             BoPuResult boPuResult = new BoPuResult(200, "success");
-            boPuResult.setObj(comments);
+            boPuResult.setObj(list);
             return boPuResult;
         }
         return null;
