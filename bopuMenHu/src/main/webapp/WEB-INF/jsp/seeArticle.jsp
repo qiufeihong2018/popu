@@ -183,15 +183,40 @@
 </style>
 <script type="text/javascript">
 
+
     $(document).ready(function () {
-        $.post("${pageContext.request.contextPath}/article/newArticle", {
+        $.post("${pageContext.request.contextPath}/comment/list", {
             id:"${article.id}",
             currentPage: 1
         }, function (data) {
+            var text='';
+            console.log(data);
+            $.each(data["obj"], function (index, val) {
+            
             // 每次5条
+            text += '<div class="social-feed-box">' +
+                '                        <div class="social-avatar">' +
+                '                            <a href="" class="pull-left">' +
+                '                                <img alt="image" src="'+val["user"]["pic"]+'">' +
+                '                            </a>' +
+                '                            <div class="media-body">' +
+                '                                <a href="#">' +
+                '                                    '+val["user"]["name"]+'' +
+                '                                </a>' +
+                '                                <small class="text-muted"></small>' +
+                '                            </div>' +
+                '                        </div>' +
+                '                        <div class="social-body">' +
+                '                            <p>' +
+                '                                '+val["comment"]["content"]+'' +
+                '                            </p>' +
+                '                        </div>' +
+                '                    </div>';
+            });
+            $("#commentDiv").append(text);
         });
     });
-
+    <c:if test="user!=null">
     function publish() {
         // alert();
         var content = $("#content").val();
@@ -207,6 +232,7 @@
             }
         });
     }
+    </c:if>
 </script>
 <body class="gray-bg">
 <!--导航栏-->
@@ -290,7 +316,7 @@
             </div>
             <hr>
             <div class="row">
-                <div class="col-lg-12">
+                <div id="commentDiv" class="col-lg-12">
 
                     <h2>评论：</h2>
                     <div class="social-feed-box">
