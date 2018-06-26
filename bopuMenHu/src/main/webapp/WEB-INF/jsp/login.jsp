@@ -15,252 +15,7 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <style type="text/css">
-        /*左右固定*/
-        html,body {
-            overflow-x: hidden;
-        }
 
-
-        /*头部样式*/
-
-        header .navbar-default {
-            background-color: #1572DD;
-        }
-
-        header .navbar-brand {
-            color: #fff !important;
-        }
-
-        .navbar-default .navbar-toggle .icon-bar {
-            background-color: #fff !important;
-        }
-
-        .navbar-default .navbar-nav>li>a {
-            color: #fff !important;
-        }
-
-        .navbar-default .navbar-nav>li>a:focus,
-        .navbar-default .navbar-nav>li>a:hover {
-            color: #eee !important;
-        }
-
-
-        /*中间内容*/
-
-        .content {
-            text-align: center;
-            min-height: calc(100vh - 20px);
-        }
-        /*滑动验证容器*/
-
-
-        /*滑动控件容器,亮灰色背景 */
-
-        #dragContainer {
-            position: relative;
-            display: inline-block;
-            background: #e8e8e8;
-            width: 296px;
-            height: 50px;
-            border: 2px solid #e8e8e8;
-        }
-
-
-        /* 滑块左边部分,绿色背景 */
-
-        #dragBg {
-            position: absolute;
-            background-color: #7ac23c;
-            width: 0px;
-            height: 100%;
-        }
-
-
-        /* 滑动验证容器文本 */
-
-        #dragText {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            /* 文字水平居中 */
-            text-align: center;
-            /* 文字垂直居中,这里不能用百分比,因为百分比是相对原始line-height的,而非div高度 */
-            line-height: 50px;
-            /* 文本不允许选中 */
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-
-        /* 滑块 */
-
-        #dragHandler {
-            position: absolute;
-            width: 50px;
-            height: 100%;
-            cursor: move;
-        }
-
-
-        /* 滑块初始背景 */
-
-        .dragHandlerBg {
-            background: #fff no-repeat center url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0ZDhlNWY5My05NmI0LTRlNWQtOGFjYi03ZTY4OGYyMTU2ZTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTEyNTVEMURGMkVFMTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTEyNTVEMUNGMkVFMTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MTc5NzNmZS02OTQxLTQyOTYtYTIwNi02NDI2YTNkOWU5YmUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NGQ4ZTVmOTMtOTZiNC00ZTVkLThhY2ItN2U2ODhmMjE1NmU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+YiRG4AAAALFJREFUeNpi/P//PwMlgImBQkA9A+bOnfsIiBOxKcInh+yCaCDuByoswaIOpxwjciACFegBqZ1AvBSIS5OTk/8TkmNEjwWgQiUgtQuIjwAxUF3yX3xyGIEIFLwHpKyAWB+I1xGSwxULIGf9A7mQkBwTlhBXAFLHgPgqEAcTkmNCU6AL9d8WII4HOvk3ITkWJAXWUMlOoGQHmsE45ViQ2KuBuASoYC4Wf+OUYxz6mQkgwAAN9mIrUReCXgAAAABJRU5ErkJggg==");
-        }
-
-
-        /* 验证成功时的滑块背景 */
-
-        .dragHandlerOkBg {
-            background: #fff no-repeat center url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0ZDhlNWY5My05NmI0LTRlNWQtOGFjYi03ZTY4OGYyMTU2ZTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDlBRDI3NjVGMkQ2MTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDlBRDI3NjRGMkQ2MTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDphNWEzMWNhMC1hYmViLTQxNWEtYTEwZS04Y2U5NzRlN2Q4YTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NGQ4ZTVmOTMtOTZiNC00ZTVkLThhY2ItN2U2ODhmMjE1NmU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+k+sHwwAAASZJREFUeNpi/P//PwMyKD8uZw+kUoDYEYgloMIvgHg/EM/ptHx0EFk9I8wAoEZ+IDUPiIMY8IN1QJwENOgj3ACo5gNAbMBAHLgAxA4gQ5igAnNJ0MwAVTsX7IKyY7L2UNuJAf+AmAmJ78AEDTBiwGYg5gbifCSxFCZoaBMCy4A4GOjnH0D6DpK4IxNSVIHAfSDOAeLraJrjgJp/AwPbHMhejiQnwYRmUzNQ4VQgDQqXK0ia/0I17wJiPmQNTNBEAgMlQIWiQA2vgWw7QppBekGxsAjIiEUSBNnsBDWEAY9mEFgMMgBk00E0iZtA7AHEctDQ58MRuA6wlLgGFMoMpIG1QFeGwAIxGZo8GUhIysmwQGSAZgwHaEZhICIzOaBkJkqyM0CAAQDGx279Jf50AAAAAABJRU5ErkJggg==");
-        }
-
-
-        /*注册样式*/
-
-        .zhu {
-            color: #1572DD;
-        }
-
-
-        /*文本框*/
-
-        .form-control {
-            display: inline-block;
-            width: 296px;
-        }
-
-        #username,#password{
-            color: red;
-
-        }
-        /*确定*/
-
-        #btnOk {
-            color: white;
-            background-color:#1572DD;
-            height: 40px;
-            width:296px;
-        }
-
-        /*链接*/
-        #lianjie{
-            background-color: white;
-            border: none;
-        }
-        底部栏
-        /*
-        .footer {
-            background-color: #1572DD;
-            height: 150px;
-            padding: 30px;
-
-               display: flex;
-           使子项目水平居中
-           justify-content: center;
-           /*使子项目垂直居中
-          align-items: center;
-        }
-
-        .footer span {
-            color: #fff;
-            font-size: 16px;
-        }*/
-    </style>
-    <!--验证码-->
-    <script language="JavaScript">window.onload = function() {
-        /*
-            html元素不存在width属性,只有clientWidth
-            offsetX是相对当前元素的,clientX和pageX是相对其父元素的
-
-            touches：表示当前跟踪的触摸操作的touch对象的数组。
-            targetTouches：特定于事件目标的Touch对象的数组。
-        　　changedTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
-            */
-        var dragContainer = document.getElementById("dragContainer");
-        var dragBg = document.getElementById("dragBg");
-        var dragText = document.getElementById("dragText");
-        var dragHandler = document.getElementById("dragHandler");
-
-        //滑块最大偏移量
-        var maxHandlerOffset = dragContainer.clientWidth - dragHandler.clientWidth;
-        //是否验证成功的标记
-        var isVertifySucc = false;
-        initDrag();
-
-        function initDrag() {
-            dragText.textContent = "拖动滑块验证";
-            dragHandler.addEventListener("mousedown", onDragHandlerMouseDown);
-
-            dragHandler.addEventListener("touchstart", onDragHandlerMouseDown);
-        }
-
-        function onDragHandlerMouseDown(event) {
-            document.addEventListener("mousemove", onDragHandlerMouseMove);
-            document.addEventListener("mouseup", onDragHandlerMouseUp);
-
-            document.addEventListener("touchmove", onDragHandlerMouseMove);
-            document.addEventListener("touchend", onDragHandlerMouseUp);
-        }
-
-        function onDragHandlerMouseMove(event) {
-
-            var left = (event.clientX || event.changedTouches[0].clientX) - dragHandler.clientWidth/2;
-            if(left < 0) {
-                left = 0;
-            } else if(left > maxHandlerOffset) {
-                left = maxHandlerOffset;
-                verifySucc();
-            }
-            dragHandler.style.left = left + "px";
-            dragBg.style.width = dragHandler.style.left;
-        }
-
-        function onDragHandlerMouseUp(event) {
-            document.removeEventListener("mousemove", onDragHandlerMouseMove);
-            document.removeEventListener("mouseup", onDragHandlerMouseUp);
-
-            document.removeEventListener("touchmove", onDragHandlerMouseMove);
-            document.removeEventListener("touchend", onDragHandlerMouseUp);
-
-            dragHandler.style.left = 0;
-            dragBg.style.width = 0;
-        }
-
-        //验证成功
-        function verifySucc() {
-            isVertifySucc = true;
-            dragText.textContent = "验证通过";
-            dragText.style.color = "white";
-            dragHandler.setAttribute("class", "dragHandlerOkBg");
-
-            dragHandler.removeEventListener("mousedown", onDragHandlerMouseDown);
-            document.removeEventListener("mousemove", onDragHandlerMouseMove);
-            document.removeEventListener("mouseup", onDragHandlerMouseUp);
-
-            dragHandler.removeEventListener("touchstart", onDragHandlerMouseDown);
-            document.removeEventListener("touchmove", onDragHandlerMouseMove);
-            document.removeEventListener("touchend", onDragHandlerMouseUp);
-        };
-    }
-    //用户名密码验证
-    function CheckInput(inputField, helpText) {
-        if(inputField.value.length == 0) {
-            if(helpText != null) {
-                helpText.innerHTML = "不能为空，请输入";
-
-            }
-
-            return false;
-        } else {
-            if(helpText != null) {
-                helpText.innerHTML = "";
-
-            }
-            return true;
-        }
-    }</script>
 </head>
 <body>
 
@@ -296,52 +51,275 @@
     </nav>
 </header>
 
-<main class="content">
-    <form action="${pageContext.request.contextPath}/user/login" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
-        <h1>登录</h1>
+	<main class="content">
+			<div id="biaodan">
+		  <form action="${pageContext.request.contextPath}/user/login" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
 
+					<br>
+					<br><br><br>
+					<h1>登录</h1>
 
-        <input type="text" name="account"  value="${account}" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="账号" />
-        <br>
-        <span id="username">${fail}</span>
-        <br>
-        <input  name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码"  />
-        <br>
-        <span id="password"></span>
-        <br>
+					<!--<input type="text" name="username" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="手机/邮箱/用户名" />-->
 
-        <!--滑动验证-->
-        <div id="dragContainer"  >
-            <div id="dragBg"></div>
-            <div id="dragText"></div>
-            <div id="dragHandler" class="dragHandlerBg"></div>
-        </div>
-        <br>  <br>
-        <input id="btnOk" class="btn btn-success" type="submit" value="登入"/>
-        <br>  <br>
-        <div class="zhu">
-            <input onclick="javascript:window.location.href='${pageContext.request.contextPath}/register'" type="button" value="注册"  class="btn btn-link">
-            |
-            <input  type="button" onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'" value="忘记密码"  class="btn btn-link"/>
-        </div>
-    </form>
-</main>
-<!--</div>
+					<!--<span id="username"></span>-->
+					<!--账号-->
+					<input id="username" type="text" name="username" value="${account}" class="form-control" placeholder="手机/邮箱/用户名" onfocus="showTips('username','手机/邮箱/用户名必填！')" onblur="check('username','手机/邮箱/用户名不能为空！')" />
+					<br>
+					<span class="msg" id="usernamespan" style="margin-left: -110px;">${fail}</span>
+					<br>
+					<!--<input name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码" />
+					<br>
+					<span id="password"></span>-->
 
-</div>
-</div>-->
-<!--<footer class="center-block footer">
-  <div class="container">
-    <div class="row center-block">
-      <div class="col-md-6">
-        <span>反馈邮箱：12345678@163.com &nbsp; &nbsp; &nbsp;联系方式：12345678911</span>
-      </div>
-      <div class="col-md-6">
-        <span>@2018-2020 Wenzhou Demo Worker</span>
-      </div>
-    </div>
-  </div>
-</footer>		-->
+					<!--密码-->
+					<input id="password" type="password" name="password" class="form-control" placeholder="密码" onfocus="showTips('password','密码必填！')" onblur="check('password','密码不能为空！')" />
+					<br>
+					<span class="msg" id="passwordspan" style="margin-left: -180px;"></span>
+					<br>
+
+					<!--验证码验证-->
+					<div id="yan">
+						<p5 style="margin-left: -8px;">验证码</p5>
+						<input type="text" id="yanzhengma" class="form-control photokey" value="请输入验证码" onBlur="textBlur(this)" onFocus=" textFocus(this) " />
+						<span class="add phoKey"></span>
+						<span class="error error7"></span>
+					</div>
+
+					<br>
+
+					<input id="btnOk" class="btn btn-success" type="submit" value="确定" />
+					<br> <br>
+
+					<input id="lianjie" onclick="javascript:window.location.href='${pageContext.request.contextPath}/register'" type="button" value="注册" class="btn btn-link"> 
+			<input id="lianjie" onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'" type="button" value="忘记密码" class="btn btn-link" />
+
+				</form>
+			</div>
+		</main>
 </body>
 </html>
+
+<style type="text/css">
+	/*输入验证码*/
+	
+	#yanzhengma {
+		text-indent: 4px;
+		width: 160px;
+		font-size: 14px;
+	}
+	
+	.add {
+		width: 200px;
+		height: 34px;
+		_display: inline;
+		cursor: pointer;
+		margin-left: 10px;
+	}
+	
+	.input-code {
+		font-family: Arial;
+		font-style: italic;
+		cursor: pointer;
+		text-indent: 0;
+	}
+	/*蓝框验证码*/
+	
+	.phoKey {
+		width: 200px;
+		background: #1572DD;
+		text-align: center;
+		font-size: 18px;
+		color: #fff;
+		letter-spacing: 3px;
+		padding: 5px;
+		border-radius: 3px;
+	}
+	
+	.error {
+		margin-left: -87px;
+		display: block;
+		color: red;
+		margin-bottom: -10px;
+	}
+	
+	input {
+		background-color: #fff;
+		outline: none;
+	}
+	
+	.errorC {
+		border: 1px solid red;
+		font-size: 20px;
+	}
+	/*验证码结束*/
+	/*背景色*/
+	
+	.gray-bg,
+	.btn-link {
+		background-color: #f3f3f4;
+	}
+	/*左右固定*/
+	
+	html,
+	body {
+		overflow-x: hidden;
+	}
+	/*头部样式*/
+	
+	header .navbar-default {
+		background-color: #1572DD;
+	}
+	
+	header .navbar-brand {
+		color: #fff !important;
+	}
+	
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: #fff !important;
+	}
+	
+	.navbar-default .navbar-nav > li > a {
+		color: #fff !important;
+	}
+	
+	.navbar-default .navbar-nav > li > a:focus,
+	.navbar-default .navbar-nav > li > a:hover {
+		color: #eee !important;
+	}
+	/*中间内容*/
+	
+	.content {
+		text-align: center;
+		min-height: calc(100vh - 20px);
+		display: flex;
+		/*使子项目水平居中*/
+		justify-content: center;
+		/*使子项目垂直居中*/
+		align-items: center;
+	}
+	/*文本框*/
+	
+	.form-control {
+		display: inline-block;
+		width: 296px;
+	}
+	/*确定*/
+	
+	#btnOk {
+		color: white;
+		background-color: #1572DD;
+		height: 40px;
+		width: 296px;
+		border-color: #1572DD;
+		border-radius: 3px;
+	}
+	/*表单背景*/
+	
+	#biaodan {
+		width: 860px;
+		height: 600px;
+		background-color: white;
+	}
+	/*注册密码样式*/
+	
+	#lianjie {
+		background-color: white;
+	}
+</style>
+
+<script language="JavaScript">
+	//文本框默认提示文字  
+	function textFocus(el) {
+		if(el.defaultValue == el.value) {
+			el.value = '';
+			el.style.color = '#333';
+		}
+	}
+
+	function textBlur(el) {
+		if(el.value == '') {
+			el.value = el.defaultValue;
+			el.style.color = '#999';
+		}
+	}
+
+	$(function() {
+
+		/*生成验证码*/
+		(function create_code() {
+			function shuffle() {
+				var arr = ['1', 'r', 'Q', '4', 'S', '6', 'w', 'u', 'D', 'I', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+					'q', '2', 's', 't', '8', 'v', '7', 'x', 'y', 'z', 'A', 'B', 'C', '9', 'E', 'F', 'G', 'H', '0', 'J', 'K', 'L', 'M', 'N', 'O', 'P', '3', 'R',
+					'5', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+				];
+				return arr.sort(function() {
+					return(Math.random() - .5);
+				});
+			};
+			shuffle();
+
+			function show_code() {
+				var ar1 = '';
+				var code = shuffle();
+				for(var i = 0; i < 4; i++) {
+					ar1 += code[i];
+				};
+				//var ar=ar1.join('');  
+				$(".phoKey").text(ar1);
+			};
+			show_code();
+			$(".phoKey").click(function() {
+				show_code();
+			});
+		})();
+
+		//账户输入框失去焦点  
+		(function login_validate() {
+
+			/*验证码输入框失去焦点*/
+			$(".photokey").blur(function() {
+				var code1 = $('input.photokey').val().toLowerCase();
+				var code2 = $(".phoKey").text().toLowerCase();
+				if(code1 != code2) {
+					$(this).addClass("errorC");
+					$(this).next().next().html("验证码输入错误！");
+					$(this).next().next().css("display", "block");
+				} else {
+					$(this).removeClass("errorC");
+					$(this).next().next().empty();
+					$(this).addClass("checkedN");
+				}
+			})
+		})();
+	});
+
+	//验证码结束
+	//	表单验证,验证通过提交信息
+	function check_login() {
+		var msg = document.getElementsByClassName("msg");
+		if(document.getElementById("username").value == "") {
+			document.getElementById("username").focus();
+			return false;
+		} else if(document.getElementById("password").value == "") {
+			document.getElementById("password").focus();
+			return false;
+		}
+		return true;
+	}
+
+	function showTips(id, info) {
+		document.getElementById(id + "span").innerHTML = "<font color='gray'>" + info + "</font>";
+	}
+
+	function check(id, info) {
+		//1.获取用户输入的用户名数据
+		var uValue = document.getElementById(id).value;
+		//2.进行校验
+		if(uValue == "") {
+			document.getElementById(id + "span").innerHTML = "<font color='red'>" + info + "</font>";
+		} else {
+			document.getElementById(id + "span").innerHTML = "";
+		}
+	}
+</script>
 
