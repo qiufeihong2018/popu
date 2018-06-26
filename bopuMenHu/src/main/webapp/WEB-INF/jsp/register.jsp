@@ -16,6 +16,55 @@
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+  <!--   <script>
+
+
+            //验证成功
+            function verifySucc() {
+                isVertifySucc = true;
+                dragText.textContent = "验证通过";
+                dragText.style.color = "white";
+                dragHandler.setAttribute("class", "dragHandlerOkBg");
+
+                dragHandler.removeEventListener("mousedown", onDragHandlerMouseDown);
+                document.removeEventListener("mousemove", onDragHandlerMouseMove);
+                document.removeEventListener("mouseup", onDragHandlerMouseUp);
+
+                dragHandler.removeEventListener("touchstart", onDragHandlerMouseDown);
+                document.removeEventListener("touchmove", onDragHandlerMouseMove);
+                document.removeEventListener("touchend", onDragHandlerMouseUp);
+            };
+        }
+
+        function CheckInput(inputField,helpText){
+            if(inputField.value.length==0){
+                if(helpText!=null){
+                    helpText.innerHTML="不能为空，请输入";
+
+                }
+                return false;
+            }
+            else{
+                if(helpText!=null){
+                    helpText.innerHTML="";
+                    var text = $(inputField).val();
+                    $.ajax({
+                        type: "POST",
+                        url: "${pageContext.request.contextPath}/user/checkName",
+                        data: {account:text},
+                        dataType: "json",
+                        success: function (data) {
+                            if(data["status"]!=200){
+                                helpText.innerHTML=data["message"];
+                            }
+                        }
+                    });
+                }
+                return true;
+            }}
+
+    </script> -->
 </head>
 <body>
 <header class="clearfix"><!-- 头部 -->
@@ -50,18 +99,72 @@
     </nav>
 </header>
 
-<main class="content">
+<%-- <main class="content">
+    <form action="${pageContext.request.contextPath}/user/save" class="form1" method="post" name="form1" target="_blank" id="form1" onsubmit="return check_zhuce()">
+
+        <h1>注册</h1>
+
+
+        <input name="account"  type="text" onblur="CheckInput(this,document.getElementById('account'))"  class="form-control" placeholder="账号" >
+        <br>
+        <span id="account">${message}</span>
+        <br>
+
+        <input name="password" type="password" onblur="CheckInput(this,document.getElementById('password'))"  class="form-control" placeholder="密码" />
+        <br>
+        <span id="password"  ></span>
+        <br>
+        <input name="name" type="text" onblur="CheckInput(this,document.getElementById('name'))"  class="form-control" placeholder="姓名" >
+        <br>
+        <span id="name"  ></span>
+        <br>
+        <input name="phone" type="text" onblur="CheckInput(this,document.getElementById('phone'))"  class="form-control" placeholder="手机号"/>
+        <br>
+        <span id="phone"  ></span>
+        <br>
+        <input name="address" type="text"   class="form-control" placeholder="通讯地址" >
+        <br> <br>
+        <input name="work" type="text" onblur="CheckInput(this,document.getElementById('work'))"  class="form-control" placeholder="工作单位"/>
+        <br>
+        <span id="work"></span>
+        <br>
+        <input name="professional" type="text"   class="form-control" placeholder="职称" >
+        <br><br>
+        <input name="duties" type="text"   class="form-control" placeholder="职务"  />
+        <br> <br>
+        <input name="station" type="text"   class="form-control" placeholder="岗位" >
+        <br> <br>
+        <input name="email" type="text" onblur="CheckInput(this,document.getElementById('Email'))"  class="form-control" placeholder="邮箱"  />
+        <br>
+        <span id="email"></span>
+        <br>
+
+        <!--滑动验证-->
+        <div id="dragContainer">
+        <div id="dragBg"></div>
+        <div id="dragText"></div>
+        <div id="dragHandler" class="dragHandlerBg"></div>
+        </div>
+        <br>  <br>
+        <input id="btnChuang" type="submit" class="btn-success" value="创建账号"  />
+        <br>  <br>
+        <div class="zhu">
+            <input type="button" class="btn-link" value="登录"/>
+        </div>
+    </form>
+</main> --%>
+		<main class="content">
 			<br>
 			<div id="biaodan">
 				<!--	<form action="" class="form1" method="post" name="form1" target="_blank" id="form1" >-->
-			  <form action="${pageContext.request.contextPath}/user/save" class="form1" method="post" name="form1" target="_blank" id="form1" onsubmit="return check_zhuce()">
+				<form action="主页.html" class="form1" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
 					<br> <br> <br>
 					<h1>注册</h1>
 
 					<!--账号-->
 					<input id="account" name="account" type="text" class="form-control" placeholder="账号" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
 					<br>
-					<span id="accountspan" class="msg" style="margin-left: -200px;">${message}</span>
+					<span id="accountspan" class="msg" style="margin-left: -200px;"></span>
 					<br>
 					<!--密码-->
 
@@ -126,10 +229,10 @@
 				</form>
 			</div>
 		</main>
-
 </body>
 
 </html>
+
 <style type="text/css">
 	/*输入验证码*/
 	
@@ -265,16 +368,16 @@
 </style>
 
 <script>
-		//文本框默认提示文字  
+	//文本框默认提示文字  
 	function textFocus(el) {
-		if(el.defaultValue == el.value) {
+		if (el.defaultValue == el.value) {
 			el.value = '';
 			el.style.color = '#333';
 		}
 	}
 
 	function textBlur(el) {
-		if(el.value == '') {
+		if (el.value == '') {
 			el.value = el.defaultValue;
 			el.style.color = '#999';
 		}
@@ -285,25 +388,28 @@
 		/*生成验证码*/
 		(function create_code() {
 			function shuffle() {
-				var arr = ['1', 'r', 'Q', '4', 'S', '6', 'w', 'u', 'D', 'I', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+				var arr = [ '1', 'r', 'Q', '4', 'S', '6', 'w', 'u', 'D', 'I', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
 					'q', '2', 's', 't', '8', 'v', '7', 'x', 'y', 'z', 'A', 'B', 'C', '9', 'E', 'F', 'G', 'H', '0', 'J', 'K', 'L', 'M', 'N', 'O', 'P', '3', 'R',
 					'5', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
 				];
 				return arr.sort(function() {
-					return(Math.random() - .5);
+					return (Math.random() - .5);
 				});
-			};
+			}
+			;
 			shuffle();
 
 			function show_code() {
 				var ar1 = '';
 				var code = shuffle();
-				for(var i = 0; i < 4; i++) {
+				for (var i = 0; i < 4; i++) {
 					ar1 += code[i];
-				};
+				}
+				;
 				//var ar=ar1.join('');  
 				$(".phoKey").text(ar1);
-			};
+			}
+			;
 			show_code();
 			$(".phoKey").click(function() {
 				show_code();
@@ -317,7 +423,7 @@
 			$(".photokey").blur(function() {
 				var code1 = $('input.photokey').val().toLowerCase();
 				var code2 = $(".phoKey").text().toLowerCase();
-				if(code1 != code2) {
+				if (code1 != code2) {
 					$(this).addClass("errorC");
 					$(this).next().next().html("验证码输入错误！");
 					$(this).next().next().css("display", "block");
@@ -331,27 +437,27 @@
 	});
 
 	//验证码结束
-	
+
 
 	//	表单验证,验证通过提交信息
 	function check_login() {
 		var msg = document.getElementsByClassName("msg");
-		if(document.getElementById("account").value == "") {
+		if (document.getElementById("account").value == "") {
 			document.getElementById("account").focus();
 			return false;
-		} else if(document.getElementById("password").value == "") {
+		} else if (document.getElementById("password").value == "") {
 			document.getElementById("password").focus();
 			return false;
-		} else if(document.getElementById("name").value == "") {
+		} else if (document.getElementById("name").value == "") {
 			document.getElementById("name").focus();
 			return false;
-		} else if(document.getElementById("phone").value == "") {
+		} else if (document.getElementById("phone").value == "") {
 			document.getElementById("phone").focus();
 			return false;
-		} else if(document.getElementById("work").value == "") {
+		} else if (document.getElementById("work").value == "") {
 			document.getElementById("work").focus();
 			return false;
-		} else if(document.getElementById("Email").value == "") {
+		} else if (document.getElementById("Email").value == "") {
 			document.getElementById("Email").focus();
 			return false;
 		}
@@ -367,7 +473,7 @@
 		//1.获取用户输入的用户名数据
 		var uValue = document.getElementById(id).value;
 		//2.进行校验
-		if(uValue == "") {
+		if (uValue == "") {
 			document.getElementById(id + "span").innerHTML = "<font color='red'>" + info + "</font>";
 		} else {
 			document.getElementById(id + "span").innerHTML = "";
