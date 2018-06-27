@@ -18,7 +18,84 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
     <script src="/layui/layui.js" charset="utf-8"></script>
-    <style type="text/css">
+   
+</head>
+
+<body class="gray-bg">
+<header class="clearfix">
+    <!-- 头部 -->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <a class="navbar-brand" href="主页.html">温州市波普大数据研究院</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="私信界面.html">私信</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
+                            <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="content">
+    <div id="biaodan">
+      <h1>头像修改</h1>
+        <hr />
+        <div class="layui-upload">
+            <form action="${pageContext.request.contextPath}/user/picChange" method="post">
+                <input type="hidden" name="id" value="${user.id}">
+                <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
+                <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
+                <div class="layui-upload-list" >
+                    <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
+                    <div style = "text-align:right;margin-top: -20px">
+                 	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
+                    </div>
+                    <p id="demoText"></p>
+                </div>
+            </form>
+        </div>
+        <hr />
+        <div class="picDiv">
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/1.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/2.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/3.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/4.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/5.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/6.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/7.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/8.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/9.jpg">&nbsp;
+            <img class="sysPic" src="${pageContext.request.contextPath}/img/10.jpg">&nbsp;
+        </div>
+    </div>
+</main>
+
+</body>
+
+</html>
+ <style type="text/css">
         /*背景色*/
 
         .gray-bg,
@@ -212,79 +289,3 @@
     //    ------------
 
     </script>
-</head>
-
-<body class="gray-bg">
-<header class="clearfix">
-    <!-- 头部 -->
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-                <a class="navbar-brand" href="主页.html">温州市波普大数据研究院</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="私信界面.html">私信</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人中心 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
-                            <li><a href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main class="content">
-    <div id="biaodan">
-      <h1>头像修改</h1>
-        <hr />
-        <div class="layui-upload">
-            <form action="${pageContext.request.contextPath}/user/picChange" method="post">
-                <input type="hidden" name="id" value="${user.id}">
-                <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
-                <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
-                <div class="layui-upload-list" >
-                    <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
-                    <div style = "text-align:right;margin-top: -20px">
-                 	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
-                    </div>
-                    <p id="demoText"></p>
-                </div>
-            </form>
-        </div>
-        <hr />
-        <div class="picDiv">
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/1.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/2.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/3.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/4.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/5.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/6.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/7.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/8.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/9.jpg">&nbsp;
-            <img class="sysPic" src="${pageContext.request.contextPath}/img/10.jpg">&nbsp;
-        </div>
-    </div>
-</main>
-
-</body>
-
-</html>
