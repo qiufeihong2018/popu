@@ -12,7 +12,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DengLu</title>
 <link rel="stylesheet"
 	href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -69,29 +68,29 @@
 				<input id="account" readonly="readonly" value="${user.account}"
 					type="text" class="form-control" placeholder="账号"
 					onfocus="showTips('account','账号必填!')"
-					onblur="check('account','账号不能为空！')" disabled="disabled"> <br> <span
-					id="accountspan" style="margin-left: -200px;"></span> <br>
+					onblur="check('account','账号不能为空！')" disabled="disabled"> <br>
+				<span id="accountspan" style="margin-left: -200px;"></span> <br>
 				<!--姓名-->
 				<label>姓名</label> <input id="name" readonly="readonly"
 					value="${user.name}" type="text" class="form-control"
 					placeholder="姓名" onfocus="showTips('name','姓名必填!')"
-					onblur="check('name','姓名不能为空！')" disabled="disabled"> <br> <span
-					id="namespan" style="margin-left: -200px;"></span> <br>
+					onblur="check('name','姓名不能为空！')" disabled="disabled"> <br>
+				<span id="namespan" style="margin-left: -200px;"></span> <br>
 				<!--手机号-->
-				<label style="margin-left: -14px;">手机号</label> <input id="phone" name="phone"
-					value="${user.phone}" type="text" placeholder="手机号"
+				<label style="margin-left: -14px;">手机号</label> <input id="phone"
+					name="phone" value="${user.phone}" type="text" placeholder="手机号"
 					class="form-control" onfocus="showTips('phone','手机必填!')"
 					onblur="check('phone','手机不能为空！')"> <br> <span
 					id="phonespan" style="margin-left: -200px;"></span> <br>
 				<!--通讯地址-->
-				<label style="margin-left: -27px;">通讯地址</label> <input name="address" value="${user.address}"
-					type="text" class="form-control" placeholder="通讯地址"> <br>
-				<br>
+				<label style="margin-left: -27px;">通讯地址</label> <input
+					name="address" value="${user.address}" type="text"
+					class="form-control" placeholder="通讯地址"> <br> <br>
 
 				<!--工作单位-->
-				<label style="margin-left: -27px;">工作单位</label> <input id="work" value="${user.work}"
-					name="work" type="text" class="form-control" placeholder="工作单位 "
-					onfocus="showTips( 'work', '工作单位必填!') "
+				<label style="margin-left: -27px;">工作单位</label> <input id="work"
+					value="${user.work}" name="work" type="text" class="form-control"
+					placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') "
 					onblur="check( 'work', '工作单位不能为空！') "> <br> <span
 					id="workspan" style="margin-left: -170px; "></span> <br>
 				<!--职称-->
@@ -145,10 +144,26 @@ header .navbar-brand {
 .navbar-default .navbar-nav>li>a {
 	color: #fff !important;
 }
+/* 个人中心样式 */
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover {
+    color: #555;
+    background-color: #1572DD;
+}
+/* 私信和个人中心点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #fff;
+}
+/* 3修改点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: #fff;
+    background-color: transparent;
+}
 
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
-	{
-	color: #eee !important;
+/* 大屏下拉蓝色 */
+
+.navbar-nav > li > .dropdown-menu {
+ 
+    background-color: #1572DD;
 }
 /*中间内容*/
 .content {
@@ -181,84 +196,11 @@ header .navbar-brand {
 	height: 900px;
 	background-color: white;
 }
+
 </style>
 
 <script>
-	window.onload = function() {
-		var dragContainer = document.getElementById("dragContainer");
-		var dragBg = document.getElementById("dragBg");
-		var dragText = document.getElementById("dragText");
-		var dragHandler = document.getElementById("dragHandler");
-
-		//滑块最大偏移量
-		var maxHandlerOffset = dragContainer.clientWidth - dragHandler.clientWidth;
-		//是否验证成功的标记
-		var isVertifySucc = false;
-		initDrag();
-
-		function initDrag() {
-			dragText.textContent = "拖动滑块验证";
-			dragHandler.addEventListener("mousedown", onDragHandlerMouseDown);
-
-			dragHandler.addEventListener("touchstart", onDragHandlerMouseDown);
-		}
-
-		function onDragHandlerMouseDown(event) {
-			document.addEventListener("mousemove", onDragHandlerMouseMove);
-			document.addEventListener("mouseup", onDragHandlerMouseUp);
-
-			document.addEventListener("touchmove", onDragHandlerMouseMove);
-			document.addEventListener("touchend", onDragHandlerMouseUp);
-		}
-
-		function onDragHandlerMouseMove(event) {
-			/*
-            html元素不存在width属性,只有clientWidth
-            offsetX是相对当前元素的,clientX和pageX是相对其父元素的
-
-            touches：表示当前跟踪的触摸操作的touch对象的数组。
-            targetTouches：特定于事件目标的Touch对象的数组。
-        　　changedTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
-            */
-			var left = (event.clientX || event.changedTouches[0].clientX) - dragHandler.clientWidth / 2;
-			if (left < 0) {
-				left = 0;
-			} else if (left > maxHandlerOffset) {
-				left = maxHandlerOffset;
-				verifySucc();
-			}
-			dragHandler.style.left = left + "px";
-			dragBg.style.width = dragHandler.style.left;
-		}
-
-		function onDragHandlerMouseUp(event) {
-			document.removeEventListener("mousemove", onDragHandlerMouseMove);
-			document.removeEventListener("mouseup", onDragHandlerMouseUp);
-
-			document.removeEventListener("touchmove", onDragHandlerMouseMove);
-			document.removeEventListener("touchend", onDragHandlerMouseUp);
-
-			dragHandler.style.left = 0;
-			dragBg.style.width = 0;
-		}
-
-		//验证成功
-		function verifySucc() {
-			isVertifySucc = true;
-			dragText.textContent = "验证通过";
-			dragText.style.color = "white";
-			dragHandler.setAttribute("class", "dragHandlerOkBg");
-
-			dragHandler.removeEventListener("mousedown", onDragHandlerMouseDown);
-			document.removeEventListener("mousemove", onDragHandlerMouseMove);
-			document.removeEventListener("mouseup", onDragHandlerMouseUp);
-
-			dragHandler.removeEventListener("touchstart", onDragHandlerMouseDown);
-			document.removeEventListener("touchmove", onDragHandlerMouseMove);
-			document.removeEventListener("touchend", onDragHandlerMouseUp);
-		}
-		;
-	}
+	
 	//
 	//			function CheckInput(inputField, helpText) {
 	//				if(inputField.value.length == 0) {
