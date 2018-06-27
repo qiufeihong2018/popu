@@ -66,7 +66,7 @@
 
     </script> -->
 </head>
-<body>
+<body class="gray-bg">
 <header class="clearfix"><!-- 头部 -->
 
     <nav class="navbar navbar-default" role="navigation">

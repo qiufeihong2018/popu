@@ -17,7 +17,7 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-<body>
+<body class="gray-bg">
 
 <header class="clearfix"><!-- 头部 -->
 
@@ -152,7 +152,7 @@
 		font-size: 20px;
 	}
 	/*验证码结束*/
-	/*背景色*/
+		/*背景色*/
 	
 	.gray-bg,
 	.btn-link {
