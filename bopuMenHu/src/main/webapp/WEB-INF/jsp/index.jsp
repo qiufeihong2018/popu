@@ -332,7 +332,7 @@ header .navbar-brand {
 	width: 80%;
 }
 
-@media screen and (min-width: 320px) and (max-width: 500px) {
+@media screen and (max-width: 500px) {
 	.cen {
 		width: 90%;
 	}
@@ -357,11 +357,30 @@ header .navbar-brand {
 	height: 500px;
 }
 
-.carousel-inner img {
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
+	 .thumbnail>img {
+	display: block;
 	width: 100%;
-	height: 500px !important;
+	height: 500px;
 }
 
+@media screen and (max-width: 500px) {
+	.carousel-inner {
+		height: 300px;
+	}
+	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
+	 .thumbnail>img {
+		display: block;
+		width: 100%;
+		height: 300px;
+	}
+}
+
+/* .carousel-inner img {
+		width: 100%;
+		height: 300px !important;
+ 	} */
+}
 /*轮播图高度*/
 /*     .aa{
                     height: 500px;
