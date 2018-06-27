@@ -137,6 +137,7 @@
             background-color: #1572DD;
             height: 40px;
             width: 296px;
+             border-color: #1572DD;
         }
 
         /*表单背景*/

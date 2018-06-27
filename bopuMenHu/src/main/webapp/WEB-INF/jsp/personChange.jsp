@@ -293,7 +293,7 @@
             <span id="Emailspan" style="margin-left: -200px;"></span>
             <br>
 
-            <input type="submit" id="btnChuang" class="btn-success" value="确定" onclick="alert('修改成功')" />
+            <input type="submit" id="btnChuang" class="btn btn-success" value="确定" onclick="alert('修改成功')" />
 
             <br> <br>
         </form>

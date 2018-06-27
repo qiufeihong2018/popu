@@ -77,7 +77,7 @@
             color: white;
             background-color: #1572DD;
             height: 40px;
-            width: 296px;
+            width: 196px;
             border-color: #1572DD;
         }
         /*验证文字样式*/
@@ -259,11 +259,11 @@
             <form action="${pageContext.request.contextPath}/user/picChange" method="post">
                 <input type="hidden" name="id" value="${user.id}">
                 <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
-                <button type="button" class="layui-btn" id="test1">上传图片</button><br><br>
+                <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
                 <div class="layui-upload-list" >
                     <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
                     <div style = "text-align:right;margin-top: -20px">
-                    <button type="submit" class="layui-btn" style="margin-right: 5%;margin-top: 0px;" >确定</button>
+                 	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
                     </div>
                     <p id="demoText"></p>
                 </div>

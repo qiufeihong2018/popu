@@ -635,12 +635,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
     padding: 40px 0px 40px 0px;
 }
 
-.navbar-toggle {
-    background-color: #1ab394;
-    color: #fff;
-    padding: 6px 12px;
-    font-size: 14px;
-}
+
 
 .top-navigation .navbar-nav .open .dropdown-menu > li > a,
 .top-navigation .navbar-nav .open .dropdown-menu .dropdown-header {
@@ -7020,7 +7015,7 @@ body.body-small.mini-navbar .footer.fixed {
     margin: 0 0 0 0;
 }
 
-body.rtls.top-navigation .navbar-toggle {
+body.rtls.top-navigation{
     float: right;
     margin-left: 15px;
     margin-right: 15px;
@@ -7783,9 +7778,7 @@ body.skin-3 {
     margin: 0 15px 0 0;
 }
 
-.navbar-toggle {
-    background-color: #fff;
-}
+
 
 .J_menuTab {
     -webkit-transition: all .3s ease-out 0s;

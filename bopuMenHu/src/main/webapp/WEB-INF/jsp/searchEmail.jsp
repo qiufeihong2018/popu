@@ -51,6 +51,16 @@
         .navbar-default .navbar-nav > li > a:hover {
             color: #eee !important;
         }
+        	/*获取验证码*/
+	
+	#huoQu {
+		color: white;
+		background-color: #1572DD;
+		height: 40px;
+		border-color: #1572DD;
+		border-radius: 3px;
+		width: 110px;
+	}
         /*中间内容*/
 
         .content {
@@ -137,6 +147,7 @@
             background-color: #1572DD;
             height: 40px;
             width: 296px;
+                    border-color: #1572DD;
         }
 
         /*表单背景*/
@@ -362,7 +373,7 @@
             <br>
             <span id="email">${emailMsg}</span>
             <br>
-            <input type="text" name="code" class="form-control"  placeholder="输入邮箱验证码" />
+            <input type="text" name="code" class="form-control" style="width:auto" placeholder="输入邮箱验证码" />
             <a href="#"><input id="huoQu" onclick="sendCode()" class="btn btn-success" value="获取验证码" /></a>
             <br>
             <span id="code">${codeMsg}</span>

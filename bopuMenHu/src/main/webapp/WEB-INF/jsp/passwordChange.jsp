@@ -264,7 +264,7 @@
             <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
             <br>
             <br>
-            <input id="btnChuang" type="submit" class="btn-success" value="确定" />
+          	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
             <br> <br>
         </form>
     </div>

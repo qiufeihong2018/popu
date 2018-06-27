@@ -136,6 +136,7 @@
             color: white;
             background-color: #1572DD;
             height: 40px;
+                    border-color: #1572DD;
             width: 296px;
         }
 
