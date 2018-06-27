@@ -74,7 +74,7 @@ header .navbar-brand {
 
 /*中间宽度*/
 .cen {
-	width: 65%;
+	width: 80%;
 }
 
 @media screen and (min-width: 320px) and (max-width: 500px) {
@@ -144,8 +144,9 @@ header .navbar-brand {
 	color: white;
 	background-color: #1572DD;
 	height: 40px;
-	width: 296px;
+	width: 218px;
 	border-color: #1572DD;
+	border-radius: 3px;
 }
 
 /*滑动栏隐藏*/
@@ -390,9 +391,9 @@ header .navbar-brand {
 			<h3>置顶文章1</h3>
 			<hr>
 			<br>
-			<div id="top2" class="row" >
+			<div id="top2" class="row">
 				<div class="col-sm-6 col-md-4">
-					<div id="pig1" class="thumbnail" >
+					<div id="pig1" class="thumbnail">
 						<a href="查看文章.html"><img
 							src="${pageContext.request.contextPath}/picture/picture1.jpg"
 							alt="这是图">
@@ -450,8 +451,13 @@ header .navbar-brand {
 								class="list-group-item">测试文章</a>
 						</div>
 						<hr style="border:5px solid #DDDDDD" />
-						<a href="文章列表.html"><input id="btnChuang" type="submit"
-							class="btn-success" value="查看更多" /></a>
+						<div class="row">
+							<div class="col-md-2 col-sm-10">
+								<a href="文章列表.html"><input id="btnChuang" type="submit"
+									class="btn btn-success" value="查看更多" /></a>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
