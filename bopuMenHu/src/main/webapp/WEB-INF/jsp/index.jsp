@@ -18,265 +18,7 @@
 	href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-/*背景色*/
-.gray-bg {
-	background-color: #f3f3f4;
-}
 
-/*左右固定*/
-html, body {
-	overflow-x: hidden;
-}
-
-/*头部样式*/
-header .navbar-default {
-	background-color: #1572DD;
-}
-
-header .navbar-brand {
-	color: #fff !important;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #fff !important;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: #fff !important;
-}
-
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
-	{
-	color: #eee !important;
-}
-
-.content {
-	min-height: calc(100vh - 100px);
-}
-
-/*底部栏*/
-.footer {
-	background-color: #1572DD;
-	height: 150px;
-	padding: 30px;
-	display: flex;
-	/*使子项目水平居中*/
-	justify-content: center;
-	/*使子项目垂直居中*/
-	align-items: center;
-}
-
-.footer span {
-	color: #fff;
-	font-size: 16px;
-}
-
-/*中间宽度*/
-.cen {
-	width: 80%;
-}
-
-@media screen and (min-width: 320px) and (max-width: 500px) {
-	.cen {
-		width: 90%;
-	}
-}
-
-/*轮播图*/
-.navbar>.container, .navbar>.container-fluid {
-	display: block;
-}
-
-.footer span {
-	color: #fff;
-	font-size: 16px;
-}
-
-/*轮播图*/
-.navbar>.container, .navbar>.container-fluid {
-	display: block;
-}
-
-.carousel-inner {
-	height: 500px;
-}
-
-.carousel-inner img {
-	width: 100%;
-	height: 500px !important;
-}
-
-/*轮播图高度*/
-/*     .aa{
-                    height: 500px;
-                    width: 100%;
-                } */
-/*文章列表*/
-#list {
-	justify-content: space-between;
-}
-
-.div_celebrity_list {
-	width: 100%;
-	overflow-y: scroll;
-	padding: 30px;
-}
-
-.list-group-item {
-	border-color: black;
-	border-left-color: white;
-	border-right-color: white;
-}
-
-/*第一行上面变白*/
-#list1 {
-	border-color: white;
-}
-
-/*第八行上面变白*/
-#list8 {
-	border-bottom-color: white;
-}
-
-/*查看更多*/
-#btnChuang {
-	color: white;
-	background-color: #1572DD;
-	height: 40px;
-	width: 218px;
-	border-color: #1572DD;
-	border-radius: 3px;
-}
-
-/*滑动栏隐藏*/
-#div1 {
-	overflow: hidden;
-}
-
-#div2 {
-	overflow: hidden;
-}
-
-#div3 {
-	overflow-y: inherit;
-}
-/*高度*/
-#pig1, #pig2, #pig3 {
-	height: 400px;
-}
-</style>
-<script>
-        $(document).ready(function () {
-            $("#myCarousel").carousel({
-                interval: 1000
-            });
-        });
-        $(document).ready(function () {
-
-            //$("#div4").height($("#div2").height());
-        });
-
-        $(document).ready(function () {
-            $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
-                var text1="";
-                var text2="";
-                var ol="";
-                var i=0;
-                $.each(data["obj"], function (index, val) {
-                    if(val["categoryId"]==2){//轮播图
-                        if(i==0){//第一次
-                            ol+='<li data-target="#myCarousel" data-slide-to="'+index+'" class="active"></li>';
-                            text1+='<div class="item active">' +
-                                '                    <img  class="aa"' +
-                                '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
-                                '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
-                                '                   alt="" >' +
-                                '                </div>';
-                                i++;
-                        }else{
-                        ol+='<li data-target="#myCarousel" data-slide-to="'+index+'"></li>';
-                        text1+='<div class="item">' +
-                            '                    <img  class="aa"' +
-                            '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
-                            '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
-                            '                   alt="" >' +
-                            '                </div>';
-                        }
-                    }else if(val["categoryId"]==1){//顶置文章
-                        text2+='<div class="col-sm-6 col-md-4">' +
-                            '                <div class="thumbnail" style="height:400px">' +
-                            '                    <a href="${pageContext.request.contextPath}'+val["url"]+'"><img' +
-                            '                            src="${pageContext.request.contextPath}'+val["pic"]+'"' +
-                            '                            >' +
-                            '                        <div class="caption">' +
-                            '                            <h3>'+val["title"]+'</h3>' +
-                            '                            <p>一些示例文本。一些示例文本。</p>' +
-                            '\n' +
-                            '                        </div>' +
-                            '                    </a>' +
-                            '                </div>' +
-                            '            </div>';
-                    }
-                });
-                $("#top1").html(text1);
-                $("#top2").html(text2);
-            });
-        })
-
-        $(document).ready(function () {
-            // 最新文章div块
-            $.post("${pageContext.request.contextPath}/article/newArticle", function (data) {
-                // 一共显示 8 条数据 访问URL /article/show?articleId=1
-                var text = "";
-                $.each(data["obj"], function (index, val) {
-                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
-                });
-                console.log(text);
-            $("#showNews").html(text);
-            //alert(data["obj"][0]["title"]);    // 文章标题
-            //alert(data["obj"][0]["id"]);    // 文章序号
-        });
-        });
-        <c:if test="${user != null}">
-        $(document).ready(function () {
-            // 内部通知div块
-            $.post("${pageContext.request.contextPath}/article/newArticle", {
-                category: 4
-            }, function (data) {
-                // 一共显示 8 条数据
-                var text = "";
-                $.each(data["obj"], function (index, val) {
-                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
-                });
-                $("#innerNews").html(text);
-                //alert(data["obj"][0]["title"]);    // 文章标题
-                //alert(data["obj"][0]["id"]);    // 文章序号
-            });
-        });
-        $(document).ready(function () {
-            $("#inner").show();
-            // 项目div块experiment
-            $.post("${pageContext.request.contextPath}/article/projectContent", {
-            }, function (data) {
-                console.log(data);
-                var text = "";
-                $.each(data["obj"]["rows"], function (index, val) {
-                    text+='项目名称：'+val["title"]+'<br>' +
-                        '  项目简介：'+val["content"]+'<br>' +
-                        '  作者成员：'+val["author"]+'<br>' +
-                        '  上限日期：'+val["limitdata"]+'<<br>' +
-                        '  <a href=${pageContext.request.contextPath}"'+val["look"]+'">进入查看</a>' +
-                        '  <hr style="border:5px solid #DDDDDD;"/>';
-                });
-                console.log(text);
-                $("#experiment").html(text);
-                $("#div4").height($("#innerNews").height());
-            });
-        });
-        </c:if>
-
-    </script>
 </head>
 
 <body class="gray-bg">
@@ -531,3 +273,262 @@ header .navbar-brand {
 </body>
 
 </html>
+<style type="text/css">
+/*背景色*/
+.gray-bg {
+	background-color: #f3f3f4;
+}
+
+/*左右固定*/
+html, body {
+	overflow-x: hidden;
+}
+
+/*头部样式*/
+header .navbar-default {
+	background-color: #1572DD;
+}
+
+header .navbar-brand {
+	color: #fff !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fff !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff !important;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
+	{
+	color: #eee !important;
+}
+
+.content {
+	min-height: calc(100vh - 100px);
+}
+
+/*底部栏*/
+.footer {
+	background-color: #1572DD;
+	height: 150px;
+	padding: 30px;
+	display: flex;
+	/*使子项目水平居中*/
+	justify-content: center;
+	/*使子项目垂直居中*/
+	align-items: center;
+}
+
+.footer span {
+	color: #fff;
+	font-size: 16px;
+}
+
+/*中间宽度*/
+.cen {
+	width: 80%;
+}
+
+@media screen and (min-width: 320px) and (max-width: 500px) {
+	.cen {
+		width: 90%;
+	}
+}
+
+/*轮播图*/
+.navbar>.container, .navbar>.container-fluid {
+	display: block;
+}
+
+.footer span {
+	color: #fff;
+	font-size: 16px;
+}
+
+/*轮播图*/
+.navbar>.container, .navbar>.container-fluid {
+	display: block;
+}
+
+.carousel-inner {
+	height: 500px;
+}
+
+.carousel-inner img {
+	width: 100%;
+	height: 500px !important;
+}
+
+/*轮播图高度*/
+/*     .aa{
+                    height: 500px;
+                    width: 100%;
+                } */
+/*文章列表*/
+#list {
+	justify-content: space-between;
+}
+
+.div_celebrity_list {
+	width: 100%;
+	overflow-y: scroll;
+	padding: 30px;
+}
+
+.list-group-item {
+	border-color: black;
+	border-left-color: white;
+	border-right-color: white;
+}
+
+/*第一行上面变白*/
+#list1 {
+	border-color: white;
+}
+
+/*第八行上面变白*/
+#list8 {
+	border-bottom-color: white;
+}
+
+/*查看更多*/
+#btnChuang {
+	color: white;
+	background-color: #1572DD;
+	height: 40px;
+	width: 218px;
+	border-color: #1572DD;
+	border-radius: 3px;
+}
+
+/*滑动栏隐藏*/
+#div1 {
+	overflow: hidden;
+}
+
+#div2 {
+	overflow: hidden;
+}
+
+#div3 {
+	overflow-y: inherit;
+}
+/*高度*/
+#pig1, #pig2, #pig3 {
+	height: 400px;
+}
+</style>
+<script>
+        $(document).ready(function () {
+            $("#myCarousel").carousel({
+                interval: 4000
+            });
+        });
+        $(document).ready(function () {
+
+            //$("#div4").height($("#div2").height());
+        });
+
+        $(document).ready(function () {
+            $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
+                var text1="";
+                var text2="";
+                var ol="";
+                var i=0;
+                $.each(data["obj"], function (index, val) {
+                    if(val["categoryId"]==2){//轮播图
+                        if(i==0){//第一次
+                            ol+='<li data-target="#myCarousel" data-slide-to="'+index+'" class="active"></li>';
+                            text1+='<div class="item active">' +
+                                '                    <img  class="aa"' +
+                                '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
+                                '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
+                                '                   alt="" >' +
+                                '                </div>';
+                                i++;
+                        }else{
+                        ol+='<li data-target="#myCarousel" data-slide-to="'+index+'"></li>';
+                        text1+='<div class="item">' +
+                            '                    <img  class="aa"' +
+                            '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
+                            '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
+                            '                   alt="" >' +
+                            '                </div>';
+                        }
+                    }else if(val["categoryId"]==1){//顶置文章
+                        text2+='<div class="col-sm-6 col-md-4">' +
+                            '                <div class="thumbnail" style="height:400px">' +
+                            '                    <a href="${pageContext.request.contextPath}'+val["url"]+'"><img' +
+                            '                            src="${pageContext.request.contextPath}'+val["pic"]+'"' +
+                            '                            >' +
+                            '                        <div class="caption">' +
+                            '                            <h3>'+val["title"]+'</h3>' +
+                            '                            <p>一些示例文本。一些示例文本。</p>' +
+                            '\n' +
+                            '                        </div>' +
+                            '                    </a>' +
+                            '                </div>' +
+                            '            </div>';
+                    }
+                });
+                $("#top1").html(text1);
+                $("#top2").html(text2);
+            });
+        })
+
+        $(document).ready(function () {
+            // 最新文章div块
+            $.post("${pageContext.request.contextPath}/article/newArticle", function (data) {
+                // 一共显示 8 条数据 访问URL /article/show?articleId=1
+                var text = "";
+                $.each(data["obj"], function (index, val) {
+                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
+                });
+                console.log(text);
+            $("#showNews").html(text);
+            //alert(data["obj"][0]["title"]);    // 文章标题
+            //alert(data["obj"][0]["id"]);    // 文章序号
+        });
+        });
+        <c:if test="${user != null}">
+        $(document).ready(function () {
+            // 内部通知div块
+            $.post("${pageContext.request.contextPath}/article/newArticle", {
+                category: 4
+            }, function (data) {
+                // 一共显示 8 条数据
+                var text = "";
+                $.each(data["obj"], function (index, val) {
+                    text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
+                });
+                $("#innerNews").html(text);
+                //alert(data["obj"][0]["title"]);    // 文章标题
+                //alert(data["obj"][0]["id"]);    // 文章序号
+            });
+        });
+        $(document).ready(function () {
+            $("#inner").show();
+            // 项目div块experiment
+            $.post("${pageContext.request.contextPath}/article/projectContent", {
+            }, function (data) {
+                console.log(data);
+                var text = "";
+                $.each(data["obj"]["rows"], function (index, val) {
+                    text+='项目名称：'+val["title"]+'<br>' +
+                        '  项目简介：'+val["content"]+'<br>' +
+                        '  作者成员：'+val["author"]+'<br>' +
+                        '  上限日期：'+val["limitdata"]+'<<br>' +
+                        '  <a href=${pageContext.request.contextPath}"'+val["look"]+'">进入查看</a>' +
+                        '  <hr style="border:5px solid #DDDDDD;"/>';
+                });
+                console.log(text);
+                $("#experiment").html(text);
+                $("#div4").height($("#innerNews").height());
+            });
+        });
+        </c:if>
+
+    </script>

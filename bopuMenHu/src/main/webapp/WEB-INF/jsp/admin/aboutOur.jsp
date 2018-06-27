@@ -32,7 +32,7 @@
 							<div class="file-manager">
 								<p>邮箱：<input id="in1" type="text"  class="form-control" /></p>
 								<p>电话：<input id="in1" type="text"   class="form-control"/></p>
-								<button class="btn btn-primary btn-block">确定</button>
+								<button class="btn btn-success btn-block">确定</button>
 							</div>
 						</div>
 					</div>
