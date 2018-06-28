@@ -308,7 +308,7 @@
             $.each(data["obj"], function (index, val) {
                 var msg = "123";
                 if(userId!=0){
-                    msg='<a href="#">删除</a>';
+                    msg='<a href="${pageContext.request.contextPath}/comment/del?id='+val["comment"]["id"]+'&articleId=${article.id}">删除</a>';
                 }
 
                 // 每次5条

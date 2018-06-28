@@ -41,11 +41,11 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">简介</a></li>
 						<li class="divider"></li>
-						<li><a href="#">最近活动</a></li>
+						<li><a href="${pageContext.request.contextPath}/article/detailList?type=1">最近活动</a></li>
 						<li class="divider"></li>
-						<li><a href="#">研究成果</a></li>
+						<li><a href="${pageContext.request.contextPath}/article/detailList?type=2">研究成果</a></li>
 						<li class="divider"></li>
-						<li><a href="#">业内动态</a></li>
+						<li><a href="${pageContext.request.contextPath}/article/detailList?type=3">业内动态</a></li>
 						<li class="divider"></li>
 						<li><a href="#">联系我们</a></li>
 						<c:if test="${user!=null}">
@@ -380,7 +380,7 @@ header .navbar-brand {
 		width: 100%;
 		height: 300px !important;
  	} */
-}
+/*}*/
 /*轮播图高度*/
 /*     .aa{
                     height: 500px;
