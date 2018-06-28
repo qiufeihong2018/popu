@@ -53,8 +53,8 @@ public class CommentController {
             pb.setPageSize(5);
 
             // 根据文章id查找评论 返回List<Comment> 转换为json 发送给前端
-            List<Comment> comments = commentService.findListByArticleId(id,pb);
-            List<CommentVo> list =commentService.findUsers(comments);
+            List<Comment> comments = commentService.findListByArticleId(id, pb);
+            List<CommentVo> list = commentService.findUsers(comments);
             BoPuResult boPuResult = new BoPuResult(200, "success");
             boPuResult.setObj(list);
             return boPuResult;
@@ -78,6 +78,7 @@ public class CommentController {
             return BoPuResult.build(200, "error");
         }
     }
+
 
 
     public CommentService getCommentService() {
