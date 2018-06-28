@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
+ <script
+	src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 </head>
 
 <body class="gray-bg">
@@ -64,7 +65,7 @@
             <br> <br> <br>
             <h1>个人中心</h1>
 
-            <!--账号-->
+          <%--   <!--账号-->
             <input type="hidden" name="id" value="${user.id}">
             <input id="oldPassword" name="oldPassword" type="text" class="form-control" placeholder="原密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
             <br>
@@ -77,8 +78,19 @@
             <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
             <br>
             <br>
+          	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" /> --%>
+          	  <!--账号-->
+            <input type="hidden" name="id" value="${user.id}">
+           	<label style="margin-left: -39px;">原密码</label> <input id="oldPassword" name="oldPassword" type="text" class="form-control" placeholder="原密码" /><br> <span for="oldPassword" style="margin-left: -192px;"></span> 
+            <br>
+            	<label style="margin-left: -39px;">新密码</label><input id="newPassword" name="newPassword" type="text" class="form-control" placeholder="新密码" /><br> <span for="newPassword" style="margin-left: -181px;"></span> 
+            <br>
+          
+                      	<label style="margin-left: -74px;">重复新密码</label>  <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" /><br> <span for="reNewPassword" style="margin-left: -159px;"></span> 
+            
+            <br>
           	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
-            <br> <br>
+            <br>
         </form>
     </div>
 </main>
@@ -165,6 +177,9 @@
             height: 900px;
             background-color: white;
         }
+        .error{
+        color:red;
+        }
     </style>
 
     <script>
@@ -187,7 +202,7 @@
         //			}
 
         //不为空验证
-        function showTips(id, info) {
+   /*      function showTips(id, info) {
             document.getElementById(id + "span").innerHTML = "<font color='gray'>" + info + "</font>";
         }
 
@@ -201,4 +216,54 @@
                 document.getElementById(id + "span").innerHTML = "";
             }
         }
+         */
+        $().ready(function() {
+
+		// 提交时验证表单
+		var validator = $("#form1").validate({
+			errorPlacement : function(error, element) {
+				// Append error within linked label
+				$(element)
+					.closest("form")
+					.find("span[for='" + element.attr("id") + "']")
+					.append(error);
+			},
+			errorElement : "span",
+			rules : {
+				"oldPassword" : {
+					"required" : true,
+					
+					
+				},
+				"newPassword" : {
+					"required" : true,
+						"minlength" : 11,
+				},
+				"reNewPassword" : {
+					"required" : true,
+					"equalTo" : "#newPassword"
+				}
+			},
+			messages : {
+				oldPassword : {
+					required : "密码不能为空",
+				
+				
+				},
+				newPassword : {
+					required : "新密码不能为空",
+					minlength : "不能少于11个字符",
+				},
+				reNewPassword : {
+					required : "重复新密码不能为空",
+					equalTo : "两次密码不相同"
+				}
+			}
+		})
+
+
+		$(".cancel").click(function() {
+			validator.resetForm();
+		});
+	});
     </script>

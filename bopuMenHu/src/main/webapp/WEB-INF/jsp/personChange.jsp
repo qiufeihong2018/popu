@@ -98,7 +98,7 @@
 				<!--手机号-->
 				<label style="margin-left: -14px;">手机号</label> <input id="phone"
 					name="phone" value="${user.phone}" type="text" placeholder="手机号"
-					class="form-control"><br> <span for="phone"></span> <br>
+					class="form-control" /><br> <span for="phone"></span> <br>
 
 				<!--通讯地址-->
 				<label style="margin-left: -27px;">通讯地址</label> <input

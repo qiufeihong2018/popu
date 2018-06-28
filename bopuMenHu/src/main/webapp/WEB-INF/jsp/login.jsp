@@ -16,10 +16,14 @@
 	href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- 腾讯验证码 -->
+<script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
 <%-- <!--     引入表单校验jquery插件 -->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
 <script src="js/jquery.validate.min.js" type="text/javascript"></script> --%>
+<script
+	src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
 </head>
 <body class="gray-bg">
 
@@ -57,13 +61,40 @@
 	<main class="content">
 		<div id="biaodan">
 			<form action="${pageContext.request.contextPath}/user/login"
-				method="post" name="form1" target="_blank" id="form1"
+				method="post" name="form1" target="_self" id="form1"
 				onSubmit="return check_login()">
 
 				<br> <br> <br> <br>
 				<h1>登录</h1>
+				<!--账号-->
+				<label style="margin-left: -111px;">手机/邮箱/用户名</label> <input
+					id="username" type="text" name="account" value="${account}"
+					class="form-control" placeholder="手机/邮箱/用户名"
+					onfocus="showTips('username','手机/邮箱/用户名必填！')"
+					onblur="check('username','手机/邮箱/用户名不能为空！')" /> <br> <span
+					class="msg" id="usernamespan" style="margin-left: -110px;">${fail}</span>
+				<br>
+				<!-- 	密码 -->
+				<label style="margin-left: -35px;">密码</label> <input id="password"
+					type="password" name="password" class="form-control"
+					placeholder="密码" onfocus="showTips('password','密码必填！')"
+					onblur="check('password','密码不能为空！')" /> <br> <span
+					class="msg" id="passwordspan" style="margin-left: -180px;"></span>
+				<br>
+				<%-- 	<input id="username" type="text" name="username" value="${account}"
+					class="form-control" placeholder="手机/邮箱/用户名" /> <br> <br>
+				<input name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码" />
+					<br>
+					<span id="password"></span>
 
-				<!--<input type="text" name="username" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="手机/邮箱/用户名" />-->
+				密码
+				<input id="password" type="password" name="password"
+					class="form-control" placeholder="密码"
+					onfocus="showTips('password','密码必填！')"
+					onblur="check('password','密码不能为空！')" /> <br> <span
+					class="msg" id="passwordspan" style="margin-left: -180px;"></span>
+				<br> --%>
+				<%-- 	<!--<input type="text" name="username" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="手机/邮箱/用户名" />-->
 
 				<!--<span id="username"></span>-->
 				<!--账号-->
@@ -73,8 +104,8 @@
 					onblur="check('username','手机/邮箱/用户名不能为空！')" /> <br> <span
 					class="msg" id="usernamespan" style="margin-left: -110px;">${fail}</span>
 				<br>
-			<%-- 	<input id="username" type="text" name="username" value="${account}"
-					class="form-control" placeholder="手机/邮箱/用户名" /> <br> <br> --%>
+				<input id="username" type="text" name="username" value="${account}"
+					class="form-control" placeholder="手机/邮箱/用户名" /> <br> <br>
 				<!--<input name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码" />
 					<br>
 					<span id="password"></span>-->
@@ -102,6 +133,46 @@
 					id="lianjie"
 					onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'"
 					type="button" value="忘记密码" class="btn btn-link" />
+ --%>
+				<!--<input type="text" name="username" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="手机/邮箱/用户名" />-->
+
+				<!--<span id="username"></span>-->
+
+
+				<%--  	<input id="username" type="text" name="username" value="${account}"
+					class="form-control" placeholder="手机/邮箱/用户名" /> <br> <br>  --%>
+				<!--<input name="password" type="password" class="form-control" onblur="CheckInput(this,document.getElementById('password'))" placeholder="密码" />
+					<br>
+					<span id="password"></span>-->
+				<%-- 	<!--账号-->
+				<label style="margin-left: -111px;">手机/邮箱/用户名</label> <input
+					id="account" type="text" name="account" value="${account}"
+					class="form-control" placeholder="手机/邮箱/用户名"><br> <span
+					for="account"></span> <br>
+				<!--密码-->
+				
+				<label style="margin-left: -35px;">密码</label> <input id="password"
+					type="password" name="password" class="form-control"
+					placeholder="密码"><br> <span for="password"></span> <br> --%>
+				<!-- 				验证码验证
+				<div id="yan">
+						<p5 style="margin-left: -8px;">验证码</p5>
+					<label ">验证码</label> <input type="text" id="yanzhengma"
+						name="yanzhengma" class="form-control photokey" value="请输入验证码"
+						onBlur="textBlur(this)" onFocus=" textFocus(this) " /> <span
+						class="add phoKey"></span> <span class="error error7"></span>
+		
+				</div> -->
+
+				<br> <input id="TencentCaptcha" data-appid="2056056228"
+					data-cbfn="callback" class="btn btn-success" type="submit"
+					value="确定"  /> <br> <br> <input
+					id="lianjie"
+					onclick="javascript:window.location.href='${pageContext.request.contextPath}/register'"
+					type="button" value="注册" class="btn btn-link"> <input
+					id="lianjie"
+					onclick="javascript:window.location.href='${pageContext.request.contextPath}/searchAccount'"
+					type="button" value="忘记密码" class="btn btn-link" />
 
 			</form>
 		</div>
@@ -113,16 +184,16 @@
 /*输入验证码*/
 #yanzhengma {
 	text-indent: 4px;
-	width: 160px;
+	width: 189px;
 	font-size: 14px;
 }
 
 .add {
-	width: 200px;
 	height: 34px;
-	_display: inline;
 	cursor: pointer;
-	margin-left: 10px;
+	margin-right: 253px;
+	float: right;
+	margin-left: -251px;
 }
 
 .input-code {
@@ -133,7 +204,7 @@
 }
 /*蓝框验证码*/
 .phoKey {
-	width: 200px;
+	width: 98px;
 	background: #1572DD;
 	text-align: center;
 	font-size: 18px;
@@ -142,12 +213,15 @@
 	padding: 5px;
 	border-radius: 3px;
 }
-
+/* 
 .error {
 	margin-left: -87px;
 	display: block;
 	color: red;
 	margin-bottom: -10px;
+} */
+.error {
+	color: red;
 }
 
 input {
@@ -205,7 +279,7 @@ header .navbar-brand {
 	width: 296px;
 }
 /*确定*/
-#btnOk {
+#TencentCaptcha {
 	color: white;
 	background-color: #1572DD;
 	height: 40px;
@@ -223,11 +297,25 @@ header .navbar-brand {
 #lianjie {
 	background-color: white;
 }
+
+@media screen and (max-width:500px) {
+	#yanzhengma {
+		text-indent: 4px;
+		width: 189px;
+		font-size: 14px;
+	}
+	.add {
+		height: 34px;
+		cursor: pointer;
+		float: right;
+		margin-left: -251px;
+	}
+}
 </style>
 
 <script language="JavaScript">
-	//文本框默认提示文字  
-	function textFocus(el) {
+//文本框默认提示文字  
+/* 	function textFocus(el) {
 		if (el.defaultValue == el.value) {
 			el.value = '';
 			el.style.color = '#333';
@@ -242,57 +330,60 @@ header .navbar-brand {
 	}
 
 	$(function() {
-
-		/*生成验证码*/
-		(function create_code() {
-			function shuffle() {
-				var arr = [ '1', 'r', 'Q', '4', 'S', '6', 'w', 'u', 'D', 'I', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
-					'q', '2', 's', 't', '8', 'v', '7', 'x', 'y', 'z', 'A', 'B', 'C', '9', 'E', 'F', 'G', 'H', '0', 'J', 'K', 'L', 'M', 'N', 'O', 'P', '3', 'R',
-					'5', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-				];
-				return arr.sort(function() {
-					return (Math.random() - .5);
-				});
-			}
-			;
-			shuffle();
-
-			function show_code() {
-				var ar1 = '';
-				var code = shuffle();
-				for (var i = 0; i < 4; i++) {
-					ar1 += code[i];
-				}
-				;
-				//var ar=ar1.join('');  
-				$(".phoKey").text(ar1);
-			}
-			;
-			show_code();
-			$(".phoKey").click(function() {
-				show_code();
+ */
+/*生成验证码*/
+/* 	(function create_code() {
+		function shuffle() {
+			var arr = [ '1', 'r', 'Q', '4', 'S', '6', 'w', 'u', 'D', 'I', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+				'q', '2', 's', 't', '8', 'v', '7', 'x', 'y', 'z', 'A', 'B', 'C', '9', 'E', 'F', 'G', 'H', '0', 'J', 'K', 'L', 'M', 'N', 'O', 'P', '3', 'R',
+				'5', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+			];
+			return arr.sort(function() {
+				return (Math.random() - .5);
 			});
-		})();
+		}
+		;
+		shuffle();
 
-		//账户输入框失去焦点  
-		(function login_validate() {
+		function show_code() {
+			var ar1 = '';
+			var code = shuffle();
+			for (var i = 0; i < 4; i++) {
+				ar1 += code[i];
+			}
+			;
+			//var ar=ar1.join('');  
+			$(".phoKey").text(ar1);
+		}
+		;
+		show_code();
+		$(".phoKey").click(function() {
+			show_code();
+		});
+	})();
 
-			/*验证码输入框失去焦点*/
-			$(".photokey").blur(function() {
-				var code1 = $('input.photokey').val().toLowerCase();
-				var code2 = $(".phoKey").text().toLowerCase();
-				if (code1 != code2) {
-					$(this).addClass("errorC");
-					$(this).next().next().html("验证码输入错误！");
-					$(this).next().next().css("display", "block");
-				} else {
-					$(this).removeClass("errorC");
-					$(this).next().next().empty();
-					$(this).addClass("checkedN");
-				}
-			})
-		})();
-	});
+	//账户输入框失去焦点  
+	(function login_validate() {
+
+		/*验证码输入框失去焦点*/
+/* 	$(".photokey").blur(function() {
+		var code1 = $('input.photokey').val().toLowerCase();
+		var code2 = $(".phoKey").text().toLowerCase();
+		if (code1 != code2) {
+			$(this).addClass("errorC");
+			$(this).next().next().html("验证码输入错误！");
+			$(this).next().next().css("display", "block");
+		} else {
+			$(this).removeClass("errorC");
+			$(this).next().next().empty();
+			$(this).addClass("checkedN");
+		}
+	})
+})();
+
+
+
+	}); */
 
 	//验证码结束
 	//	表单验证,验证通过提交信息
@@ -324,19 +415,75 @@ header .navbar-brand {
 	}
 
 	/* 	validate验证 */
-/* 	$(function() {
-		$("#form1").validate({
-			rules : {
-				"username" : {
-					"required" : true
+	/*  	$(function() {
+				$("#form1").validate({
+					rules : {
+						"username" : {
+							"required" : true
+						}
+					},
+					messages : {
+						"username" : {
+							"required" : "手机/邮箱/用户名不能为空！"
+						}
+					}
+				});
+			}); */
+
+
+
+
+	/* 	$().ready(function() {
+
+			// 提交时验证表单
+			var validator = $("#form1").validate({
+				errorPlacement : function(error, element) {
+					// Append error within linked label
+					$(element)
+						.closest("form")
+						.find("span[for='" + element.attr("id") + "']")
+						.append(error);
+				},
+				errorElement : "span",
+				rules : {
+					"account" : {
+						"required" : true,
+					},
+					"password" : {
+						"required" : true,
+						"rangelength" : [ 11, 15 ],
+					},
+					"yanzhengma" : {
+						"required" : true,
+					},
+				},
+				messages : {
+					account : {
+						required : "手机/邮箱/用户名不能为空",
+					},
+					password : {
+						required : "密码不能为空",
+						rangelength : "输入长度必须是11-15",
+					},
+					yanzhengma : {
+						required : "验证码不能为空",
+					},
 				}
-			},
-			messages : {
-				"username" : {
-					"required" : "手机/邮箱/用户名不能为空！"
-				}
-			}
+			})
+
+
+			$(".cancel").click(function() {
+				validator.resetForm();
+			});
 		});
-	}); */
+		 */
+	window.callback = function(res) {
+		console.log(res)
+		// res（未通过验证）= {ret: 1, ticket: null}
+		// res（验证成功） = {ret: 0, ticket: "String", randstr: "String"}
+		if (res.ret === 0) {
+			alert(res.ticket) // 票据
+		}
+	}
 </script>
 
