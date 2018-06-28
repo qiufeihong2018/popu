@@ -5,11 +5,14 @@ import com.bopu.pojo.Comment;
 import com.bopu.pojo.CommentVo;
 import com.bopu.service.CommentService;
 import com.bopu.utils.PageBean;
+import org.json.HTTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -66,19 +69,17 @@ public class CommentController {
      * 删除评论 根据id删除评论
      *
      * @param id 评论id
-     * @return
+     * @return 重新加载文章页面
      */
     @RequestMapping(value = "comment/del")
-    @ResponseBody
-    public BoPuResult delComment(Integer id) {
+    public String delComment(Integer id, Integer articleId) {
         try {
             commentService.deleteById(id);
-            return BoPuResult.build(200, "success");
         } catch (Exception e) {
-            return BoPuResult.build(200, "error");
+            e.printStackTrace();
         }
+        return "redirect:/article/show?articleId="+articleId;
     }
-
 
 
     public CommentService getCommentService() {
