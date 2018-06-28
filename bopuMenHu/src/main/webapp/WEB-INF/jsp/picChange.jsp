@@ -22,7 +22,7 @@
 </head>
 
 <body class="gray-bg">
-<header class="clearfix">
+<%-- <header class="clearfix">
     <!-- 头部 -->
 
     <nav class="navbar navbar-default" role="navigation">
@@ -56,8 +56,10 @@
             </div>
         </div>
     </nav>
-</header>
+</header> --%>
 
+<!-- 引入header.jsp -->
+<jsp:include page="header.jsp" flush="true"></jsp:include>
 <main class="content">
     <div id="biaodan">
       <h1>头像修改</h1>

@@ -19,6 +19,114 @@
     <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
 </head>
+
+<body class="gray-bg">
+<!--导航栏-->
+<%-- <header class="clearfix">
+    <!-- 头部 -->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">温州市波普大数据研究所</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="私信界面.html">私信</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="个人中心.html">个人中心</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header> --%>
+
+ <!-- 引入header.jsp -->
+<jsp:include page="header.jsp" flush="true"></jsp:include>
+
+<div class="row">
+
+
+    <!--主体-->
+    <div class="col-md-11 col-xs-11">
+
+        <!--文章内容-->
+        <div class="content">
+            <div class="detail">
+                <h1>${article.title}</h1>
+                <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-top: 15px">${article.type==2 ? '': article.author}</span>
+            </div>
+            <hr>
+            <div class="detail">
+                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址:
+                    <a href="${article.look}">${article.look}</a></c:if></h6>
+                <h4>
+                    内容填充
+                    ${article.content}
+                </h4>
+            </div>
+            <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-right: 20px;margin-bottom: 15px">${article.time}</span>
+            <br>
+            <hr>
+            <%-- 分页 内容相似文章推荐 --%>
+            <div class="text-center text">
+
+            </div>
+            <hr>
+            <!--附加内容-->
+            <div class="text-center text">
+                <c:if test="${user != null}">
+                <c:choose>
+                <c:when test="${article.flag == 1}">
+                <form role="form">
+                    <div class="form-group">
+
+                        <textarea class="form-control" rows="3" id="content"></textarea>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <h4>想对作者说什么？
+                        <button class="newbtn" onclick="publish()">评论</button>
+                    </h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div id="commentDiv" class="col-lg-12">
+
+                    <h2>评论：</h2>
+
+                </div>
+                </c:when>
+                <c:otherwise>
+                    <h4>此文章无评论权限</h4>
+                    <hr>
+                </c:otherwise>
+                </c:choose>
+                </c:if>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
 <style>
     /*中间部分*/
     .row {
@@ -41,28 +149,7 @@
         overflow-x: hidden;
     }
 
-    /*头部样式*/
-
-    header .navbar-default {
-        background-color: #1572DD;
-    }
-
-    header .navbar-brand {
-        color: #fff !important;
-    }
-
-    .navbar-default .navbar-toggle .icon-bar {
-        background-color: #fff !important;
-    }
-
-    .navbar-default .navbar-nav > li > a {
-        color: #fff !important;
-    }
-
-    .navbar-default .navbar-nav > li > a:focus,
-    .navbar-default .navbar-nav > li > a:hover {
-        color: #eee !important;
-    }
+  
 
     .img-top {
         width: 100%;
@@ -275,107 +362,3 @@
     }
     </c:if>
 </script>
-<body class="gray-bg">
-<!--导航栏-->
-<header class="clearfix">
-    <!-- 头部 -->
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">温州市波普大数据研究所</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="私信界面.html">私信</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="个人中心.html">个人中心</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<div class="row">
-
-
-    <!--主体-->
-    <div class="col-md-11 col-xs-11">
-
-        <!--文章内容-->
-        <div class="content">
-            <div class="detail">
-                <h1>${article.title}</h1>
-                <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-top: 15px">${article.type==2 ? '': article.author}</span>
-            </div>
-            <hr>
-            <div class="detail">
-                <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址:
-                    <a href="${article.look}">${article.look}</a></c:if></h6>
-                <h4>
-                    内容填充
-                    ${article.content}
-                </h4>
-            </div>
-            <span style="background-color: rgb(255, 255, 255); color: rgb(119, 119, 119); font-size: 16px;float: right;margin-right: 20px;margin-bottom: 15px">${article.time}</span>
-            <br>
-            <hr>
-            <%-- 分页 内容相似文章推荐 --%>
-            <div class="text-center text">
-
-            </div>
-            <hr>
-            <!--附加内容-->
-            <div class="text-center text">
-                <c:if test="${user != null}">
-                <c:choose>
-                <c:when test="${article.flag == 1}">
-                <form role="form">
-                    <div class="form-group">
-
-                        <textarea class="form-control" rows="3" id="content"></textarea>
-                    </div>
-                </form>
-                <div class="text-center">
-                    <h4>想对作者说什么？
-                        <button class="newbtn" onclick="publish()">评论</button>
-                    </h4>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div id="commentDiv" class="col-lg-12">
-
-                    <h2>评论：</h2>
-
-                </div>
-                </c:when>
-                <c:otherwise>
-                    <h4>此文章无评论权限</h4>
-                    <hr>
-                </c:otherwise>
-                </c:choose>
-                </c:if>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-
-</body>
-
-</html>

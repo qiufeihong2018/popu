@@ -40,8 +40,8 @@
 <!--背景色-->
 
 <body class="gray-bg">
-	<header class="clearfix">
-		<!-- 头部 -->
+	<!-- <header class="clearfix">
+		头部
 
 		<nav class="navbar navbar-default" role="navigation">
 			<div class="container-fluid">
@@ -65,7 +65,10 @@
 			</div>
 		</nav>
 	</header>
-
+ -->
+ 
+ <!-- 引入header.jsp -->
+<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<!--中间内容-->
 	<!--邮件-->
 	<div class="wrapper wrapper-content animated fadeInRight">
