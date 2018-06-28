@@ -67,7 +67,7 @@
 
 				<!--<span id="username"></span>-->
 				<!--账号-->
-					<input id="username" type="text" name="username" value="${account}"
+					<input id="username" type="text" name="account" value="${account}"
 					class="form-control" placeholder="手机/邮箱/用户名"
 					onfocus="showTips('username','手机/邮箱/用户名必填！')"
 					onblur="check('username','手机/邮箱/用户名不能为空！')" /> <br> <span
