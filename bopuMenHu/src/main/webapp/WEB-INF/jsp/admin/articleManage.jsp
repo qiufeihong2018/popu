@@ -105,17 +105,17 @@ To change this template use File | Settings | File Templates.
 									<a
 										href="${pageContext.request.contextPath}/article/show?articleId=${article.id}"
 										target="view_window"> <span class="corner"></span>
-										<div class="file-name">
+										<div class="file-name"  style="height: 200px">
 											${article.title} <br />
 											<div>
 												<h4>${article.flag == 1 ? "可以评论":"禁止评论" }</h4>
 											</div>
-											<br /> <small> <a
+											<br /> <div style="margin-top: 80px;"> <a
 												href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
 												<a
 												href="${pageContext.request.contextPath}/article/delete?articleId=${article.id}">删除</a>&nbsp;|
 												<a href="#">置顶</a>&nbsp;| <a href="#">分类</a>
-											</small>
+											</div>
 										</div>
 									</a>
 								</div>

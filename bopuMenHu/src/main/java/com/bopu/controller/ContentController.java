@@ -95,8 +95,7 @@ public class ContentController {
      * @param sort 轮播图片的序号
      */
     @RequestMapping(value = "content/delPic")
-    @ResponseBody
-    public BoPuResult delPic(Integer sort, HttpServletRequest request) {
+    public String delPic(Integer sort, HttpServletRequest request) {
         contentService.deletePic(sort);
         // 删除图片
         File file = new File(request.getSession().getServletContext().getRealPath("/file/picture/picture" + sort + ".jpg"));
@@ -104,7 +103,7 @@ public class ContentController {
             // 删除图片
             file.delete();
         }
-        return BoPuResult.build(200, "");
+        return "redirect:managerPA";
     }
 
     /**
@@ -155,6 +154,7 @@ public class ContentController {
      *
      * @param sort 序号
      */
+    @Deprecated
     @RequestMapping(value = "content/delArticle")
     public String delArt(Integer sort, HttpServletRequest request) {
         contentService.deleteArt(sort);

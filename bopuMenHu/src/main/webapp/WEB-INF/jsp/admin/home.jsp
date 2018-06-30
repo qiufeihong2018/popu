@@ -189,7 +189,7 @@
 			</div>
 			<div class="row J_mainContent" id="content-main">
 				<iframe class="J_iframe" name="iframe0" width="100%" height="100%"
-					src="updateArticle" frameborder="0" data-id="\波普3\轮播图管理.html"
+					src="${pageContext.request.contextPath}/content/managerPA" frameborder="0" data-id="\波普3\轮播图管理.html"
 					seamless></iframe>
 			</div>
 

@@ -331,6 +331,44 @@ header .navbar-brand {
 	width: 349px;
 	height: 192px;
 }
+
+/*头部样式*/
+header .navbar-default {
+	background-color: #1572DD;
+}
+
+header .navbar-brand {
+	color: #fff !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fff !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff !important;
+}
+/* 个人中心样式 */
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+	.navbar-default .navbar-nav>.open>a:hover {
+	color: #555;
+	background-color: #1572DD;
+}
+/* 私信和个人中心点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+	color: #fff;
+}
+/* 3修改点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+	color: #fff;
+	background-color: transparent;
+}
+
+/* 大屏下拉蓝色 */
+.navbar-nav>li>.dropdown-menu {
+	background-color: #1572DD;
+}
 </style>
 <script>
         $(document).ready(function () {
