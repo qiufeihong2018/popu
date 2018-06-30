@@ -59,6 +59,7 @@
 </header> --%>
 <!-- 引入header.jsp -->
 <jsp:include page="header.jsp" flush="true"></jsp:include>
+
 <main class="content">
     <div id="biaodan">
         <form action="${pageContext.request.contextPath}/user/passwordChange" class="form1" method="post" name="form1" target="_blank" id="form1">
@@ -112,7 +113,7 @@
             overflow-x: hidden;
         }
         /*头部样式*/
-
+/* 
         header .navbar-default {
             background-color: #1572DD;
         }
@@ -132,7 +133,7 @@
         .navbar-default .navbar-nav > li > a:focus,
         .navbar-default .navbar-nav > li > a:hover {
             color: #eee !important;
-        }
+        } */
         /*中间内容*/
 
         .content {
