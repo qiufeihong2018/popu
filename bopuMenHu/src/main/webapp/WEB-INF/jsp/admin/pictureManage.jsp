@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,7 +54,8 @@
                                                 <%--前三张图片只有替换，没有删除--%>
                                                 <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
                                             </c:if>
-                                            <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
+                                                <%--<a href="${pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>--%>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换</a>
                                             <br/>
                                         </div>
                                     </a>
@@ -64,6 +64,10 @@
                         </c:if>
                     </c:forEach>
                 </div>
+                <input type="button"
+                       onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'"
+                       value="添加轮播图">
+                <hr>
                 文章:
                 <hr>
                 <div class="col-sm-12">
@@ -82,7 +86,8 @@
                                             <br/>
                                                 <%-- 文章--%>
                                                 <%-- 后台需要参数 图片 文章 序号 --%>
-                                            <a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>
+                                                <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换</a>
                                             <br/>
                                         </div>
                                     </a>
