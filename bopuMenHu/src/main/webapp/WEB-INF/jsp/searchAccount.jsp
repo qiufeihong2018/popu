@@ -57,7 +57,7 @@
 
 <main class="content">
     <div id="biaodan">
-        <form action="${pageContext.request.contextPath}/user/searchEmail" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
+        <form action="${pageContext.request.contextPath}/user/searchEmail" method="post" name="form1" target="_self" id="form1" onSubmit="return check_login()">
 
             <br>
             <br><br><br>

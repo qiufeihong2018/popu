@@ -25,12 +25,12 @@
 
 <!-- Bootstrap -->
 
-    <link rel="shortcut icon" href="favicon.ico">
-    <link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/style.css?v=4.1.0" rel="stylesheet">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+<link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+<link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet">
+<!-- <link href="css/style.css?v=4.1.0" rel="stylesheet"> -->
 
 
 
@@ -66,9 +66,9 @@
 		</nav>
 	</header>
  -->
- 
- <!-- 引入header.jsp -->
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+
+	<!-- 引入header.jsp -->
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<!--中间内容-->
 	<!--邮件-->
 	<div class="wrapper wrapper-content animated fadeInRight">
@@ -168,31 +168,7 @@
 html, body {
 	overflow-x: hidden;
 }
-/*头部样式*/
-header .navbar-default {
-	background-color: #1572DD !important;
-}
 
-header .navbar-brand {
-	color: #fff !important;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #fff !important;
-}
-
-.navbar-toggle {
-	margin-right: -150px;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: #fff !important;
-}
-
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover
-	{
-	color: #eee !important;
-}
 /*中间部分*/
 .content {
 	min-height: calc(100vh - 100px);
@@ -243,7 +219,23 @@ header .navbar-brand {
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -255,13 +247,45 @@ li
 
 
 
+
+
+
+
+
+
+
+
  
 
 
 
 
 
+
+
+
+
+
+
+
+
 a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -283,13 +307,45 @@ a
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
 
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -302,7 +358,23 @@ a
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -321,13 +393,45 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
 
 
 
 
 
+
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
+
 
 
 
@@ -344,9 +448,88 @@ background-color
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ;
 }
 /*搜索按钮结束*/
+.wrapper-content {
+    padding: 20px;
+}
+.wrapper {
+    padding: 0 20px;
+}
+body {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+}
+.ibox {
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+}
+.ibox-title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0px 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 14px 15px 7px;
+    min-height: 48px;
+}
+.ibox-content {
+    clear: both;
+}
+.ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0px;
+}
+.ibox-tools {
+    display: inline-block;
+    float: right;
+    margin-top: 0;
+    position: relative;
+    padding: 0;
+}
+.ibox-tools a {
+    cursor: pointer;
+    margin-left: 5px;
+    color: #c4c4c4;
+}
+a {
+    cursor: pointer;
+}
 </style>
 
 <script>

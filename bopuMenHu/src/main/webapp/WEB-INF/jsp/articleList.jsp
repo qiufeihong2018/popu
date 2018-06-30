@@ -30,8 +30,21 @@
 	<div class="img-top">
 		<c:choose>
 			<c:when test="${pageBean.type.size() > 1 || pageBean.type == null}">
-            全部文章
-        </c:when>
+			<!-- 	<div class="ibox-title">
+					<h5>全部文章</h5>
+				</div> -->
+				<div class="wrapper wrapper-content animated fadeInRight">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-title">
+						<h5>全部文章</h5>
+					
+					</div>
+				
+				</div>
+			</div>
+			</c:when>
 			<c:otherwise>
 				<c:if test="${pageBean.type.get(0) == 1}">最近活动</c:if>
 				<c:if test="${pageBean.type.get(0) == 2}">实验项目简介及链接</c:if>
@@ -113,6 +126,70 @@ html, body {
 	padding: 20px 40px 25px 40px;
 	background-color: #FFFFFF;
 }
+
+.wrapper-content {
+    padding: 20px;
+}
+.wrapper {
+    padding: 0 20px;
+}
+body {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    color: #676a6c;
+}
+.ibox {
+    clear: both;
+    margin-bottom: 25px;
+    margin-top: 0;
+    padding: 0;
+}
+.ibox-title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 4px 0px 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 14px 15px 7px;
+    min-height: 48px;
+}
+/* .ibox-content {
+    clear: both;
+}
+.ibox-content {
+    background-color: #ffffff;
+    color: inherit;
+    padding: 15px 20px 20px 20px;
+    border-color: #e7eaec;
+    -webkit-border-image: none;
+    -o-border-image: none;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 1px 0px;
+}
+.ibox-tools {
+    display: inline-block;
+    float: right;
+    margin-top: 0;
+    position: relative;
+    padding: 0;
+}
+.ibox-tools a {
+    cursor: pointer;
+    margin-left: 5px;
+    color: #c4c4c4;
+}
+a {
+    cursor: pointer;
+} */
 </style>
 <script type="text/javascript">
     function page(a) {
