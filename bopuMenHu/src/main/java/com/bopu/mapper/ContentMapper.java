@@ -2,7 +2,9 @@ package com.bopu.mapper;
 
 import com.bopu.pojo.Content;
 import com.bopu.pojo.ContentExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ContentMapper {
@@ -30,4 +32,5 @@ public interface ContentMapper {
 
     void updatePicSort(Integer sort);
 
+    void updatePic(Integer sort, Integer category, String name);
 }

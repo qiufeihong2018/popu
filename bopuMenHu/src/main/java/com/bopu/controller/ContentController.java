@@ -78,15 +78,15 @@ public class ContentController {
     @RequestMapping(value = "content/uploadPic")
     public String uploadPic(@RequestParam("file[]") MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
         // 检查 sort是否存在 如:sort = 4,那么第四张图片是否存在 不存在就要添加一条记录
-        contentService.findPicSort(sort);
+        String name = contentService.findPicSort(sort);
         String path = request.getSession().getServletContext().getRealPath("/file/picture/");
-        File f = new File(path, "picture" + sort + ".jpg");
+        File f = new File(path, name);
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
         }
-        // I:\javaweb\bopu\bopuMenHu\target\bopuMenHu-1.0-SNAPSHOT\picture\picture1.jpg
+        // I:\javaweb\bopu\bopuMenHu\target\bopuMenHu-1.0-SNAPSHOT\picture\0eb4318799ca47e49d8414a4c904e566.jpg
         file[0].transferTo(f);
-        return "admin/home";
+        return "redirect:managerPA";
     }
 
     /**
@@ -96,16 +96,16 @@ public class ContentController {
      */
     @RequestMapping(value = "content/delPic")
     public String delPic(Integer sort, HttpServletRequest request) {
-        contentService.deletePic(sort);
+        Content content = contentService.deletePic(sort);
         // 删除图片
-        File file = new File(request.getSession().getServletContext().getRealPath("/file/picture/picture" + sort + ".jpg"));
+        File file = new File(request.getSession().getServletContext().getRealPath(content.getPic()));
         if (file.exists()) {
             // 删除图片
             file.delete();
         }
         return "redirect:managerPA";
     }
-
+// ----------------------------------------------------------------------------------
     /**
      * 更新轮播图，只需要替换文件
      *
@@ -113,10 +113,14 @@ public class ContentController {
      * @param sort
      */
     @RequestMapping(value = "content/updatePic")
-    public String updataPic(MultipartFile file[], Integer sort, HttpServletRequest request) throws IOException {
+    public String updataPic(MultipartFile file[], Integer sort,Integer category, HttpServletRequest request) throws IOException {
         // 查询此sort下是否存在图片
         String path = request.getSession().getServletContext().getRealPath("/file/picture/");
-        File f = new File(path, "picture" + sort + ".jpg");
+        // 获取原图片名称
+        String name = contentService.getPic(sort, category);
+        // 设置pic
+        String newName = contentService.updatePic(sort,category);
+        File f = new File(request.getSession().getServletContext().getRealPath(name));
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
         }

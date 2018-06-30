@@ -4,14 +4,13 @@ import com.bopu.mapper.ContentMapper;
 import com.bopu.pojo.Content;
 import com.bopu.pojo.ContentExample;
 import com.bopu.service.ContentService;
+import com.bopu.utils.RandomCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.lang.annotation.ElementType;
+import javax.security.auth.login.CredentialException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -61,8 +60,10 @@ public class ContentServiceImpl implements ContentService {
      * 不存在就插入一条数据
      *
      * @param sort
+     * @return 文件路径
      */
-    public void findPicSort(Integer sort) {
+    public String findPicSort(Integer sort) {
+        String name = null;
         ContentExample example = new ContentExample();
         ContentExample.Criteria criteria = example.createCriteria();
         // 图片类别及其序号
@@ -80,10 +81,12 @@ public class ContentServiceImpl implements ContentService {
             content.setTitle("picture" + (l + 1));
             content.setCategoryId(2);
             content.setCreated(new Date());
-            content.setPic("/file/picture/picture" + (l + 1) + ".jpg");
+            name = RandomCode.getUUID() + ".jpg";
+            content.setPic("/file/picture/" + name);
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
         }
+        return name;
     }
 
     /**
@@ -91,23 +94,45 @@ public class ContentServiceImpl implements ContentService {
      *
      * @param sort 图片的序号
      */
-    public void deletePic(Integer sort) {
+    public Content deletePic(Integer sort) {
         // 获取count
+        Content content = null;
         ContentExample example = new ContentExample();
         ContentExample.Criteria criteria = example.createCriteria();
         criteria.andCategoryIdEqualTo(2);    // 图片
         long l = contentMapper.countByExample(example);
         if (sort > 3) {
             criteria.andSortEqualTo(sort);
+            List<Content> contents = contentMapper.selectByExample(example);
+            content = contents.get(0);
             contentMapper.deleteByExample(example);
             if (l > sort) {
-                System.out.println(1);
                 // count > sort计数比想要删除图片的id大,修改之后的id
                 for (int i = sort + 1; i <= l; i++) {
                     contentMapper.updatePicSort(i);
+                    // 修改文件名
                 }
             }
         }
+        return content;
+    }
+
+    public String getPic(Integer sort, Integer category) {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(category);
+        criteria.andSortEqualTo(sort);
+        List<Content> contents = contentMapper.selectByExample(example);
+        if (contents != null && contents.size() > 0) {
+            return contents.get(0).getPic();
+        }
+        return null;
+    }
+
+    public String updatePic(Integer sort, Integer category) {
+        String name = "/file/picture/" + RandomCode.getUUID() + ".jpg";
+        contentMapper.updatePic(sort, category, name);
+        return name;
     }
 
     /**

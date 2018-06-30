@@ -304,7 +304,7 @@
                 limitdata: limitData
             }, function (result) {
                 if (result["status"] == 200) {
-                    window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
+                    top.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
                 } else {
                     // 提交失败
                 }
@@ -322,7 +322,7 @@
                 flag: flag
             }, function (result) {
                 if (result["status"] == 200) {
-                    window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
+                    top.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
                 } else {
                     //     提交失败
                 }

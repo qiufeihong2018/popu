@@ -1,6 +1,7 @@
 package com.bopu.utils;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class RandomCode {
 
@@ -13,5 +14,11 @@ public class RandomCode {
             sb.append(ch);
         }
         return sb.toString();
+    }
+    public static String getUUID(){
+        UUID uuid=UUID.randomUUID();
+        String str = uuid.toString();
+        String uuidStr=str.replace("-", "");
+        return uuidStr;
     }
 }
