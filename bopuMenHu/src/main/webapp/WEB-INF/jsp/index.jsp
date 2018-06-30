@@ -85,7 +85,7 @@
 				</ol>
 				<!-- 轮播（Carousel）项目 -->
 				<div id="top1" class="carousel-inner">
-					<div class="item active">
+					<div id="img0" class="item active">
 						<img class="aa"
 							src="${pageContext.request.contextPath}/picture/picture1.jpg"
 							alt="1 slide"
@@ -438,6 +438,18 @@ header .navbar-brand {
 /*高度*/
 #pig1, #pig2, #pig3 {
 	height: 400px;
+}
+/* 
+轮播图 */
+#img0{  width: 0;
+    height: 0;
+}
+
+/* 标题和图 */
+.thumbnail a > img {
+    display: block;
+    width: 349px;
+    height: 192px;
 }
 </style>
 <script>

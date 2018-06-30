@@ -89,8 +89,19 @@
                             <form id="my-awesome-dropzone" class="dropzone"
                                   action="${pageContext.request.contextPath}/content/updatePic">
                                 <div class="dropzone-previews"></div>
-                                要修改轮播图的序号: <input type="text" name="sort"/>
-                                <button type="submit" class="btn btn-primary pull-right">上传</button>
+                                <div class="row">
+                                <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
+                                  <label>要修改轮播图的序号:</label>  
+                                </div>
+                                  <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
+                                     <input type="text" class="form-control" name="sort">      
+                                </div>
+                                  <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
+                                        <button type="submit" class="btn btn-primary pull-right">上传</button>
+                                </div>
+                                </div>
+                  
+                              
                             </form>
                         </div>
                     </div>
