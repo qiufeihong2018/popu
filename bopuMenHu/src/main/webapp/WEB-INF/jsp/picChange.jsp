@@ -68,14 +68,28 @@
             <form action="${pageContext.request.contextPath}/user/picChange" method="post">
                 <input type="hidden" name="id" value="${user.id}">
                 <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
-                <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
+           <!--      <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br> -->
                 <div class="layui-upload-list" >
                     <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
                     <div style = "text-align:right;margin-top: -20px">
-                 	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
+                    
+             <!--     	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />
+                 		<input id="btnChuang" type="button" class="btn btn-success" value="上传图片" /> -->
                     </div>
                     <p id="demoText"></p>
                 </div>
+                
+                <br>
+                	<div class="row">
+						<div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
+							<input id="btnChuang" type="submit" class="btn btn-success" value="上传图片" />
+						</div>
+						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+							<input id="btnChuang" type="button" class="btn btn-success" value="确定" />
+						</div>
+					</div>
+                
             </form>
         </div>
         <hr />
@@ -156,7 +170,8 @@
             color: white;
             background-color: #1572DD;
             height: 40px;
-            width: 196px;
+          /*   width: 196px; */
+          width: 81.6px;
             border-color: #1572DD;
         }
         /*验证文字样式*/
