@@ -27,12 +27,6 @@ change this template use File | Settings | File Templates. --%> -->
 			<div id="myCarousel" class="carousel slide">
 				<!-- 轮播（Carousel）指标 -->
 				<ol id="ol1" class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-					<li data-target="#myCarousel" data-slide-to="3"></li>
-					<li data-target="#myCarousel" data-slide-to="4"></li>
-					<li data-target="#myCarousel" data-slide-to="5"></li>
 				</ol>
 				<!-- 轮播（Carousel）项目 -->
 				<div id="top1" class="carousel-inner">
@@ -419,6 +413,7 @@ header .navbar-brand {
                             '            </div>';
                     }
                 });
+                $("#ol1").html(ol);
                 $("#top1").html(text1);
                 $("#top2").html(text2);
             });
