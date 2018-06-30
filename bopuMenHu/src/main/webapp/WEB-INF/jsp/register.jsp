@@ -30,9 +30,9 @@
 					<h1>注册</h1>
 
 					<!--账号-->
-					<input id="account" name="account" type="text" value="${user.account}" class="form-control" placeholder="账号" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
+					<input id="account" name="account" type="text" value="${requestScope.user.account}" class="form-control" placeholder="账号" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
 					<br>
-					<span id="accountspan" class="msg" style="margin-left: -200px;">${message}</span>
+					<span id="accountspan" class="msg" style="margin-left: -200px;">${requestScope.message}</span>
 					<br>
 					<!--密码-->
 
@@ -42,42 +42,42 @@
 					<br>
 					<!--姓名-->
 
-					<input id="name" name="name" value="${user.name}" type="text" class="form-control" placeholder="姓名" onfocus="showTips('name','姓名必填!')" onblur="check('name','姓名不能为空！')">
+					<input id="name" name="name" value="${requestScope.user.name}" type="text" class="form-control" placeholder="姓名" onfocus="showTips('name','姓名必填!')" onblur="check('name','姓名不能为空！')">
 					<br>
 					<span id="namespan" class="msg" style="margin-left: -200px;"></span>
 					<br>
 					<!--手机号-->
 
-					<input id="phone" name="phone" value="${user.phone}" type="text" placeholder="手机号" class="form-control" onfocus="showTips('phone','手机必填!')" onblur="check('phone','手机不能为空！')">
+					<input id="phone" name="phone" value="${requestScope.user.phone}" type="text" placeholder="手机号" class="form-control" onfocus="showTips('phone','手机必填!')" onblur="check('phone','手机不能为空！')">
 					<br>
 					<span id="phonespan" class="msg" style="margin-left: -200px;"></span>
 					<br>
 					<!--通讯地址-->
 
-					<input name="address" type="text" value="${user.address}" class="form-control" placeholder="通讯地址">
+					<input name="address" type="text" value="${requestScope.user.address}" class="form-control" placeholder="通讯地址">
 					<br> <br>
 
 					<!--工作单位-->
 
-					<input id="work" name="work" type="text" value="${user.work}" class="form-control" placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') " onblur="check( 'work', '工作单位不能为空！') ">
+					<input id="work" name="work" type="text" value="${requestScope.user.work}" class="form-control" placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') " onblur="check( 'work', '工作单位不能为空！') ">
 					<br>
 					<span id="workspan" class="msg" style="margin-left: -170px; "></span>
 					<br>
 					<!--职称-->
 
-					<input name="professional " type="text " value="${user.professional}" class="form-control " placeholder="职称 ">
+					<input name="professional " type="text " value="${requestScope.user.professional}" class="form-control " placeholder="职称 ">
 					<br><br>
 					<!--职务-->
 
-					<input name="duties" type="text" value="${user.duties}" class="form-control" placeholder="职务" />
+					<input name="duties" type="text" value="${requestScope.user.duties}" class="form-control" placeholder="职务" />
 					<br> <br>
 					<!--岗位-->
 
-					<input name="station" type="text" value="${user.station}" class="form-control" placeholder="岗位">
+					<input name="station" type="text" value="${requestScope.user.station}" class="form-control" placeholder="岗位">
 					<br> <br>
 					<!--邮箱-->
 
-					<input id="Email" name="email" type="text" value="${user.email}" class="form-control" placeholder="邮箱" onfocus="showTips( 'Email', '邮箱必填!') " onblur="check( 'Email', '邮箱不能为空！') ">
+					<input id="Email" name="email" type="text" value="${requestScope.user.email}" class="form-control" placeholder="邮箱" onfocus="showTips( 'Email', '邮箱必填!') " onblur="check( 'Email', '邮箱不能为空！') ">
 					<br>
 					<span id="Emailspan" class="msg" style="margin-left: -200px;"></span>
 					<br>
