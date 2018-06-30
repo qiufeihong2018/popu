@@ -80,7 +80,7 @@ public class ContentServiceImpl implements ContentService {
             content.setTitle("picture" + (l + 1));
             content.setCategoryId(2);
             content.setCreated(new Date());
-            content.setPic("/picture/picture" + (l + 1) + ".jpg");
+            content.setPic("/file/picture/picture" + (l + 1) + ".jpg");
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
         }

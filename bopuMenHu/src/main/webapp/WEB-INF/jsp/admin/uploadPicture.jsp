@@ -34,7 +34,6 @@
 </head>
 <script>
     $(document).ready(function () {
-
         Dropzone.options.myAwesomeDropzone = {
             autoProcessQueue: false,
             uploadMultiple: true,
@@ -68,6 +67,7 @@
 <!--图片上传结束-->
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
+    请上传jpg格式的图片
     <div class="row">
         <!--图片上传开始-->
         <div class="wrapper wrapper-content animated fadeIn">
@@ -87,64 +87,27 @@
                         </div>
                         <div class="ibox-content">
                             <form id="my-awesome-dropzone" class="dropzone"
-                                  action="${pageContext.request.contextPath}/content/updatePic">
-                                <div class="dropzone-previews"></div>
+                                  action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
                                 <div class="row">
-                                <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
-                                  <label>要修改轮播图的序号:</label>  
-                                </div>
-                                  <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
-                                     <input type="text" class="form-control" name="sort">      
-                                </div>
-                                  <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
+                                    <div class="col-xs-4">
+                                        <label><%="1".equals(request.getParameter("category"))? "文章" : "图片"%>序号:</label>
+                                    </div>
+                                    <div >
+                                        <input type="hidden" name="categoryId" value="<%=request.getParameter("category")%>">
+                                        <input type="text" class="form-control" name="sort"
+                                               value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
+                                    </div>
+                                    <div>
+                                        <input type="button" value="选择文章" onclick="window.open('http;//www.jb51.net')"/>
+                                    </div>
+                                    <div class="col-xs-4  col-sm-4 col-md-4 col-lg-4">
                                         <button type="submit" class="btn btn-primary pull-right">上传</button>
+                                    </div>
                                 </div>
-                                </div>
-                  
-                              
+                                <div class="dropzone-previews"></div>
                             </form>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!--图片开始-->
-        <div class="col-sm-9 animated fadeInRight">
-            <div class="row">
-                <div class="col-sm-12">
-
-                    <c:forEach items="${contents}" var="content">
-                        <div class="file-box">
-                            <div class="file">
-                                <a href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
-                                    <span class="corner"></span>
-                                    <div class="image">
-                                        <img alt="image" class="img-responsive"
-                                             src="${pageContext.request.contextPath}${content.pic}">
-                                    </div>
-                                    <div class="file-name">
-                                            ${content.title}
-                                        <br/>
-                                            <%-- 文章--%>
-                                        <c:if test="${content.categoryId == 1}">
-                                            <a href="${pageContext.request.contextPath}/content/delArticle?sort=${content.sort}">删除</a>&nbsp;|
-                                            <%-- 后台需要参数 图片 文章 序号 --%>
-                                            <a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">修改</a>
-                                        </c:if>
-                                            <%--图片--%>
-                                        <c:if test="${content.categoryId == 2}">
-                                            <c:if test="${content.sort > 3}">
-                                                <%--前三张图片只有替换，没有删除--%>
-                                                <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
-                                            </c:if>
-                                            <a href="#{pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>
-                                        </c:if>
-                                        <br/>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </c:forEach>
                 </div>
             </div>
         </div>
