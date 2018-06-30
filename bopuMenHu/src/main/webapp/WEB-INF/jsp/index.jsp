@@ -1,11 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%--
-  Created by IntelliJ IDEA.
-  User: shiku
-  Date: 2018/5/27
-  Time: 18:32
-  To change this template use File | Settings | File Templates.
---%>
+<!-- 
+Created by IntelliJ IDEA. User: shiku Date: 2018/5/27 Time: 18:32 To
+change this template use File | Settings | File Templates. --%> -->
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
@@ -41,11 +37,14 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="#">简介</a></li>
 						<li class="divider"></li>
-						<li><a href="${pageContext.request.contextPath}/article/detailList?type=1">最近活动</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/article/detailList?type=1">最近活动</a></li>
 						<li class="divider"></li>
-						<li><a href="${pageContext.request.contextPath}/article/detailList?type=2">研究成果</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/article/detailList?type=2">研究成果</a></li>
 						<li class="divider"></li>
-						<li><a href="${pageContext.request.contextPath}/article/detailList?type=3">业内动态</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/article/detailList?type=3">业内动态</a></li>
 						<li class="divider"></li>
 						<li><a href="#">联系我们</a></li>
 						<c:if test="${user!=null}">
@@ -85,7 +84,7 @@
 				</ol>
 				<!-- 轮播（Carousel）项目 -->
 				<div id="top1" class="carousel-inner">
-					<div class="item active">
+					<div id="img0" class="item active">
 						<img class="aa"
 							src="${pageContext.request.contextPath}/picture/picture1.jpg"
 							alt="1 slide"
@@ -193,12 +192,14 @@
 								class="list-group-item">测试文章</a>
 						</div>
 						<hr style="border:5px solid #DDDDDD" />
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-2 col-sm-10">
 								<a href="文章列表.html"><input id="btnChuang" type="submit"
 									class="btn btn-success" value="查看更多" /></a>
 							</div>
-						</div>
+						</div> -->
+							<a href="联系我们.html" >查看更多<i
+								class="glyphicon glyphicon-chevron-right"></i></a>
 
 					</div>
 				</div>
@@ -226,8 +227,8 @@
 											class="list-group-item">测试文章</a>
 									</div>
 									<hr style="border:5px solid #DDDDDD" />
-									<a href="文章列表.html"><input type="button"
-										class="btn-success" value="查看更多" /></a>
+										<a href="联系我们.html">查看更多<i
+								class="glyphicon glyphicon-chevron-right"></i></a>
 								</div>
 							</div>
 						</div>
@@ -247,9 +248,9 @@
 
 							</div>
 							<div style="height: 1.5em"></div>
-							<a style="padding: 30px 30px 0px" href="文章列表.html"><input
-								type="button" class="btn-success" value="查看更多" /></a> <br> <br>
-							<br>
+					<a href="联系我们.html" style="margin-left: 30px;">查看更多<i
+								class="glyphicon glyphicon-chevron-right"></i></a>
+								 <br> <br> <br>
 						</div>
 					</div>
 				</div>
@@ -358,7 +359,7 @@ header .navbar-brand {
 }
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
-	 .thumbnail>img {
+	.thumbnail>img {
 	display: block;
 	width: 100%;
 	height: 500px;
@@ -369,7 +370,7 @@ header .navbar-brand {
 		height: 300px;
 	}
 	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive,
-	 .thumbnail>img {
+		.thumbnail>img {
 		display: block;
 		width: 100%;
 		height: 300px;
@@ -438,6 +439,57 @@ header .navbar-brand {
 /*高度*/
 #pig1, #pig2, #pig3 {
 	height: 400px;
+}
+/* 
+轮播图 */
+#img0 {
+	width: 0;
+	height: 0;
+}
+
+/* 标题和图 */
+.thumbnail a>img {
+	display: block;
+	width: 349px;
+	height: 192px;
+}
+
+/*头部样式*/
+header .navbar-default {
+	background-color: #1572DD;
+}
+
+header .navbar-brand {
+	color: #fff !important;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fff !important;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #fff !important;
+}
+/* 个人中心样式 */
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+	.navbar-default .navbar-nav>.open>a:hover {
+	color: #555;
+	background-color: #1572DD;
+}
+/* 私信和个人中心点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+	color: #fff;
+}
+/* 3修改点击白色 */
+.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+	color: #fff;
+	background-color: transparent;
+}
+
+/* 大屏下拉蓝色 */
+.navbar-nav>li>.dropdown-menu {
+	background-color: #1572DD;
 }
 </style>
 <script>
