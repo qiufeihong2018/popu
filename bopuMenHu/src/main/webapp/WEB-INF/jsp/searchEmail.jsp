@@ -161,11 +161,6 @@
 
         var countdown = 60;
 
-        /*function sendemail() {
-            var obj = $("#huoQu");
-            settime(obj);
-
-        }*/
 
         function settime() {
             //		倒计时

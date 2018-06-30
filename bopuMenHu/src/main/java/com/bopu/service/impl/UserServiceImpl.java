@@ -26,14 +26,14 @@ public class UserServiceImpl implements UserService {
         //查询用户
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(user.getName());
+        criteria.andAccountEqualTo(user.getAccount());
         List<User> list = userMapper.selectByExample(example);
         //判断用户名是否存在
         if(list.size()==0) {
             userMapper.insert(user);
         }else{
             //已经存在
-            throw new RuntimeException("用户名已存在");
+            throw new RuntimeException("账号已存在");
         }
     }
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     public User selectUserByAccount(String account) {
         UserExample example = new UserExample();
         UserExample.Criteria criteria = example.createCriteria();
-        criteria.andNameEqualTo(account);
+        criteria.andAccountEqualTo(account);
         List<User> list = userMapper.selectByExample(example);
         if(list.size()==0){
             return null;

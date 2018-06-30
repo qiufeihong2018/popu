@@ -34,36 +34,6 @@
 <!--背景色-->
 
 <body class="gray-bg">
-	<!-- <header class="clearfix">
-    头部
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-                <a class="navbar-brand" href="主页.html">温州市波普大数据研究院</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="search.html">私信</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="个人中心.html">个人中心</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header> -->
 
 	<!-- 引入header.jsp -->
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
@@ -88,10 +58,6 @@
 										</div>
 										<div id="msg_board">
 
-											<%--<div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                        <div class="chat-message-right"><img class="img-circle" src="/img/2.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                        <div class="chat-message-left"><img class="img-circle" src="/img/1.jpg" alt="" style="width:48px;height: 48px;"><div class="message"><a class="message-author" href="#"> 雷军</a><span class="message-date"> 2018-02-02  </span><span class="message-content">123213</span></div></div>
-                                    --%>
 										</div>
 									</div>
 

@@ -68,7 +68,7 @@
             <form action="${pageContext.request.contextPath}/user/picChange" method="post">
                 <input type="hidden" name="id" value="${user.id}">
                 <input type="hidden" id="inputHead" name="pic" value="${user.pic}">
-                <button id="btnChuang" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
+                <button id="btnChuang1" type="button" class="btn btn-success" id="test1">上传图片</button><br><br>
                 <div class="layui-upload-list" >
                     <img src="${user.pic}" class="layui-upload-img imgSize" id="head">
                     <div style = "text-align:right;margin-top: -20px">

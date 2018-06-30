@@ -21,38 +21,6 @@
 </head>
 
 <body class="gray-bg">
-<!--导航栏-->
-<%-- <header class="clearfix">
-    <!-- 头部 -->
-
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/index">温州市波普大数据研究所</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-
-                    <li>
-                        <a href="私信界面.html">私信</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="个人中心.html">个人中心</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header> --%>
 
  <!-- 引入header.jsp -->
 <jsp:include page="header.jsp" flush="true"></jsp:include>

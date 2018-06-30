@@ -32,59 +32,6 @@
 				<br> <br> <br>
 				<h1>个人中心</h1>
 
-				<%-- 	<!--账号-->
-				<label>账号</label> <input type="hidden" name="id" value="${user.id}">
-				<input id="account" readonly="readonly" value="${user.account}"
-					type="text" class="form-control" placeholder="账号" lay-verify="username"
-					onfocus="showTips('account','账号必填!')"
-					onblur="check('account','账号不能为空！')" disabled="disabled"> <br>
-				<span id="accountspan" style="margin-left: -200px;"></span> <br>
-					
-				<!--姓名-->
-				<label>姓名</label> <input id="name" readonly="readonly"
-					value="${user.name}" type="text" class="form-control"
-					placeholder="姓名" onfocus="showTips('name','姓名必填!')"
-					onblur="check('name','姓名不能为空！')" disabled="disabled"> <br>
-				<span id="namespan" style="margin-left: -200px;"></span> <br>
-				<!--手机号-->
-				<label style="margin-left: -14px;">手机号</label> <input id="phone"
-					name="phone" value="${user.phone}" type="text" placeholder="手机号"
-					class="form-control" onfocus="showTips('phone','手机必填!')"
-					onblur="check('phone','手机不能为空！')" required="required" minlength="3"> <br> 
-					<!-- <span
-					id="phonespan" style="margin-left: -200px;"></span> -->
-					<span id="msg" ></span> <br>
-					 <br>
-				<!--通讯地址-->
-				<label style="margin-left: -27px;">通讯地址</label> <input
-					name="address" value="${user.address}" type="text"
-					class="form-control" placeholder="通讯地址"> <br> <br>
-
-				<!--工作单位-->
-				<label style="margin-left: -27px;">工作单位</label> <input id="work"
-					value="${user.work}" name="work" type="text" class="form-control"
-					placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') "
-					onblur="check( 'work', '工作单位不能为空！') "> <br> <span
-					id="workspan" style="margin-left: -170px; "></span> <br>
-				<!--职称-->
-				<label>职称</label> <input name="professional "
-					value="${user.professional}" type="text " class="form-control "
-					placeholder="职称 "> <br> <br>
-				<!--职务-->
-				<label>职务</label> <input name="duties" value="${user.duties}"
-					type="text" class="form-control" placeholder="职务" /> <br> <br>
-				<!--岗位-->
-				<label>岗位</label> <input name="station" value="${user.station}"
-					type="text" class="form-control" placeholder="岗位"> <br>
-				<br>
-				<!--邮箱-->
-				<label>邮箱</label> <input id="Email" name="email"
-					value="${user.email}" type="text" class="form-control"
-					placeholder="邮箱" onfocus="showTips( 'Email', '邮箱必填!') "
-					onblur="check( 'Email', '邮箱不能为空！') "> <br> <span
-					id="Emailspan" style="margin-left: -200px;"></span> <br> <input
-					type="submit" id="btnChuang" class="btn btn-success" value="确定"
-					onclick="alert('修改成功')" /> <br> <br> --%>
 				<!--账号-->
 				<label>账号</label> <input type="hidden" name="id" value="${user.id}">
 				<input id="account" readonly="readonly" value="${user.account}"

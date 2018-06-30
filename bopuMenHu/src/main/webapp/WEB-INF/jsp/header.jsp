@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!-- <head> -->
 <style>
@@ -50,7 +51,7 @@ header .navbar-brand {
 		<div class="container-fluid">
 			<div class="navbar-header">
 
-				<a class="navbar-brand" href="主页.html">温州市波普大数据研究院</a>
+				<a class="navbar-brand" href="${pageContext.request.contextPath}/">温州市波普大数据研究院</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#example-navbar-collapse">
 					<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
@@ -59,8 +60,13 @@ header .navbar-brand {
 			</div>
 			<div class="collapse navbar-collapse" id="example-navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-
-					<li><a href="私信界面.html">私信</a></li>
+					<li><a href="${pageContext.request.contextPath}/introduction">简介</a></li><li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath}/article/detailList?type=1">最近活动</a></li><li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath}/article/detailList?type=2">研究成果</a></li><li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath}/article/detailList?type=3">业内动态</a></li><li class="divider"></li>
+					<li><a href="${pageContext.request.contextPath}/contactUs">联系我们</a>
+					<c:if test="${sessionScope.user!=null}">
+					<li><a href="${pageContext.request.contextPath}/search">私信</a></li>
 					<li class="divider"></li>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -73,8 +79,10 @@ header .navbar-brand {
 							<li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
 						</ul></li>
 
+					</c:if>
 				</ul>
 			</div>
 		</div>
 	</nav>
 </header>
+

@@ -18,56 +18,8 @@ change this template use File | Settings | File Templates. --%> -->
 </head>
 
 <body class="gray-bg">
-	<header class="clearfix">
-		<!-- 头部 -->
+<jsp:include page="header.jsp" />
 
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-
-					<a class="navbar-brand" href="#">温州市波普大数据研究院</a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#example-navbar-collapse">
-						<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span>
-					</button>
-				</div>
-
-				<div class="collapse navbar-collapse" id="example-navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#">简介</a></li>
-						<li class="divider"></li>
-						<li><a
-							href="${pageContext.request.contextPath}/article/detailList?type=1">最近活动</a></li>
-						<li class="divider"></li>
-						<li><a
-							href="${pageContext.request.contextPath}/article/detailList?type=2">研究成果</a></li>
-						<li class="divider"></li>
-						<li><a
-							href="${pageContext.request.contextPath}/article/detailList?type=3">业内动态</a></li>
-						<li class="divider"></li>
-						<li><a href="#">联系我们</a></li>
-						<c:if test="${user!=null}">
-							<li><a href="${pageContext.request.contextPath}/search">私信</a></li>
-							<li class="divider"></li>
-							<li class="dropdown"><a class="dropdown-toggle"
-								data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">个人中心 <span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a
-										href="${pageContext.request.contextPath}/passwordChange">修改密码</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/personChange">修改信息</a></li>
-									<li><a href="${pageContext.request.contextPath}/picChange">修改头像</a></li>
-								</ul></li>
-						</c:if>
-						<li class="divider"></li>
-					</ul>
-				</div>
-
-			</div>
-		</nav>
-	</header>
 	<main class="content">
 		<br> <br>
 		<div class="cen center-block">
@@ -84,37 +36,6 @@ change this template use File | Settings | File Templates. --%> -->
 				</ol>
 				<!-- 轮播（Carousel）项目 -->
 				<div id="top1" class="carousel-inner">
-					<div id="img0" class="item active">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture1.jpg"
-							alt="1 slide"
-							onclick="javascript:window.location.href='www.baidu.com'">
-					</div>
-					<div class="item">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture2.jpg"
-							alt="2 slide">
-					</div>
-					<div class="item">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture3.jpg"
-							alt="3 slide">
-					</div>
-					<div class="item">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture3.jpg"
-							alt="3 slide">
-					</div>
-					<div class="item">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture3.jpg"
-							alt="3 slide">
-					</div>
-					<div class="item">
-						<img class="aa"
-							src="${pageContext.request.contextPath}/picture/picture3.jpg"
-							alt="3 slide">
-					</div>
 				</div>
 				<!-- 轮播（Carousel）导航 -->
 				<a class="left carousel-control" href="#myCarousel" role="button"
@@ -133,43 +54,6 @@ change this template use File | Settings | File Templates. --%> -->
 			<hr>
 			<br>
 			<div id="top2" class="row">
-				<div class="col-sm-6 col-md-4">
-					<div id="pig1" class="thumbnail">
-						<a href="查看文章.html"><img
-							src="${pageContext.request.contextPath}/picture/picture1.jpg"
-							alt="这是图">
-							<div class="caption">
-								<h3>文章标题</h3>
-								<p>一些示例文本。一些示例文本。</p>
-
-							</div> </a>
-					</div>
-				</div>
-				<div class="col-sm-6 col-md-4">
-					<div id="pig2" class="thumbnail">
-						<a href="查看文章.html"> <img
-							src="${pageContext.request.contextPath}/picture/picture2.jpg"
-							alt="这是图">
-							<div class="caption">
-								<h3>文章标题</h3>
-								<p>一些示例文本。一些示例文本。</p>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-4">
-					<div id="pig3" class="thumbnail">
-						<a href="查看文章.html"> <img
-							src="${pageContext.request.contextPath}/picture/picture3.jpg"
-							alt="这是图">
-							<div class="caption">
-								<h3>文章标题</h3>
-								<p>一些示例文本。一些示例文本。</p>
-							</div>
-						</a>
-					</div>
-				</div>
 
 
 			</div>
@@ -192,12 +76,6 @@ change this template use File | Settings | File Templates. --%> -->
 								class="list-group-item">测试文章</a>
 						</div>
 						<hr style="border:5px solid #DDDDDD" />
-						<!-- <div class="row">
-							<div class="col-md-2 col-sm-10">
-								<a href="文章列表.html"><input id="btnChuang" type="submit"
-									class="btn btn-success" value="查看更多" /></a>
-							</div>
-						</div> -->
 							<a href="联系我们.html" >查看更多<i
 								class="glyphicon glyphicon-chevron-right"></i></a>
 
@@ -460,10 +338,6 @@ header .navbar-brand {
                 interval: 4000
             });
         });
-        $(document).ready(function () {
-
-            //$("#div4").height($("#div2").height());
-        });
 
         $(document).ready(function () {
             $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
@@ -520,10 +394,8 @@ header .navbar-brand {
                 $.each(data["obj"], function (index, val) {
                     text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
                 });
-                console.log(text);
+
             $("#showNews").html(text);
-            //alert(data["obj"][0]["title"]);    // 文章标题
-            //alert(data["obj"][0]["id"]);    // 文章序号
         });
         });
         <c:if test="${user != null}">
@@ -538,8 +410,6 @@ header .navbar-brand {
                     text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
                 });
                 $("#innerNews").html(text);
-                //alert(data["obj"][0]["title"]);    // 文章标题
-                //alert(data["obj"][0]["id"]);    // 文章序号
             });
         });
         $(document).ready(function () {
@@ -547,7 +417,6 @@ header .navbar-brand {
             // 项目div块experiment
             $.post("${pageContext.request.contextPath}/article/projectContent", {
             }, function (data) {
-                console.log(data);
                 var text = "";
                 $.each(data["obj"]["rows"], function (index, val) {
                     text+='项目名称：'+val["title"]+'<br>' +
@@ -557,7 +426,6 @@ header .navbar-brand {
                         '  <a href=${pageContext.request.contextPath}"'+val["look"]+'">进入查看</a>' +
                         '  <hr style="border:5px solid #DDDDDD;"/>';
                 });
-                console.log(text);
                 $("#experiment").html(text);
                 $("#div4").height($("#innerNews").height());
             });

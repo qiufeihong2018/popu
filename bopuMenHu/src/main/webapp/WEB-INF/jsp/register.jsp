@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,154 +18,21 @@
     <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-  <!--   <script>
-
-
-            //验证成功
-            function verifySucc() {
-                isVertifySucc = true;
-                dragText.textContent = "验证通过";
-                dragText.style.color = "white";
-                dragHandler.setAttribute("class", "dragHandlerOkBg");
-
-                dragHandler.removeEventListener("mousedown", onDragHandlerMouseDown);
-                document.removeEventListener("mousemove", onDragHandlerMouseMove);
-                document.removeEventListener("mouseup", onDragHandlerMouseUp);
-
-                dragHandler.removeEventListener("touchstart", onDragHandlerMouseDown);
-                document.removeEventListener("touchmove", onDragHandlerMouseMove);
-                document.removeEventListener("touchend", onDragHandlerMouseUp);
-            };
-        }
-
-        function CheckInput(inputField,helpText){
-            if(inputField.value.length==0){
-                if(helpText!=null){
-                    helpText.innerHTML="不能为空，请输入";
-
-                }
-                return false;
-            }
-            else{
-                if(helpText!=null){
-                    helpText.innerHTML="";
-                    var text = $(inputField).val();
-                    $.ajax({
-                        type: "POST",
-                        url: "${pageContext.request.contextPath}/user/checkName",
-                        data: {account:text},
-                        dataType: "json",
-                        success: function (data) {
-                            if(data["status"]!=200){
-                                helpText.innerHTML=data["message"];
-                            }
-                        }
-                    });
-                }
-                return true;
-            }}
-
-    </script> -->
 </head>
 <body class="gray-bg">
-<header class="clearfix"><!-- 头部 -->
+<jsp:include page="header.jsp"/>
 
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-
-                <a class="navbar-brand" href="#">温州波普大数据研究所</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#example-navbar-collapse">
-                    <span class="sr-only">切换导航</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="example-navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">简介</a></li>
-                    <li  class="divider"></li>
-                    <li><a href="#">最近活动</a></li>
-                    <li  class="divider"></li>
-                    <li><a href="#">研究成果</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">业内动态</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">联系我们</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<%-- <main class="content">
-    <form action="${pageContext.request.contextPath}/user/save" class="form1" method="post" name="form1" target="_blank" id="form1" onsubmit="return check_zhuce()">
-
-        <h1>注册</h1>
-
-
-        <input name="account"  type="text" onblur="CheckInput(this,document.getElementById('account'))"  class="form-control" placeholder="账号" >
-        <br>
-        <span id="account">${message}</span>
-        <br>
-
-        <input name="password" type="password" onblur="CheckInput(this,document.getElementById('password'))"  class="form-control" placeholder="密码" />
-        <br>
-        <span id="password"  ></span>
-        <br>
-        <input name="name" type="text" onblur="CheckInput(this,document.getElementById('name'))"  class="form-control" placeholder="姓名" >
-        <br>
-        <span id="name"  ></span>
-        <br>
-        <input name="phone" type="text" onblur="CheckInput(this,document.getElementById('phone'))"  class="form-control" placeholder="手机号"/>
-        <br>
-        <span id="phone"  ></span>
-        <br>
-        <input name="address" type="text"   class="form-control" placeholder="通讯地址" >
-        <br> <br>
-        <input name="work" type="text" onblur="CheckInput(this,document.getElementById('work'))"  class="form-control" placeholder="工作单位"/>
-        <br>
-        <span id="work"></span>
-        <br>
-        <input name="professional" type="text"   class="form-control" placeholder="职称" >
-        <br><br>
-        <input name="duties" type="text"   class="form-control" placeholder="职务"  />
-        <br> <br>
-        <input name="station" type="text"   class="form-control" placeholder="岗位" >
-        <br> <br>
-        <input name="email" type="text" onblur="CheckInput(this,document.getElementById('Email'))"  class="form-control" placeholder="邮箱"  />
-        <br>
-        <span id="email"></span>
-        <br>
-
-        <!--滑动验证-->
-        <div id="dragContainer">
-        <div id="dragBg"></div>
-        <div id="dragText"></div>
-        <div id="dragHandler" class="dragHandlerBg"></div>
-        </div>
-        <br>  <br>
-        <input id="btnChuang" type="submit" class="btn-success" value="创建账号"  />
-        <br>  <br>
-        <div class="zhu">
-            <input type="button" class="btn-link" value="登录"/>
-        </div>
-    </form>
-</main> --%>
 		<main class="content">
 			<br>
 			<div id="biaodan">
-				<!--	<form action="" class="form1" method="post" name="form1" target="_blank" id="form1" >-->
-				<form action="主页.html" class="form1" method="post" name="form1" target="_blank" id="form1" onSubmit="return check_login()">
+				<form action="${pageContext.request.contextPath}/user/save" class="form1" method="post" name="form1"  id="form1" onSubmit="return check_login()">
 					<br> <br> <br>
 					<h1>注册</h1>
 
 					<!--账号-->
-					<input id="account" name="account" type="text" class="form-control" placeholder="账号" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
+					<input id="account" name="account" type="text" value="${user.account}" class="form-control" placeholder="账号" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
 					<br>
-					<span id="accountspan" class="msg" style="margin-left: -200px;"></span>
+					<span id="accountspan" class="msg" style="margin-left: -200px;">${message}</span>
 					<br>
 					<!--密码-->
 
@@ -174,42 +42,42 @@
 					<br>
 					<!--姓名-->
 
-					<input id="name" name="name" type="text" class="form-control" placeholder="姓名" onfocus="showTips('name','姓名必填!')" onblur="check('name','姓名不能为空！')">
+					<input id="name" name="name" value="${user.name}" type="text" class="form-control" placeholder="姓名" onfocus="showTips('name','姓名必填!')" onblur="check('name','姓名不能为空！')">
 					<br>
 					<span id="namespan" class="msg" style="margin-left: -200px;"></span>
 					<br>
 					<!--手机号-->
 
-					<input id="phone" name="phone" type="text" placeholder="手机号" class="form-control" onfocus="showTips('phone','手机必填!')" onblur="check('phone','手机不能为空！')">
+					<input id="phone" name="phone" value="${user.phone}" type="text" placeholder="手机号" class="form-control" onfocus="showTips('phone','手机必填!')" onblur="check('phone','手机不能为空！')">
 					<br>
 					<span id="phonespan" class="msg" style="margin-left: -200px;"></span>
 					<br>
 					<!--通讯地址-->
 
-					<input name="address" type="text" class="form-control" placeholder="通讯地址">
+					<input name="address" type="text" value="${user.address}" class="form-control" placeholder="通讯地址">
 					<br> <br>
 
 					<!--工作单位-->
 
-					<input id="work" name="work" type="text" class="form-control" placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') " onblur="check( 'work', '工作单位不能为空！') ">
+					<input id="work" name="work" type="text" value="${user.work}" class="form-control" placeholder="工作单位 " onfocus="showTips( 'work', '工作单位必填!') " onblur="check( 'work', '工作单位不能为空！') ">
 					<br>
 					<span id="workspan" class="msg" style="margin-left: -170px; "></span>
 					<br>
 					<!--职称-->
 
-					<input name="professional " type="text " class="form-control " placeholder="职称 ">
+					<input name="professional " type="text " value="${user.professional}" class="form-control " placeholder="职称 ">
 					<br><br>
 					<!--职务-->
 
-					<input name="duties" type="text" class="form-control" placeholder="职务" />
+					<input name="duties" type="text" value="${user.duties}" class="form-control" placeholder="职务" />
 					<br> <br>
 					<!--岗位-->
 
-					<input name="station" type="text" class="form-control" placeholder="岗位">
+					<input name="station" type="text" value="${user.station}" class="form-control" placeholder="岗位">
 					<br> <br>
 					<!--邮箱-->
 
-					<input id="Email" name="Email" type="text" class="form-control" placeholder="邮箱" onfocus="showTips( 'Email', '邮箱必填!') " onblur="check( 'Email', '邮箱不能为空！') ">
+					<input id="Email" name="email" type="text" value="${user.email}" class="form-control" placeholder="邮箱" onfocus="showTips( 'Email', '邮箱必填!') " onblur="check( 'Email', '邮箱不能为空！') ">
 					<br>
 					<span id="Emailspan" class="msg" style="margin-left: -200px;"></span>
 					<br>
@@ -219,12 +87,12 @@
 						<p5 style="margin-left: -8px;">验证码</p5>
 						<input type="text" id="yanzhengma" class="form-control photokey" value="请输入验证码" onBlur="textBlur(this)" onFocus=" textFocus(this) " />
 						<span class="add phoKey"></span>
-						<span class="error error7"></span>
+						<span id="errorCode" class="error error7"></span>
 					</div>
 					<br> <br>
 					<input id="btnChuang" type="submit" class="btn btn-success" value="创建账号" />
 					<br> <br>
-					<a href="登录页面.html"><input id="denglu" type="button" class="btn-link" value="登录" /></a>
+					<a href="${pageContext.request.contextPath}/login"><input id="denglu" type="button" class="btn-link" value="登录" /></a>
 
 				</form>
 			</div>
@@ -460,7 +328,16 @@
 		} else if (document.getElementById("Email").value == "") {
 			document.getElementById("Email").focus();
 			return false;
-		}
+		} else if (document.getElementById("accountspan").innerHTML != "") {
+            document.getElementById("account").focus();
+            return false;
+        } else if (document.getElementById("yanzhengma").value == "") {
+            document.getElementById("yanzhengma").focus();
+            return false;
+        } else if (document.getElementById("errorCode").innerHTML != "") {
+            document.getElementById("yanzhengma").focus();
+            return false;
+        }
 
 		return true;
 	}
@@ -478,5 +355,24 @@
 		} else {
 			document.getElementById(id + "span").innerHTML = "";
 		}
+		if(id=="account"){
+            checkAccount(id);
+		}
 	}
+
+	//验证账号是否重复
+	function checkAccount(id) {
+        var text = $("#"+id).val();
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/user/checkName",
+            data: {account:text},
+            dataType: "json",
+            success: function (data) {
+                if(data["status"]!=200){
+                    document.getElementById(id + "span").innerHTML = "<font color='red'>此账号已被注册</font>";
+                }
+            }
+        });
+    }
 </script>
