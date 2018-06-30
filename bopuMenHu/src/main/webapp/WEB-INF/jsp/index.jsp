@@ -380,7 +380,7 @@ header .navbar-brand {
                 $.each(data["obj"], function (index, val) {
                     if(val["categoryId"]==2){//轮播图
                         if(i==0){//第一次
-                            ol+='<li data-target="#myCarousel" data-slide-to="'+index+'" class="active"></li>';
+                            ol+='<li data-target="#myCarousel" data-slide-to="'+i+'" class="active"></li>';
                             text1+='<div class="item active">' +
                                 '                    <img  class="aa"' +
                                 '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
@@ -389,13 +389,14 @@ header .navbar-brand {
                                 '                </div>';
                                 i++;
                         }else{
-                        ol+='<li data-target="#myCarousel" data-slide-to="'+index+'"></li>';
+                        ol+='<li data-target="#myCarousel" data-slide-to="'+i+'"></li>';
                         text1+='<div class="item">' +
                             '                    <img  class="aa"' +
                             '                         src="${pageContext.request.contextPath}'+val["pic"]+'"' +
                             '                        onclick="javascript:window.location.href=\'${pageContext.request.contextPath}'+val["url"]+'\'"' +
                             '                   alt="" >' +
                             '                </div>';
+                            i++;
                         }
                     }else if(val["categoryId"]==1){//顶置文章
                         text2+='<div class="col-sm-6 col-md-4">' +
