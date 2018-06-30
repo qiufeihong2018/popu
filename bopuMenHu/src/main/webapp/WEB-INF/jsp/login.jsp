@@ -37,7 +37,7 @@
 				<br> <br> <br> <br>
 				<h1>登录</h1>
 				<!--账号-->
-				<label style="margin-left: -111px;">手机/邮箱/用户名</label> <input
+				<label style="margin-left: -35px;">账号</label> <input
 					id="username" type="text" name="account" value="${account}"
 					class="form-control" placeholder="手机/邮箱/用户名"
 					onfocus="showTips('username','手机/邮箱/用户名必填！')"
