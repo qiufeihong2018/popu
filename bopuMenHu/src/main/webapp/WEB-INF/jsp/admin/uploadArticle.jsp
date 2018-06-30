@@ -54,6 +54,149 @@
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
 
 </head>
+
+<body class="gray-bg">
+<div class="div1">
+    <br> <br>
+    <h1>发布文章</h1>
+
+    <hr style="border:5px solid #DDDDDD"/>
+    <br>
+    <!--文章分类-->
+    <div class="col-lg-2" style="margin-top: 50px;">文章分类：</div>
+    <div class="col-lg-10" style="margin-top: 50px;">
+        <select id="notice_select" class="selectpicker" style="width: 100%;">
+            <option value="1" name="option1">最近活动</option>
+            <option value="2" name="option2">实验项目简介及连接</option>
+            <option value="3" name="option3">业内动态</option>
+            <option value="4" name="option4">内部通知</option>
+        </select>
+    </div>
+    <!--通知-->
+
+    <div id="tongzhi">
+        <!--标题-->
+        <div class="col-lg-2" style="margin-top: 50px;">标题：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input id="title" name="noticeTitle" type="text"
+                   class="form-control" placeholder="请输入标题"
+                   onfocus="showTips('title','标题必填!')"
+                   onblur="check('title','标题不能为空！')"/> <br> <span
+                id="titlespan"></span> <br>
+        </div>
+
+
+        <!--作者-->
+        <div class="col-lg-2" style="margin-top: 50px;">作者：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+
+            <input id="author" name="noticeAuthor" value="admin" type="text"
+                   class="form-control" onfocus="showTips('author','作者必填!')"
+                   onblur="check('author','作者不能为空！')"/> <br> <span
+                id="authorspan"></span> <br>
+        </div>
+
+        <!-- 正文 -->
+        <div class="col-lg-2" style="margin-top: 50px;">内容：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <div id="container2" type="text/plain" style="width:100%;height:500px;">
+            </div>
+        </div>
+
+        <!--是否评论-->
+        <div class="col-lg-2" style="margin-top: 50px;">是否可评论：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <label class="radio-inline">
+                <input type="radio" name="noticeFlag" checked="checked" value="1"> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="noticeFlag" value="2"> 否
+            </label>
+        </div>
+
+        <!--确定-->
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <button class="btn btn-primary btn-block" onclick="submitHTML()">确定</button>
+        </div>
+        <!--换行-->
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;"></div>
+    </div>
+
+    <!--实验项目-->
+    <div id="shiyan">
+        <!--项目名称-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目名称：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input id="itemName" name="projectTitle" type="text"
+                   class="form-control" placeholder="请输入项目名"
+                   onfocus="showTips('itemName','项目名称必填!')"
+                   onblur="check('itemName','项目名称不能为空！')"/> <br>
+            <span id="itemNamespan"></span> <br>
+        </div>
+
+        <!--项目简介-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <div id="container" type="text/plain"
+                 style="width:100%;height:500px;"></div>
+        </div>
+
+        <!--项目成员-->
+        <div class="col-lg-2" style="margin-top: 50px;">项目成员：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input id="author2" name="projectAuthor" placeholder="成员名(请用空格隔开)"
+                   type="text" class="form-control"
+                   onfocus="showTips('author2','作者成员必填!')"
+                   onblur="check('author2','作者成员不能为空！')"/> <br> <span
+                id="author2span"></span> <br>
+        </div>
+
+        <!--上限日期-->
+        <div class="col-lg-2" style="margin-top: 50px;">上限日期：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <!--							<input type="text" class="demo-input" placeholder="请选择日期" id="test1" style="width: 100%;">-->
+            <input id="date" name="limitData" placeholder="点击选择日期" type="text"
+                   class="demo-input" onfocus="showTips('date','上限日期必填!')"
+                   onblur="check('date','上限日期不能为空！')" style="width: 100%;"/> <br>
+            <span id="datespan"></span> <br>
+
+        </div>
+
+        <!--进入查看-->
+        <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <input id="look" name="look" value="http://" type="text"
+                   class="form-control" onfocus="showTips('look','进入查看必填!')"
+                   onblur="check('look','进入查看不能为空！')"/> <br>
+            <span id="lookspan"></span> <br>
+        </div>
+
+        <!--是否评论-->
+        <div class="col-lg-2" style="margin-top: 50px;">是否评论：</div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+            <label class="radio-inline">
+                <input type="radio" name="projectFlag" checked="checked" value="1"> 是
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="projectFlag" value="2"> 否
+            </label>
+        </div>
+
+
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;">
+       <!--      <button class="btn btn-primary btn-block" onclick="submitHTML()" type="submit">确定</button> -->
+            <input type="submit" class="btn btn-primary btn-block" onclick="submitHTML()" value="确定">
+        </div>
+        <!--换行-->
+        <div class="col-lg-2" style="margin-top: 50px;"></div>
+        <div class="col-lg-10" style="margin-top: 50px;"></div>
+    </div>
+</div>
+</body>
+</html>
 <style type="text/css">
     .div1 {
         display: block;
@@ -187,147 +330,5 @@
         }
     }
 </script>
-<body class="gray-bg">
-<div class="div1">
-    <br> <br>
-    <h1>发布文章</h1>
-
-    <hr style="border:5px solid #DDDDDD"/>
-    <br>
-    <!--文章分类-->
-    <div class="col-lg-2" style="margin-top: 50px;">文章分类：</div>
-    <div class="col-lg-10" style="margin-top: 50px;">
-        <select id="notice_select" class="selectpicker" style="width: 100%;">
-            <option value="1" name="option1">最近活动</option>
-            <option value="2" name="option2">实验项目简介及连接</option>
-            <option value="3" name="option3">业内动态</option>
-            <option value="4" name="option4">内部通知</option>
-        </select>
-    </div>
-    <!--通知-->
-
-    <div id="tongzhi">
-        <!--标题-->
-        <div class="col-lg-2" style="margin-top: 50px;">标题：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <input id="title" name="noticeTitle" type="text"
-                   class="form-control" placeholder="请输入标题"
-                   onfocus="showTips('title','标题必填!')"
-                   onblur="check('title','标题不能为空！')"/> <br> <span
-                id="titlespan"></span> <br>
-        </div>
-
-
-        <!--作者-->
-        <div class="col-lg-2" style="margin-top: 50px;">作者：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-
-            <input id="author" name="noticeAuthor" value="admin" type="text"
-                   class="form-control" onfocus="showTips('author','作者必填!')"
-                   onblur="check('author','作者不能为空！')"/> <br> <span
-                id="authorspan"></span> <br>
-        </div>
-
-        <!-- 正文 -->
-        <div class="col-lg-2" style="margin-top: 50px;">内容：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <div id="container2" type="text/plain" style="width:100%;height:500px;">
-            </div>
-        </div>
-
-        <!--是否评论-->
-        <div class="col-lg-2" style="margin-top: 50px;">是否可评论：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <label class="radio-inline">
-                <input type="radio" name="noticeFlag" checked="checked" value="1"> 是
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="noticeFlag" value="2"> 否
-            </label>
-        </div>
-
-        <!--确定-->
-        <div class="col-lg-2" style="margin-top: 50px;"></div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <button class="btn btn-primary btn-block" onclick="submitHTML()">确定</button>
-        </div>
-        <!--换行-->
-        <div class="col-lg-2" style="margin-top: 50px;"></div>
-        <div class="col-lg-10" style="margin-top: 50px;"></div>
-    </div>
-
-    <!--实验项目-->
-    <div id="shiyan">
-        <!--项目名称-->
-        <div class="col-lg-2" style="margin-top: 50px;">项目名称：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <input id="itemName" name="projectTitle" type="text"
-                   class="form-control" placeholder="请输入项目名"
-                   onfocus="showTips('itemName','项目名称必填!')"
-                   onblur="check('itemName','项目名称不能为空！')"/> <br>
-            <span id="itemNamespan"></span> <br>
-        </div>
-
-        <!--项目简介-->
-        <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <div id="container" type="text/plain"
-                 style="width:100%;height:500px;"></div>
-        </div>
-
-        <!--项目成员-->
-        <div class="col-lg-2" style="margin-top: 50px;">项目成员：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <input id="author2" name="projectAuthor" placeholder="成员名(请用空格隔开)"
-                   type="text" class="form-control"
-                   onfocus="showTips('author2','作者成员必填!')"
-                   onblur="check('author2','作者成员不能为空！')"/> <br> <span
-                id="author2span"></span> <br>
-        </div>
-
-        <!--上限日期-->
-        <div class="col-lg-2" style="margin-top: 50px;">上限日期：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <!--							<input type="text" class="demo-input" placeholder="请选择日期" id="test1" style="width: 100%;">-->
-            <input id="date" name="limitData" placeholder="点击选择日期" type="text"
-                   class="demo-input" onfocus="showTips('date','上限日期必填!')"
-                   onblur="check('date','上限日期不能为空！')" style="width: 100%;"/> <br>
-            <span id="datespan"></span> <br>
-
-        </div>
-
-        <!--进入查看-->
-        <div class="col-lg-2" style="margin-top: 50px;">进入查看：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <input id="look" name="look" value="http://" type="text"
-                   class="form-control" onfocus="showTips('look','进入查看必填!')"
-                   onblur="check('look','进入查看不能为空！')"/> <br>
-            <span id="lookspan"></span> <br>
-        </div>
-
-        <!--是否评论-->
-        <div class="col-lg-2" style="margin-top: 50px;">是否评论：</div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <label class="radio-inline">
-                <input type="radio" name="projectFlag" checked="checked" value="1"> 是
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="projectFlag" value="2"> 否
-            </label>
-        </div>
-
-
-        <div class="col-lg-2" style="margin-top: 50px;"></div>
-        <div class="col-lg-10" style="margin-top: 50px;">
-            <button class="btn btn-primary btn-block" onclick="submitHTML()">确定</button>
-        </div>
-        <!--换行-->
-        <div class="col-lg-2" style="margin-top: 50px;"></div>
-        <div class="col-lg-10" style="margin-top: 50px;"></div>
-    </div>
-</div>
-</body>
-</html>
-
 
 
