@@ -26,29 +26,17 @@
 
 <main class="content">
     <div id="biaodan">
-        <form action="${pageContext.request.contextPath}/user/passwordChange" class="form1" method="post" name="form1" target="_blank" id="form1">
+        <form action="${pageContext.request.contextPath}/user/passwordChange" class="form1" method="post" name="form1" id="form1">
             <br> <br> <br>
             <h1>个人中心</h1>
 
-          <%--   <!--账号-->
-            <input type="hidden" name="id" value="${user.id}">
-            <input id="oldPassword" name="oldPassword" type="text" class="form-control" placeholder="原密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
-            <br>
-            <span  style="margin-left: -200px;" placeholder="源密码">${oldPassword}</span>
-            <br>
-            <input id="newPassword" name="newPassword" type="text" class="form-control" placeholder="新密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
-            <br>
-            <span  style="margin-left: -200px;" placeholder="新密码">${newPassword}</span>
-            <br>
-            <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" onfocus="showTips('account','账号必填!')" onblur="check('account','账号不能为空！')">
-            <br>
-            <br>
-          	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" /> --%>
+
           	  <!--账号-->
+            ${oldPassword}${newPassword}<br>
             <input type="hidden" name="id" value="${user.id}">
            	<label style="margin-left: -39px;">原密码</label> <input id="oldPassword" name="oldPassword" type="text" class="form-control" placeholder="原密码" /><br> <span for="oldPassword" style="margin-left: -192px;"></span> 
             <br>
-            	<label style="margin-left: -39px;">新密码</label><input id="newPassword" name="newPassword" type="text" class="form-control" placeholder="新密码" /><br> <span for="newPassword" style="margin-left: -181px;"></span> 
+            	<label style="margin-left: -39px;">新密码</label><input id="newPassword" name="newPassword" type="text" class="form-control" placeholder="新密码" /><br> <span for="newPassword" style="margin-left: -181px;"></span>
             <br>
           
                       	<label style="margin-left: -74px;">重复新密码</label>  <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" /><br> <span for="reNewPassword" style="margin-left: -159px;"></span> 
@@ -76,28 +64,7 @@
         body {
             overflow-x: hidden;
         }
-        /*头部样式*/
-/* 
-        header .navbar-default {
-            background-color: #1572DD;
-        }
 
-        header .navbar-brand {
-            color: #fff !important;
-        }
-
-        .navbar-default .navbar-toggle .icon-bar {
-            background-color: #fff !important;
-        }
-
-        .navbar-default .navbar-nav > li > a {
-            color: #fff !important;
-        }
-
-        .navbar-default .navbar-nav > li > a:focus,
-        .navbar-default .navbar-nav > li > a:hover {
-            color: #eee !important;
-        } */
         /*中间内容*/
 
         .content {
@@ -149,39 +116,7 @@
 
     <script>
  
-        //
-        //			function CheckInput(inputField, helpText) {
-        //				if(inputField.value.length == 0) {
-        //					if(helpText != null) {
-        //						helpText.innerHTML = "不能为空，请输入";
-        //
-        //					}
-        //					return false;
-        //				} else {
-        //					if(helpText != null) {
-        //						helpText.innerHTML = "";
-        //
-        //					}
-        //					return true;
-        //				}
-        //			}
 
-        //不为空验证
-   /*      function showTips(id, info) {
-            document.getElementById(id + "span").innerHTML = "<font color='gray'>" + info + "</font>";
-        }
-
-        function check(id, info) {
-            //1.获取用户输入的用户名数据
-            var uValue = document.getElementById(id).value;
-            //2.进行校验
-            if(uValue == "") {
-                document.getElementById(id + "span").innerHTML = "<font color='red'>" + info + "</font>";
-            } else {
-                document.getElementById(id + "span").innerHTML = "";
-            }
-        }
-         */
         $().ready(function() {
 
 		// 提交时验证表单
@@ -202,7 +137,7 @@
 				},
 				"newPassword" : {
 					"required" : true,
-						"minlength" : 11,
+						"minlength" : 6,
 				},
 				"reNewPassword" : {
 					"required" : true,
@@ -217,7 +152,7 @@
 				},
 				newPassword : {
 					required : "新密码不能为空",
-					minlength : "不能少于11个字符",
+					minlength : "不能少于6个字符",
 				},
 				reNewPassword : {
 					required : "重复新密码不能为空",

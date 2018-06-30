@@ -85,7 +85,7 @@
 						<!--验证码验证-->
 					<div id="yan">
 						<p5 style="margin-left: -8px;">验证码</p5>
-						<input type="text" id="yanzhengma" class="form-control photokey" value="请输入验证码" onBlur="textBlur(this)" onFocus=" textFocus(this) " />
+						<input type="text" id="yanzhengma" class="form-control photokey" placeholder="请输入验证码" value="" onBlur="textBlur(this)" onFocus=" textFocus(this) " />
 						<span class="add phoKey"></span>
 						<span id="errorCode" class="error error7"></span>
 					</div>
@@ -337,6 +337,10 @@
         } else if (document.getElementById("errorCode").innerHTML != "") {
             document.getElementById("yanzhengma").focus();
             return false;
+        } else if(document.getElementById("password").value.length<6){
+            document.getElementById("password").focus();
+            document.getElementById("passwordspan").innerHTML = "密码长度至少为6位";
+            return false;
         }
 
 		return true;
@@ -358,7 +362,14 @@
 		if(id=="account"){
             checkAccount(id);
 		}
+		if(id=="password"){
+		    //验证密码长度至少为6位
+			if(document.getElementById("password").value.length<6){
+                document.getElementById(id + "span").innerHTML = "密码长度至少为6位";
+			}
+		}
 	}
+
 
 	//验证账号是否重复
 	function checkAccount(id) {
