@@ -184,8 +184,8 @@ header .navbar-brand {
 	background-color: white;
 }
 /*注册密码样式*/
-#lianjie {
-	background-color: white;
+#lianjie1,#lianjie2 {
+	background-color: #fff;
 }
 
 @media screen and (max-width:500px) {

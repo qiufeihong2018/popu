@@ -70,24 +70,24 @@
 								</tr>
 							</thead>
 							<tbody id="content">
-								<tr>
+							<%-- 	<tr>
 									<td>1</td>
-									<td><a href="聊天界面.html">张三</a></td>
+									<td><a href="${pageContext.request.contextPath}/chat">张三</a></td>
 									<td>未读</td>
 									<td>2018/5/30</td>
 								</tr>
 								<tr>
 									<td>2</td>
-									<td><a href="聊天界面.html">李四</a></td>
+									<td><a href="${pageContext.request.contextPath}/chat">李四</a></td>
 									<td>未读</td>
 									<td>2018/5/30</td>
 								</tr>
 								<tr>
 									<td>3</td>
-									<td><a href="聊天界面.html">王麻子</a></td>
+									<td><a href="${pageContext.request.contextPath}/chat">王麻子</a></td>
 									<td>已读</td>
 									<td>2018/5/30</td>
-								</tr>
+								</tr> --%>
 							</tbody>
 						</table>
 
@@ -187,322 +187,79 @@ html, body {
 	background-color: #e2e2e2;
 	cursor: default;
 }
-#myUL
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-li
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-a
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:hover
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:not
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-(
-.header
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-)
-{
-background-color
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-:
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#eee
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-;
-}
 /*搜索按钮结束*/
 .wrapper-content {
-    padding: 20px;
+	padding: 20px;
 }
+
 .wrapper {
-    padding: 0 20px;
+	padding: 0 20px;
 }
+
 body {
-    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    color: #676a6c;
+	font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	color: #676a6c;
 }
+
 .ibox {
-    clear: both;
-    margin-bottom: 25px;
-    margin-top: 0;
-    padding: 0;
+	clear: both;
+	margin-bottom: 25px;
+	margin-top: 0;
+	padding: 0;
 }
+
 .ibox-title {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #ffffff;
-    border-color: #e7eaec;
-    -webkit-border-image: none;
-    -o-border-image: none;
-    border-image: none;
-    border-style: solid solid none;
-    border-width: 4px 0px 0;
-    color: inherit;
-    margin-bottom: 0;
-    padding: 14px 15px 7px;
-    min-height: 48px;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #ffffff;
+	border-color: #e7eaec;
+	-webkit-border-image: none;
+	-o-border-image: none;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 4px 0px 0;
+	color: inherit;
+	margin-bottom: 0;
+	padding: 14px 15px 7px;
+	min-height: 48px;
 }
+
 .ibox-content {
-    clear: both;
+	clear: both;
 }
+
 .ibox-content {
-    background-color: #ffffff;
-    color: inherit;
-    padding: 15px 20px 20px 20px;
-    border-color: #e7eaec;
-    -webkit-border-image: none;
-    -o-border-image: none;
-    border-image: none;
-    border-style: solid solid none;
-    border-width: 1px 0px;
+	background-color: #ffffff;
+	color: inherit;
+	padding: 15px 20px 20px 20px;
+	border-color: #e7eaec;
+	-webkit-border-image: none;
+	-o-border-image: none;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 1px 0px;
 }
+
 .ibox-tools {
-    display: inline-block;
-    float: right;
-    margin-top: 0;
-    position: relative;
-    padding: 0;
+	display: inline-block;
+	float: right;
+	margin-top: 0;
+	position: relative;
+	padding: 0;
 }
+
 .ibox-tools a {
-    cursor: pointer;
-    margin-left: 5px;
-    color: #c4c4c4;
+	cursor: pointer;
+	margin-left: 5px;
+	color: #c4c4c4;
 }
+
 a {
-    cursor: pointer;
+	cursor: pointer;
 }
 </style>
 
@@ -510,47 +267,52 @@ a {
 
 
 
-        $(document).ready(function(){
-            $.ajax({
-                type: "POST",
-                url: "${pageContext.request.contextPath}/user/getDistinctUser",
-                data: {receiver:"${user.name}"},
-                dataType: "json",
-                success: function (data) {
-                    var text = "";
-                    $.each(data,function (index,val) {
-                        var isread ="";
-                        if(val["readed"]==false){
-                            isread="未读";
-                        }else {
-                            isread="已读";
-                        }
-                        text += '<tr><td>'+index+'</td><td><a href="${pageContext.request.contextPath}/user/chat?id='+val["uid"]+'">'+val["sender"]+'</a></td><td>'+isread+'</td><td>'+val["time"]+'</td></tr>';
-                    });
-                    $("#content").html(text);
-                }
-            });
-        });
+	$(document).ready(function() {
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/user/getDistinctUser",
+			data : {
+				receiver : "${user.name}"
+			},
+			dataType : "json",
+			success : function(data) {
+				var text = "";
+				$.each(data, function(index, val) {
+					var isread = "";
+					if (val["readed"] == false) {
+						isread = "未读";
+					} else {
+						isread = "已读";
+					}
+					text += '<tr><td>' + index + '</td><td>'+'<a href="${pageContext.request.contextPath}/user/chat?id=' + val["uid"] + '">' + val["sender"] + '</a>'+'</td><td>' + isread + '</td><td>' + val["time"] + '</td></tr>';
+				});
+				$("#content").html(text);
+			}
+		});
+	});
 
-        function search(input) {
-            var text = $(input).val();
-            if(text == null || text ==""){
-                $("#myUL").hide();
-                return ;
-            }
-            $.ajax({
-                type: "POST",
-                url: "${pageContext.request.contextPath}/user/phoneSearch",
-                data: {phone:text},
-                dataType: "json",
-                success: function (data) {console.log(data);
-                    var usersHtml = '<li><a class="header">'+text+'</a></li>';
-                    $.each(data,function (index,val) {
-                        usersHtml += '<li><a href="${pageContext.request.contextPath}/user/chat?id='+val["id"]+'">'+val["name"]+'('+val["phone"]+')</a></li>';
-                    });
-                    $("#myUL").html(usersHtml);
-                    $("#myUL").show();
-                }
-            });
-        }
-    </script>
+	function search(input) {
+		var text = $(input).val();
+		if (text == null || text == "") {
+			$("#myUL").hide();
+			return;
+		}
+		$.ajax({
+			type : "POST",
+			url : "${pageContext.request.contextPath}/user/phoneSearch",
+			data : {
+				phone : text
+			},
+			dataType : "json",
+			success : function(data) {
+				console.log(data);
+				var usersHtml = '<li><a class="header">' + text + '</a></li>';
+				$.each(data, function(index, val) {
+					usersHtml += '<li><a href="${pageContext.request.contextPath}/user/chat?id=' + val["id"] + '">' + val["name"] + '(' + val["phone"] + ')</a></li>';
+				});
+				$("#myUL").html(usersHtml);
+				$("#myUL").show();
+			}
+		});
+	}
+</script>
