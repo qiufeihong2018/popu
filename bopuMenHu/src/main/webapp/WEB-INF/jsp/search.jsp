@@ -70,24 +70,30 @@
 								</tr>
 							</thead>
 							<tbody id="content">
-							<%-- 	<tr>
+							 	<tr>
 									<td>1</td>
-									<td><a href="${pageContext.request.contextPath}/chat">张三</a></td>
+									<td>
+										<a href="${pageContext.request.contextPath}/chat">张三</a>
+									</td>
 									<td>未读</td>
 									<td>2018/5/30</td>
 								</tr>
 								<tr>
 									<td>2</td>
-									<td><a href="${pageContext.request.contextPath}/chat">李四</a></td>
+									<td>
+										<a href="${pageContext.request.contextPath}/chat">李四</a>
+									</td>
 									<td>未读</td>
 									<td>2018/5/30</td>
 								</tr>
 								<tr>
 									<td>3</td>
-									<td><a href="${pageContext.request.contextPath}/chat">王麻子</a></td>
+									<td>
+										<a href="${pageContext.request.contextPath}/chat">王麻子</a>
+									</td>
 									<td>已读</td>
 									<td>2018/5/30</td>
-								</tr> --%>
+								</tr>
 							</tbody>
 						</table>
 
@@ -134,6 +140,9 @@
 
 </html>
 <style>
+	.col-sm-12{
+		float: none;
+	}
 /*背景色*/
 .gray-bg {
 	background-color: #f3f3f4;
