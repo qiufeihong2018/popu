@@ -4,6 +4,7 @@ import com.alibaba.fastjson.parser.deserializer.StringFieldDeserializer;
 import com.bopu.pojo.BoPuResult;
 import com.bopu.pojo.Content;
 import com.bopu.service.ContentService;
+import com.bopu.utils.RandomCode;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -137,18 +138,19 @@ public class ContentController {
      * @param sort      序号 1 2 3
      */
     @RequestMapping(value = "content/addArticle")
-    public String addArt(MultipartFile file[], Integer articleId, Integer sort, HttpServletRequest request) throws IOException {
+    public String addArt(@RequestParam("file[]") MultipartFile file[], Integer articleId, Integer sort, HttpServletRequest request) throws IOException {
         // 图片文章 更新序号的 图片和文章id
         String path = request.getSession().getServletContext().getRealPath("/file/art/");
         // 上传图片命名
-        File f = new File(path, "art" + sort + ".jpg");
+        String name = RandomCode.getUUID()+".jpg";
+        File f = new File(path, name);
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
         }
         // 保存图片
         file[0].transferTo(f);
         // 数据库操作
-        contentService.addArt(articleId, sort, "/file/art/" + file[0].getOriginalFilename());
+        contentService.addArt(articleId, sort, "/file/art/" + name);
         // 结束
         return "admin/home";
     }

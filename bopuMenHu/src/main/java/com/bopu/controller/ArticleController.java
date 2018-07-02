@@ -106,6 +106,30 @@ public class ArticleController {
     }
 
     /**
+     * 获取文章列表 用于后台选择文章id
+     *
+     * @param currentPage
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "article/getlist")
+    public String showList(String currentPage, Model model) {
+        int page;
+        if (null == currentPage || "".equals(currentPage) || "null".equals(currentPage)) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(currentPage);
+        }
+        PageBean pb = new PageBean();
+        pb.setCurrentPage(page);
+        pb.setPageSize(10);
+        articleService.getArticleList(pb);
+        model.addAttribute("pageBean", pb);
+        return "admin/articleItem";
+    }
+
+
+    /**
      * 文章删除  交由list刷新当前页Integer currentPage
      *
      * @return

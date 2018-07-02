@@ -33,7 +33,7 @@
         <!--图片开始-->
         <div class="col-sm-9 animated fadeInRight">
             <div class="row">
-                轮播图:
+               <h3>轮播图:</h3> 
                 <hr>
                 <div class="col-sm-12">
                     <c:forEach items="${contents}" var="content">
@@ -64,11 +64,13 @@
                         </c:if>
                     </c:forEach>
                 </div>
-                <input type="button"
+              <%--   <input type="button"
                        onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'"
-                       value="添加轮播图">
+                       value="添加轮播图"> --%>
+                       <input type="button" class="btn btn-primary" value="添加轮播图"
+												onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'" style="width: 100%;" />
                 <hr>
-                文章:
+                <h3>文章:</h3>
                 <hr>
                 <div class="col-sm-12">
                     <c:forEach items="${contents}" var="content">

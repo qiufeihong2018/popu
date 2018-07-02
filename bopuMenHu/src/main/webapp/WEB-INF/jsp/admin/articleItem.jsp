@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
@@ -20,8 +21,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>
-  
   <body>
     This is my JSP page. <br>
   </body>
+  <c:forEach items="${pageBean.rows}" var="article">
+      ${article.id}
+      ${article.title}
+      <br>
+  </c:forEach>
 </html>
