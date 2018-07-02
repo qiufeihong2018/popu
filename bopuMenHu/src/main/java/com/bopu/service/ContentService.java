@@ -29,4 +29,6 @@ public interface ContentService {
     String getPic(Integer sort, Integer category);
 
     String updatePic(Integer sort, Integer category);
+
+    List<Content> findAbout();
 }

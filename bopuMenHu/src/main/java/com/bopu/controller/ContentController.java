@@ -28,7 +28,7 @@ import java.util.SortedMap;
  * @create 2018/6/10
  * @time 15:44
  * @describe: 主页轮播图修改 置顶文章修改
- * category_id 类别 1. 文章 2. 图片 3.
+ * category_id 类别 1. 文章 2. 图片 3. 关于我们
  * title 标题 1文章
  * url 文章链接
  * pic 图片路径
@@ -201,13 +201,23 @@ public class ContentController {
     /**
      * 设置关于我们
      */
-    @RequestMapping(value = "setabout")
-    @ResponseBody
-    public BoPuResult setabout(String email, String phone) {
+    @RequestMapping(value = "content/setAbout")
+    public String setabout(String email, String phone) {
         contentService.setabout("邮箱", email);
         contentService.setabout("电话", phone);
-        BoPuResult boPuResut = new BoPuResult(200, "");
-        return boPuResut;
+        return "admin/aboutOur";
+    }
+
+    /**
+     * 关于我们回显
+     */
+    @RequestMapping(value = "content/showAbout")
+    @ResponseBody
+    public BoPuResult showAbout() {
+        List<Content> list = contentService.findAbout();
+        BoPuResult boPuResult = new BoPuResult(200, "");
+        boPuResult.setObj(list);
+        return boPuResult;
     }
 
     /**
