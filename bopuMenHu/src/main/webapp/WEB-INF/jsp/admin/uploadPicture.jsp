@@ -73,39 +73,50 @@
             }
         }
     });
+    var a = new Array();
+
+    function getValue() {
+        var tableList = $('#list-table');
+        var value = tableList.find(':input');
+        var cks = document.getElementsByName("ck");
+        for (var i = 0; i < cks.length; i++) {
+            if (cks[i].checked == true) {
+                a.push(cks[i].value);
+                break;
+            }
+        }
+        var articleId = document.getElementById("setValue");
+        articleId.value = articleId;
+        alert(articleId.value);
+        a.pop();
+    }
+
+    function getList() {
+        $.post("${pageContext.request.contextPath}/article/getlist",
+            currentPage = 1
+            , function (data) {
+                alert(data);
+            });
+    }
 </script>
 <!--图片上传结束-->
 <body class="gray-bg">
 
 <div class="wrapper wrapper-content">
-    <h4> 请上传jpg格式的图片</h4>
-
     <div>
-        <div>
-            <label><%="1".equals(request.getParameter("category")) ? "文章" : "图片"%>序号:</label>
-        </div>
-        <div>
-            <input type="hidden" name="categoryId"
-                   value="<%=request.getParameter("category")%>"> <input
-                type="text" class="form-control" name="sort"
-                value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
-                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" class="btn btn-primary" value="选择文章" style="width: 100%;"/>
-                <input  type="hidden" name="" value="选择文章"/>
-            </div>
-            <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
-                <button type="submit" class="btn btn-primary pull-right" style="width: 100%;">
-                    上传
-                </button>
-            </div>
-        </div>
-        <div class="dropzone-previews"></div>
+        <label><%="1".equals(request.getParameter("category")) ? "文章" : "图片"%>
+        </label>
     </div>
-    <form id="my-awesome-dropzone" class="dropzone"
-          action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
+    <div>
+
+    </div>
+    <br>
+    <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="getList()">开始演示模态框
+        </button>
+    </div>
+    <br>
+    <h4> 请上传jpg格式的图片</h4>
     <div class="row">
         <!--图片上传开始-->
         <div class="wrapper wrapper-content animated fadeIn">
@@ -120,13 +131,21 @@
                             </a>
                             </div>
                         </div>
-
-
                         <div class="ibox-content">
-
-
-                            </div>
-                        </form>
+                            <form id="my-awesome-dropzone" class="dropzone"
+                                  action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
+                                <input type="hidden" name="category" value="<%=request.getParameter("category")%>">
+                                <input type="hidden" name="sort"
+                                       value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
+                                <input type="hidden" name="id" id="setValue"
+                                       value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary pull-right">
+                                        上传
+                                    </button>
+                                </div>
+                                <div class="dropzone-previews"></div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -139,26 +158,29 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    模态框（Modal）标题
-                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">文章列表</h4>
             </div>
             <div class="modal-body">
-                在这里添加一些文本
+                <table id="list-table">
+                    <tr>
+                        <td><input name="ck" value="1" type="checkbox"/></td>
+                        <td>叶舟</td>
+                    </tr>
+                    <tr>
+                        <td><input name="ck" value="2" type="checkbox"/></td>
+                        <td>哈哈哈哈</td>
+                    </tr>
+                </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                </button>
-                <button type="button" class="btn btn-primary">
-                    提交更改
-                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
 <script>
     $(document).ready(function () {
         $('.file-box').each(function () {
@@ -177,7 +199,7 @@
 <style>
     .dropzone .dz-default.dz-message {
 
-        margin-top: 50px;
+        margin-top: 3.5px;
 
     }
 </style>

@@ -68,7 +68,7 @@
                        onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'"
                        value="添加轮播图"> --%>
                        <input type="button" class="btn btn-primary" value="添加轮播图"
-												onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'" style="width: 100%;" />
+												onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'" />
                 <hr>
                 <h3>文章:</h3>
                 <hr>

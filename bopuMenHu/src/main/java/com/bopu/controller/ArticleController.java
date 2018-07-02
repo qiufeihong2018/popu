@@ -109,11 +109,11 @@ public class ArticleController {
      * 获取文章列表 用于后台选择文章id
      *
      * @param currentPage
-     * @param model
      * @return
      */
     @RequestMapping(value = "article/getlist")
-    public String showList(String currentPage, Model model) {
+    @ResponseBody
+    public BoPuResult showList(String currentPage) {
         int page;
         if (null == currentPage || "".equals(currentPage) || "null".equals(currentPage)) {
             page = 1;
@@ -124,8 +124,9 @@ public class ArticleController {
         pb.setCurrentPage(page);
         pb.setPageSize(10);
         articleService.getArticleList(pb);
-        model.addAttribute("pageBean", pb);
-        return "admin/articleItem";
+        BoPuResult boPuResult = new BoPuResult(200, "");
+        boPuResult.setObj(pb);
+        return boPuResult;
     }
 
 
