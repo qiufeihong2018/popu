@@ -79,8 +79,7 @@
 
 <div class="wrapper wrapper-content">
     <h4> 请上传jpg格式的图片</h4>
-    <form id="my-awesome-dropzone" class="dropzone"
-          action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
+
     <div>
         <div>
             <label><%="1".equals(request.getParameter("category")) ? "文章" : "图片"%>序号:</label>
@@ -105,7 +104,8 @@
         </div>
         <div class="dropzone-previews"></div>
     </div>
-
+    <form id="my-awesome-dropzone" class="dropzone"
+          action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
     <div class="row">
         <!--图片上传开始-->
         <div class="wrapper wrapper-content animated fadeIn">
