@@ -248,7 +248,4 @@
       title = CONCAT('picture',sort)
     where category_id = 2 and sort = #{sort, jdbcType=INTEGER};
   </update>
-    <update id="updatePic">
-
-    </update>
 </mapper>

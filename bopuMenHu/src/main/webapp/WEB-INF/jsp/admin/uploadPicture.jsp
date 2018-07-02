@@ -93,7 +93,7 @@
                                         <label><%="1".equals(request.getParameter("category"))? "文章" : "图片"%>序号:</label>
                                     </div>
                                     <div >
-                                        <input type="hidden" name="categoryId" value="<%=request.getParameter("category")%>">
+                                        <input type="hidden" name="category" value="<%=request.getParameter("category")%>">
                                         <input type="text" class="form-control" name="sort"
                                                value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
                                     </div>

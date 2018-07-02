@@ -32,5 +32,5 @@ public interface ContentMapper {
 
     void updatePicSort(Integer sort);
 
-    void updatePic(Integer sort, Integer category, String name);
+    void updatePic(Content content);
 }

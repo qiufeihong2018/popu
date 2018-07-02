@@ -105,7 +105,7 @@ public class ContentController {
         }
         return "redirect:managerPA";
     }
-// ----------------------------------------------------------------------------------
+
     /**
      * 更新轮播图，只需要替换文件
      *
@@ -113,22 +113,22 @@ public class ContentController {
      * @param sort
      */
     @RequestMapping(value = "content/updatePic")
-    public String updataPic(MultipartFile file[], Integer sort,Integer category, HttpServletRequest request) throws IOException {
-        // 查询此sort下是否存在图片
-        String path = request.getSession().getServletContext().getRealPath("/file/picture/");
+    public String updataPic(@RequestParam("file[]") MultipartFile file[], Integer sort, Integer category, HttpServletRequest request) {
         // 获取原图片名称
         String name = contentService.getPic(sort, category);
-        // 设置pic
-        String newName = contentService.updatePic(sort,category);
         File f = new File(request.getSession().getServletContext().getRealPath(name));
         if (!f.getParentFile().exists()) {
             f.getParentFile().mkdirs();
         }
         // 直接替换文件
-        file[0].transferTo(f);
+        try {
+            file[0].transferTo(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return "admin/home";
     }
-
+    // ----------------------------------------------------------------------------------
     /**
      * 添加首页文章
      *

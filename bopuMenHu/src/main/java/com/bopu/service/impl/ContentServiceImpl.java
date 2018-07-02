@@ -90,7 +90,7 @@ public class ContentServiceImpl implements ContentService {
     }
 
     /**
-     * 删除图片
+     * 删除轮播图片
      *
      * @param sort 图片的序号
      */
@@ -131,7 +131,11 @@ public class ContentServiceImpl implements ContentService {
 
     public String updatePic(Integer sort, Integer category) {
         String name = "/file/picture/" + RandomCode.getUUID() + ".jpg";
-        contentMapper.updatePic(sort, category, name);
+        Content content = new Content();
+        content.setCategoryId(category);
+        content.setSort(sort);
+        content.setPic(name);
+        contentMapper.updatePic(content);
         return name;
     }
 
