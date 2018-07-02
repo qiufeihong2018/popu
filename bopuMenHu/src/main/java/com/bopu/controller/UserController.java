@@ -17,11 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.*;
 
 /**
  * 用户管理
@@ -35,12 +36,6 @@ public class UserController {
     @Autowired
     private LetterService letterService;
 
-    @Value("${MY_EMAIL_ACCOUNT}")
-    public String MY_EMAIL_ACCOUNT;
-    @Value("${MY_EMAIL_PASSWORD}")
-    public String MY_EMAIL_PASSWORD;
-    @Value("${My_Email_SMTP_Host}")
-    public String My_Email_SMTP_Host;
 
 
     /**
@@ -181,7 +176,7 @@ public class UserController {
      */
     @RequestMapping("user/getCode")
     @ResponseBody
-    public BoPuResult getCode(String account, String email) {
+    public BoPuResult getCode(String account, String email, HttpServletRequest request) {
         try {
             //查询用户
             User user = userService.selectUserByAccountAndEmail(account, email);
@@ -190,6 +185,22 @@ public class UserController {
                 String code = RandomCode.init();
                 //发送验证码
                 MailUtil mailUtil = new MailUtil();
+                //查询账号信息
+                //获得资源文件
+                String path = "/WEB-INF/classes/properties/resource.properties";
+                String realPath = request.getSession().getServletContext().getRealPath(path);
+                File file = new File(realPath);
+                Properties prop = new Properties();
+                //获得流
+                InputStream inputFile = null;
+                inputFile = new FileInputStream(file);
+                prop.load(inputFile);
+                //一定要在修改值之前关闭inputFile
+                inputFile.close();
+                String MY_EMAIL_ACCOUNT = prop.getProperty("MY_EMAIL_ACCOUNT");
+                String MY_EMAIL_PASSWORD = prop.getProperty("MY_EMAIL_PASSWORD");
+                String My_Email_SMTP_Host = prop.getProperty("My_Email_SMTP_Host");
+                //发送
                 mailUtil.send(account, code, email, MY_EMAIL_ACCOUNT, MY_EMAIL_PASSWORD, My_Email_SMTP_Host);
                 //设置验证码
                 user.setSearchid(code);

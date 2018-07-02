@@ -72,6 +72,9 @@
 					<li><a class="J_menuItem"
 						href="${pageContext.request.contextPath}/admin/aboutOur"><i
 							class="fa fa-columns"></i><span class="nav-label">关于我们管理</span></a></li>
+					<li><a class="J_menuItem"
+						   href="${pageContext.request.contextPath}/admin/emailChange"><i
+							class="fa fa-columns"></i><span class="nav-label">邮箱管理</span></a></li>
 
 				</ul>
 			</div>

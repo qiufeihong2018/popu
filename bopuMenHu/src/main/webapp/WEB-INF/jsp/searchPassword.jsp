@@ -33,18 +33,9 @@
             <hr>
             <br>
             <span style="margin-left: -117px;">请输入要重置的密码</span><br><br>
-            <input type="text" name="name" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="密码" />
-            <br>
-            <span id="username"></span>
+            <input type="password" name="name" class="form-control" onblur="CheckInput(this,document.getElementById('username'))" placeholder="密码" />
             <br>
 
-         	<!--验证码验证-->
-				<div id="yan">
-					<p5 style="margin-left: -8px;">验证码</p5>
-					<input type="text" id="yanzhengma" class="form-control photokey"
-						value="请输入验证码" onBlur="textBlur(this)" onFocus=" textFocus(this) " />
-					<span class="add phoKey"></span> <span class="error error7"></span>
-				</div>
           <br>
             <input id="btnOk" onclick="changePwd()" class="btn btn-success" value="下一步" />
             <br> <br>
