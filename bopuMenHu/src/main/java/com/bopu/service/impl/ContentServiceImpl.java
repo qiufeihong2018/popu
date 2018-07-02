@@ -202,6 +202,7 @@ public class ContentServiceImpl implements ContentService {
      * @param key   中文 如地址
      * @param value 具体值 如温州XXXXXX
      */
+    @Deprecated
     public void setabout(String key, String value) {
         // 用Content 的title 为 key， url为value
         ContentExample example = new ContentExample();
@@ -222,6 +223,19 @@ public class ContentServiceImpl implements ContentService {
             c.setCreated(new Date());
             contentMapper.insertSelective(c);
         }
+    }
+
+    /**
+     * 查询关于我们
+     *
+     * @return
+     */
+    public List<Content> findAbout() {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andCategoryIdEqualTo(3);
+        List<Content> contents = contentMapper.selectByExample(example);
+        return contents;
     }
 
 }
