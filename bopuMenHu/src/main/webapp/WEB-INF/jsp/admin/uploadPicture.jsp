@@ -79,6 +79,32 @@
 
 <div class="wrapper wrapper-content">
     <h4> 请上传jpg格式的图片</h4>
+    <form id="my-awesome-dropzone" class="dropzone"
+          action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
+    <div>
+        <div>
+            <label><%="1".equals(request.getParameter("category")) ? "文章" : "图片"%>序号:</label>
+        </div>
+        <div>
+            <input type="hidden" name="categoryId"
+                   value="<%=request.getParameter("category")%>"> <input
+                type="text" class="form-control" name="sort"
+                value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
+                <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" class="btn btn-primary" value="选择文章" style="width: 100%;"/>
+                <input  type="hidden" name="" value="选择文章"/>
+            </div>
+            <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
+                <button type="submit" class="btn btn-primary pull-right" style="width: 100%;">
+                    上传
+                </button>
+            </div>
+        </div>
+        <div class="dropzone-previews"></div>
+    </div>
 
     <div class="row">
         <!--图片上传开始-->
@@ -94,32 +120,13 @@
                             </a>
                             </div>
                         </div>
+
+
                         <div class="ibox-content">
-                            <form id="my-awesome-dropzone" class="dropzone"
-                                  action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
-                                <div>
-                                    <label><%="1".equals(request.getParameter("category")) ? "文章" : "图片"%>序号:</label>
-                                </div>
-                                <div>
-                                    <input type="hidden" name="categoryId"
-                                           value="<%=request.getParameter("category")%>"> <input
-                                        type="text" class="form-control" name="sort"
-                                        value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
-                                        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" class="btn btn-primary" value="选择文章" style="width: 100%;"/>
-                                        <input  type="hidden" name="" value="选择文章"/>
-                                    </div>
-                                    <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
-                                        <button type="submit" class="btn btn-primary pull-right" style="width: 100%;">
-                                            上传
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="dropzone-previews"></div>
-                            </form>
+
+
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>
@@ -170,7 +177,7 @@
 <style>
     .dropzone .dz-default.dz-message {
 
-        margin-top: 3.5px;
+        margin-top: 50px;
 
     }
 </style>
