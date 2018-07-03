@@ -87,56 +87,55 @@
         }
         var articleId = document.getElementById("setValue");
         articleId.value = articleId;
-        alert(articleId.value);
         a.pop();
+
     }
 
-    var page=1;
+    var page = 1;
     var totalPage = 0;
 
     function prePage(obj) {
-        if(page<=1){
-            return ;
-        }else{
-            page-=1;
+        if (page <= 1) {
+            return;
+        } else {
+            page -= 1;
             getList();
         }
 
-        if(page<=1){
-            $(obj).attr("class","btn btn-default");
-        }else {
-            $(obj).attr("class","btn btn-primary");
+        if (page <= 1) {
+            $(obj).attr("class", "btn btn-default");
+        } else {
+            $(obj).attr("class", "btn btn-primary");
         }
     }
+
     function nextPage(obj) {
-        if(page>=totalPage){
-            return ;
-        }else{
-            page+=1;
+        if (page >= totalPage) {
+            return;
+        } else {
+            page += 1;
             getList();
         }
-        if(page>=totalPage){
-            $(obj).attr("class","btn btn-default");
-        }else {
-            $(obj).attr("class","btn btn-primary");
+        if (page >= totalPage) {
+            $(obj).attr("class", "btn btn-default");
+        } else {
+            $(obj).attr("class", "btn btn-primary");
         }
     }
 
     function getList() {
         $.post("${pageContext.request.contextPath}/article/getlist",
-            currentPage = page
+            {currentPage: page}
             , function (data) {
-                console.log(page);
-                console.log(data);
                 var text = "";
                 $.each(data["obj"]["rows"], function (index, val) {
                     text += '<tr>' +
-                        '                        <td><input name="ck" value="'+val["id"]+'" type="checkbox"/></td>' +
-                        '                        <td>'+val["title"]+'</td>' +
+                        '                        <td><input name="ck" value="' + val["id"] + '" type="checkbox"/></td>' +
+                        '                        <td>' + val["title"] + '</td>' +
                         '                    </tr>';
                 });
                 $("#list-table").html(text);
-                totalPage=data["obj"]["totalPage"];
+                totalPage = data["obj"]["totalPage"];
             });
     }
 </script>
@@ -158,6 +157,7 @@
     </div>
     <br>
     <h4> 请上传jpg格式的图片</h4>
+    <h5>您选择的文章id 是:<div id="value" value="1"></div></h5>
     <div class="row">
         <!--图片上传开始-->
         <div class="wrapper wrapper-content animated fadeIn">
@@ -215,8 +215,8 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="prePage(this)" >上一页</button>
-                <button type="button" class="btn btn-primary" onclick="nextPage(this)" >下一页</button>
+                <button type="button" class="btn btn-default" onclick="prePage(this)">上一页</button>
+                <button type="button" class="btn btn-primary" onclick="nextPage(this)">下一页</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
             </div>
