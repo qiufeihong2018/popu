@@ -43,6 +43,30 @@
             src="${pageContext.request.contextPath}/js/plugins/dropzone/dropzone.js"></script>
 </head>
 <script>
+    $(function () {
+        if (!<%="1".equals(request.getParameter("add"))%>) {
+            $.post("${pageContext.request.contextPath}/content/showContent",
+                {
+                    sort: <%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>,
+                    category:<%=request.getParameter("category")!=null?request.getParameter("category"):""%>
+                }
+                , function (data) {
+                    var arr = data["obj"]["url"].split("=");
+                    setNum(arr[1]);
+                    var pic = document.getElementById("#pic");
+                    alert(data["obj"]["pic"]);
+                    pic.innerHTML = "<img src='" + data["obj"]["pic"] + "'>";
+                });
+        }
+    });
+
+    function setNum(num) {
+        var article = document.getElementById("article");
+        var articleId = document.getElementById("articleId");
+        article.innerText = num;
+        articleId.value = num;
+    }
+
     $(document).ready(function () {
         Dropzone.options.myAwesomeDropzone = {
             autoProcessQueue: false,
@@ -73,11 +97,11 @@
             }
         }
     });
+
     var a = new Array();
 
     function getValue() {
-        var tableList = $('#list-table');
-        var value = tableList.find(':input');
+        $('#myModal').modal('hide')
         var cks = document.getElementsByName("ck");
         for (var i = 0; i < cks.length; i++) {
             if (cks[i].checked == true) {
@@ -85,10 +109,9 @@
                 break;
             }
         }
-        var articleId = document.getElementById("setValue");
-        articleId.value = articleId;
+        var articleId = document.getElementById("articleId");
+        setNum(a[0]);
         a.pop();
-
     }
 
     var page = 1;
@@ -152,12 +175,17 @@
     </div>
     <br>
     <div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="getList()">开始演示模态框
+        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="getList()">选择文章
         </button>
     </div>
     <br>
     <h4> 请上传jpg格式的图片</h4>
-    <h5>您选择的文章id 是:<div id="value" value="1"></div></h5>
+    <h5>您选择的文章id 是:
+        <span id="article">1</span>
+    </h5>
+    <div id="pic">
+
+    </div>
     <div class="row">
         <!--图片上传开始-->
         <div class="wrapper wrapper-content animated fadeIn">
@@ -175,11 +203,11 @@
                         <div class="ibox-content">
                             <form id="my-awesome-dropzone" class="dropzone"
                                   action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
-                                <input type="hidden" name="category" value="<%=request.getParameter("category")%>">
+                                <input type="hidden" name="category"
+                                       value="<%=request.getParameter("category")!=null?request.getParameter("category"):""%>">
                                 <input type="hidden" name="sort"
                                        value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
-                                <input type="hidden" name="id" id="setValue"
-                                       value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
+                                <input type="hidden" name="articleId" id="articleId">
                                 <div class="row">
                                     <button type="submit" class="btn btn-primary pull-right">
                                         上传
@@ -204,14 +232,6 @@
             </div>
             <div class="modal-body">
                 <table id="list-table">
-                    <tr>
-                        <td><input name="ck" value="1" type="checkbox"/></td>
-                        <td>叶舟</td>
-                    </tr>
-                    <tr>
-                        <td><input name="ck" value="2" type="checkbox"/></td>
-                        <td>哈哈哈哈</td>
-                    </tr>
                 </table>
             </div>
             <div class="modal-footer">
@@ -241,8 +261,6 @@
 </html>
 <style>
     .dropzone .dz-default.dz-message {
-
         margin-top: 3.5px;
-
     }
 </style>

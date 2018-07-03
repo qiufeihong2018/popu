@@ -14,13 +14,9 @@ public interface ContentService {
 
     List<Content> getInformation();
 
-    String findPicSort(Integer sort);
+    String  findPicSort(Integer sort, Integer category, Integer articleId);
 
     Content deletePic(Integer sort);
-
-    void deleteArt(Integer sort);
-
-    void addArt(Integer articleId, Integer sort, String path);
 
     void updateArt(Integer articleId, Integer sort, String path);
 
@@ -28,7 +24,7 @@ public interface ContentService {
 
     String getPic(Integer sort, Integer category);
 
-    String updatePic(Integer sort, Integer category);
-
     List<Content> findAbout();
+
+    Content findContentBySC(Integer sort, Integer category);
 }

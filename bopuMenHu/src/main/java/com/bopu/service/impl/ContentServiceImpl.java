@@ -1,5 +1,6 @@
 package com.bopu.service.impl;
 
+import com.bopu.mapper.ArticleMapper;
 import com.bopu.mapper.ContentMapper;
 import com.bopu.pojo.Content;
 import com.bopu.pojo.ContentExample;
@@ -10,10 +11,10 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import javax.security.auth.login.CredentialException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Exler
@@ -57,20 +58,23 @@ public class ContentServiceImpl implements ContentService {
 
     /**
      * 检查当前序号的图片是否存在
-     * 不存在就插入一条数据
+     * 如果是图片 没有序号 就添加一张图片
+     * 如果是文章 更新
      *
      * @param sort
+     * @param category
      * @return 文件路径
      */
-    public String findPicSort(Integer sort) {
+    public String findPicSort(Integer sort, Integer category, Integer articleId) {
         String name = null;
+        name = RandomCode.getUUID() + ".jpg";
         ContentExample example = new ContentExample();
         ContentExample.Criteria criteria = example.createCriteria();
-        // 图片类别及其序号
-        criteria.andCategoryIdEqualTo(2);
+        // 类别及其序号 2 图片
+        criteria.andCategoryIdEqualTo(category);
         criteria.andSortEqualTo(sort);
         List<Content> contents = contentMapper.selectByExample(example);
-        if (contents.size() == 0) {
+        if (contents.size() == 0 && category == 2) {
             // 该序号没有图片
             example.clear();
             ContentExample.Criteria c = example.createCriteria();
@@ -81,10 +85,14 @@ public class ContentServiceImpl implements ContentService {
             content.setTitle("picture" + (l + 1));
             content.setCategoryId(2);
             content.setCreated(new Date());
-            name = RandomCode.getUUID() + ".jpg";
             content.setPic("/file/picture/" + name);
+            content.setUrl("/article/show/?articleId=" + articleId);
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
+        }
+        if (category == 1) {
+            // 文章
+            updateArt(articleId, sort, "/file/art" + name);
         }
         return name;
     }
@@ -117,6 +125,13 @@ public class ContentServiceImpl implements ContentService {
         return content;
     }
 
+    /**
+     * 获取图片
+     *
+     * @param sort     序号
+     * @param category 类别
+     * @return
+     */
     public String getPic(Integer sort, Integer category) {
         ContentExample example = new ContentExample();
         ContentExample.Criteria criteria = example.createCriteria();
@@ -129,48 +144,8 @@ public class ContentServiceImpl implements ContentService {
         return null;
     }
 
-    public String updatePic(Integer sort, Integer category) {
-        String name = "/file/picture/" + RandomCode.getUUID() + ".jpg";
-        Content content = new Content();
-        content.setCategoryId(category);
-        content.setSort(sort);
-        content.setPic(name);
-        contentMapper.updatePic(content);
-        return name;
-    }
-
-    /**
-     * 删除文章
-     *
-     * @param sort
-     */
-    public void deleteArt(Integer sort) {
-        ContentExample example = new ContentExample();
-        ContentExample.Criteria criteria = example.createCriteria();
-        criteria.andCategoryIdEqualTo(1);    // 文章
-        long l = contentMapper.countByExample(example);
-        if (sort <= 3) {
-            criteria.andSortEqualTo(sort);
-            contentMapper.deleteByExample(example);
-        }
-    }
-
-    /**
-     * 添加文章
-     *
-     * @param articleId 文章id
-     * @param sort      排序
-     * @param path      图片路径
-     */
-    public void addArt(Integer articleId, Integer sort, String path) {
-        Content c = new Content();
-        c.setCategoryId(1);
-        c.setSort(sort);
-        c.setCreated(new Date());
-        c.setPic(path);    // 图片路径
-        c.setUrl("/article/show/?articleId=" + articleId);
-        contentMapper.insert(c);
-    }
+    @Autowired
+    private ArticleMapper articleMapper;
 
     /**
      * 更新首页文章
@@ -185,15 +160,15 @@ public class ContentServiceImpl implements ContentService {
         criteria.andSortEqualTo(sort);
         criteria.andCategoryIdEqualTo(1);
         List<Content> contents = contentMapper.selectByExample(example);
-        if (contents != null) {
-            if (articleId != null) {
-                contents.get(0).setUrl("/article/show/?articleId=" + articleId);
-            }
-            if (path != null) {
-                contents.get(0).setPic(path);
-            }
-            contentMapper.updateByPrimaryKey(contents.get(0));
-        }
+        Content content = contents.get(0);
+        String title = articleMapper.getTitleById(articleId);
+        content.setTitle(title);
+
+        System.out.println(title);
+
+        content.setUrl("/article/show/?articleId=" + articleId);
+        content.setPic(path);
+        contentMapper.updateByPrimaryKey(content);
     }
 
     /**
@@ -236,6 +211,22 @@ public class ContentServiceImpl implements ContentService {
         criteria.andCategoryIdEqualTo(3);
         List<Content> contents = contentMapper.selectByExample(example);
         return contents;
+    }
+
+    /**
+     * 回显content
+     *
+     * @param sort
+     * @param category
+     * @return
+     */
+    public Content findContentBySC(Integer sort, Integer category) {
+        ContentExample example = new ContentExample();
+        ContentExample.Criteria criteria = example.createCriteria();
+        criteria.andSortEqualTo(sort);
+        criteria.andCategoryIdEqualTo(category);
+        List<Content> contents = contentMapper.selectByExample(example);
+        return contents.get(0);
     }
 
 }

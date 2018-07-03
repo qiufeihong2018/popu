@@ -48,4 +48,6 @@ public interface ArticleMapper {
     List<Article> findAllArticlePage(PageBean pageBean);
 
     List<Article> selectTitleAndId(@Param("type") List<Integer> type);
+
+    String getTitleById(Integer articleId);
 }
