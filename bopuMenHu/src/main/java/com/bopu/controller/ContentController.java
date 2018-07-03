@@ -132,6 +132,19 @@ public class ContentController {
     }
 
     /**
+     * 为content更新文章
+     *
+     * @param id
+     * @param articleId
+     * @return
+     */
+    @RequestMapping("/content/updateArt")
+    public String updateArt(Integer id, Integer articleId) {
+        contentService.setArtById(id, articleId);
+        return "admin/pictureManage";
+    }
+
+    /**
      * 设置关于我们
      */
     @RequestMapping(value = "content/setAbout")

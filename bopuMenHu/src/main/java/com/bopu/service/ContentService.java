@@ -27,4 +27,6 @@ public interface ContentService {
     List<Content> findAbout();
 
     Content findContentBySC(Integer sort, Integer category);
+
+    void setArtById(Integer id, Integer articleId);
 }

@@ -55,7 +55,8 @@
                                                 <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
                                             </c:if>
                                                 <%--<a href="${pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>--%>
-                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换</a>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a>
+                                            <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
                                         </div>
                                     </a>
@@ -89,7 +90,8 @@
                                                 <%-- 文章--%>
                                                 <%-- 后台需要参数 图片 文章 序号 --%>
                                                 <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
-                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换</a>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a>
+                                            <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
                                         </div>
                                     </a>
@@ -102,13 +104,107 @@
         </div>
     </div>
 </div>
-
-<script>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">文章列表</h4>
+            </div>
+            <div class="modal-body">
+                <table id="list-table">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="prePage(this)">上一页</button>
+                <button type="button" class="btn btn-primary" onclick="nextPage(this)">下一页</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
     $(document).ready(function () {
         $('.file-box').each(function () {
             animationHover(this, 'pulse');
         });
     });
+
+    var a = new Array();
+    var id = -1;
+    var articleId = -1;
+
+    function getValue(contentId) {
+        $('#myModal').modal('hide')
+        var cks = document.getElementsByName("ck");
+        for (var i = 0; i < cks.length; i++) {
+            if (cks[i].checked == true) {
+                a.push(cks[i].value);
+                break;
+            }
+        }
+        $.post("${pageContext.request.contextPath}/content/updateArt",
+            {
+                id: id,
+                articleId: a[0]
+            }
+            , function (data) {
+                top.location.href = "${pageContext.request.contextPath}/admin/home";
+            });
+        a.pop();
+    }
+
+    var page = 1;
+    var totalPage = 0;
+
+
+    function prePage(obj) {
+        if (page <= 1) {
+            return;
+        } else {
+            page -= 1;
+            getList();
+        }
+
+        if (page <= 1) {
+            $(obj).attr("class", "btn btn-default");
+        } else {
+            $(obj).attr("class", "btn btn-primary");
+        }
+    }
+
+    function nextPage(obj) {
+        if (page >= totalPage) {
+            return;
+        } else {
+            page += 1;
+            getList();
+        }
+        if (page >= totalPage) {
+            $(obj).attr("class", "btn btn-default");
+        } else {
+            $(obj).attr("class", "btn btn-primary");
+        }
+    }
+
+    function getList(contentId) {
+        id = contentId;
+        $.post("${pageContext.request.contextPath}/article/getlist",
+            {currentPage: page}
+            , function (data) {
+                var text = "";
+                $.each(data["obj"]["rows"], function (index, val) {
+                    text += '<tr>' +
+                        '                        <td><input name="ck" value="' + val["id"] + '" type="checkbox"/></td>' +
+                        '                        <td>' + val["title"] + '</td>' +
+                        '                    </tr>';
+                });
+                $("#list-table").html(text);
+                totalPage = data["obj"]["totalPage"];
+            });
+    }
 </script>
 
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>

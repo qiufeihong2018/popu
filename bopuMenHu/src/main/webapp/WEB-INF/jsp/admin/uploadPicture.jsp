@@ -53,8 +53,7 @@
                 , function (data) {
                     var arr = data["obj"]["url"].split("=");
                     setNum(arr[1]);
-                    var pic = document.getElementById("#pic");
-                    alert(data["obj"]["pic"]);
+                    var pic = document.getElementById("pic");
                     pic.innerHTML = "<img src='" + data["obj"]["pic"] + "'>";
                 });
         }
@@ -90,7 +89,7 @@
                 });
                 this.on("successmultiple", function (files, response) {
                     // 上传页面成功后刷新页面
-                    location.replace("${pageContext.request.contextPath}/admin/home")
+                    top.location.href = ("${pageContext.request.contextPath}/admin/home");
                 });
                 this.on("errormultiple", function (files, response) {
                 });
@@ -109,7 +108,6 @@
                 break;
             }
         }
-        var articleId = document.getElementById("articleId");
         setNum(a[0]);
         a.pop();
     }

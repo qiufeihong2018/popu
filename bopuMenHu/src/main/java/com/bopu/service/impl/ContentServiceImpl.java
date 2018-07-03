@@ -229,4 +229,10 @@ public class ContentServiceImpl implements ContentService {
         return contents.get(0);
     }
 
+    public void setArtById(Integer id, Integer articleId) {
+        Content content = contentMapper.selectByPrimaryKey(id);
+        content.setUrl("/article/show/?articleId=" + articleId);
+        contentMapper.updateByPrimaryKeySelective(content);
+    }
+
 }
