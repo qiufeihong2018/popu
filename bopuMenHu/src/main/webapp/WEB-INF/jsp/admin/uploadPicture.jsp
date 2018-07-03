@@ -91,11 +91,52 @@
         a.pop();
     }
 
+    var page=1;
+    var totalPage = 0;
+
+    function prePage(obj) {
+        if(page<=1){
+            return ;
+        }else{
+            page-=1;
+            getList();
+        }
+
+        if(page<=1){
+            $(obj).attr("class","btn btn-default");
+        }else {
+            $(obj).attr("class","btn btn-primary");
+        }
+    }
+    function nextPage(obj) {
+        if(page>=totalPage){
+            return ;
+        }else{
+            page+=1;
+            getList();
+        }
+        if(page>=totalPage){
+            $(obj).attr("class","btn btn-default");
+        }else {
+            $(obj).attr("class","btn btn-primary");
+        }
+    }
+
     function getList() {
         $.post("${pageContext.request.contextPath}/article/getlist",
-            currentPage = 1
+            currentPage = page
             , function (data) {
-                alert(data);
+                console.log(page);
+                console.log(data);
+                var text = "";
+                $.each(data["obj"]["rows"], function (index, val) {
+                    text += '<tr>' +
+                        '                        <td><input name="ck" value="'+val["id"]+'" type="checkbox"/></td>' +
+                        '                        <td>'+val["title"]+'</td>' +
+                        '                    </tr>';
+                });
+                $("#list-table").html(text);
+                totalPage=data["obj"]["totalPage"];
             });
     }
 </script>
@@ -174,6 +215,8 @@
                 </table>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="prePage(this)" >上一页</button>
+                <button type="button" class="btn btn-primary" onclick="nextPage(this)" >下一页</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
             </div>
