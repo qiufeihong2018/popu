@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 
+<!--
 Created by IntelliJ IDEA. User: shiku Date: 2018/5/27 Time: 18:32 To
 change this template use File | Settings | File Templates. --%> -->
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
@@ -44,7 +44,7 @@ change this template use File | Settings | File Templates. --%> -->
 			</div>
 
 			<br> <br>
-			<h3>置顶文章1</h3>
+			<h3>置顶文章</h3>
 			<hr>
 			<br>
 			<div id="top2" class="row">
@@ -70,7 +70,7 @@ change this template use File | Settings | File Templates. --%> -->
 								class="list-group-item">测试文章</a>
 						</div>
 						<hr style="border:5px solid #DDDDDD" />
-							<a href="联系我们.html" >查看更多<i
+							<a href="${pageContext.request.contextPath}/article/detailList" >查看更多<i
 								class="glyphicon glyphicon-chevron-right"></i></a>
 
 					</div>
@@ -99,7 +99,7 @@ change this template use File | Settings | File Templates. --%> -->
 											class="list-group-item">测试文章</a>
 									</div>
 									<hr style="border:5px solid #DDDDDD" />
-										<a href="联系我们.html">查看更多<i
+										<a href="${pageContext.request.contextPath}/article/detailList?type=4">查看更多<i
 								class="glyphicon glyphicon-chevron-right"></i></a>
 								</div>
 							</div>
@@ -120,7 +120,7 @@ change this template use File | Settings | File Templates. --%> -->
 
 							</div>
 							<div style="height: 1.5em"></div>
-					<a href="联系我们.html" style="margin-left: 30px;">查看更多<i
+					<a href="${pageContext.request.contextPath}/article/detailList?type=2" style="margin-left: 30px;">查看更多<i
 								class="glyphicon glyphicon-chevron-right"></i></a>
 								 <br> <br> <br>
 						</div>
@@ -312,7 +312,7 @@ header .navbar-brand {
 #pig1, #pig2, #pig3 {
 	height: 400px;
 }
-/* 
+/*
 轮播图 */
 #img0 {
 	width: 0;
@@ -372,6 +372,14 @@ header .navbar-brand {
         });
 
         $(document).ready(function () {
+            $.post("${pageContext.request.contextPath}/content/showAbout",{},function (data) {
+                // alert(data["obj"][0]["title"]); // 邮箱
+                // alert(data["obj"][0]["url"]);    // zyezhou@163.com
+            });
+
+        });
+
+        $(document).ready(function () {
             $.post("${pageContext.request.contextPath}/content/getArticle", {}, function (data) {
                 var text1="";
                 var text2="";
@@ -406,7 +414,6 @@ header .navbar-brand {
                             '                            >' +
                             '                        <div class="caption">' +
                             '                            <h3>'+val["title"]+'</h3>' +
-                            '                            <p>一些示例文本。一些示例文本。</p>' +
                             '\n' +
                             '                        </div>' +
                             '                    </a>' +
@@ -428,7 +435,6 @@ header .navbar-brand {
                 $.each(data["obj"], function (index, val) {
                     text += '<a href="${pageContext.request.contextPath}/article/show?articleId=' + val["id"] + '" class="list-group-item">' + val["title"] + '</a>';
                 });
-
             $("#showNews").html(text);
         });
         });
