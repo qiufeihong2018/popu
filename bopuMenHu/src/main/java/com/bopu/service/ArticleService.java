@@ -18,4 +18,7 @@ public interface ArticleService {
 
     List<Article> getTitleAndIdList(List<Integer> type);
 
+    Article getIntroduction(int type);
+
+    void updateIntro(String content);
 }

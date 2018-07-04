@@ -54,7 +54,6 @@
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
 
 </head>
-
 <body class="gray-bg">
 <div class="div1">
     <br> <br>
@@ -293,7 +292,6 @@
             var flag = $("input[name='projectFlag']:checked").val();
             var look = $("input[name='look']").val();
             var limitData = $("input[name='limitData']").val();
-            alert(limitData);
             $.post("${pageContext.request.contextPath}/article/upload", {
                 type: type,
                 title: title,

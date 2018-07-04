@@ -1,7 +1,9 @@
 package com.bopu.service.impl;
 
 import com.bopu.mapper.ArticleMapper;
+import com.bopu.mapper.ContentMapper;
 import com.bopu.pojo.Article;
+import com.bopu.pojo.ArticleExample;
 import com.bopu.service.ArticleService;
 import com.bopu.utils.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +87,52 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getTitleAndIdList(List<Integer> type) {
         List<Article> articles = articleMapper.selectTitleAndId(type);
         return articles;
+    }
+
+    /**
+     * 获取简介
+     *
+     * @param type 简介的类型 5
+     * @return
+     */
+    public Article getIntroduction(int type) {
+        ArticleExample example = new ArticleExample();
+        ArticleExample.Criteria criteria = example.createCriteria();
+        criteria.andTypeEqualTo(type);
+        List<Article> articles = articleMapper.selectByExampleWithBLOBs(example);
+        if (articles != null && articles.size() > 0) {
+            return articles.get(0);
+        }
+        return null;
+    }
+
+    /**
+     * 更新简介
+     * @param content
+     */
+    public void updateIntro(String content) {
+        ArticleExample example = new ArticleExample();
+        ArticleExample.Criteria criteria = example.createCriteria();
+        criteria.andTypeEqualTo(5);
+        List<Article> articles = articleMapper.selectByExampleWithBLOBs(example);
+        if (articles != null && articles.size() > 0) {
+            Article article = articles.get(0);
+            article.setContent(content);
+            articleMapper.updateByPrimaryKeySelective(article);
+        } else {
+            // 不存在文章
+            Article article = new Article();
+            article.setContent(content);
+            article.setType(5);
+            article.setTitle("简介");
+            article.setTime(new Date());
+            article.setLimitdata(new Date());
+            article.setCount(0);
+            article.setAuthor("admin");
+            article.setFlag(1);
+            article.setLook("none");
+            articleMapper.insert(article);
+        }
     }
 
 

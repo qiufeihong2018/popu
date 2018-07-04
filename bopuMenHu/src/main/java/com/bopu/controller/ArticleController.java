@@ -239,6 +239,30 @@ public class ArticleController {
         return boPuResult;
     }
 
+    /**
+     * 获取简介
+     *
+     * @return
+     */
+    @RequestMapping("/article/introduction")
+    @ResponseBody
+    public BoPuResult getIntroduction() {
+        Article article = articleService.getIntroduction(5);
+        BoPuResult result = new BoPuResult(200, "");
+        result.setObj(article);
+        return result;
+    }
+
+    /**
+     * 简介修改
+     * @return
+     */
+    @RequestMapping("/article/updateIntro")
+    @ResponseBody
+    public BoPuResult updateIntroduction(String content) {
+        articleService.updateIntro(content);
+        return BoPuResult.build(200, "");
+    }
 
     public ArticleService getArticleService() {
         return articleService;

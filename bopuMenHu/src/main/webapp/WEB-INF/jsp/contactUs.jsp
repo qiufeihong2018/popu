@@ -127,4 +127,13 @@ html, body {
 	}));
 	map.setCurrentCity("北京"); // 设置地图显示的城市 此项是必须设置的
 	map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
+
+
+    $(document).ready(function () {
+        $.post("${pageContext.request.contextPath}/content/showAbout",{},function (data) {
+            // alert(data["obj"][0]["title"]); // 邮箱
+            // alert(data["obj"][0]["url"]);    // zyezhou@163.com
+        });
+
+    });
 </script>

@@ -67,8 +67,7 @@
                     alert(data["message"]);
                 }
             },error: function (data) {
-                console.log(data);
-                alert("123");
+                alert("error");
             }
         });
     }
