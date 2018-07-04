@@ -54,7 +54,7 @@
                     var arr = data["obj"]["url"].split("=");
                     setNum(arr[1]);
                     var pic = document.getElementById("pic");
-                    pic.innerHTML = "<img src='" + data["obj"]["pic"] + "'>";
+                    pic.innerHTML = "<img src='${pageContext.request.contextPath}" + data["obj"]["pic"] + "'>";
                 });
         }
     });
