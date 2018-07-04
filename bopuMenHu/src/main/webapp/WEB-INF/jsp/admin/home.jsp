@@ -46,13 +46,13 @@
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-								<li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
+							<!-- 	<li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
 								</li>
 								<li><a class="J_menuItem" href="profile.html">个人资料</a></li>
 								<li><a class="J_menuItem" href="contacts.html">联系我们</a></li>
 								<li><a class="J_menuItem" href="mailbox.html">信箱</a></li>
-								<li class="divider"></li>
-								<li><a href="login.html">安全退出</a></li>
+								<li class="divider"></li> -->
+								<li><a href="${pageContext.request.contentType}/bopuMenHu/index">安全退出</a></li>
 							</ul>
 						</div>
 						<div class="logo-element">BoPu</div>
@@ -91,12 +91,12 @@
 						<form role="search" class="navbar-form-custom" method="post"
 							action="search_results.html">
 							<div class="form-group">
-								<input type="text" placeholder="请输入您需要查找的内容 …"
-									class="form-control" name="top-search" id="top-search">
+							<!-- 	<input type="text" placeholder="请输入您需要查找的内容 …"
+									class="form-control" name="top-search" id="top-search"> -->
 							</div>
 						</form>
 					</div>
-					<ul class="nav navbar-top-links navbar-right">
+				<!-- 	<ul class="nav navbar-top-links navbar-right">
 						<li class="dropdown"><a class="dropdown-toggle count-info"
 							data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
 								<span class="label label-warning">16</span>
@@ -162,13 +162,13 @@
 								</li>
 							</ul></li>
 
-					</ul>
+					</ul> -->
 				</nav>
 			</div>
 			<div class="row content-tabs">
-				<button class="roll-nav roll-left J_tabLeft">
+			<!-- 	<button class="roll-nav roll-left J_tabLeft">
 					<i class="fa fa-backward"></i>
-				</button>
+				</button> -->
 				<nav class="page-tabs J_menuTabs">
 					<div class="page-tabs-content"></div>
 				</nav>
@@ -187,7 +187,7 @@
 						<li class="J_tabCloseOther"><a>关闭其他选项卡</a></li>
 					</ul>
 				</div>
-				<a href="login.html" class="roll-nav roll-right J_tabExit"><i
+				<a href="${pageContext.request.contextPath}/index" class="roll-nav roll-right J_tabExit"><i
 					class="fa fa fa-sign-out"></i> 退出</a>
 			</div>
 			<div class="row J_mainContent" id="content-main">

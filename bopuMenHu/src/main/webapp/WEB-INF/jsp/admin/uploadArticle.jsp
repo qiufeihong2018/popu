@@ -40,7 +40,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
 <!-- 全局js -->
 <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
 
@@ -285,11 +285,11 @@
      if (this.value == "2") {}
         if($("#title").val()==""){
     
-    alert("标题不能为空");
+    parent.layer.alert("标题不能为空");
     $("#title").focus();
    
     }else if($("#author").val()==""){
-      alert("作者不能为空");
+      parent.layer.alert("作者不能为空");
     $("#author").focus();
     
     } /* else if($("#itemName").val()==""){
@@ -370,16 +370,16 @@
     
     } */  if($("#itemName").val()==""){
     
-    alert("项目名称不能为空");
+    parent.layer.alert("项目名称不能为空");
     $("#itemName").focus();
    
     }else if($("#author2").val()==""){
-      alert("项目成员不能为空");
+      parent.layer.alert("项目成员不能为空");
     $("#author2").focus();
     
     }else if($("#date").val()==""){
     
-    alert("上限日期不能为空");
+    parent.layer.alert("上限日期不能为空");
     $("#date").focus();
    
     }

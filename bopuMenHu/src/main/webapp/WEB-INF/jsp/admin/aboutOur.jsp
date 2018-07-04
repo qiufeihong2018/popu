@@ -17,6 +17,8 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- layui -->
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
 <link rel="shortcut icon" href="favicon.ico">
 
 <link
@@ -71,11 +73,11 @@
 
 	function sub() {
 		if ($("#in1").val() == "") {
-			alert("邮箱不能为空");
+		parent.layer.alert("邮箱不能为空");
 			$("#in1").focus();
 
 		} else if ($("#in2").val() == "") {
-			alert("电话不能为空");
+		parent.layer.alert("电话不能为空");
 			$("#in2").focus();
 
 		}
