@@ -272,7 +272,6 @@
             currentPage: page
         }, function (data) {
             var text='';
-            console.log(data);
             $.each(data["obj"], function (index, val) {
                 var msg = "123";
                 if(userId!=0){
