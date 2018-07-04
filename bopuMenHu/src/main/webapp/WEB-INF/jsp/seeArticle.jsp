@@ -228,6 +228,7 @@
         height: 40px;
         width: 40px;
         margin-right: 10px;
+        border-radius: 100%;
     }
 
     .social-avatar .media-body a {
@@ -282,7 +283,6 @@
             id:"${article.id}",
             currentPage: page
         }, function (data) {
-            console.log(data);
             if(data["obj"].length==0){
                 $("#commentDiv1").show();
             }else{
@@ -291,8 +291,6 @@
             var text='';
             $.each(data["obj"], function (index, val) {
                 var msg = "";
-                console.log("123");
-                console.log(val);
                 if(userId!=0&&userId==val["user"]["id"]){
                     msg='<a href="${pageContext.request.contextPath}/comment/del?id='+val["comment"]["id"]+'&articleId=${article.id}">删除</a>';
                 }
