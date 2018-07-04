@@ -54,26 +54,6 @@
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
 
 </head>
-<%--<script type="text/javascript">
-    var ue = UE.getEditor('container');
-
-    ue.ready(function () {
-
-    });
-
-    function submitHTML() {
-            var html = ue.getContent();
-            $.post("${pageContext.request.contextPath}/article/update", {
-                content: html,
-            }, function (result) {
-                if (result["status"] == 200) {
-                    window.location.href = "${pageContext.request.contextPath}//show?articleId=" + result["message"];
-                } else {
-                    // 提交失败
-                }
-            });
-    }
-</script>--%>
 <body class="gray-bg">
 <div class="div1">
     <br> <br>

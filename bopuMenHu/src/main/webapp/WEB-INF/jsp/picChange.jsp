@@ -185,7 +185,7 @@
 
             //普通图片上传
             var uploadInst = upload.render({
-                elem: '#test1'
+                elem: '#btnChuang1'
                 ,url: '/upload'
                 ,before: function(obj){
                     //预读本地文件示例，不支持ie8
