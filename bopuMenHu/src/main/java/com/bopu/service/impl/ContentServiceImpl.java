@@ -14,7 +14,6 @@ import redis.clients.jedis.JedisPool;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Exler
@@ -229,7 +228,9 @@ public class ContentServiceImpl implements ContentService {
     public void setArtById(Integer id, Integer articleId) {
         Content content = contentMapper.selectByPrimaryKey(id);
         content.setUrl("/article/show/?articleId=" + articleId);
-        content.setTitle(articleMapper.getTitleById(articleId));
+        if (content.getCategoryId() == 1) {
+            content.setTitle(articleMapper.getTitleById(articleId));
+        }
         contentMapper.updateByPrimaryKeySelective(content);
     }
 
