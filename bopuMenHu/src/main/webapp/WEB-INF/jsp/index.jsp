@@ -133,9 +133,8 @@ change this template use File | Settings | File Templates. --%> -->
 	<footer class="center-block footer">
 		<div class="container">
 			<div class="row center-block">
-				<div class="col-md-6">
-					<span>反馈邮箱：12345678@163.com &nbsp; &nbsp;
-						&nbsp;联系方式：12345678911</span>
+				<div id="contact" class="col-md-6">
+					
 				</div>
 				<div class="col-md-6">
 					<span>@2018-2020 Wenzhou Demo Worker</span>
@@ -373,8 +372,9 @@ header .navbar-brand {
 
         $(document).ready(function () {
             $.post("${pageContext.request.contextPath}/content/showAbout",{},function (data) {
-                // alert(data["obj"][0]["title"]); // 邮箱
-                // alert(data["obj"][0]["url"]);    // zyezhou@163.com
+                var text = '<span>反馈邮箱：'+data["obj"][0]["url"]+' &nbsp; &nbsp;' +
+                    '&nbsp;联系方式：'+data["obj"][1]["url"]+'</span>';
+                $("#contact").html(text);
             });
 
         });
@@ -408,13 +408,13 @@ header .navbar-brand {
                         }
                     }else if(val["categoryId"]==1){//顶置文章
                         text2+='<div class="col-sm-6 col-md-4">' +
-                            '                <div class="thumbnail" style="height:400px">' +
+                            '                <div class="thumbnail" style="height:340px">' +
                             '                    <a href="${pageContext.request.contextPath}'+val["url"]+'"><img' +
                             '                            src="${pageContext.request.contextPath}'+val["pic"]+'"' +
                             '                            >' +
                             '                        <div class="caption">' +
                             '                            <h3>'+val["title"]+'</h3>' +
-                            '\n' +
+                            '' +
                             '                        </div>' +
                             '                    </a>' +
                             '                </div>' +

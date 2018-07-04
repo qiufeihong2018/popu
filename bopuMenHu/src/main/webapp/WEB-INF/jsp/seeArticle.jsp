@@ -66,16 +66,25 @@
                     </div>
                 </form>
                 <div class="text-center">
-                    <h4>想对作者说什么？
+                    <h4>
                         <button class="newbtn" onclick="publish()">评论</button>
                     </h4>
                 </div>
             </div>
             <hr>
-            <div class="row">
+            <div id="commentDiv1"  class="row">
+                <h4>
+                此文章暂无评论
+                </h4>
+            </div>
+            <div id="allComment" style="display: none">
+            <div>
+                <h2 style="margin-left: 20px;margin-bottom: 20px;">评论：</h2>
+            </div>
+            <div   class="row">
+
                 <div id="commentDiv" class="col-lg-12">
 
-                    <h2 style="margin-left: 20px;margin-bottom: 20px;">评论：</h2>
 
                 </div>
                 </c:when>
@@ -85,6 +94,7 @@
                 </c:otherwise>
                 </c:choose>
                 </c:if>
+            </div>
             </div>
         </div>
     </div>
@@ -149,7 +159,6 @@
         background-color: orangered;
         border-radius: 10px;
         border: none;
-        margin-left: 30px;
     }
 
     /*评论*/
@@ -180,6 +189,8 @@
         border: 1px solid #e7eaec;
         background: #fff;
         margin-bottom: 15px;
+        margin-left: 4%;
+        margin-right: 4%;
         position: relative;
     }
 
@@ -191,8 +202,8 @@
         position: absolute;
         width: 40px;
         height: 30px;
-        right: 5%;
-        top: 19px;
+        right: 0%;
+        top: 35px;
     }
 
     .article .social-feed-box:last-child {
@@ -271,10 +282,18 @@
             id:"${article.id}",
             currentPage: page
         }, function (data) {
+            console.log(data);
+            if(data["obj"].length==0){
+                $("#commentDiv1").show();
+            }else{
+                $("#allComment").show();
+            }
             var text='';
             $.each(data["obj"], function (index, val) {
-                var msg = "123";
-                if(userId!=0){
+                var msg = "";
+                console.log("123");
+                console.log(val);
+                if(userId!=0&&userId==val["user"]["id"]){
                     msg='<a href="${pageContext.request.contextPath}/comment/del?id='+val["comment"]["id"]+'&articleId=${article.id}">删除</a>';
                 }
 
@@ -285,9 +304,7 @@
                     '                                <img alt="image" src="'+val["user"]["pic"]+'">' +
                     '                            </a>' +
                     '                            <div class="media-body">' +
-                    '                                <a href="#">' +
                     '                                    '+val["user"]["name"]+'' +
-                    '                                </a>' +
                     '                                <small class="text-muted">' +
                         msg+
                     '</small>' +
