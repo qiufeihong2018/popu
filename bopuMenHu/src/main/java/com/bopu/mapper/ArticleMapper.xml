@@ -419,7 +419,7 @@
         order by id desc
         limit 0,8
     </select>
-    <select id="getTitleById" parameterType="java.lang.Integer">
+    <select id="getTitleById" parameterType="java.lang.Integer" resultType="java.lang.String">
         select title
         from article
         where id = #{id,jdbcType=INTEGER}

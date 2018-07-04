@@ -117,7 +117,6 @@
 
     function submitHTML() {
         var type = $("#notice_select option:selected").val();
-        alert(type);
         if (type == 2) {
             var title = $("input[name='projectTitle']").val();
             var html = ue2.getContent();
