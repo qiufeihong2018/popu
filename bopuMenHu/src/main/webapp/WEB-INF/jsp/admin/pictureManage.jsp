@@ -56,6 +56,7 @@
                                             </c:if>
                                                 <%--<a href="${pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>--%>
                                             <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a>
+                                                    选择的文章id为${content.url.split("=")[1]}
                                             <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
                                         </div>
@@ -91,6 +92,7 @@
                                                 <%-- 后台需要参数 图片 文章 序号 --%>
                                                 <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
                                             <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a>
+                                                    选择的文章id为${content.url.split("=")[1]}
                                             <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
                                         </div>
