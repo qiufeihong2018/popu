@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.lang.annotation.ElementType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,7 @@ public class ArticleController {
      * @return
      */
     @RequestMapping(value = "article/list")
-    public String showArticleList(String currentPage, String type, Model model) {
+    public String showArticleList(String currentPage, Integer type, Model model) {
         int page;
         if (null == currentPage || "".equals(currentPage) || "null".equals(currentPage)) {
             page = 1;
@@ -92,12 +93,16 @@ public class ArticleController {
         PageBean pb = new PageBean();
         List<Integer> i = new ArrayList<Integer>();
         // 添加查询条件
-        try {
-            i.add(Integer.parseInt(type));
-            pb.setType(i);
-        } catch (NumberFormatException e) {
-            pb.setType(null);
+        if (type != null) {
+            i.add(type);
+        } else {
+            i.add(1);
+            i.add(2);
+            i.add(3);
+            i.add(4);
         }
+        pb.setType(i);
+
         pb.setCurrentPage(page);
         pb.setPageSize(9);
         articleService.getArticleList(pb);
@@ -120,7 +125,15 @@ public class ArticleController {
         } else {
             page = Integer.parseInt(currentPage);
         }
+        List<Integer> i = new ArrayList<Integer>();
         PageBean pb = new PageBean();
+        // 验证url查4
+        // 如果type为空只查询 1 2 3 不查询 内部通知4
+        i.add(1);
+        i.add(2);
+        i.add(3);
+        i.add(4);
+        pb.setType(i);
         pb.setCurrentPage(page);
         pb.setPageSize(10);
         articleService.getArticleList(pb);
@@ -128,7 +141,6 @@ public class ArticleController {
         boPuResult.setObj(pb);
         return boPuResult;
     }
-
 
     /**
      * 文章删除  交由list刷新当前页Integer currentPage
@@ -255,6 +267,7 @@ public class ArticleController {
 
     /**
      * 简介修改
+     *
      * @return
      */
     @RequestMapping("/article/updateIntro")

@@ -80,8 +80,6 @@
     <h1>简介修改</h1>
     <!--实验项目-->
     <div id="shiyan">
-        <!--项目简介-->
-        <div class="col-lg-2" style="margin-top: 50px;">项目简介：</div>
         <div class="col-lg-10" style="margin-top: 50px;">
             <div id="container" type="text/plain"
                  style="width:100%;height:500px;"></div>
@@ -105,30 +103,6 @@
         margin-right: auto;
         margin-top: 20px;
         width: 90%;
-    }
-
-    .selectpicker {
-        display: block;
-        width: 100%;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .demo-input {
-        padding-left: 10px;
-        height: 38px;
-        min-width: 262px;
-        line-height: 38px;
-        border: 1px solid #e6e6e6;
-        background-color: #fff;
-        border-radius: 2px;
     }
 </style>
 <script type="text/javascript">
