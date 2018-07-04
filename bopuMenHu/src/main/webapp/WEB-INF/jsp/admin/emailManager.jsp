@@ -22,7 +22,8 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-
+	<!-- layui -->
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
 <!-- 全局js -->
 <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
 <script
@@ -67,13 +68,13 @@
     function changeEmail() {
 
     if($("#emailAccount").val()==""){
-    alert("邮箱账号不能为空");
+  parent.layer.alert("邮箱账号不能为空");
     $("#emailAccount").focus();
     }else if($("#emailPwd").val()==""){
-    alert("邮箱密码不能为空");
+   parent.layer.alert("邮箱密码不能为空");
     $("#emailPwd").focus();
     }else if($("#emailSMTP").val()==""){
-    alert("SMTP服务器不能为空");
+    parent.layer.alert("SMTP服务器不能为空");
     $("#emailSMTP").focus();
     }
     else{
@@ -89,12 +90,12 @@
             success: function (data) {
                 console.log(data);
                 if(data["status"]==200){
-                    alert("修改成功");
+                   parent.layer.alert("修改成功");
                 }else {
-                    alert(data["message"]);
+                  parent.layer.alert(data["message"]);
                 }
             },error: function (data) {
-                alert("error");
+               parent.layer.alert("error");
             }
         });
    }

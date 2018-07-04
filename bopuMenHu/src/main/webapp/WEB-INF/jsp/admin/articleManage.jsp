@@ -22,6 +22,8 @@ To change this template use File | Settings | File Templates.
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css"
           rel="stylesheet">
+             <link href="${pageContext.request.contextPath}/layui/layui.css"
+          rel="stylesheet">
     <!--上传图片的css样式-->
     <link
             href="${pageContext.request.contextPath}/css/plugins/dropzone/basic.css"
@@ -37,7 +39,9 @@ To change this template use File | Settings | File Templates.
 
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
-
+<!-- layui -->
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
+    
     <!-- DROPZONE -->
     <script
             src="${pageContext.request.contextPath}/js/plugins/dropzone/dropzone.js"></script>
@@ -117,7 +121,7 @@ To change this template use File | Settings | File Templates.
                                         <br/>
                                         <div style="margin-top: 80px;"><a
                                                 href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
-                                            <a
+                                            <a onclick="del()"
                                                     href="${pageContext.request.contextPath}/article/delete?articleId=${article.id}">删除</a>&nbsp;|
                                             <a href="#">置顶</a>&nbsp;| <a href="#">分类</a>
                                         </div>
@@ -187,6 +191,21 @@ To change this template use File | Settings | File Templates.
                     animationHover(this, 'pulse');
                 });
             });
+               function del(){
+/*     alert("是否删除");
+ */
+ //询问框
+parent.layer.confirm('确定要删除吗', {
+    btn: ['确定','取消'], //按钮
+    shade: false //不显示遮罩
+}
+/* , function(){
+    parent.layer.msg('已删除', {icon: 1});
+}, function(){
+    parent.layer.msg('已取消', {shift: 6});
+} */
+);
+    }
         </script>
 
         <script type="text/javascript"

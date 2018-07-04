@@ -22,7 +22,7 @@
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css"
           rel="stylesheet">
-
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
     <!-- 全局js -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
     <script
@@ -57,9 +57,9 @@
                                                 <%--图片--%>
                                             <c:if test="${content.sort > 3}">
                                                 <%--前三张图片只有替换，没有删除--%>
-                                                <a href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                                <a onclick="del()" href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
                                             </c:if>
-                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a><br>
                                             选择的文章id为${content.url.split("=")[1]}
                                             <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
@@ -96,7 +96,7 @@
                                                 <%-- 文章--%>
                                                 <%-- 后台需要参数 图片 文章 序号 --%>
                                                 <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
-                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a><br>
                                             选择的文章id为${content.url.split("=")[1]}
                                             <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
                                             <br/>
@@ -112,7 +112,7 @@
 
         <div class="col-sm-3 animated fadeInRight"
              style="background-color:#fff;height: 500px;
-margin-top: 20px;">
+margin-top: 20px;margin-left: -45px;">
             <h1>操作说明</h1>
 
             <div class="file">
@@ -152,6 +152,7 @@ margin-top: 20px;">
     <!-- /.modal -->
 </div>
 <script type="text/javascript">
+
     $(document).ready(function () {
         $('.file-box').each(function () {
             animationHover(this, 'pulse');
@@ -231,11 +232,15 @@ margin-top: 20px;">
                 totalPage = data["obj"]["totalPage"];
             });
     }
+    function del(){
+      parent.layer.alert("是否删除");
+    }
 </script>
 
 <script type="text/javascript"
         src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 <!--统计代码，可删除-->
+	<!-- layui -->
 
 </body>
 
