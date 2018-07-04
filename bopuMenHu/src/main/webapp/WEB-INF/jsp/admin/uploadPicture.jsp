@@ -42,7 +42,7 @@
 <script
 	src="${pageContext.request.contextPath}/js/plugins/dropzone/dropzone.js"></script>
 </head>
-<script>
+<script> 
 
     $(function () {
         if (!<%="1".equals(request.getParameter("add"))%>) {
@@ -179,28 +179,10 @@
 			data-target="#myModal" onclick="getList()">选择文章</button>
 
 		<br> <br> <br>
-    </div>
-    <br>
-    <%
-        if ("1".equals(request.getParameter("add"))) {
-            out.print("        <div class=\"col-xs-6  col-sm-6 col-md-6 col-lg-6\">\n" +
-                    "            <button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#myModal\" onclick=\"getList()\">选择文章\n" +
-                    "            </button>\n" +
-                    "        </div>");
-        }
-    %>
-
-    <br>
-    <h4> 请上传jpg格式的图片</h4>
-    <h5>您选择的文章id 是:
-        <span id="article"></span>
-    </h5>
-    <div id="pic">
-
 
 		<h3>请上传jpg格式的图片</h3>
 <br>
-		<div id="pic"></div>
+		<div id="pic" ></div>
 		<div class="row">
 			<!--图片上传开始-->
 			<div class="wrapper wrapper-content animated fadeIn">
@@ -226,7 +208,7 @@
 									<div class="row">
 										<button type="submit" class="btn btn-primary pull-right btn-sm">
 											上传</button>
-											<center><h1 style="margin-top: 139px;">点击上传图片</h1></center>
+											<center><h1 style="margin-top: 160px;">点击上传图片</h1></center>
 									</div>
 									<div class="dropzone-previews"></div>
 								</form>
