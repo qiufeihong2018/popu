@@ -197,6 +197,7 @@
     </h5>
     <div id="pic">
 
+
 		<h3>请上传jpg格式的图片</h3>
 <br>
 		<div id="pic"></div>
