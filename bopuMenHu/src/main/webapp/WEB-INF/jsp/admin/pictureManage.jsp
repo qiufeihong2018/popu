@@ -75,6 +75,19 @@
 					</div>
 					<br>
 					<%--   <input type="button"
+                                                <%--<a href="${pageContext.request.contextPath}/content/updatePic?sort=${content.sort}">替换</a>--%>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a>
+                                                    选择的文章id为${content.url.split("=")[1]}
+                                            <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
+                                            <br/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+                <%--   <input type="button"
                          onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&sort=${contents.size() - 2}'"
                          value="添加轮播图"> --%>
 					<input type="button" class="btn btn-primary btn-sm" value="添加轮播图"
@@ -153,6 +166,65 @@ margin-top: 20px;">
 		<!-- /.modal -->
 	</div>
 	<script type="text/javascript">
+                <input type="button" class="btn btn-primary" value="添加轮播图"
+                       onclick="javascript:window.location.href='${pageContext.request.contextPath}/admin/uploadPicture?add=1&category=2&sort=${contents.size() - 2}'"/>
+                <hr>
+                <h3>文章:</h3>
+                <hr>
+                <div class="col-sm-12">
+                    <c:forEach items="${contents}" var="content">
+                        <c:if test="${content.categoryId == 1}">
+                            <div class="file-box">
+                                <div class="file">
+                                    <a href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
+                                        <span class="corner"></span>
+                                        <div class="image">
+                                            <img alt="image" class="img-responsive"
+                                                 src="${pageContext.request.contextPath}${content.pic}">
+                                        </div>
+                                        <div class="file-name">
+                                                ${content.title}
+                                            <br/>
+                                                <%-- 文章--%>
+                                                <%-- 后台需要参数 图片 文章 序号 --%>
+                                                <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
+                                            <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a>
+                                                    选择的文章id为${content.url.split("=")[1]}
+                                            <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
+                                            <br/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">文章列表</h4>
+            </div>
+            <div class="modal-body">
+                <table id="list-table">
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="prePage(this)">上一页</button>
+                <button type="button" class="btn btn-primary" onclick="nextPage(this)">下一页</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<script type="text/javascript">
     $(document).ready(function () {
         $('.file-box').each(function () {
             animationHover(this, 'pulse');
