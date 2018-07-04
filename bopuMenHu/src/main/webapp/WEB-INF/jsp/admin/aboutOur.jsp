@@ -39,7 +39,7 @@
                         <form action="${pageContext.request.contextPath}/content/setAbout">
                             <p>邮箱：<input id="in1" name="email" type="text" class="form-control"/></p>
                             <p>电话：<input id="in1" name="phone" type="text" class="form-control"/></p>
-                            <input type="submit">确定</input>
+                            <input type="submit" class="btn btn-primary btn-block"></input>
                         </form>
                     </div>
                 </div>
