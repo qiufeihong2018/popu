@@ -42,7 +42,8 @@
     <script
             src="${pageContext.request.contextPath}/js/plugins/dropzone/dropzone.js"></script>
 </head>
-<script>
+<script> 
+
     $(function () {
         if (!<%="1".equals(request.getParameter("add"))%>) {
             $.post("${pageContext.request.contextPath}/content/showContent",
