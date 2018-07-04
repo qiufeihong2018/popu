@@ -75,7 +75,7 @@
             <div class="row">
                 <div id="commentDiv" class="col-lg-12">
 
-                    <h2>评论：</h2>
+                    <h2 style="margin-left: 20px;margin-bottom: 20px;">评论：</h2>
 
                 </div>
                 </c:when>

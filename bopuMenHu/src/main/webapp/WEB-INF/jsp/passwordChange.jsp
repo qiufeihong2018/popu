@@ -33,13 +33,13 @@
 
           	  <!--账号-->
             ${oldPassword}${newPassword}<br>
-            <input type="hidden" name="id" value="${user.id}">
-           	<label style="margin-left: -39px;">原密码</label> <input id="oldPassword" name="oldPassword" type="text" class="form-control" placeholder="原密码" /><br> <span for="oldPassword" style="margin-left: -192px;"></span> 
+            <input type="hidden" name="id" value="${user.id}" style="color:red">
+           	<label style="margin-left: -39px;">原密码</label> <input id="oldPassword" name="oldPassword" type="password" class="form-control" placeholder="原密码" /><br> <span for="oldPassword" style="margin-left: -192px;"></span> 
             <br>
-            	<label style="margin-left: -39px;">新密码</label><input id="newPassword" name="newPassword" type="text" class="form-control" placeholder="新密码" /><br> <span for="newPassword" style="margin-left: -181px;"></span>
+            	<label style="margin-left: -39px;">新密码</label><input id="newPassword" name="newPassword" type="password" class="form-control" placeholder="新密码" /><br> <span for="newPassword" style="margin-left: -181px;"></span>
             <br>
           
-                      	<label style="margin-left: -74px;">重复新密码</label>  <input id="reNewPassword" name="reNewPassword" type="text" class="form-control" placeholder="重复新密码" /><br> <span for="reNewPassword" style="margin-left: -159px;"></span> 
+                      	<label style="margin-left: -74px;">重复新密码</label>  <input id="reNewPassword" name="reNewPassword" type="password" class="form-control" placeholder="重复新密码" /><br> <span for="reNewPassword" style="margin-left: -159px;"></span> 
             
             <br>
           	<input id="btnChuang" type="submit" class="btn btn-success" value="确定" />

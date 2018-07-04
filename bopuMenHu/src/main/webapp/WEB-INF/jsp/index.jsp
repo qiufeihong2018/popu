@@ -113,7 +113,7 @@ change this template use File | Settings | File Templates. --%> -->
 
 
 
-								<hr style="border:5px solid #DDDDDD" />
+							
 
 								<div id="experiment" class='div_celebrity_row'></div>
 
@@ -464,7 +464,7 @@ header .navbar-brand {
                         '  作者成员：'+val["author"]+'<br>' +
                         '  上限日期：'+val["limitdata"]+'<<br>' +
                         '  <a href=${pageContext.request.contextPath}"'+val["look"]+'">进入查看</a>' +
-                        '  <hr style="border:5px solid #DDDDDD;"/>';
+                        '  <hr style="border:2px solid #DDDDDD;"/>';
                 });
                 $("#experiment").html(text);
                 $("#div4").height($("#innerNews").height());

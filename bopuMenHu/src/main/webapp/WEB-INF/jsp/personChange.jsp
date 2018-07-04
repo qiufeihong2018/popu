@@ -27,7 +27,7 @@
 	<main class="content">
 		<div id="biaodan">
 			<form action="${pageContext.request.contextPath}/user/personChange"
-				class="form1" method="post" name="form1" target="_blank" id="form1">
+				class="form1" method="post" name="form1" target="_self" id="form1">
 
 				<br> <br> <br>
 				<h1>个人中心</h1>
@@ -45,7 +45,7 @@
 				<!--手机号-->
 				<label style="margin-left: -14px;">手机号</label> <input id="phone"
 					name="phone" value="${user.phone}" type="text" placeholder="手机号"
-					class="form-control" /><br> <span for="phone"></span> <br>
+					class="form-control" /><br> <span for="phone" style="margin-left: -116px;"></span> <br>
 
 				<!--通讯地址-->
 				<label style="margin-left: -27px;">通讯地址</label> <input
@@ -55,7 +55,7 @@
 				<!--工作单位-->
 				<label style="margin-left: -27px;">工作单位</label> <input id="work"
 					value="${user.work}" name="work" type="text" class="form-control"
-					placeholder="工作单位 "> <br> <span for="work"></span> <br>
+					placeholder="工作单位 "> <br> <span for="work" style="margin-left: -115px;"></span> <br>
 				<!--职称-->
 				<label>职称</label> <input name="professional "
 					value="${user.professional}" type="text " class="form-control "
@@ -70,7 +70,7 @@
 				<!--邮箱-->
 				<label>邮箱</label> <input id="email" name="email"
 					value="${user.email}" type="text" class="form-control"
-					placeholder="邮箱"><br> <span for="email"></span> <br>
+					placeholder="邮箱"><br> <span for="email" style="margin-left: -56px;"></span> <br>
 				<input type="submit" id="btnChuang" class="btn btn-success"
 					value="确定" /> <br> <br>
 			</form>
