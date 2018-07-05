@@ -34,7 +34,9 @@
 	// 访问 url content/showAbout
 	$(function() {
 		$.post("${pageContext.request.contextPath}/content/showAbout", function(data) {
-			//data; 数据需要填充到input中
+		    console.log(data);
+		    $("#in1").val(data["obj"][0]["url"]);
+		    $("#in2").val(data["obj"][1]["url"]);
 		})
 	});
 </script>
