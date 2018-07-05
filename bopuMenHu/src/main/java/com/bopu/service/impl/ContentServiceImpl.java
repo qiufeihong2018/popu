@@ -162,7 +162,7 @@ public class ContentServiceImpl implements ContentService {
         criteria.andCategoryIdEqualTo(1);
         List<Content> contents = contentMapper.selectByExample(example);
         Content content = contents.get(0);
-        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), 0);
+        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), -1);
         String title = articleMapper.getTitleById(articleId);
         content.setTitle(title);
         content.setUrl("/article/show?articleId=" + articleId);
@@ -231,7 +231,7 @@ public class ContentServiceImpl implements ContentService {
 
     public void setArtById(Integer id, Integer articleId) {
         Content content = contentMapper.selectByPrimaryKey(id);
-        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), 0);
+        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), -1);
         content.setUrl("/article/show?articleId=" + articleId);
         articleMapper.updateRefByPK(articleId, 1);
         if (content.getCategoryId() == 1) {
