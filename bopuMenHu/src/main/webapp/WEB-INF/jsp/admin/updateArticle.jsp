@@ -134,7 +134,8 @@
                 look: look,
                 limitdata: limitData,
                 time: "${article.time}",
-                count: "${article.count}"
+                count: "${article.count}",
+                referenced:${article.referenced}
             }, function (result) {
                 if (result["status"] == 200) {
                     window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];
@@ -157,7 +158,8 @@
                 time: "${article.time}",
                 count: "${article.count}",
                 limitdata: "${article.limitdata}",
-                look: "${article.look}"
+                look: "${article.look}",
+                referenced:${article.referenced}
             }, function (result) {
                 if (result["status"] == 200) {
                     window.location.href = "${pageContext.request.contextPath}/article/show?articleId=" + result["message"];

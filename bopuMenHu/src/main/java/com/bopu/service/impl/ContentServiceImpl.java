@@ -88,6 +88,7 @@ public class ContentServiceImpl implements ContentService {
             content.setUrl("/article/show?articleId=" + articleId);
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
+            articleMapper.updateRefByPK(articleId, 1);
         }
         if (category == 1) {
             // 文章
@@ -112,6 +113,7 @@ public class ContentServiceImpl implements ContentService {
             criteria.andSortEqualTo(sort);
             List<Content> contents = contentMapper.selectByExample(example);
             content = contents.get(0);
+            articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), 0);
             contentMapper.deleteByExample(example);
             if (l > sort) {
                 // count > sort计数比想要删除图片的id大,修改之后的id
@@ -160,9 +162,11 @@ public class ContentServiceImpl implements ContentService {
         criteria.andCategoryIdEqualTo(1);
         List<Content> contents = contentMapper.selectByExample(example);
         Content content = contents.get(0);
+        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), 0);
         String title = articleMapper.getTitleById(articleId);
         content.setTitle(title);
         content.setUrl("/article/show?articleId=" + articleId);
+        articleMapper.updateRefByPK(articleId, 1);
         content.setPic(path);
         contentMapper.updateByPrimaryKey(content);
     }
@@ -227,11 +231,12 @@ public class ContentServiceImpl implements ContentService {
 
     public void setArtById(Integer id, Integer articleId) {
         Content content = contentMapper.selectByPrimaryKey(id);
+        articleMapper.updateRefByPK(Integer.parseInt(content.getUrl().split("=")[1]), 0);
         content.setUrl("/article/show?articleId=" + articleId);
+        articleMapper.updateRefByPK(articleId, 1);
         if (content.getCategoryId() == 1) {
             content.setTitle(articleMapper.getTitleById(articleId));
         }
         contentMapper.updateByPrimaryKeySelective(content);
     }
-
 }

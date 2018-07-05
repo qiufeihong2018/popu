@@ -9,7 +9,7 @@ import com.bopu.utils.PageBean;
 import org.apache.ibatis.annotations.Param;
 
 public interface ArticleMapper {
-    int countByExample(ArticleExample example);
+    long countByExample(ArticleExample example);
 
     int deleteByExample(ArticleExample example);
 
@@ -49,5 +49,7 @@ public interface ArticleMapper {
 
     List<Article> selectTitleAndId(@Param("type") List<Integer> type);
 
-    String getTitleById(Integer articleId);
+    String getTitleById(Integer id);
+
+    void updateRefByPK(Integer id, Integer referenced);
 }

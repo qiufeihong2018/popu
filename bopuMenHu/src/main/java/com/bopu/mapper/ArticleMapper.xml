@@ -1,38 +1,26 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bopu.mapper.ArticleMapper">
     <resultMap id="BaseResultMap" type="com.bopu.pojo.Article">
-        <constructor>
-            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="count" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="author" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="limitData" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="look" jdbcType="VARCHAR" javaType="java.lang.String"/>
-        </constructor>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="time" jdbcType="TIMESTAMP" property="time"/>
+        <result column="count" jdbcType="INTEGER" property="count"/>
+        <result column="author" jdbcType="VARCHAR" property="author"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="flag" jdbcType="INTEGER" property="flag"/>
+        <result column="limitData" jdbcType="TIMESTAMP" property="limitdata"/>
+        <result column="look" jdbcType="VARCHAR" property="look"/>
+        <result column="referenced" jdbcType="INTEGER" property="referenced"/>
     </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="com.bopu.pojo.Article">
-        <constructor>
-            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="count" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="author" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="flag" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="limitData" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
-            <arg column="look" jdbcType="VARCHAR" javaType="java.lang.String"/>
-            <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String"/>
-        </constructor>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bopu.pojo.Article">
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
                 <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
                         <foreach collection="criteria.criteria" item="criterion">
                             <choose>
                                 <when test="criterion.noValue">
@@ -46,7 +34,7 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
                                              separator=",">
                                         #{listItem}
                                     </foreach>
@@ -62,7 +50,7 @@
         <where>
             <foreach collection="example.oredCriteria" item="criteria" separator="or">
                 <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
                         <foreach collection="criteria.criteria" item="criterion">
                             <choose>
                                 <when test="criterion.noValue">
@@ -76,7 +64,7 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
                                              separator=",">
                                         #{listItem}
                                     </foreach>
@@ -89,17 +77,16 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, title, time, count, author, type, flag, limitData, look
+    id, title, time, count, author, type, flag, limitData, look, referenced
   </sql>
     <sql id="Blob_Column_List">
     content
   </sql>
-    <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.bopu.pojo.ArticleExample">
+    <select id="selectByExampleWithBLOBs" parameterType="com.bopu.pojo.ArticleExample" resultMap="ResultMapWithBLOBs">
         select
         <if test="distinct">
             distinct
         </if>
-        'true' as QUERYID,
         <include refid="Base_Column_List"/>
         ,
         <include refid="Blob_Column_List"/>
@@ -111,12 +98,11 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bopu.pojo.ArticleExample">
+    <select id="selectByExample" parameterType="com.bopu.pojo.ArticleExample" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
-        'true' as QUERYID,
         <include refid="Base_Column_List"/>
         from article
         <if test="_parameter != null">
@@ -126,7 +112,7 @@
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
         select
         <include refid="Base_Column_List"/>
         ,
@@ -148,15 +134,15 @@
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into article (id, title, time,
-        count, author, type,
-        flag, limitData, look,
-        content)
-        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
-        #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
-        #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
-        #{content,jdbcType=LONGVARCHAR})
-    </insert>
+    insert into article (id, title, time,
+      count, author, type,
+      flag, limitData, look,
+      referenced, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
+      #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
+      #{referenced,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
     <insert id="insertSelective" parameterType="com.bopu.pojo.Article">
         insert into article
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -186,6 +172,9 @@
             </if>
             <if test="look != null">
                 look,
+            </if>
+            <if test="referenced != null">
+                referenced,
             </if>
             <if test="content != null">
                 content,
@@ -219,12 +208,15 @@
             <if test="look != null">
                 #{look,jdbcType=VARCHAR},
             </if>
+            <if test="referenced != null">
+                #{referenced,jdbcType=INTEGER},
+            </if>
             <if test="content != null">
                 #{content,jdbcType=LONGVARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.bopu.pojo.ArticleExample" resultType="java.lang.Integer">
+    <select id="countByExample" parameterType="com.bopu.pojo.ArticleExample" resultType="java.lang.Long">
         select count(*) from article
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
@@ -260,6 +252,9 @@
             <if test="record.look != null">
                 look = #{record.look,jdbcType=VARCHAR},
             </if>
+            <if test="record.referenced != null">
+                referenced = #{record.referenced,jdbcType=INTEGER},
+            </if>
             <if test="record.content != null">
                 content = #{record.content,jdbcType=LONGVARCHAR},
             </if>
@@ -279,6 +274,7 @@
         flag = #{record.flag,jdbcType=INTEGER},
         limitData = #{record.limitdata,jdbcType=TIMESTAMP},
         look = #{record.look,jdbcType=VARCHAR},
+        referenced = #{record.referenced,jdbcType=INTEGER},
         content = #{record.content,jdbcType=LONGVARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
@@ -294,7 +290,8 @@
         type = #{record.type,jdbcType=INTEGER},
         flag = #{record.flag,jdbcType=INTEGER},
         limitData = #{record.limitdata,jdbcType=TIMESTAMP},
-        look = #{record.look,jdbcType=VARCHAR}
+        look = #{record.look,jdbcType=VARCHAR},
+        referenced = #{record.referenced,jdbcType=INTEGER}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -326,6 +323,9 @@
             <if test="look != null">
                 look = #{look,jdbcType=VARCHAR},
             </if>
+            <if test="referenced != null">
+                referenced = #{referenced,jdbcType=INTEGER},
+            </if>
             <if test="content != null">
                 content = #{content,jdbcType=LONGVARCHAR},
             </if>
@@ -342,6 +342,7 @@
       flag = #{flag,jdbcType=INTEGER},
       limitData = #{limitdata,jdbcType=TIMESTAMP},
       look = #{look,jdbcType=VARCHAR},
+      referenced = #{referenced,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -355,7 +356,8 @@
       flag = #{flag,jdbcType=INTEGER},
       limitData = #{limitdata,jdbcType=TIMESTAMP},
       look = #{look,jdbcType=VARCHAR},
-      content = #{content}
+      content = #{content},
+      referenced = #{referenced,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <!-- 手动添加 -->
@@ -424,4 +426,9 @@
         from article
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <update id="updateRefByPK" parameterType="java.lang.Integer">
+      update article
+      set referenced = #{1}
+      where id =  #{0}
+    </update>
 </mapper>
