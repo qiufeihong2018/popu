@@ -423,9 +423,9 @@
         from article
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <update id="updateRefByPK" parameterType="java.lang.Integer">
+    <update id="updateRefByPK">
       update article
-      set referenced = #{referenced,jdbcType=INTEGER}
-      where id =  #{id,jdbcType=INTEGER}
+      set referenced = #{1}
+      where id =  #{0}
     </update>
 </mapper>
