@@ -116,7 +116,7 @@
     var page = 1;
     var totalPage = 0;
 
-    function prePage(obj) {
+    function prePage() {
         if (page <= 1) {
             return;
         } else {
@@ -125,13 +125,20 @@
         }
 
         if (page <= 1) {
-            $(obj).attr("class", "btn btn-default");
+            $("#pre").attr("class", "btn btn-default");
         } else {
-            $(obj).attr("class", "btn btn-primary");
+            $("#pre").attr("class", "btn btn-primary");
         }
+
+        if (page >= totalPage) {
+            $("#next").attr("class", "btn btn-default");
+        } else {
+            $("#next").attr("class", "btn btn-primary");
+        }
+
     }
 
-    function nextPage(obj) {
+    function nextPage() {
         if (page >= totalPage) {
             return;
         } else {
@@ -139,9 +146,15 @@
             getList();
         }
         if (page >= totalPage) {
-            $(obj).attr("class", "btn btn-default");
+            $("#next").attr("class", "btn btn-default");
         } else {
-            $(obj).attr("class", "btn btn-primary");
+            $("#next").attr("class", "btn btn-primary");
+        }
+
+        if (page <= 1) {
+            $("#pre").attr("class", "btn btn-default");
+        } else {
+            $("#pre").attr("class", "btn btn-primary");
         }
     }
 
@@ -241,11 +254,11 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        onclick="prePage(this)">上一页
+                <button id="pre" type="button" class="btn btn-default"
+                        onclick="prePage()">上一页
                 </button>
-                <button type="button" class="btn btn-primary"
-                        onclick="nextPage(this)">下一页
+                <button id="next" type="button" class="btn btn-primary"
+                        onclick="nextPage()">下一页
                 </button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" onclick="getValue()">选定</button>
