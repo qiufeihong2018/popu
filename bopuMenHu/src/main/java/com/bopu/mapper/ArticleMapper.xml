@@ -134,15 +134,15 @@
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
             SELECT LAST_INSERT_ID()
         </selectKey>
-    insert into article (id, title, time,
-      count, author, type,
-      flag, limitData, look,
-      referenced, content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
-      #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
-      #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
-      #{referenced,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
-  </insert>
+        insert into article (id, title, time,
+        count, author, type,
+        flag, limitData, look,
+        referenced, content)
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP},
+        #{count,jdbcType=INTEGER}, #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
+        #{flag,jdbcType=INTEGER}, #{limitdata,jdbcType=TIMESTAMP}, #{look,jdbcType=VARCHAR},
+        #{referenced,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.bopu.pojo.Article">
         insert into article
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -428,7 +428,7 @@
     </select>
     <update id="updateRefByPK" parameterType="java.lang.Integer">
       update article
-      set referenced = #{1}
+      set referenced = referenced + #{1}
       where id =  #{0}
     </update>
 </mapper>
