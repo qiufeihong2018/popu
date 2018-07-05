@@ -40,7 +40,7 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
+ 
 <!-- 全局js -->
 <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
 
@@ -48,6 +48,7 @@
 	src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
 <!-- 日期 -->
 <script src="${pageContext.request.contextPath}/js/laydate/laydate.js"></script>
+   <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
 <!-- 改成你的路径 -->
 
 <!-- 自定义js -->
@@ -57,6 +58,9 @@
 <body class="gray-bg">
 	<div class="div1">
 		<br> <br>
+		<input id="date" name="limitData" placeholder="点击选择日期" type="text"
+					class="demo-input" onfocus="showTips('date','上限日期必填!')"
+					onblur="check('date','上限日期不能为空！')" style="width: 100%;" />
 		<h1>发布文章</h1>
 
 		<hr style="border:5px solid #DDDDDD" />
