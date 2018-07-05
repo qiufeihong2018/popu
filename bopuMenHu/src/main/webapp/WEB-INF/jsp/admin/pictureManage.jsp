@@ -117,7 +117,11 @@ margin-top: 20px;margin-left: -45px;">
             <h1>操作说明</h1>
 
             <div class="file">
-                <p>************</p></div>
+                <p>1.前三个轮播图不可删除，只能进行替换操作</p>
+                <p><font style="color: #ff0000;">2.图片替换，所需等待时间较久，大致在一分钟内</font></p>
+                <p>3.请在文章管理中修改简介</p>
+            </div>
+            <h4>若重置数据库，请保证content表中category_id=1有三条数据，否则首页图片文章无法显示</h4>
 
         </div>
     </div>
@@ -222,10 +226,15 @@ margin-top: 20px;margin-left: -45px;">
         $.post("${pageContext.request.contextPath}/article/getlist",
             {currentPage: page}
             , function (data) {
-                var text = "";
+                var text = '<tr>' +
+                    '                        <td>选择</td>' +
+                    '<td>文章id</td>' +
+                    '                        <td>文章标题</td>' +
+                    '                    </tr>';
                 $.each(data["obj"]["rows"], function (index, val) {
                     text += '<tr>' +
                         '                        <td><input name="ck" value="' + val["id"] + '" type="checkbox"/></td>' +
+                        '<td>' + val["id"] + '</td>' +
                         '                        <td>' + val["title"] + '</td>' +
                         '                    </tr>';
                 });

@@ -22,7 +22,7 @@
 
 <body class="gray-bg">
 
- <!-- 引入header.jsp -->
+<!-- 引入header.jsp -->
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 
 <div class="row">
@@ -42,7 +42,6 @@
                 <h6><c:if test="${article.type == 2}">项目成员有: ${article.author}<br>项目地址:
                     <a href="${article.look}">${article.look}</a></c:if></h6>
                 <h4>
-                    内容填充
                     ${article.content}
                 </h4>
             </div>
@@ -72,29 +71,29 @@
                 </div>
             </div>
             <hr>
-            <div id="commentDiv1"  class="row">
+            <div id="commentDiv1" class="row">
                 <h4>
-                此文章暂无评论
+                    此文章暂无评论
                 </h4>
             </div>
             <div id="allComment" style="display: none">
-            <div>
-                <h2 style="margin-left: 20px;margin-bottom: 20px;">评论：</h2>
-            </div>
-            <div   class="row">
-
-                <div id="commentDiv" class="col-lg-12">
-
-
+                <div>
+                    <h2 style="margin-left: 20px;margin-bottom: 20px;">评论：</h2>
                 </div>
-                </c:when>
-                <c:otherwise>
-                    <h4>此文章无评论权限</h4>
-                    <hr>
-                </c:otherwise>
-                </c:choose>
-                </c:if>
-            </div>
+                <div class="row">
+
+                    <div id="commentDiv" class="col-lg-12">
+
+
+                    </div>
+                    </c:when>
+                    <c:otherwise>
+                        <h4>此文章无评论权限</h4>
+                        <hr>
+                    </c:otherwise>
+                    </c:choose>
+                    </c:if>
+                </div>
             </div>
         </div>
     </div>
@@ -126,8 +125,6 @@
     body {
         overflow-x: hidden;
     }
-
-  
 
     .img-top {
         width: 100%;
@@ -198,7 +195,8 @@
         margin-bottom: 0;
         border-bottom: none;
     }
-    .text-muted{
+
+    .text-muted {
         position: absolute;
         width: 40px;
         height: 30px;
@@ -264,69 +262,71 @@
 
 
     $(document).ready(
-
         loadComment()
     )
 
     //滚动滚动条加载评论事件
     $(window).scroll(function () {
-        if ($(document).scrollTop() + $(window).height() >= $(document).height()-200) {
-            if(flag){flag=false;
+        if ($(document).scrollTop() + $(window).height() >= $(document).height() - 200) {
+            if (flag) {
+                flag = false;
                 //alert("123");
                 loadComment();
             }
         }
     });
-    function loadComment() {
-        if(page!=0){
-        $.post("${pageContext.request.contextPath}/comment/list", {
-            id:"${article.id}",
-            currentPage: page
-        }, function (data) {
-            if(data["obj"].length==0){
-                $("#commentDiv1").show();
-            }else{
-                $("#allComment").show();
-            }
-            var text='';
-            $.each(data["obj"], function (index, val) {
-                var msg = "";
-                if(userId!=0&&userId==val["user"]["id"]){
-                    msg='<a href="${pageContext.request.contextPath}/comment/del?id='+val["comment"]["id"]+'&articleId=${article.id}">删除</a>';
-                }
 
-                // 每次5条
-                text += '<div class="social-feed-box">' +
-                    '                        <div class="social-avatar">' +
-                    '                            <a href="" class="pull-left">' +
-                    '                                <img alt="image" src="'+val["user"]["pic"]+'">' +
-                    '                            </a>' +
-                    '                            <div class="media-body">' +
-                    '                                    '+val["user"]["name"]+'' +
-                    '                                <small class="text-muted">' +
-                        msg+
-                    '</small>' +
-                    '                            </div>' +
-                    '                        </div>' +
-                    '                        <div class="social-body">' +
-                    '                            <p>' +
-                    '                                '+val["comment"]["content"]+'' +
-                    '                            </p>' +
-                    '                        </div>' +
-                    '                    </div>';
+    function loadComment() {
+        if (page != 0) {
+            $.post("${pageContext.request.contextPath}/comment/list", {
+                id: "${article.id}",
+                currentPage: page
+            }, function (data) {
+                if (data["obj"].length == 0) {
+                    $("#commentDiv1").show();
+                } else {
+                    $("#allComment").show();
+                }
+                var text = '';
+                $.each(data["obj"], function (index, val) {
+                    var msg = "";
+                    if (userId != 0 && userId == val["user"]["id"]) {
+                        msg = '<a href="${pageContext.request.contextPath}/comment/del?id=' + val["comment"]["id"] + '&articleId=${article.id}">删除</a>';
+                    }
+
+                    // 每次5条
+                    text += '<div class="social-feed-box">' +
+                        '                        <div class="social-avatar">' +
+                        '                            <a href="" class="pull-left">' +
+                        '                                <img alt="image" src="' + val["user"]["pic"] + '">' +
+                        '                            </a>' +
+                        '                            <div class="media-body">' +
+                        '                                    ' + val["user"]["name"] + '' +
+                        '                                <small class="text-muted">' +
+                        msg +
+                        '</small>' +
+                        '                            </div>' +
+                        '                        </div>' +
+                        '                        <div class="social-body">' +
+                        '                            <p>' +
+                        '                                ' + val["comment"]["content"] + '' +
+                        '                            </p>' +
+                        '                        </div>' +
+                        '                    </div>';
+                });
+                $("#commentDiv").append(text);
+                page += 1;
+                flag = true;
+                if (data.length < 5)
+                    page = 0;
             });
-            $("#commentDiv").append(text);
-            page+=1;
-            flag=true;
-            if(data.length<5)
-                page=0;
-        });
         }
     }
 
 
     <c:if test="${user != null}">
     userId = ${user.id};
+
     function publish() {
         // alert();
         var content = $("#content").val();
@@ -336,11 +336,13 @@
             content: content
         }, function (result) {
             if (result["status"] == 200) {
-                alert("success");
+                alert("评论成功");
+                location.reload(true);
             } else {
                 // 提交失败
             }
         });
     }
+
     </c:if>
 </script>
