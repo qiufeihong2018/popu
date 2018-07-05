@@ -228,12 +228,12 @@
                                 <input type="hidden" name="sort"
                                        value="<%=request.getParameter("sort")!=null?request.getParameter("sort"):""%>">
                                 <input type="hidden" name="articleId" id="articleId">
-                                <div class="row">
+
                                     <button type="submit" class="btn btn-primary pull-right btn-sm">
                                         上传
                                     </button>
                                     <center><h1 style="margin-top: 100px;">点击上传图片</h1></center>
-                                </div>
+
                                 <div class="dropzone-previews"></div>
                             </form>
                         </div>
