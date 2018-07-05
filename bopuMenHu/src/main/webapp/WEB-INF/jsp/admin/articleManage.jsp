@@ -110,7 +110,8 @@ To change this template use File | Settings | File Templates.
 						<ul class="pagination ">
 							<li><a href="javascript:void(0);" onclick="page(1)"
 								aria-label="Previous"> <span aria-hidden="true">上一页</span>
-							</a></li> &nbsp;&nbsp;&nbsp;&nbsp;
+							</a></li> 
+								<li><a style="background-color: #f3f3f4;border-bottom-color: #f3f3f4;border-top-color: #f3f3f4;">&nbsp;&nbsp;&nbsp;</a></li>
 							<li><a href="javascript:void(0);" onclick="page(2)"
 								aria-label="Next"> <span aria-hidden="true">下一页</span>
 							</a></li>
