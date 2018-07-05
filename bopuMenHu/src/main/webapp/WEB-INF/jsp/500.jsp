@@ -12,52 +12,29 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
-
+<script>
+    function childFunction() {
+        $("#top1").hide();
+        $("#footer1").hide();
+    }
+        window.onload = function() {
+        var par = window.parent;
+        if(par.parent!=null){
+            par = par.parent;
+		}
+        par.ifrmLoaded(window);
+    }
+</script>
 <body class="gray-bg">
-	<!-- <header class="clearfix">
-		头部
-
-		<nav class="navbar navbar-default" role="navigation">
-			<div class="container-fluid">
-				<div class="navbar-header">
-
-					<a class="navbar-brand" href="#">温州市波普大数据研究院</a>
-					<button type="button" class="navbar-toggle" data-toggle="collapse"
-						data-target="#example-navbar-collapse">
-						<span class="sr-only">切换导航</span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span>
-					</button>
-				</div>
-				<div class="collapse navbar-collapse" id="example-navbar-collapse">
-					<ul class="nav navbar-nav navbar-right">
-
-						<li><a href="私信界面.html">私信</a></li>
-						<li class="divider"></li>
-						<li><a href="个人中心.html">个人中心</a></li>
-
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header> -->
-
-	<%-- 	<jsp:include page="header.jsp" flush="true"></jsp:include> --%>
+<div id="top1">
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
+</div>
 	<br>
 
 	<main class="content">
 
 		<div class="middle-box text-center animated fadeInDown">
 			<img src="${pageContext.request.contextPath}/img/500.JPG" /> <br> <br>
-			<!--     <h3 class="font-bold">服务器内部错误</h3> -->
-
-			<!--     <div class="error-desc">
-
-            <br/>您可以返回主页看看
-            <br/><a href="主页.html" id="btnChuang" class="btn btn-success">主页</a>
-        </div>
-    </div>
-    </div> -->
 			<div class="form-group">
 				<div class="row">
 					<div class="col-xs-6  col-sm-6 col-md-6 col-lg-6">
@@ -65,7 +42,6 @@
 					</div>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
-						<!-- 	<a href="#"><input id="btnChuang" type="submit" class="btn btn-success" value="搜索" /></a>	 -->
 						<input type="button" class="btn btn-success" value="返回上一级">
 					</div>
 				</div>
@@ -75,7 +51,7 @@
 	</main>
 	<br>
 
-	<footer class="center-block footer">
+	<footer id="footer1" class="center-block footer">
 		<div class="container">
 			<div class="row center-block">
 				<div class="col-md-6">

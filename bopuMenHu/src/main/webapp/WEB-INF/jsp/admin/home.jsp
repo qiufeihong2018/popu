@@ -46,12 +46,6 @@
 							</span>
 							</a>
 							<ul class="dropdown-menu animated fadeInRight m-t-xs">
-							<!-- 	<li><a class="J_menuItem" href="form_avatar.html">修改头像</a>
-								</li>
-								<li><a class="J_menuItem" href="profile.html">个人资料</a></li>
-								<li><a class="J_menuItem" href="contacts.html">联系我们</a></li>
-								<li><a class="J_menuItem" href="mailbox.html">信箱</a></li>
-								<li class="divider"></li> -->
 								<li><a href="${pageContext.request.contentType}/bopuMenHu/index">安全退出</a></li>
 							</ul>
 						</div>
@@ -91,84 +85,12 @@
 						<form role="search" class="navbar-form-custom" method="post"
 							action="search_results.html">
 							<div class="form-group">
-							<!-- 	<input type="text" placeholder="请输入您需要查找的内容 …"
-									class="form-control" name="top-search" id="top-search"> -->
 							</div>
 						</form>
 					</div>
-				<!-- 	<ul class="nav navbar-top-links navbar-right">
-						<li class="dropdown"><a class="dropdown-toggle count-info"
-							data-toggle="dropdown" href="#"> <i class="fa fa-envelope"></i>
-								<span class="label label-warning">16</span>
-						</a>
-							<ul class="dropdown-menu dropdown-messages">
-								<li class="m-t-xs">
-									<div class="dropdown-messages-box">
-										<a href="profile.html" class="pull-left"> <img alt="image"
-											class="img-circle" src="../img/2.jpg">
-										</a>
-										<div class="media-body">
-											<small class="pull-right">46小时前</small> <strong>小四</strong>
-											邮箱1 <br> <small class="text-muted">3天前 2014.11.8</small>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="dropdown-messages-box">
-										<a href="profile.html" class="pull-left"> <img alt="image"
-											class="img-circle" src="../img/4.jpg">
-										</a>
-										<div class="media-body ">
-											<small class="pull-right text-navy">25小时前</small> <strong>国民岳父</strong>
-											邮箱2 <br> <small class="text-muted">昨天</small>
-										</div>
-									</div>
-								</li>
-								<li class="divider"></li>
-								<li>
-									<div class="text-center link-block">
-										<a class="J_menuItem" href="mailbox.html"> <i
-											class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
-										</a>
-									</div>
-								</li>
-							</ul></li>
-						<li class="dropdown"><a class="dropdown-toggle count-info"
-							data-toggle="dropdown" href="#"> <i class="fa fa-bell"></i> <span
-								class="label label-primary">8</span>
-						</a>
-							<ul class="dropdown-menu dropdown-alerts">
-								<li><a href="mailbox.html">
-										<div>
-											<i class="fa fa-envelope fa-fw"></i> 您有16条未读消息 <span
-												class="pull-right text-muted small">4分钟前</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li><a href="profile.html">
-										<div>
-											<i class="fa fa-qq fa-fw"></i> 3条新回复 <span
-												class="pull-right text-muted small">12分钟钱</span>
-										</div>
-								</a></li>
-								<li class="divider"></li>
-								<li>
-									<div class="text-center link-block">
-										<a class="J_menuItem" href="notifications.html"> <strong>查看所有
-										</strong> <i class="fa fa-angle-right"></i>
-										</a>
-									</div>
-								</li>
-							</ul></li>
-
-					</ul> -->
 				</nav>
 			</div>
 			<div class="row content-tabs">
-			<!-- 	<button class="roll-nav roll-left J_tabLeft">
-					<i class="fa fa-backward"></i>
-				</button> -->
 				<nav class="page-tabs J_menuTabs">
 					<div class="page-tabs-content"></div>
 				</nav>
@@ -191,7 +113,7 @@
 					class="fa fa fa-sign-out"></i> 退出</a>
 			</div>
 			<div class="row J_mainContent" id="content-main">
-				<iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+				<iframe class="J_iframe" id="iframe" name="iframe0" width="100%" height="100%"
 					src="${pageContext.request.contextPath}/content/managerPA" frameborder="0" data-id="\波普3\轮播图管理.html"
 					seamless></iframe>
 			</div>
@@ -202,6 +124,12 @@
 	</div>
 
 	<!-- 全局js -->
+	<script type="text/javascript">
+
+            function ifrmLoaded(obj) {
+                obj.childFunction();
+            }
+	</script>
 	<script
 		src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
 	<script
