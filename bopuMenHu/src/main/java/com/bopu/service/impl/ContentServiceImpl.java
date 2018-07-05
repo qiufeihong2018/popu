@@ -85,7 +85,7 @@ public class ContentServiceImpl implements ContentService {
             content.setCategoryId(2);
             content.setCreated(new Date());
             content.setPic("/file/picture/" + name);
-            content.setUrl("/article/show/?articleId=" + articleId);
+            content.setUrl("/article/show?articleId=" + articleId);
             content.setSort((int) l + 1);
             contentMapper.insertSelective(content);
         }
@@ -162,7 +162,7 @@ public class ContentServiceImpl implements ContentService {
         Content content = contents.get(0);
         String title = articleMapper.getTitleById(articleId);
         content.setTitle(title);
-        content.setUrl("/article/show/?articleId=" + articleId);
+        content.setUrl("/article/show?articleId=" + articleId);
         content.setPic(path);
         contentMapper.updateByPrimaryKey(content);
     }
@@ -227,7 +227,7 @@ public class ContentServiceImpl implements ContentService {
 
     public void setArtById(Integer id, Integer articleId) {
         Content content = contentMapper.selectByPrimaryKey(id);
-        content.setUrl("/article/show/?articleId=" + articleId);
+        content.setUrl("/article/show?articleId=" + articleId);
         if (content.getCategoryId() == 1) {
             content.setTitle(articleMapper.getTitleById(articleId));
         }

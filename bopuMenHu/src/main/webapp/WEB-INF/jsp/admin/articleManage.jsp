@@ -22,7 +22,7 @@ To change this template use File | Settings | File Templates.
           rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/style.css"
           rel="stylesheet">
-             <link href="${pageContext.request.contextPath}/layui/layui.css"
+    <link href="${pageContext.request.contextPath}/layui/layui.css"
           rel="stylesheet">
     <!--上传图片的css样式-->
     <link
@@ -39,9 +39,9 @@ To change this template use File | Settings | File Templates.
 
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
-<!-- layui -->
+    <!-- layui -->
     <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
-    
+
     <!-- DROPZONE -->
     <script
             src="${pageContext.request.contextPath}/js/plugins/dropzone/dropzone.js"></script>
@@ -70,60 +70,22 @@ To change this template use File | Settings | File Templates.
                 </div>
             </div>
         </div>
-
-
-        <script>
-            $(document).ready(function () {
-
-                Dropzone.options.myAwesomeDropzone = {
-                    autoProcessQueue: false,
-                    uploadMultiple: true,
-                    parallelUploads: 100,
-                    maxFiles: 100,
-
-                    // Dropzone settings
-                    init: function () {
-                        var myDropzone = this;
-
-                        this.element.querySelector("button[type=submit]").addEventListener("click", function (e) {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            myDropzone.processQueue();
-                        });
-                        this.on("sendingmultiple", function () {
-                        });
-                        this.on("successmultiple", function (files, response) {
-                        });
-                        this.on("errormultiple", function (files, response) {
-                        });
-                    }
-                }
-
-            });
-        </script>
-        <!--图片上传结束-->
-
         <div class="col-sm-9 animated fadeInRight">
             <div class="row">
                 <div class="col-xs-12">
-
                     <c:forEach items="${pageBean.rows}" var="article">
                         <div class="file-box">
                             <div class="file">
-                                <a
-                                        href="${pageContext.request.contextPath}/article/show?articleId=${article.id}"
-                                        target="view_window"> <span class="corner"></span>
+                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}" target="view_window"> <span class="corner"></span>
                                     <div class="file-name" style="height: 200px">
                                             ${article.title} <br/>
                                         <div>
                                             <h4>${article.flag == 1 ? "可以评论":"禁止评论" }</h4>
                                         </div>
                                         <br/>
-                                        <div style="margin-top: 80px;"><a
-                                                href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
-                                            <a onclick="del()"
-                                                    href="${pageContext.request.contextPath}/article/delete?articleId=${article.id}">删除</a>&nbsp;|
-                                            <a href="#">置顶</a>&nbsp;| <a href="#">分类</a>
+                                        <div style="margin-top: 80px;">
+                                            <a href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
+                                            <a onclick="del()" href="${pageContext.request.contextPath}/article/delete?articleId=${article.id}">删除</a>&nbsp;|
                                         </div>
                                     </div>
                                 </a>
@@ -154,10 +116,6 @@ To change this template use File | Settings | File Templates.
 
             <div class="col-md-1"></div>
 
-            <!-- </div>
-    <input type="button" value="上一页" onclick="page(1)"/>
-    <input type="button" value="下一页" onclick="page(2)"/>
-</div> -->
         </div>
 
         <script type="text/javascript">
@@ -176,40 +134,31 @@ To change this template use File | Settings | File Templates.
 
             }
         </script>
-
-        <!-- 全局js -->
-        <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
-        <script
-                src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
-
-        <!-- 自定义js -->
-        <script src="js/content.js?v=1.0.0"></script>
-
-        <script>
+        <script type="text/javascript">
             $(document).ready(function () {
                 $('.file-box').each(function () {
                     animationHover(this, 'pulse');
                 });
             });
-               function del(){
-/*     alert("是否删除");
- */
- //询问框
-parent.layer.confirm('确定要删除吗', {
-    btn: ['确定','取消'], //按钮
-    shade: false //不显示遮罩
-}
-/* , function(){
-    parent.layer.msg('已删除', {icon: 1});
-}, function(){
-    parent.layer.msg('已取消', {shift: 6});
-} */
-);
-    }
+
+            function del() {
+                /*     alert("是否删除");
+                 */
+                //询问框
+                parent.layer.confirm('确定要删除吗', {
+                        btn: ['确定', '取消'], //按钮
+                        shade: false //不显示遮罩
+                    }
+                    /* , function(){
+                        parent.layer.msg('已删除', {icon: 1});
+                    }, function(){
+                        parent.layer.msg('已取消', {shift: 6});
+                    } */
+                );
+            }
         </script>
 
-        <script type="text/javascript"
-                src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+        <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
         <!--统计代码，可删除-->
     </div>
 </div>
