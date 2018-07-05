@@ -40,7 +40,6 @@ public class CommentServiceImpl implements CommentService {
     public void saveComment(Comment comment) {
         comment.setTime(new Date());
         comment.setFlag(1);
-        System.out.println(comment);
         commentMapper.insert(comment);
     }
 

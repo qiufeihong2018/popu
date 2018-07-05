@@ -164,7 +164,7 @@ margin-top: 20px;margin-left: -45px;">
     var id = -1;
     var articleId = -1;
 
-    function getValue(contentId) {
+    function getValue() {
         $('#myModal').modal('hide')
         var cks = document.getElementsByName("ck");
         for (var i = 0; i < cks.length; i++) {
@@ -193,7 +193,7 @@ margin-top: 20px;margin-left: -45px;">
             return;
         } else {
             page -= 1;
-            getList();
+            getList(id);
         }
 
         if (page <= 1) {
@@ -208,7 +208,7 @@ margin-top: 20px;margin-left: -45px;">
             return;
         } else {
             page += 1;
-            getList();
+            getList(id);
         }
         if (page >= totalPage) {
             $(obj).attr("class", "btn btn-default");
