@@ -162,10 +162,15 @@
         $.post("${pageContext.request.contextPath}/article/getlist",
             {currentPage: page}
             , function (data) {
-                var text = "";
+                var text = '<tr>' +
+                    '                        <td>选择</td>' +
+                    '<td>文章id</td>' +
+                    '                        <td>文章标题</td>' +
+                    '                    </tr>';
                 $.each(data["obj"]["rows"], function (index, val) {
                     text += '<tr>' +
                         '                        <td><input name="ck" value="' + val["id"] + '" type="checkbox"/></td>' +
+                        '<td>' + val['id'] + '</td>' +
                         '                        <td>' + val["title"] + '</td>' +
                         '                    </tr>';
                 });

@@ -37,6 +37,7 @@
     <script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
     <!-- 日期 -->
     <script src="${pageContext.request.contextPath}/js/laydate/laydate.js"></script>
+    <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
 
