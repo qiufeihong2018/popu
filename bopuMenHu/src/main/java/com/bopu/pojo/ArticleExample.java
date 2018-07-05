@@ -674,6 +674,66 @@ public class ArticleExample {
             addCriterion("look not between", value1, value2, "look");
             return (Criteria) this;
         }
+
+        public Criteria andReferencedIsNull() {
+            addCriterion("referenced is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedIsNotNull() {
+            addCriterion("referenced is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedEqualTo(Integer value) {
+            addCriterion("referenced =", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedNotEqualTo(Integer value) {
+            addCriterion("referenced <>", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedGreaterThan(Integer value) {
+            addCriterion("referenced >", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("referenced >=", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedLessThan(Integer value) {
+            addCriterion("referenced <", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedLessThanOrEqualTo(Integer value) {
+            addCriterion("referenced <=", value, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedIn(List<Integer> values) {
+            addCriterion("referenced in", values, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedNotIn(List<Integer> values) {
+            addCriterion("referenced not in", values, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedBetween(Integer value1, Integer value2) {
+            addCriterion("referenced between", value1, value2, "referenced");
+            return (Criteria) this;
+        }
+
+        public Criteria andReferencedNotBetween(Integer value1, Integer value2) {
+            addCriterion("referenced not between", value1, value2, "referenced");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

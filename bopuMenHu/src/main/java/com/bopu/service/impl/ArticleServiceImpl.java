@@ -45,6 +45,7 @@ public class ArticleServiceImpl implements ArticleService {
         Date date = new Date();
         article.setCount(0);
         article.setTime(date);
+        article.setReferenced(0);    // 文章未被引用
         if (article.getType() != 2) {
             article.setLimitdata(date);
             article.setLook("none");
@@ -53,7 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     /**
-     * 根据bp获取文章列表
+     * 根据pb获取文章列表
      *
      * @param pb
      */
@@ -68,11 +69,18 @@ public class ArticleServiceImpl implements ArticleService {
 
     /**
      * 删除文章
+     * 文章被引用不可删除 修改为ajax请求
      *
      * @param articleId
      */
-    public void deleteArticle(Integer articleId) {
-        articleMapper.deleteByPrimaryKey(articleId);
+    public boolean deleteArticle(Integer articleId) {
+        Article article = articleMapper.selectByPrimaryKey(articleId);
+        if (article ==null ||article.getReferenced() == 1) {
+            return false;
+        } else {
+            articleMapper.deleteByPrimaryKey(articleId);
+            return true;
+        }
     }
 
     public void update(Article article) {

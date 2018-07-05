@@ -57,7 +57,8 @@
                                                 <%--图片--%>
                                             <c:if test="${content.sort > 3}">
                                                 <%--前三张图片只有替换，没有删除--%>
-                                                <a onclick="del()" href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                                <a onclick="del()"
+                                                   href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
                                             </c:if>
                                             <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a><br>
                                             选择的文章id为${content.url.split("=")[1]}
@@ -232,15 +233,16 @@ margin-top: 20px;margin-left: -45px;">
                 totalPage = data["obj"]["totalPage"];
             });
     }
-    function del(){
-      parent.layer.alert("是否删除");
+
+    function del() {
+        parent.layer.alert("是否删除");
     }
 </script>
 
 <script type="text/javascript"
         src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 <!--统计代码，可删除-->
-	<!-- layui -->
+<!-- layui -->
 
 </body>
 

@@ -14,37 +14,6 @@
 </head>
 
 <body class="gray-bg">
-	<!-- 	<header class="clearfix">
-			头部
-
-			<nav class="navbar navbar-default" role="navigation">
-				<div class="container-fluid">
-					<div class="navbar-header">
-
-						<a class="navbar-brand" href="#">温州市波普大数据研究院</a>
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
-      <span class="sr-only">切换导航</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-					</div>
-					<div class="collapse navbar-collapse" id="example-navbar-collapse">
-						<ul class="nav navbar-nav navbar-right">
-
-							<li>
-								<a href="私信界面.html">私信</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="个人中心.html">个人中心</a>
-							</li>
-
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</header> -->
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<br>
 	<main class="content">
@@ -95,14 +64,6 @@
 </html>
 
 
-<!-- 全局js -->
-<!--     <script src="js/jquery.min.js?v=2.1.4"></script>
-    <script src="js/bootstrap.min.js?v=3.3.6"></script>
-	<link rel="shortcut icon" href="favicon.ico"> 		  	
-	<link href="css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
-    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet"> -->
-<!--     <link href="css/style.css?v=4.1.0" rel="stylesheet">		 -->
 <!--图标-->
 <link href="css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
 
@@ -123,29 +84,7 @@
 html, body {
 	overflow-x: hidden;
 }
-/*头部样式*/
 
-/* 	header .navbar-default {
-				background-color: #1572DD;
-			}
-			
-			header .navbar-brand {
-				color: #fff !important;
-			}
-			
-			.navbar-default .navbar-toggle .icon-bar {
-				background-color: #fff !important;
-			}
-			
-			.navbar-default .navbar-nav > li > a {
-				color: #fff !important;
-			}
-			
-			.navbar-default .navbar-nav > li > a:focus,
-			.navbar-default .navbar-nav > li > a:hover {
-				color: #eee !important;
-			}
-			 */
 .content {
 	min-height: calc(100vh - 100px);
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import sun.misc.JavaNioAccess;
 
 import java.lang.annotation.ElementType;
 import java.util.ArrayList;
@@ -148,9 +149,13 @@ public class ArticleController {
      * @return
      */
     @RequestMapping(value = "article/delete")
-    public String deleteArticle(String articleId, Integer currentPage) {
-        articleService.deleteArticle(Integer.parseInt(articleId));
-        return "redirect:list?currentPage=" + currentPage;
+    @ResponseBody
+    public BoPuResult deleteArticle(Integer articleId) {
+        if (articleService.deleteArticle(articleId)) {
+            return BoPuResult.build(200, "true");
+        } else {
+            return BoPuResult.build(200, "false");
+        }
     }
 
 
@@ -178,7 +183,7 @@ public class ArticleController {
      */
     @RequestMapping(value = "article/update")
     @ResponseBody
-    public BoPuResult update(Article article, Model model) {
+    public BoPuResult update(Article article) {
         articleService.update(article);
         return BoPuResult.build(200, article.getId().toString());
     }

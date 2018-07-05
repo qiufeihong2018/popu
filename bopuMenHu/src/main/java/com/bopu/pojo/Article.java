@@ -1,7 +1,5 @@
 package com.bopu.pojo;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,6 +22,8 @@ public class Article {
     private Date limitdata;
 
     private String look;
+
+    private Integer referenced;
 
     private String content;
 
@@ -124,6 +124,14 @@ public class Article {
 
     public void setLook(String look) {
         this.look = look == null ? null : look.trim();
+    }
+
+    public Integer getReferenced() {
+        return referenced;
+    }
+
+    public void setReferenced(Integer referenced) {
+        this.referenced = referenced;
     }
 
     public String getContent() {
