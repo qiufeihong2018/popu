@@ -48,7 +48,7 @@
 	<main class="content">
 
 		<div class="middle-box text-center animated fadeInDown">
-			<img src="img/500.JPG" /> <br> <br>
+			<img src="${pageContext.request.contextPath}/img/500.JPG" /> <br> <br>
 			<!--     <h3 class="font-bold">服务器内部错误</h3> -->
 
 			<!--     <div class="error-desc">
