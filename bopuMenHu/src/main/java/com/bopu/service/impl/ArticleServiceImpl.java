@@ -75,7 +75,7 @@ public class ArticleServiceImpl implements ArticleService {
      */
     public boolean deleteArticle(Integer articleId) {
         Article article = articleMapper.selectByPrimaryKey(articleId);
-        if (article ==null ||article.getReferenced() == 1) {
+        if (article ==null ||article.getReferenced() >0 ) {
             return false;
         } else {
             articleMapper.deleteByPrimaryKey(articleId);

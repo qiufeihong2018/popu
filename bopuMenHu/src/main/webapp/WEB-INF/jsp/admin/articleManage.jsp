@@ -149,31 +149,30 @@ To change this template use File | Settings | File Templates.
                 });
             });
 
-        function del(id) {
-    //询问框
-    parent.layer.confirm('确定要删除吗', {
-        btn: ['确定', '取消'],
-        //按钮
-        shade: false //不显示遮罩
-    },
-    function() {
-        $.post("${pageContext.request.contextPath}/article/delete", {
-            articleId: id
-        },
-        function(data) {
-            if (data["message"] == "true") {
-                window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=" + currentPage;
-                parent.layer.alert("此文章已被删除");
-            } else {
-                parent.layer.alert("此文章被引用，无法删除");
+            function del(id) {
+                //询问框
+                parent.layer.confirm('确定要删除吗', {
+                        btn: ['确定', '取消'],
+                        //按钮
+                        shade: false //不显示遮罩
+                    },
+                    function () {
+                        $.post("${pageContext.request.contextPath}/article/delete", {
+                                articleId: id
+                            },
+                            function (data) {
+                                if (data["message"] == "true") {
+                                    window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=" + currentPage;
+                                    parent.layer.alert("此文章已被删除");
+                                } else {
+                                    parent.layer.alert("此文章被引用，无法删除");
+                                }
+
+                            });
+
+                    },
+                );
             }
-
-        });
-
-    },
-
-    );
-}
         </script>
 
         <script type="text/javascript"
