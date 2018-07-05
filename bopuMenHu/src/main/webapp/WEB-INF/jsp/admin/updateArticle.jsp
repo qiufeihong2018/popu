@@ -125,7 +125,7 @@
             var flag = $("input[name='projectFlag']:checked").val();
             var look = $("input[name='look']").val();
             var limitData = $("input[name='limitData']").val();
-            $.post("${pageContext.request.contextPath}/article/update", {
+            $.post("${pageContext.request.contextPath}/admin/article/update", {
                 id: ${article.id},
                 type: type,
                 title: title,
@@ -149,7 +149,7 @@
             var title = $("input[name='noticeTitle']").val();
             var author = $("input[name='noticeAuthor']").val();
             var flag = $("input[name='noticeFlag']:checked").val();
-            $.post("${pageContext.request.contextPath}/article/update", {
+            $.post("${pageContext.request.contextPath}/admin/article/update", {
                 id: ${article.id},
                 type: type,
                 title: title,

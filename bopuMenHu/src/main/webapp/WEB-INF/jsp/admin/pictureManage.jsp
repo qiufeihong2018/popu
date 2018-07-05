@@ -25,8 +25,7 @@
     <script src="${pageContext.request.contextPath}/layui/layui.js" charset="utf-8"></script>
     <!-- 全局js -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.12.4.min.js"></script>
-    <script
-            src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap-3.3.7.min.js"></script>
 
     <!-- 自定义js -->
     <script src="${pageContext.request.contextPath}/js/content.js"></script>
@@ -45,8 +44,7 @@
                         <c:if test="${content.categoryId == 2}">
                             <div class="file-box">
                                 <div class="file">
-                                    <a
-                                            href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
+                                    <a href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
                                         <span class="corner"></span>
                                         <div class="image">
                                             <img alt="image" class="img-responsive"
@@ -58,7 +56,7 @@
                                             <c:if test="${content.sort > 3}">
                                                 <%--前三张图片只有替换，没有删除--%>
                                                 <a onclick="del()"
-                                                   href="${pageContext.request.contextPath}/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
+                                                   href="${pageContext.request.contextPath}/admin/content/delPic?sort=${content.sort}">删除</a>&nbsp;|
                                             </c:if>
                                             <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=2">替换图片</a><br>
                                             选择的文章id为${content.url.split("=")[1]}
@@ -85,8 +83,7 @@
                         <c:if test="${content.categoryId == 1}">
                             <div class="file-box">
                                 <div class="file">
-                                    <a
-                                            href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
+                                    <a href="${pageContext.request.contextPath}${content.categoryId == 1 ? content.url: content.pic}">
                                         <span class="corner"></span>
                                         <div class="image">
                                             <img alt="image" class="img-responsive"
@@ -96,7 +93,6 @@
                                                 ${content.title} <br/>
                                                 <%-- 文章--%>
                                                 <%-- 后台需要参数 图片 文章 序号 --%>
-                                                <%--<a href="#{pageContext.request.contextPath}/content/updateArticle?sort=${content.sort}">替换</a>--%>
                                             <a href="${pageContext.request.contextPath}/admin/uploadPicture?sort=${content.sort}&category=1">替换图片</a><br>
                                             选择的文章id为${content.url.split("=")[1]}
                                             <a onclick="$('#myModal').modal('show');getList(${content.id})">修改文章</a>
@@ -177,7 +173,7 @@ margin-top: 20px;margin-left: -45px;">
                 break;
             }
         }
-        $.post("${pageContext.request.contextPath}/content/updateArt",
+        $.post("${pageContext.request.contextPath}/admin/content/updateArt",
             {
                 id: id,
                 articleId: a[0]
@@ -223,7 +219,7 @@ margin-top: 20px;margin-left: -45px;">
 
     function getList(contentId) {
         id = contentId;
-        $.post("${pageContext.request.contextPath}/article/getlist",
+        $.post("${pageContext.request.contextPath}/admin/article/getlist",
             {currentPage: page}
             , function (data) {
                 var text = '<tr>' +

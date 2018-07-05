@@ -52,7 +52,7 @@ public class ContentController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "content/managerPA")
+    @RequestMapping(value = "admin/content/managerPA")
     public String getPicAndArt(Model model) {
         List<Content> contents = contentService.getInformation();
         model.addAttribute("contents", contents);
@@ -69,7 +69,7 @@ public class ContentController {
      * @return
      * @throws IOException
      */
-    @RequestMapping(value = "content/uploadPic")
+    @RequestMapping(value = "admin/content/uploadPic")
     public String uploadPic(@RequestParam("file[]") MultipartFile file[], Integer category, Integer articleId, Integer sort, HttpServletRequest request) throws IOException {
         String name = contentService.findPicSort(sort, category, articleId);
         String path = null;
@@ -96,7 +96,7 @@ public class ContentController {
      *
      * @param sort 轮播图片的序号
      */
-    @RequestMapping(value = "content/delPic")
+    @RequestMapping(value = "admin/content/delPic")
     public String delPic(Integer sort, HttpServletRequest request) {
         Content content = contentService.deletePic(sort);
         // 删除图片
@@ -114,7 +114,7 @@ public class ContentController {
      * @param file
      * @param sort
      */
-    @RequestMapping(value = "content/updatePic")
+    @RequestMapping(value = "admin/content/updatePic")
     public String updataPic(@RequestParam("file[]") MultipartFile file[], Integer sort, Integer category, HttpServletRequest request) {
         // 获取原图片名称
         String name = contentService.getPic(sort, category);
@@ -138,7 +138,7 @@ public class ContentController {
      * @param articleId
      * @return
      */
-    @RequestMapping("/content/updateArt")
+    @RequestMapping("admin/content/updateArt")
     public String updateArt(Integer id, Integer articleId) {
         contentService.setArtById(id, articleId);
         return "admin/pictureManage";
@@ -147,7 +147,7 @@ public class ContentController {
     /**
      * 设置关于我们
      */
-    @RequestMapping(value = "content/setAbout")
+    @RequestMapping(value = "admin/content/setAbout")
     public String setabout(String email, String phone) {
         contentService.setabout("邮箱", email);
         contentService.setabout("电话", phone);
@@ -182,17 +182,4 @@ public class ContentController {
         return boPuResult;
     }
 
-    /**
-     * 设置简介 (简介有很多分段 该如何处理 利用序号？ 简介还有图片 利用序号？ 那么样式就不可改了)
-     *
-     * @param sort    序号
-     * @param file    图片
-     * @param request
-     * @param content 内容
-     * @return
-     */
-    @RequestMapping(value = "setIntroduction")
-    public BoPuResult setIntroduction(Integer sort, MultipartFile file[], HttpServletRequest request, String content) {
-        return BoPuResult.build(200, "");
-    }
 }

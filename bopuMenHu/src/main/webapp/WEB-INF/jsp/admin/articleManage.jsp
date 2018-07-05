@@ -56,15 +56,15 @@ To change this template use File | Settings | File Templates.
                 <div class="ibox-content">
                     <div class="file-manager">
                         <h5>显示：</h5>
-                        <a href="${pageContext.request.contextPath}/article/list"
+                        <a href="${pageContext.request.contextPath}/admin/article/list"
                            class="file-control active">全部</a> <a
-                            href="${pageContext.request.contextPath}/article/list?type=1"
+                            href="${pageContext.request.contextPath}/admin/article/list?type=1"
                             class="file-control">最近活动</a> <a
-                            href="${pageContext.request.contextPath}/article/list?type=2"
+                            href="${pageContext.request.contextPath}/admin/article/list?type=2"
                             class="file-control">项目(研究成果)</a> <a
-                            href="${pageContext.request.contextPath}/article/list?type=3"
+                            href="${pageContext.request.contextPath}/admin/article/list?type=3"
                             class="file-control">业内动态</a> <a
-                            href="${pageContext.request.contextPath}/article/list?type=4"
+                            href="${pageContext.request.contextPath}/admin/article/list?type=4"
                             class="file-control">内部通知</a> <a
                             href="${pageContext.request.contextPath}/admin/setIntroduction">简介修改</a>
                     </div>
@@ -77,8 +77,7 @@ To change this template use File | Settings | File Templates.
                     <c:forEach items="${pageBean.rows}" var="article">
                         <div class="file-box">
                             <div class="file">
-                                <a
-                                        href="${pageContext.request.contextPath}/article/show?articleId=${article.id}"
+                                <a href="${pageContext.request.contextPath}/article/show?articleId=${article.id}"
                                         target="view_window"> <span class="corner"></span>
                                     <div class="file-name" style="height: 200px">
                                             ${article.title} <br/>
@@ -87,8 +86,7 @@ To change this template use File | Settings | File Templates.
                                         </div>
                                         <br/>
                                         <div style="margin-top: 80px;">
-                                            <a
-                                                    href="${pageContext.request.contextPath}/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
+                                            <a href="${pageContext.request.contextPath}/admin/article/updateShow?articleId=${article.id}">编辑</a>&nbsp;|
                                             <a onclick="del(${article.id})">删除</a>
                                         </div>
                                     </div>
@@ -133,11 +131,11 @@ To change this template use File | Settings | File Templates.
                 var totalPage = Math.ceil(${pageBean.total / pageBean.pageSize})
                 if (a == 1) {
                     if (currentPage > 1) {
-                        window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage - 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
+                        window.location.href = "${pageContext.request.contextPath}/admin/article/list?currentPage=${pageBean.currentPage - 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
                     }
                 } else {
                     if (currentPage < totalPage) {
-                        window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=${pageBean.currentPage + 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
+                        window.location.href = "${pageContext.request.contextPath}/admin/article/list?currentPage=${pageBean.currentPage + 1}&type=${pageBean.type != null ? pageBean.type[0]: null}";
                     }
                 }
 
@@ -157,12 +155,12 @@ To change this template use File | Settings | File Templates.
                         shade: false //不显示遮罩
                     },
                     function () {
-                        $.post("${pageContext.request.contextPath}/article/delete", {
+                        $.post("${pageContext.request.contextPath}/admin/article/delete", {
                                 articleId: id
                             },
                             function (data) {
                                 if (data["message"] == "true") {
-                                    window.location.href = "${pageContext.request.contextPath}/article/list?currentPage=" + currentPage;
+                                    window.location.href = "${pageContext.request.contextPath}/admin/article/list?currentPage=" + currentPage;
                                     parent.layer.alert("此文章已被删除");
                                 } else {
                                     parent.layer.alert("此文章被引用，无法删除");

@@ -32,7 +32,7 @@ public class ArticleController {
      * @param article
      * @return
      */
-    @RequestMapping(value = "article/upload")
+    @RequestMapping(value = "admin/article/upload")
     @ResponseBody
     public BoPuResult uploadArticle(Article article) {
         articleService.saveArticle(article);
@@ -83,7 +83,7 @@ public class ArticleController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "article/list")
+    @RequestMapping(value = "admin/article/list")
     public String showArticleList(String currentPage, Integer type, Model model) {
         int page;
         if (null == currentPage || "".equals(currentPage) || "null".equals(currentPage)) {
@@ -117,7 +117,7 @@ public class ArticleController {
      * @param currentPage
      * @return
      */
-    @RequestMapping(value = "article/getlist")
+    @RequestMapping(value = "admin/article/getlist")
     @ResponseBody
     public BoPuResult showList(String currentPage) {
         int page;
@@ -148,7 +148,7 @@ public class ArticleController {
      *
      * @return
      */
-    @RequestMapping(value = "article/delete")
+    @RequestMapping(value = "admin/article/delete")
     @ResponseBody
     public BoPuResult deleteArticle(Integer articleId) {
         if (articleService.deleteArticle(articleId)) {
@@ -165,7 +165,7 @@ public class ArticleController {
      * @param articleId
      * @return
      */
-    @RequestMapping(value = "article/updateShow")
+    @RequestMapping(value = "admin/article/updateShow")
     public String showUpdateArticle(Integer articleId, Model model) {
         Article articleById = articleService.getArticleById(articleId);
         if (null != articleById) {
@@ -181,7 +181,7 @@ public class ArticleController {
      *
      * @return
      */
-    @RequestMapping(value = "article/update")
+    @RequestMapping(value = "admin/article/update")
     @ResponseBody
     public BoPuResult update(Article article) {
         articleService.update(article);
@@ -240,6 +240,11 @@ public class ArticleController {
         return boPuResult;
     }
 
+    /**
+     * 内部通知单独访问
+     *
+     * @return
+     */
     @RequestMapping(value = "article/projectContent")
     @ResponseBody
     public BoPuResult showProjectDetail() {
@@ -261,7 +266,7 @@ public class ArticleController {
      *
      * @return
      */
-    @RequestMapping("/article/introduction")
+    @RequestMapping("article/introduction")
     @ResponseBody
     public BoPuResult getIntroduction() {
         Article article = articleService.getIntroduction(5);
@@ -275,7 +280,7 @@ public class ArticleController {
      *
      * @return
      */
-    @RequestMapping("/article/updateIntro")
+    @RequestMapping("admin/article/updateIntro")
     @ResponseBody
     public BoPuResult updateIntroduction(String content) {
         articleService.updateIntro(content);

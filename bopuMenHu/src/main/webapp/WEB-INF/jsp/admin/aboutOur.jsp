@@ -46,7 +46,7 @@
 					<div class="ibox-content">
 						<div class="file-manager">
 							<form
-								action="${pageContext.request.contextPath}/content/setAbout">
+								action="${pageContext.request.contextPath}/admin/content/setAbout">
 								<p>
 									邮箱：<input id="in1" name="email" type="text"
 										class="form-control" />
@@ -79,7 +79,6 @@
 		} else if ($("#in2").val() == "") {
 		parent.layer.alert("电话不能为空");
 			$("#in2").focus();
-
 		}
 	}
 </script>

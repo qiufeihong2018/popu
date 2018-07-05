@@ -297,8 +297,6 @@
 
         }
         else {
-
-            // 获取编辑器中的html
             var html = ue.getContent();
             // 返回成功跳转 页面 => 跳转到文章阅读页面
 
@@ -310,7 +308,7 @@
                 var flag = $("input[name='projectFlag']:checked").val();
                 var look = $("input[name='look']").val();
                 var limitData = $("input[name='limitData']").val();
-                $.post("${pageContext.request.contextPath}/article/upload", {
+                $.post("${pageContext.request.contextPath}/admin/article/upload", {
                     type: type,
                     title: title,
                     content: html,
@@ -330,7 +328,7 @@
                 var author = $("input[name='noticeAuthor']").val();
                 var flag = $("input[name='noticeFlag']:checked").val();
                 html = ue2.getContent();
-                $.post("${pageContext.request.contextPath}/article/upload", {
+                $.post("${pageContext.request.contextPath}/admin/article/upload", {
                     type: type,
                     title: title,
                     content: html,
@@ -348,17 +346,6 @@
     }
 
     function submitHTML2() {
-        /*   if (this.value == "2") {}
-             if($("#title").val()==""){
-
-         alert("标题不能为空");
-         $("#title").focus();
-
-         }else if($("#author").val()==""){
-           alert("作者不能为空");
-         $("#author").focus();
-
-         } */
         if ($("#itemName").val() == "") {
 
             parent.layer.alert("项目名称不能为空");
@@ -375,7 +362,6 @@
 
         }
         else {
-
             // 获取编辑器中的html
             var html = ue.getContent();
             // 返回成功跳转 页面 => 跳转到文章阅读页面
@@ -388,7 +374,7 @@
                 var flag = $("input[name='projectFlag']:checked").val();
                 var look = $("input[name='look']").val();
                 var limitData = $("input[name='limitData']").val();
-                $.post("${pageContext.request.contextPath}/article/upload", {
+                $.post("${pageContext.request.contextPath}/admin/article/upload", {
                     type: type,
                     title: title,
                     content: html,
@@ -408,7 +394,7 @@
                 var author = $("input[name='noticeAuthor']").val();
                 var flag = $("input[name='noticeFlag']:checked").val();
                 html = ue2.getContent();
-                $.post("${pageContext.request.contextPath}/article/upload", {
+                $.post("${pageContext.request.contextPath}/admin/article/upload", {
                     type: type,
                     title: title,
                     content: html,

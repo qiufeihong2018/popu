@@ -159,7 +159,7 @@
     }
 
     function getList() {
-        $.post("${pageContext.request.contextPath}/article/getlist",
+        $.post("${pageContext.request.contextPath}/admin/article/getlist",
             {currentPage: page}
             , function (data) {
                 var text = '<tr>' +
@@ -222,7 +222,7 @@
                         </div>
                         <div class="ibox-content">
                             <form id="my-awesome-dropzone" class="dropzone"
-                                  action="${pageContext.request.contextPath}<%="1".equals(request.getParameter("add"))?"/content/uploadPic":"/content/updatePic"%>">
+                                  action="${pageContext.request.contextPath}/admin/content/<%="1".equals(request.getParameter("add"))?"uploadPic":"updatePic"%>">
                                 <input type="hidden" name="category"
                                        value="<%=request.getParameter("category")!=null?request.getParameter("category"):""%>">
                                 <input type="hidden" name="sort"

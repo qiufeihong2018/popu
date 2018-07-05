@@ -53,14 +53,14 @@
 					</li>
 
 					<li><a class="J_menuItem"
-						href="${pageContext.request.contextPath}/content/managerPA"><i
+						href="${pageContext.request.contextPath}/admin/content/managerPA"><i
 							class="fa fa-map"></i><span class="nav-label">轮播图管理</span></a></li>
 					<li><a class="J_menuItem"
 						href="${pageContext.request.contextPath}/admin/uploadArticle"><i
 							class="fa fa-recycle"></i><span class="nav-label">文章发布</span></a></li>
 
 					<li><a class="J_menuItem"
-						href="${pageContext.request.contextPath}/article/list"><i
+						href="${pageContext.request.contextPath}/admin/article/list"><i
 							class="fa fa-file-text-o"></i><span class="nav-label">文章管理</span></a>
 					</li>
 					<li><a class="J_menuItem"
@@ -114,7 +114,7 @@
 			</div>
 			<div class="row J_mainContent" id="content-main">
 				<iframe class="J_iframe" id="iframe" name="iframe0" width="100%" height="100%"
-					src="${pageContext.request.contextPath}/content/managerPA" frameborder="0" data-id="\波普3\轮播图管理.html"
+					src="${pageContext.request.contextPath}/admin/content/managerPA" frameborder="0" data-id="\波普3\轮播图管理.html"
 					seamless></iframe>
 			</div>
 

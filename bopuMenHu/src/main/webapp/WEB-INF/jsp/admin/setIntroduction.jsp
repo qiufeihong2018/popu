@@ -98,7 +98,7 @@
     function submitHTML() {
         // 获取编辑器中的html
         var html = ue.getContent();
-        $.post("${pageContext.request.contextPath}/article/updateIntro", {
+        $.post("${pageContext.request.contextPath}/admin/article/updateIntro", {
             content: html
         }, function (result) {
             if (result["status"] == 200) {
